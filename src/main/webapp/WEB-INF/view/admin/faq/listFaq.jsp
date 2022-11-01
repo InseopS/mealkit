@@ -22,32 +22,10 @@
 </style>
 </head>
 <body>
-    <div class='container-fluid'>
-        <div class='row'>
-            <div class='col-2' id='navLogo'>
-                <h3 id='logo'><a href='../main.html'>EZEN MEALKIT</a></h3>
-            </div>
-            <div class='col' id='title'>
-                <div style='float: left'>
+	<%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>FAQ</h2>&ensp;
                     <h6>Q&A목록</h6>
-                </div>
-                <div style='float: right'><a href='../../main.html'>로그아웃</a></div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-2' id='menu'>
-                <ul class='mt-3 p-1'>
-                    <li><a href='../mealkit/01.html'><span class='material-icons mr-2'>shopping_bag</span>상품</a></li>
-                    <li><a href='../notice/01.html'><span class='material-icons mr-2'>sell</span>공지사항</a></li>
-                    <li><a href='../review/01.html'><span class='material-icons mr-2'>computer</span>리뷰</a></li>
-                    <li><a href='../order/01.html'><span class='material-icons mr-2'>article</span>주문</a></li>
-                    <li><a href='../declaration/01.html'><span class='material-icons mr-2'>report</span>신고</a></li>
-                    <li><a href='../question/01.html'><span class='material-icons mr-2'>forum</span>문의</a></li>
-                    <li><a href='01.html'><span class='material-icons mr-2'>chat_bubble_outline</span>FAQ</a></li>
-                    <li><a href='../user/01.html'><span class='material-icons mr-2'>people</span>회원조회</a></li>
-                </ul>
-            </div>
+    <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid;'>
                 <div class='border w-auto my-3' id='content'>
                     <div id='pageGroup'>
@@ -108,7 +86,7 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtnGroup'>
-                    <button type='button' class='btn btn-secondary mr-2' onclick='location.href="02.html"'>작성</button>
+                    <button type='button' class='btn btn-secondary mr-2' onclick='location.href="<%=request.getContextPath()%>/admin/faq/addFaq"'>작성</button>
                     <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                 </div>
             </div>
@@ -127,7 +105,7 @@
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="01.html"'>예</button>
+                      onclick='location.href="<%=request.getContextPath()%>/admin/faq/listFaq"'>예</button>
                 </div>
             </div>
         </div>
