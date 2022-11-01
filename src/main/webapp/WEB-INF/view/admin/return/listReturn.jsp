@@ -23,7 +23,7 @@
                     <h6><a href='../exchange/01.html' role='button'>교환리스트</a></h6>
                     <h6><a href='01.html' class='font-weight-bold' role='button'>반품리스트</a></h6>
      <%@ include file ='../../include/adminTop2.jsp'%>
-            <div class='col' style='border: 1px solid'>
+		<div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <div id='pageGroup'>
                         <nav id='page'>
@@ -84,7 +84,7 @@
                                     <tbody>
                                         <tr>
                                             <td><input type='checkbox'/></td>
-                                            <td>1</td><td>000001</td><td>tanaka</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>반품처리중</td>
+                                            <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>반품처리중</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -95,8 +95,9 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
             </div>
+        </div>
+    </div>
 </body>
-
 <%@ include file ='../../include/adminFooter.jsp'%>
 
 </html>

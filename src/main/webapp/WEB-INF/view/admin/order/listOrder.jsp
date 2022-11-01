@@ -76,6 +76,8 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
         	</div>
+        </div>
+    </div>
 </body>
 
 <%@ include file ='../../include/adminFooter.jsp'%>

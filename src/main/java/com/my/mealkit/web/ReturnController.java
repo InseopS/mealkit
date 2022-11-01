@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("return")
 public class ReturnController {
 	
-	@GetMapping("apply")
+	@GetMapping("applyReturn")
 	public ModelAndView applyReturn(ModelAndView mv) {
 		mv.setViewName("return/applyReturn");
 		return mv;
 	}
 	
-	@GetMapping("list")
+	@GetMapping("listReturn")
 	public ModelAndView listReturn(ModelAndView mv) {
 		mv.setViewName("return/listReturn");
 		return mv;

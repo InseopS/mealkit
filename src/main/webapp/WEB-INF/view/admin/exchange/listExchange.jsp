@@ -1,9 +1,7 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset='utf-8'>
 <title>EZEN MEALKIT</title>
+<meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
@@ -14,15 +12,19 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+<style>
+
+</style>
 </head>
 <body>
-      <%@ include file ='../../include/adminTop1.jsp'%>
+<%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>주문</h2>
-                    <h6><a href='../order/01.html' role='button'>주문완료리스트</a></h6>
+                    <h6><a href='../order/listOrder' role='button'>주문완료리스트</a></h6>
                     <h6><a href='../order/02.html' role='button'>취소리스트</a></h6>
                     <h6><a href='01.html' class='font-weight-bold' role='button'>교환리스트</a></h6>
                     <h6><a href='../return/01.html' role='button'>반품리스트</a></h6>
-      <%@ include file ='../../include/adminTop2.jsp'%>
+<%@ include file ='../../include/adminTop2.jsp'%>
+
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <div id='pageGroup'>
@@ -95,8 +97,7 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
             </div>
+        </div>
+    </div>
 </body>
-
 <%@ include file ='../../include/adminFooter.jsp'%>
-
-</html>
