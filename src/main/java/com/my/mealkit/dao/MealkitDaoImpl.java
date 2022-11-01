@@ -18,11 +18,6 @@ public class MealkitDaoImpl implements MealkitDao {
 	}
 
 	@Override
-	public List<Mealkit> detailMealkit(int mealkitNum) {
-		return mealkitMap.detailMealkit(mealkitNum);
-	}
-
-	@Override
 	public List<Mealkit> searchMealkit(String keyword) {
 		return mealkitMap.searchMealkit(keyword);
 	}

@@ -6,12 +6,7 @@
 		select * from mealkits
 		order by mealkit_num
 	</select>
-	
-	<select id='detailMealkit' resultType='mealkit'>
-		select * from mealkits
-		where mealkit_num = #{mealkitNum}
-	</select>
-	
+		
 	<select id='searchMealkit' resultMap='mealkit'>
 		select * from mealkits
 		where mealkit_name LIKE '%'||#{keyword}||'%'
