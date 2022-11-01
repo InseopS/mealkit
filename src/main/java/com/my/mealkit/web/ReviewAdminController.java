@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("admin/review")
 public class ReviewAdminController {
 	@RequestMapping("listReview")
-	public String listReview() {
-		return "admin/review/listReview";
+	public void listReview() {		
 	}
 }
