@@ -16,7 +16,15 @@ import com.my.mealkit.service.UserService;
 @RequestMapping("user")
 public class UserController {
 	@Autowired private UserService userService;
-	 
+	
+	@RequestMapping("signUp")
+	public void signUp() {		
+	}
+	
+	@RequestMapping("welcome")
+	public void welcome() {		
+	}
+
 	@GetMapping("login")
 	public ModelAndView loginIn(HttpSession session, ModelAndView mv) {
 		if(session.getAttribute("userId") == null) {
@@ -54,4 +62,43 @@ public class UserController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("findId")
+	public void findId() {		
+	}
+	
+	@RequestMapping("completeFindId")
+	public void completeFindId() {		
+	}
+	
+	@RequestMapping("findPassword")
+	public void findPassword() {		
+	}
+	
+	@RequestMapping("resetPassword")
+	public void resetPassword() {		
+	}
+	
+	@RequestMapping("completeResetPassword")
+	public void completeResetPassword() {		
+	}
+	
+	@RequestMapping("fixUser")
+	public void fixUser() {		
+	}
+	
+	@RequestMapping("completeFixUser")
+	public void completeFixUser() {		
+	}
+	
+	@RequestMapping("completeWithdrawal")
+	public void completeWithdrawal() {		
+	}
+	
+	@GetMapping("mypage")
+	public void mypage() {
+		
+	}
+	
+
 }
