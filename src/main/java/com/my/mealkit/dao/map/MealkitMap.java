@@ -8,7 +8,6 @@ import com.my.mealkit.domain.Mealkit;
 
 public interface MealkitMap {
 	List<Mealkit> selectMealkits();
-	List<Mealkit> detailMealkit(@Param("mealkitNum") int mealkitNum);
 	List<Mealkit> searchMealkit(@Param("keyword") String keyword);
 	void insertMealkit(Mealkit mealkit);
 	void updateMealkit(Mealkit mealkit);
