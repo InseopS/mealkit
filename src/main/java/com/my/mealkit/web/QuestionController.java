@@ -9,25 +9,25 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("question")
 public class QuestionController {
 	
-	@GetMapping("add")
+	@GetMapping("addQuestion")
 	public ModelAndView addQuestion(ModelAndView mv) {
 		mv.setViewName("question/addQuestion");
 		return mv;
 	}
 	
-	@GetMapping("detail")
+	@GetMapping("detailQuestion")
 	public ModelAndView detailQuestion(ModelAndView mv) {
 		mv.setViewName("question/detailQuestion");
 		return mv;
 	}
 	
-	@GetMapping("fix")
+	@GetMapping("fixQuestion")
 	public ModelAndView fixQuestion(ModelAndView mv) {
 		mv.setViewName("question/fixQuestion");
 		return mv;
 	}
 	
-	@GetMapping("list")
+	@GetMapping("listQuestion")
 	public ModelAndView listQuestion(ModelAndView mv) {
 		mv.setViewName("question/listQuestion");
 		return mv;
