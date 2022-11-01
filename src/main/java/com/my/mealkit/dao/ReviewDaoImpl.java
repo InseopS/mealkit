@@ -3,10 +3,12 @@ package com.my.mealkit.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.my.mealkit.dao.map.ReviewMap;
 import com.my.mealkit.domain.Review;
 
+@Repository
 public class ReviewDaoImpl implements ReviewDao{
 	@Autowired private ReviewMap reviewMap;
 	
