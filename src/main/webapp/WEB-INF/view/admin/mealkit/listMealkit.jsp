@@ -1,4 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8'%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <head>
 <title>EZEN MEALKIT</title>
 <meta charset='utf-8'>
@@ -12,36 +12,52 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-<style>
-</style>
+<script>
+function listMealkits() {
+	$('#mealkits').empty()
+	
+	$.ajax({
+		method: 'post',
+		url: "<%=request.getContextPath()%>/admin/mealkit/listMealkit"
+	}).done(mealkits => {
+		if(mealkits.length) {
+			const mealkitArr = []
+			
+			$.each(mealkits, (i, mealkit) => {
+				mealkitArr.unshift(
+                	`<tr>
+                        <td class='align-middle'><div class='border w-auto' style='height: 75px;'>\${mealkit.mealkitImgfileName}</div></td>
+                        <td class='align-middle'>\${mealkit.mealkitName}</td>
+                        <td class='align-middle'>\${mealkit.foodTypeCode}</td>
+                        <td class='align-middle'>\${mealkit.price}</td>
+                        <td class='align-middle'>\${mealkit.mealkitRegDate}</td>
+                        <td class='align-middle'>
+                            <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
+                            <a class='btn btn-secondary btn-sm' data-toggle='modal' data-target='#delModal'>삭제</a>
+                        </td>
+                    </tr>`		
+				);
+			})
+			
+			$('#mealkits').append(mealkitArr.join(''))
+		} else {
+			$('#mealkits').append('<tr><td colspan=6 class=text-center>등록한 밀키트가 없습니다.</td></tr>')
+		}
+	})
+}
+
+function init() {
+	$(listMealkits)
+}
+
+$(init)
+</script>
 </head>
 <body>
-    <div class='container-fluid'>
-        <div class='row'>
-            <div class='col-2' id='navLogo'>
-                <h3 id='logo'><a href='../main.html'>EZEN MEALKIT</a></h3>
-            </div>
-            <div class='col' id='title'>
-                <div style='float: left'>
-                    <h2 style='display: inline'>상품</h2>&ensp;
-                    <h6>상품목록</h6>
-                </div>
-                <div style='float: right'><a href='../../main.html'>로그아웃</a></div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-2' id='menu'>
-                <ul class='mt-3 p-1'>
-                    <li><a href="01.html"><span class="material-icons mr-2">shopping_bag</span>상품</a></li>
-                    <li><a href="../notice/01.html"><span class="material-icons mr-2">sell</span>공지사항</a></li>
-                    <li><a href="../review/01.html"><span class="material-icons mr-2">computer</span>리뷰</a></li>
-                    <li><a href="../order/01.html"><span class="material-icons mr-2">article</span>주문</a></li>
-                    <li><a href="../declaration/01.html"><span class="material-icons mr-2">report</span>신고</a></li>
-                    <li><a href="../question/01.html"><span class="material-icons mr-2">forum</span>문의</a></li>
-                    <li><a href="../faq/01.html"><span class="material-icons mr-2">chat_bubble_outline</span>FAQ</a></li>
-                    <li><a href="../user/01.html"><span class="material-icons mr-2">people</span>회원조회</a></li>
-                </ul>
-            </div>
+	<%@ include file ='../../include/adminTop1.jsp'%>
+                    <h2 style='display: inline'>상품목록</h2>&ensp;
+    <%@ include file ='../../include/adminTop2.jsp'%>
+
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto mt-3 my-3' id='content'>
                     <div id='pageGroup'>
@@ -104,51 +120,7 @@
                                     <th scope='col'>수정&ensp;/&ensp;삭제</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class='align-middle'><div class='border w-auto' style='height: 75px;'>파스타이미지</div></td>
-                                    <td class='align-middle'>파스타</td>
-                                    <td class='align-middle'>양식</td>
-                                    <td class='align-middle'>8000원</td>
-                                    <td class='align-middle'>2022-10-20</td>
-                                    <td class='align-middle'>
-                                        <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
-                                        <a class='btn btn-secondary btn-sm' data-toggle='modal' data-target='#delModal'>삭제</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class='align-middle'><div class='border w-auto' style='height: 75px;'>고기만두이미지</div></td>
-                                    <td class='align-middle'>고기만두</td>
-                                    <td class='align-middle'>중식</td>
-                                    <td class='align-middle'>5000원</td>
-                                    <td class='align-middle'>2022-10-21</td>
-                                    <td class='align-middle'>
-                                        <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
-                                        <a class='btn btn-secondary btn-sm'>삭제</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class='align-middle'><div class='border w-auto' style='height: 75px;'>김치만두이미지</div></td>
-                                    <td class='align-middle'>김치만두</td>
-                                    <td class='align-middle'>중식</td>
-                                    <td class='align-middle'>5000원</td>
-                                    <td class='align-middle'>2022-10-22</td>
-                                    <td class='align-middle'>
-                                        <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
-                                        <a class='btn btn-secondary btn-sm'>삭제</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class='align-middle'><div class='border w-auto' style='height: 75px;'>부대찌개이미지</div></td>
-                                    <td class='align-middle'>부대찌개</td>
-                                    <td class='align-middle'>한식</td>
-                                    <td class='align-middle'>16000원</td>
-                                    <td class='align-middle'>2022-10-23</td>
-                                    <td class='align-middle'>
-                                        <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
-                                        <a class='btn btn-secondary btn-sm'>삭제</a>
-                                    </td>
-                                </tr>
+                            <tbody id='mealkits'>
                             </tbody>
                         </table>
                     <hr style='margin-top: -1rem;'>
