@@ -7,15 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-1144
-=======
-dt
->>>>>>> refs/heads/ym
-=======
-change2
->>>>>>> refs/heads/ym
 </body>
 </html>
