@@ -8,13 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("notice")
 public class NoticeController {
-	@GetMapping("list")
+	@GetMapping("listNotice")
 	public ModelAndView listNotice(ModelAndView mv) {
 		mv.setViewName("notice/listNotice");
 		return mv;
 	}
 	
-	@GetMapping("detail")
+	@GetMapping("detailNotice")
 	public ModelAndView detailNotice(ModelAndView mv) {
 		mv.setViewName("notice/detailNotice");
 		return mv;

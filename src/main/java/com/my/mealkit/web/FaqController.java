@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("faq")
 public class FaqController {
-	@GetMapping("list")
+	@GetMapping("listFaq")
 	public ModelAndView listNotice(ModelAndView mv) {
 		mv.setViewName("faq/listFaq");
 		return mv;
