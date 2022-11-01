@@ -35,6 +35,12 @@
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
+<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+   <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+   <div id='menuName'>
+       <h3>주문상세</h3>
+   </div>            
+</div>
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
@@ -128,7 +134,7 @@
 		    </div>
 		</div>
         <div class='row d-flex mx-auto mt-5'>
-            <a href='03.html' class='btn flex-fill bg-dark text-white mt-5 mb-4' role='button'>주문내역</a>
+            <a href='order/list' class='btn flex-fill bg-dark text-white mt-5 mb-4' role='button'>주문내역</a>
         </div>
     </div>
 </body>

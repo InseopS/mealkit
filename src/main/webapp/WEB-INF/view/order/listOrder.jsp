@@ -41,6 +41,12 @@
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
+<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+   <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+   <div id='menuName'>
+       <h3>주문내역</h3>
+   </div>            
+</div>
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
@@ -49,11 +55,11 @@
             <div class='col'>
                 <nav class='d-flex mt-3 justify-content-center'>
                     <button type='button' class='btn flex-fill ml-0.5 mr-4 bg-dark text-white'
-                        onclick='location.href="03.html"'>주문내역</button>
+                        onclick='location.href="list"'>주문내역</button>
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4'
-                        onclick='location.href="../exchange/02.html"'>교환내역</button>
+                        onclick='location.href="../exchange/list"'>교환내역</button>
                     <button type='button' class='btn flex-fill btn-outline-dark'
-                        onclick='location.href="../return/02.html"'>반품내역</button>
+                        onclick='location.href="../return/list"'>반품내역</button>
                 </nav>
                 <hr style='border: solid 1px'>
             </div>
@@ -85,9 +91,9 @@
             <a href='04.html' class='link flex-fill text-dark mt-5' role='button'><u>주문상세</u></a><br>
             <a href='03.html' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
                 data-target='#orderCancleModal'><u>주문취소</u></a><br>
-            <a href='../exchange/01.html' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
-            <a href='../return/01.html' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
-            <a href='../review/01.html' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
+            <a href='../exchange/apply' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
+            <a href='../return/apply' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
+            <a href='../review/add' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
             </small>
         </div>
     </div>
