@@ -17,5 +17,5 @@ public class Mealkit {
 	private String mealkitImgfileName;
 	private MultipartFile mealkitImgfile;
 	private int foodTypeCode;
-	private String keyworkd;
+	private String keyword;
 }
