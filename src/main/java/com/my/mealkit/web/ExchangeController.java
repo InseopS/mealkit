@@ -8,13 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("exchange")
 public class ExchangeController {
-	@GetMapping("apply")
+	@GetMapping("applyExchange")
 	public ModelAndView applyExchange(ModelAndView mv) {
 		mv.setViewName("exchange/applyExchange");
 		return mv;
 	}
 	
-	@GetMapping("list")
+	@GetMapping("listExchange")
 	public ModelAndView listExchange(ModelAndView mv) {
 		mv.setViewName("exchange/listExchange");
 		return mv;
