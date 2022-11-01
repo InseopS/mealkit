@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 
 <head>
-<title>test</title>
+<title>latest</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -19,7 +19,7 @@ tr, td {
    border: 1px solid lightgray;
 }
 
-table.favoriteList {
+table.latestList {
 	width: 100%;
 	text-align: center;
 }
@@ -30,7 +30,7 @@ table.favoriteList {
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
 	<a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
 	<div id='menuName'>
-	    <h3>찜한 상품</h3>
+	    <h3>최근 본 상품</h3>
 	</div>            
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -39,19 +39,17 @@ table.favoriteList {
 	<div class='container' id='mainContainerAddSub'>
 		<div class='row mt-5'>
 			<div class='col'>
-				<table class='favoriteList'>
+				<table class='latestList'>
 					<tbody>
 						<tr>
-							<th width='13%'><input type='checkbox'></th>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>미나리감자탕<br>이미지</a>
+								<a href='../mealkit/01.html'>미나리감자탕<br>이미지</a>
 							</td>
 							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
 						</tr>
 						<tr>
-							<th width='13%'><input type='checkbox'></th>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>새우감바스<br>이미지</a>
+								<a href='../mealkit/01.html'>새우감바스<br>이미지</a>
 							</td>
 							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
 						</tr>
@@ -59,32 +57,7 @@ table.favoriteList {
 				</table>
 			</div>
 		</div>
-		<div class='row justify-content-end mt-3 mr-2'>
-			<button type='button' id='deleteBtn' class='btn btn-secondary mr-2'
-					data-toggle='modal' data-target='#deleteModal'>삭제</button>
-		</div>
 	</div>
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <p class='modal-title float-left' id='myModalLabel'>찜한 상품</p>
-                    <button bype='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>상품을 삭제하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal' data-target='#deleteOkModal'>예</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>
 </html>
-
-

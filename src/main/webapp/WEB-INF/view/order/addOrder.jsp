@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 <head>
@@ -176,7 +176,7 @@ h5 {
             <div class='row d-flex justify-content-center mt-1'>
                 <!--<a href='02.html'><button type='button' class='btn btn-outline-secondary m-5 d-flex justify-content-center'
                             data-toggle='modal' data-target='#noCheckModal'>결제하기</button></a>-->
-                <input formaction='completeOrder.jsp' type='submit' class='btn btn-outline-secondary m-5 d-flex justify-content-center'>
+                <input formaction='completeOrder' type='submit' class='btn btn-outline-secondary m-5 d-flex justify-content-center' value='구매'>
             </div>
         </form>  
     </div>

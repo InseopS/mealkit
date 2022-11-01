@@ -19,4 +19,16 @@ public class OrderController {
 	      mv.setViewName("order/completeOrder");
 	      return mv;
 	   }
+	
+	@GetMapping("listOrder")
+	 public ModelAndView listOrder(ModelAndView mv) {
+	      mv.setViewName("order/listOrder");
+	      return mv;
+	   }
+	
+	@GetMapping("detailOrder")
+	 public ModelAndView detailOrder(ModelAndView mv) {
+	      mv.setViewName("order/detailOrder");
+	      return mv;
+	   }
 }

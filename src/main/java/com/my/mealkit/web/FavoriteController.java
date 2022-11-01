@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("faq")
-public class FaqController {
-	@GetMapping("list")
-	public ModelAndView listNotice(ModelAndView mv) {
-		mv.setViewName("faq/listFaq");
-		return mv;
-	}
+@RequestMapping("favorite")
+public class FavoriteController {
+	@GetMapping
+	 public ModelAndView favorite(ModelAndView mv) {
+	      mv.setViewName("favorite/listFavorite");
+	      return mv;
+	   }
+	
 }
