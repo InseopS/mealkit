@@ -34,9 +34,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 	
 	@Override
-	public void insertAdminNotice(String noticeTitle, String noticeContent,
-									LocalDate noticeRegDate, String noticeImgFileName) {
-		noticeMap.insertAdminNotice(noticeTitle, noticeContent, noticeRegDate, noticeImgFileName);
+	public void insertAdminNotice(Notice notice) {
+		noticeMap.insertAdminNotice(notice);
 	}
 	
 	@Override

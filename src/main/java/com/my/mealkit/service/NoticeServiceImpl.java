@@ -32,9 +32,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public void addAdminNotice(String noticeTitle, String noticeContent,
-								LocalDate noticeRegDate, String noticeImgFileName) {
-		noticeDao.insertAdminNotice(noticeTitle, noticeContent, noticeRegDate, noticeImgFileName);
+	public void addAdminNotice(Notice notice) {
+		noticeDao.insertAdminNotice(notice);
 	}
 	
 	@Override
