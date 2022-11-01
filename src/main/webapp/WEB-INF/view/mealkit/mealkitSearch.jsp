@@ -1,7 +1,7 @@
 <%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8'%>
 <html>
 <head>
-<title>mealkit</title>
+<title>mealkitSearch</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -13,21 +13,13 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../res/lib.css'>
+<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/js/paging.js"></script>
 <style>
+
 </style>
 <script>
- $(function () {
-    $('.favorite').click(function () {
-        let check = $('.favorite').find('#favoriteIcon');
-        if (check.hasClass('on')) {
-            check.css('color', 'black');
-        } else {
-            check.css('color', 'red');
-            $('#favoriteModal').modal()
-        }
-        check.toggleClass('on', 'off');
-    });
-});
+
 </script>
 </head>
 <header>
@@ -53,7 +45,7 @@
         <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
             <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
             <div id="menuName">
-                <h3>감바스</h3>
+                <h3>만두</h3>
             </div>
         </div>
         <div class='collapse navbar-collapse' id='menu'>
@@ -84,47 +76,38 @@
 </header>
 <body>
     <div id='mainContainerAddSub' class="container">
-        <div class='row mt'>
+        <div class='row mt-2'>
             <div class='col'>
-                <div class='border w-auto' style='height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;'>
-                    <p>감바스이미지</p>
-                </div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
-                <div class='border-bottom w-auto'>
-                    <h6 class='mt-1 mb-1'>맛있는 감바스</h6>
-                </div>
-                <div class='border-bottom w-auto'>
-                    <h5 class='mt-1 mb-1'>양식</h5>
-                </div>
-                <div class='border-bottom w-auto'>
-                    <span class='mt-1 mb-1'>수량 : </span>
-                    <span class='mt-1 mb-1'>1개</span>
-                    <input class='btn btn-sm btn-secondary' type='button' value='+' style='width: 2rem;'/>
-                    <input class='btn btn-sm btn-secondary' type='button' value='-' style='width: 2rem;'/>
-                    <span class='float-right'>7900원</span>
-                </div>
-                <div class='border w-auto mt-2 mb-1'>
-<pre>
-OO레스토랑 쉐프의 레시피를
-이용한 고급 감바스를
-집에서 손쉽게 만들수있습니다.
-</pre>
-                </div>
-                <div>
-                    <div class='favorite' style='display: inline'>
-                        <span id='favoriteIcon' class="material-icons" style='font-size: 3rem;'>favorite</span>
-                    </div>                  
-                    <div style='display: inline;'>                            
-                        <a type='button' class='btn btn-secondary ml-5 mb-4' id='cartBtn' data-toggle='modal' data-target='#cartModal'>담기</a>
-                        <a type='button' class='btn btn-secondary ml-2 mb-4' id='buyBtn' href='../order/01.html'>구매</a>
-                    </div>
-                </div>
+                <table class='table' style='font-size: 75%;'>
+                    <thead><tr><th>상품</th><th>이름</th><th>가격</th><th>상세보기</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td class='border w-auto'>고기만두이미지</td>
+                            <th>고기만두</th>
+                            <td>5000원</td>
+                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
+                        </tr>
+                        <tr>
+                            <td class='border w-auto'>김치만두이미지</td>
+                            <th>김치만두</th>
+                            <td>5000원</td>
+                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+        </ul>
+    </nav>
 </body>
 <footer>
     <nav class='navbar fixed-bottom navbar-light bg-light'>
@@ -137,40 +120,4 @@ OO레스토랑 쉐프의 레시피를
         </div>
     </nav>
 </footer>
-<div class='modal fade' id='favoriteModal' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>찜하기</p>
-                <button bype='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body text-center'>
-                <p>찜하기 되었습니다.</p>
-            </div>
-            <div class='modal-footer py-1'>
-                <a data-dismiss='modal' class='btn btn-primary col-3'>확인</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class='modal fade' id='cartModal' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>장바구니</p>
-                <button bype='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body text-center'>
-                <p>장바구니에 담았습니다.</p>
-            </div>
-            <div class='modal-footer py-1'>
-                <a href='02.html' class='btn btn-primary col-3'>확인</a>
-            </div>
-        </div>
-    </div>
-</div>
 </html>
