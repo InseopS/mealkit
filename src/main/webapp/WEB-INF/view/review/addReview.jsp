@@ -72,7 +72,7 @@
         <br>
         <div class='row justify-content-end'>
             <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="../order/03.html"'>취소</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>취소</button>
                 &nbsp;
                 <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
             </div>
@@ -91,7 +91,7 @@
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
                     <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="02.html"'>예</button>
+                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>예</button>
                 </div>
             </div>
         </div>

@@ -48,7 +48,7 @@
 	<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
-        <div class='container mr-1 ml-1'  onClick="location.href='03.html'">
+        <div class='container mr-1 ml-1'  onclick='location.href="<%=request.getContextPath()%>/review/detailReview"'>
             <div class='row d-flex justify-content-between'>
                     <div id='star'>
                         ★★★★★ 아주좋아요
