@@ -1,5 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=EUC-KR'
-    pageEncoding='utf-8'%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,8 +53,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </body>
 
 <%@ include file ='../../include/adminFooter.jsp'%>

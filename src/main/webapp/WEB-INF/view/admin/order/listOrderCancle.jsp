@@ -1,5 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=EUC-KR'
-    pageEncoding='utf-8'%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,9 +65,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <tr><td>000003</td><td>binny7</td><td>리얼치즈핫도그</td><td>10개 / 20000원</td><td>카드</td><td>주문취소</td></tr>
-                                        </tr>
+                                        <tr><td>000003</td><td>binny7</td><td>리얼치즈핫도그</td><td>10개 / 20000원</td><td>카드</td><td>주문취소</td></tr>
                                     </tbody>
                                 </table>
                                 <hr class='my-0'>
@@ -78,8 +75,6 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
             </div>
-        </div>
-    </div>
 </body>
 
 <%@ include file ='../../include/adminFooter.jsp'%>
