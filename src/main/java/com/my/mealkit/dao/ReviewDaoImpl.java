@@ -1,6 +1,5 @@
 package com.my.mealkit.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,8 @@ public class ReviewDaoImpl implements ReviewDao{
 	} 
 	
 	@Override
-	public void insertReview(String reviewTitle, String reviewContent, int rate,
-			LocalDate reviewRegDate, String reviewImgFileName) {
-		reviewMap.insertReview(reviewTitle, reviewContent, rate, reviewRegDate, reviewImgFileName);
+	public void insertReview(Review review) {
+		reviewMap.insertReview(review);
 	}
 	
 	@Override
