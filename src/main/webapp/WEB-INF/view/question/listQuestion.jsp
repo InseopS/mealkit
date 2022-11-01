@@ -37,7 +37,7 @@
                         <tr><th>제목</th><th>작성일</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td onclick='location.href="03.html"'>마라키트 많이 맵나요?</td><td>2022.10.14</td></tr>
+                        <tr><td onclick='location.href="detail"'>마라키트 많이 맵나요?</td><td>2022.10.14</td></tr>
                         <tr><td>배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
                         <tr><td>ㄴ 답변: 배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
                     </tbody>
@@ -46,7 +46,7 @@
         </div>
         <div class='row justify-content-end'>
             <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="01.html"'>작성</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="add"'>작성</button>
         </div>
     </div>
     <div class='row d-flex mx-auto fixed-bottom mb-5' id='paging_div'>

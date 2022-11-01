@@ -55,9 +55,9 @@
         <br>
         <div class='row justify-content-end mr-3'>
             <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="02.html"'>취소</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="list"'>취소</button>
                 &nbsp;
-                <button type='button' class='btn btn-secondary' onclick='location.href="02.html"'>작성</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="list"'>작성</button>
             </div>
         </div>
     </div>
