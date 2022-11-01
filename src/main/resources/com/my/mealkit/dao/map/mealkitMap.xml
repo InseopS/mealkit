@@ -7,7 +7,7 @@
 		order by mealkit_num
 	</select>
 		
-	<select id='searchMealkit' resultMap='mealkit'>
+	<select id='searchMealkit' resultType='mealkit'>
 		select * from mealkits
 		where mealkit_name LIKE '%'||#{keyword}||'%'
 	</select>
