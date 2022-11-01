@@ -16,4 +16,14 @@ public class ReviewController {
 	public String addReview() {
 		return "review/addReview";
 	}
+	
+	@RequestMapping("fixReview")
+	public String fixReview() {
+		return "review/fixReview";
+	}
+	
+	@RequestMapping("detailReview")
+	public String detailReview() {
+		return "review/detailReview";
+	}
 }
