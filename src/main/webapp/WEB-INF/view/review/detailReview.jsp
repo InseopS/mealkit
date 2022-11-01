@@ -91,8 +91,8 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="../declaration/01.html"'>예</button>         
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
+                      onclick='location.href="<%=request.getContextPath()%>/declaration/declareReview"'>예</button>         
                 </div>
             </div>
         </div>
@@ -109,8 +109,8 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="02.html"'>예</button>         
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
+                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>예</button>         
                 </div>
             </div>
         </div>
@@ -127,8 +127,8 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="04.html"'>예</button>         
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
+                      onclick='location.href="<%=request.getContextPath()%>/review/fixReview"'>예</button>         
                 </div>
             </div>
         </div>
