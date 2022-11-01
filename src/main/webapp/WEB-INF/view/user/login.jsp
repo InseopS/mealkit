@@ -44,24 +44,24 @@
                     <input type='password' class='form-control' name='password' id='password'>
                 </div>
             </div>
-            <div class='row d-flex mx-auto'>
-                <button type='submit' class='btn btn-primary flex-fill'>로그인</button>
-            </div>
-                <%
-                	if(session.getAttribute("errMsg") != null) {
-                %>
-                		<br> <h5 style='color: red; text-align: center;'> <%= session.getAttribute("errMsg") %> </h5>
-                <%
-                	}
-                %>
-        </div>
-         </form>
+        <div class='row d-flex mx-auto'>
+        	<button type='submit' class='btn btn-primary flex-fill'>로그인</button>
+		</div>
+			<%
+				if(session.getAttribute("errMsg") != null) {
+			%>
+					<br> <h5 style='color: red; text-align: center;'> <%= session.getAttribute("errMsg") %> </h5>
+			<%
+				}
+			%>
+		</div>
+	</form>
         <br>
 	<div class='row'>
 	    <div id='loginSubNav' class='col'>
-	        <a href='04.html'>아이디 찾기 |&nbsp;</a>
-	        <a href='06.html'>비밀번호 찾기 |&nbsp;</a>
-	        <a href='01.html'> 회원가입</a>
+	        <a href='findId'>아이디 찾기 |&nbsp;</a>
+	        <a href='findPassword'>비밀번호 찾기 |&nbsp;</a>
+	        <a href='signUp'> 회원가입</a>
 	    </div>
 	</div>   
 </body>

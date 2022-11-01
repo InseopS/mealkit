@@ -28,9 +28,9 @@ h5 {
 <div class='container' id='mainContainer'>
     <div class='row mt-5 text-center' >
         <div class='col'>
-            <h5><b>회원탈퇴완료</b></h5><hr class='mb-5'>
+            <h5><b>회원수정완료</b></h5><hr class='mb-5'>
             <div class='row justify-content-center'>
-                <p>회원탈퇴가 되었습니다.<br><br>그동안 이젠밀키트를<br>이용해주셔서 감사합니다.</p>
+                <p><br>변경하신 내용으로 회원수정이 됐습니다.</p>
             </div>
             <a href='../main.html'>
                 <div class='row  d-flex mx-auto mt-5'>
