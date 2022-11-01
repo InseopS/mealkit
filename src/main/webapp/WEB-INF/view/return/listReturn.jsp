@@ -46,7 +46,7 @@
     </div>
     <div class='row'>
         <div class='col ml-3 mt-2 mb-1'>
-            <b>주문번호</b>&ensp;20221013000001
+            <b>주문번호</b>&ensp;000001
         </div>
     </div>
     <hr class='mt-0 ml-3 mr-3 mb-2'>
