@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<title>EZEN MEALKIT</title>
+<title>EAZEN MEALKIT</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>

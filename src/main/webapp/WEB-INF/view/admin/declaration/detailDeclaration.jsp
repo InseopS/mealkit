@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
-<title>EZEN MEALKIT</title>
+<title>EAZEN MEALKIT</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -21,7 +21,8 @@
 </head>
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
-                    <h2 style='display: inline'>신고목록</h2>&ensp;
+                    <h2 style='display: inline'>신고</h2>&ensp;
+                    <h6>신고상세</h6>
     <%@ include file ='../../include/adminTop2.jsp'%>
 
             <div class='col' style='border: 1px solid'>
