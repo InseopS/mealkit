@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>listOrder</title>
+	<title>EZEN MEALKIT</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
@@ -40,61 +40,9 @@
     </style>
 </head>
 
-<header>
-    <nav class='navbar fixed-top navbar-light bg-light navbar-expand-sm p-0'>
-        <div class='container-fluid'>
-            <a class='navbar-brand ml-2' href='../main.html'>
-                <div id='logo'>로고이미지</div>
-            </a>
+<%@ include file ='../include/headerTop.jsp'%>
+<%@ include file ='../include/headerBottom.jsp'%>
 
-            <div>
-                <p class='navbar-title flex-fill mr-1 my-0' style="font-family: 'Nanum Pen Script', cursive;">집밥을 특별하게
-                </p>
-                <p class='navbar-title flex-fill mr-1 my-0' style="font-family: 'Nanum Pen Script', cursive;">쉐프의 밀키트
-                </p>
-            </div>
-
-            <a class='text-dark flex-fill text-right mr-3' href='../cart/01.html'>
-                <span class="material-icons">shopping_cart</span>
-            </a>
-
-            <button class='navbar-toggler mr-4' type='button' data-toggle='collapse' data-target='#menu'>
-                <span class='navbar-toggler-icon'></span>
-            </button>
-        </div>
-        <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-            <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-            <div id="menuName">
-                <h3>주문내역</h3>
-            </div>
-        </div>
-
-        <div class='collapse navbar-collapse' id='menu'>
-            <ul class='navbar-nav mr-auto'>
-                <li class='nav-item active'>
-                    <a class='nav-link' href='../user/03.html'>로그인</a>
-                </li>
-                <li class='nav-item active'>
-                    <a class='nav-link' href='../notice/01.html'>공지사항</a>
-                </li>
-                <li class='nav-item dropdown'>
-                    <a class='nav-link dropdown-toggle' data-toggle='dropdown'>고객센터</a>
-                    <div class='dropdown-menu'>
-                        <a class='dropdown-item' href='../faq/01.html'>자주묻는질문</a>
-                        <a class='dropdown-item' href='../question/02.html'>1:1문의</a>
-                        <div class='dropdown-divider'></div>
-                        <a class='dropdown-item' href='../declaration/02.html'>신고</a>
-                    </div>
-                </li>
-            </ul>
-            <form class='form-inline my-2 my-lg-0' action='../mealkit/03.html'>
-                <input type='search' class='form-control mr-sm-2' placeholder='상품을 입력해주세요.' />
-                <button type='submit' class='btn btn-outline-dark my-2 my-sm-0'>검색</button>
-            </form>
-        </div>
-        </div>
-    </nav>
-</header>
 <body>
     <div id='mainContainerAddSub' class='container'>
         <div class='row'>
@@ -174,15 +122,7 @@
         </div>
     </div>
 </body>
-<footer>
-    <nav class='navbar fixed-bottom navbar-light bg-light'>
-        <div class='container-fluid'>
-            <a class='navbar-brand' href='../main.html'><span class='material-icons'>home</span></a>
-            <a class='navbar-brand' href='../mealkit/02.html'><span class='material-icons'>restaurant_menu</span></a>
-            <a class='navbar-brand' href='../review/02.html'><span class='material-icons'>rate_review</span></a>
-            <a class='navbar-brand' href='../user/mypage.html'><span class='material-icons'>person</span></a>
-            <a class='navbar-brand' href='../latest/01.html'><span class='material-icons'>history</span></a>
-        </div>
-    </nav>
-</footer>
+
+<%@ include file ='../include/footer.jsp'%>
+
 </html>
