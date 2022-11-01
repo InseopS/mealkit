@@ -17,6 +17,6 @@ public class NoticeController {
 	@GetMapping("detailNotice")
 	public ModelAndView detailNotice(ModelAndView mv) {
 		mv.setViewName("notice/detailNotice");
-		return mv;
+		return mv; 
 	}
 }
