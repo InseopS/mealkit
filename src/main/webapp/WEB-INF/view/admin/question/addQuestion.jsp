@@ -50,6 +50,8 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 <%@ include file ='../../include/adminFooter.jsp'%>
