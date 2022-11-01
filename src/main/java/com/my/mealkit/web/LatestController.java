@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("latest")
 public class LatestController {
-	@GetMapping
+	@GetMapping("history")
 	 public ModelAndView latest(ModelAndView mv) {
-	      mv.setViewName("latest/listLatest");
+	      mv.setViewName("latest/history");
 	      return mv;
 	   }
 	

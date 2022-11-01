@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <title>test</title>
@@ -37,11 +37,11 @@
                     <p>구매완료 되었습니다<br>이용해 주셔서 감사합니다 :)</p>
                 </div>
                 <div class='row justify-content-center'>
-                    <a href='../mealkit/02.html'>
+                    <a href='<%=request.getContextPath()%>/mealkit/listMealkit'>
                         <button type='button' class='btn btn-outline-secondary m-4 justify-content-center'>쇼핑
                             더하기</button>
                     </a>
-                    <a href='03.html'>
+                    <a href='<%=request.getContextPath()%>/order/listOrder'>
                         <button type='button' class='btn btn-outline-secondary m-4 col-9 justify-content-center'>주문
                             조회</button>
                     </a>

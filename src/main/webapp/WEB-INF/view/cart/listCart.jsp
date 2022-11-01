@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 <head>
@@ -45,14 +45,14 @@ table.cartList {
                             <tr>
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
-                                    <a href='../mealkit/01.html'>미나리감자탕<br>이미지</a>
+                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>미나리감자탕<br>이미지</a>
                                 </td>
                                 <td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
                             </tr>
                             <tr>
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
-                                    <a href='../mealkit/01.html'>새우감바스<br>이미지</a>
+                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>새우감바스<br>이미지</a>
                                 </td>
                                 <td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
                             </tr>
@@ -63,7 +63,7 @@ table.cartList {
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='deleteBtn' class='btn btn-secondary mr-2'
                         data-toggle='modal' data-target='#deleteModal'>삭제</button>
-                <input type='submit' value='구매' formaction='../order/01.html' class='btn btn-secondary'>
+                <input type='submit' value='구매' formaction='../order/addOrder' class='btn btn-secondary'>
             </div>
         </form>
 	</div>

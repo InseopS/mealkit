@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("cart")
 public class CartController {
-	@GetMapping
+	@GetMapping("listCart")
 	 public ModelAndView cart(ModelAndView mv) {
 	      mv.setViewName("cart/listCart");
 	      return mv;
