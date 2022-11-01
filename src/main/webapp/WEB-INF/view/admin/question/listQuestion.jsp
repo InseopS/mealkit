@@ -1,5 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=EUC-KR'
-    pageEncoding='utf-8'%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,15 +115,13 @@
                         data-target='#questionDelModal'>삭제</button>
                 </div>
             </div>
-        </div>
-    </div>
 
     <div class='modal fade' id='questionDelModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
                     <p class='modal-title float-left' id='ModalLabel'>문의삭제</p>
-                    <button bype='button' class='close' data-dismiss='modal'>
+                    <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>

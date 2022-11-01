@@ -1,5 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=EUC-KR'
-    pageEncoding='utf-8'%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +16,13 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 </head>
 <body>
-	<%@ include file ='../../include/adminTop1.jsp'%>
+    <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>주문</h2>
                     <h6><a href='01.html' class='font-weight-bold' role='button'>주문완료리스트</a></h6>
                     <h6><a href='02.html' role='button'>취소리스트</a></h6>
                     <h6><a href='../exchange/01.html' role='button'>교환리스트</a></h6>
                     <h6><a href='../return/01.html' role='button'>반품리스트</a></h6>
-     <%@ include file ='../../include/adminTop2.jsp'%>
+	<%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <div id='pageGroup'>
@@ -66,10 +65,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <tr><td>000005</td><td>yeon2</td><td>감바스</td><td>3개 / 29000원</td><td>카드</td><td>주문완료</td></tr>
-                                            <tr><td>000004</td><td>ina1</td><td>미나리 감자탕</td><td>1개 / 10000원</td><td>카드</td><td>주문완료</td></tr>
-                                        </tr>
+	                                     <tr><td>000005</td><td>yeon2</td><td>감바스</td><td>3개 / 29000원</td><td>카드</td><td>주문완료</td></tr>
+	                                     <tr><td>000004</td><td>ina1</td><td>미나리 감자탕</td><td>1개 / 10000원</td><td>카드</td><td>주문완료</td></tr>
                                     </tbody>
                                 </table>
                                 <hr class='my-0'>
@@ -78,9 +75,7 @@
                     </div>
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
-            </div>
-        </div>
-    </div>
+        	</div>
 </body>
 
 <%@ include file ='../../include/adminFooter.jsp'%>
