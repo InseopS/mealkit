@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller 
 @RequestMapping("review")
 public class ReviewController {
-	
 	@RequestMapping("listReview")
 	public void listReview() {		
 	}

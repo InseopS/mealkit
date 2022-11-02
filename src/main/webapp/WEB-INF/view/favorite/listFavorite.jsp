@@ -44,14 +44,18 @@ table.favoriteList {
 						<tr>
 							<th width='13%'><input type='checkbox'></th>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>미나리감자탕<br>이미지</a>
+								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${favorite.flowerImgfileName}'/>'/>
+								</a>
 							</td>
 							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
 						</tr>
 						<tr>
 							<th width='13%'><input type='checkbox'></th>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>새우감바스<br>이미지</a>
+								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${favorite.flowerImgfileName}'/>'/>
+								</a>
 							</td>
 							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
 						</tr>

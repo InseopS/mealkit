@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>latest</title>
+<title>EAZEN MEALKIT</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -43,13 +43,17 @@ table.latestList {
 					<tbody>
 						<tr>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>미나리감자탕<br>이미지</a>
+								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${history.flowerImgfileName}'/>'/>
+								</a>
 							</td>
 							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
 						</tr>
 						<tr>
 							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>새우감바스<br>이미지</a>
+								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${history.flowerImgfileName}'/>'/>
+								</a>
 							</td>
 							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
 						</tr>

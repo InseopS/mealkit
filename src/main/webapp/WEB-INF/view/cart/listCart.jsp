@@ -37,25 +37,41 @@ table.cartList {
 
 <body>
 	<div class='container' id='mainContainerAddSub'>
-		<form>
+		<form action='<%=request.getContextPath() %>/order/addOrder'>
             <div class='row mt-5'>    
                 <div class='col'>
                     <table class='cartList'>
                         <tbody>
+                        	<c:forEach var="cart" items="${cartList}">
                             <tr>
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
-                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>미나리감자탕<br>이미지</a>
+                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${cart.flowerImgfileName}'/>'/>
+                                    </a>
                                 </td>
-                                <td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
+                                <td>이젠밀키트<br>미나리 감자탕<br>수량 : 1<br>32,000원</td>
                             </tr>
                             <tr>
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
-                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>새우감바스<br>이미지</a>
+                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
+                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${cart.flowerImgfileName}'/>'/>
+                                    </a>
                                 </td>
-                                <td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
+                                <td>이젠밀키트<br>새우 감바스<br>수량 : 1<br>10,000원</td>
                             </tr>
+                            </c:forEach>
+							<%-- 
+                            <c:if test="${not empty cartList}">
+								<tr><td colspan='4'><button id='orderBtn' type='submit' class="btn btn-secondary">전체 구매</button></td></tr>
+							</c:if>
+							--%>
+							<c:if test="${empty cartList}">
+								<div class='text-center'>
+									<h6 style='text-align:center'><b>장바구니가 비었습니다.<br>상품을 추가해주세요.</b></h6>
+								</div>
+							</c:if>
                         </tbody>
                     </table>
                 </div>
@@ -63,7 +79,7 @@ table.cartList {
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='deleteBtn' class='btn btn-secondary mr-2'
                         data-toggle='modal' data-target='#deleteModal'>삭제</button>
-                <input type='submit' value='구매' formaction='../order/addOrder' class='btn btn-secondary'>
+                <input type='submit' id='orderBtn' value='구매' class='btn btn-secondary'>
             </div>
         </form>
 	</div>
