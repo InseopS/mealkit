@@ -1,11 +1,16 @@
 package com.my.mealkit.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.my.mealkit.service.NoticeService;
 
 @Controller
 @RequestMapping("/admin/notice")
 public class NoticeAdminController {
+	@Autowired private NoticeService noticeService;
+	
 	@RequestMapping("listNotice")
 	public String listNotice() {
 		return "admin/notice/listNotice";

@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @Data
 public class Notice {
-		private int noticeNum;
-		private String noticeTitle;
-		private String noticeContent;
-		@DateTimeFormat(pattern="yyyy-MM-dd")
-		@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-		private LocalDate noticeRegdate;
-		private String noticeImgFileName;
+	private int noticeNum;
+	private String noticeTitle;
+	private String noticeContent;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+	private LocalDate noticeRegdate;
+	private String noticeImgFileName;
 
 }

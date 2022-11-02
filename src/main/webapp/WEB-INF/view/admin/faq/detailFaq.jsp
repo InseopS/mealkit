@@ -30,13 +30,13 @@
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='취소/교환/반품] 주문한 상품을 교환받고 싶어요' disabled>
+                                <input type='text' class='form-control bg-light' id='faqTitle' placeholder='제목을 입력해주세요.' value='취소/교환/반품] 주문한 상품을 교환받고 싶어요' disabled>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 29em' disabled>
+                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>
 마이페이지 > 주문내역 > 교환/반품 신청 경로로 들어가시면, 교환신청이 가능합니다 !</textarea>
                             </div>
                         </div>

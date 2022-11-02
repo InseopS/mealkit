@@ -47,7 +47,7 @@
                                 <div class='form-control bg-light' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
                                     <div class='row my-5' id='contentLogo'>
                                         <div class='col'>
-                                            <p id='logoImg' class='pt-2'>로고이미지</p>
+                                            <p id='noticeImg' class='pt-2'>로고이미지</p>
                                         </div>
                                     </div>
                                     안녕하세요!

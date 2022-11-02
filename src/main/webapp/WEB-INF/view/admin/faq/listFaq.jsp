@@ -63,8 +63,8 @@
                                     <tbody>
                                         <tr>
                                             <th><input type='checkbox'></th>
-                                            <td>0003</td>
-                                            <td onclick='location.href="<%=request.getContextPath()%>/admin/faq/detailFaq"'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</td>
+                                            <td id='faqNum'>0003</td>
+                                            <td id='faqTitle' onclick='location.href="<%=request.getContextPath()%>/admin/faq/detailFaq"'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>
