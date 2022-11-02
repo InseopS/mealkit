@@ -19,7 +19,7 @@
                     <h2 style='display: inline'>1:1문의</h2>
                     <h6>문의목록</h6>
      <%@ include file ='../../include/adminTop2.jsp'%>
-            <div class='col' style='border: 1px solid;'>
+<div class='col' style='border: 1px solid;'>
                 <div class='border w-auto my-3' id='content'>
                     <div id='pageGroup'>
                         <nav id='page'>
@@ -64,7 +64,7 @@
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td>0003</td>
-                                            <td onclick='location.href="02.html"'>마라키트 많이 맵나요?</td>
+                                            <td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td>
                                             <td>tanaka</td>
                                             <td>2022.10.14</td>
                                             <td>답변대기</td>
@@ -80,7 +80,7 @@
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td></td>
-                                            <td onclick='location.href="04.html"'>ㄴ 답변:배송문의ㅠㅜ</td>
+                                            <td onclick='location.href="fixQuestion"'>ㄴ 답변:배송문의ㅠㅜ</td>
                                             <td>관리자</td>
                                             <td>2022.10.13</td>
                                             <td>-</td>
@@ -114,13 +114,15 @@
                         data-target='#questionDelModal'>삭제</button>
                 </div>
             </div>
+        </div>
+    </div>
 
     <div class='modal fade' id='questionDelModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
                     <p class='modal-title float-left' id='ModalLabel'>문의삭제</p>
-                    <button type='button' class='close' data-dismiss='modal'>
+                    <button bype='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
@@ -135,6 +137,7 @@
         </div>
     </div>
 </body>
+
 
 <%@ include file ='../../include/adminFooter.jsp'%>
 

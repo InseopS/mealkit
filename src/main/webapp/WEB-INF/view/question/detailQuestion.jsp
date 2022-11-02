@@ -54,7 +54,7 @@
         <hr class='mt-5'>
         <div class='row mt-4 justify-contet-end mr-3'>
             <div class='col d-flex justify-content-end pb-0'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="fix"'>수정</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="fixQuestion"'>수정</button>
                 &nbsp;
                 <button type='button' class='btn btn-secondary' data-toggle='modal'
                     data-target='#questionCancelModal'>삭제</button>

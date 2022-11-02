@@ -19,9 +19,9 @@
                     <h2 style='display: inline'>1:1문의</h2>&ensp;
                     <h6>답변작성</h6>
     <%@ include file ='../../include/adminTop2.jsp'%>
-            <div class='col' style='border: 1px solid'>
+<div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
+                    <form action='listQuestion'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
@@ -40,7 +40,7 @@
                             <div class='row mx-auto justify-content-end'>
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
-                                        <button type='button' class='btn btn-secondary' onClick='location.href="01.html"'>취소</button>
+                                        <button type='button' class='btn btn-secondary' onClick='location.href="listQuestion"'>취소</button>
                                         <button type='submit' class='btn btn-secondary'>작성</button>
                                     </div>
                                 </div>
