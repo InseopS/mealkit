@@ -18,7 +18,7 @@
 	<%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>주문</h2>
                     <h6><a href='listOrder' role='button'>주문완료리스트</a></h6>
-                    <h6><a href='listOrderCancle' class='font-weight-bold' role='button'>취소리스트</a></h6>
+                    <h6><a href='listOrderCancel' class='font-weight-bold' role='button'>취소리스트</a></h6>
                     <h6><a href='../exchange/listExchange' role='button'>교환리스트</a></h6>
                     <h6><a href='../return/listReturn' role='button'>반품리스트</a></h6>
 	<%@ include file ='../../include/adminTop2.jsp'%>
