@@ -88,7 +88,7 @@
         <div class='col-3 mt-2 ml-4'>
             <a href='detailOrder' class='link flex-fill text-dark mt-5' role='button'><u>주문상세</u></a><br>
             <a href='listOrder' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-                data-target='#orderCancleModal'><u>주문취소</u></a><br>
+                data-target='#orderCancelModal'><u>주문취소</u></a><br>
             <a href='../exchange/applyExchange' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
             <a href='../return/applyReturn' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
             <a href='../review/addReview' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
@@ -105,7 +105,7 @@
             </ul>
         </nav>
     </div>
-    <div class='modal fade' id='orderCancleModal' tabindex='-1'>
+    <div class='modal fade' id='orderCancelModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
