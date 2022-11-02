@@ -19,20 +19,16 @@
             font-size: 0.8em;
             font-weight: 400;
         }
-
-        input[type='date']::before {
-            content: attr(data-placeholder);
-            width: 100%;
-            font-size: 0.7rem;
-            color: rgba(0, 0, 0, 0.550);
-        }
-
-        input[type='date']:focus::before,
-        input[type='date']:valid::before {
-            display: none;
-        }
     </style>
 </head>
+<script>
+function handleOnInput(el, maxlength) {
+	  if(el.value.length > maxlength)  {
+	    el.value 
+	      = el.value.substr(0, maxlength);
+	  }
+	}
+</script>
 
 <%@ include file ='../include/headerTop.jsp'%>
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -44,7 +40,7 @@
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
-    <form action='02.html'>
+    <form action='welcome'>
         <div id='mainContainerAddSub' class='container'>
             <div style='width: 1px; height: 1px;'></div>
             <div class='row inputBox mt-1'>
@@ -59,31 +55,25 @@
             <div class='row inputBox'>
                 <label class='col-3 col-form-label' style='font-size: 93%'>비밀번호</label>
                 <div class='col pl-1'>
-                    <input type='password' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자'>
+                    <input type='password' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자' required>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>이름</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='userName'>
-                </div>
-            </div>
-            <div class='row inputBox'>
-                <label for='input' class='col-3 col-form-label' style='font-size: 93%'>생년월일</label>
-                <div class='col pl-1'>
-                    <input type='date' class='form-control' id='birthDay' data-placeholder='YYYY-MM-DD 형식으로 입력해주세요.' required aria-required='true'>
+                    <input type='text' class='form-control' id='userName' required>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>이메일</label>
                 <div class='col pl-1'>
-                    <input type='email' class='form-control' id='email'>
+                    <input type='email' class='form-control' id='email' required>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label' style='font-size: 93%'>인증번호</label>
                 <div class='col pl-1'>
-                    <input type='number' class='form-control' id='certNum' min='100000' max='999999' required title='인증번호 6자리를 입력하세요.'>
+                    <input type='number' class='form-control' id='certNum' oninput='handleOnInput(this, 6)' required>
                 </div>
             </div>
             <div class='row inputBox'>
@@ -98,13 +88,13 @@
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>연락처</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='phoneNum'>
+                    <input type='text' class='form-control' id='phoneNum' required>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label class='col-3 col-form-label' style='font-size: 93%'>우편주소</label>
                 <div class='col px-1'>
-                    <input type='text' class='form-control' id='zipCode'>
+                    <input type='number' class='form-control' id='zipCode' oninput='handleOnInput(this, 5)' required>
                 </div>
                 <div class='col-4 pl-0'>
                     <input class='btn btn-primary float-right' type='button' value='주소검색'>
@@ -113,20 +103,18 @@
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>주소</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='address'>
+                    <input type='text' class='form-control' id='address' required>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label' style='font-size: 93%'>상세주소</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='betterAddress'>
+                    <input type='text' class='form-control' id='betterAddress' required>
                 </div>
             </div>
-            <a href='02.html'>
-            <div class='row d-flex mx-auto'>
+            <div class='row d-flex mx-auto mt-4'>
                 <button type='submit' class='btn btn-primary flex-fill'>회원가입</button>
             </div>
-        </a>
         </div>
     </form>
 
