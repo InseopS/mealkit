@@ -46,7 +46,7 @@
             </div>
             <div class='col'>
                 <form>
-                    <textarea style="resize: none;" cols='33' rows='1' maxlength="13" placeholder='제목을 입력해주세요.' id='content'></textarea>
+                    <textarea style="resize: none;" cols='33' rows='1' maxlength="13" placeholder='제목을 입력해주세요.' id='title'></textarea>
                 </form>
             </div>
         </div>
