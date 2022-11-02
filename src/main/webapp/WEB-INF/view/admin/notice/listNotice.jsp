@@ -12,6 +12,39 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+    <script>
+	function listNotices() {
+		$('#notices').empty();
+		
+		$.ajax({
+			method:'get',
+			url:"<%=request.getContextPath() %>/admin/notice/listNotice"
+		}).done(notices => {
+				if(notices.length) {
+					const noticeArr = []
+					
+					$.each(notices, (i, notice) => {
+						noticeArr.unshift(
+							`<tr>
+								<td><input type='checkbox' name='noticeNum' id='noticeNum'
+										value='\${notice.noticeNum}'/></td>
+								<td>\${notice.noticeNum}</td>
+								<td>/*<a href='/notice/detailNotice?noticeNum=\${notice.noticeNum}'>*/
+									\${notice.noticeTitle}</td>
+								<td>\${notice.noticeRegdate}</td>
+							 </tr>`
+						);
+					})
+					$('#notices').append(noticeArr.join(''))
+				} else {
+					$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
+				}
+		})
+	}
+    $(listNotices)
+    
+    </script>
+    
     <style>
         table {
             text-align: center;
@@ -71,7 +104,7 @@
                                             <th scope='col'>작성일</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='notices'>
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td id='noticeNum'>0007</td>
@@ -81,7 +114,7 @@
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td>0006</td>
-                                            <td>[공지] 추석 이벤트 안내</td>
+                                            <td>[공지] 추석 이벤트 안내 ${notice.noticeTitle}</td>
                                             <td>2022.10.11</td>
                                         </tr>
                                         <tr>

@@ -12,6 +12,8 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+
+
 <style>
     hr {
         height: 1px;
@@ -27,24 +29,25 @@
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
+                    <form method='post'action='/admin/notice/listNotice'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='noticeTitle' placeholder='제목을 입력해주세요.' 
+                                    <input type='text' class='form-control' name='noticeTitle' id='noticeTitle' placeholder='제목을 입력해주세요.' 
                                         minlength='1' maxlength='100' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="noticeContent" minlength='1' maxlength='1300' 
-                                        required style="height: 410px; resize:none "></textarea>
+                                    <textarea class="form-control" name='noticeContent' id="noticeContent" placeholder="내용을 입력해주세요." 
+                                    	minlength='1' maxlength='1300' required 
+                                    	style="height: 410px; resize:none "></textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
-                                <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
+                                <label for='wwwww' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
                                     <input type='file' class='form-control' id='noticeImg'>
                                 </div>
@@ -54,7 +57,7 @@
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary' formaction='/admin/notice/listNotice'>작성</button>
+                                        <button type='submit' class='btn btn-secondary' id='addNoticeBtn'>작성</button>
                                     </div>
                                 </div>
                             </div>
