@@ -20,9 +20,9 @@
 <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>주문</h2>
                     <h6><a href='../order/listOrder' role='button'>주문완료리스트</a></h6>
-                    <h6><a href='../order/02.html' role='button'>취소리스트</a></h6>
-                    <h6><a href='01.html' class='font-weight-bold' role='button'>교환리스트</a></h6>
-                    <h6><a href='../return/01.html' role='button'>반품리스트</a></h6>
+                    <h6><a href='../order/listOrderCancel' role='button'>취소리스트</a></h6>
+                    <h6><a href='listExchange' class='font-weight-bold' role='button'>교환리스트</a></h6>
+                    <h6><a href='../return/listReturn' role='button'>반품리스트</a></h6>
 <%@ include file ='../../include/adminTop2.jsp'%>
 
             <div class='col' style='border: 1px solid'>
