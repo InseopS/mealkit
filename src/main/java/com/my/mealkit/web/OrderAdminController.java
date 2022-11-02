@@ -11,7 +11,7 @@ public class OrderAdminController {
 		return "admin/order/listOrder";
 	}
 	
-	@RequestMapping("/admin/listOrder")
+	@RequestMapping("/admin/listOrderCancle")
 	public String listOrderCancle() {
 		return "admin/order/listOrderCancle";
 	}
