@@ -8,22 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReviewController {
 	
 	@RequestMapping("listReview")
-	public String listReview() {
-		return "review/listReview";
+	public void listReview() {		
 	}
 	
 	@RequestMapping("addReview")
-	public String addReview() {
-		return "review/addReview";
+	public void addReview() {		
 	}
-	
+
 	@RequestMapping("fixReview")
-	public String fixReview() {
-		return "review/fixReview";
+	public void fixReview() {		
 	}
 	
 	@RequestMapping("detailReview")
-	public String detailReview() {
-		return "review/detailReview";
+	public void detailReview() {		
 	}
 }
