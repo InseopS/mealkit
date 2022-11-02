@@ -43,12 +43,11 @@
                             <div class='col'>
                                 <table class='table table-hover my-0'>
                                     <colgroup>
-                                        <col width='5%'>
-                                        <col width='10%'>
-                                        <col width='45%'>
-                                        <col width='14%'>
+                                        <col width='8%'>
                                         <col width='13%'>
-                                        <col width='13%'>
+                                        <col width='47%'>
+                                        <col width='16%'>
+                                        <col width='16%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
@@ -57,7 +56,6 @@
                                             <th scope='col'>제목</th>
                                             <th scope='col'>작성자</th>
                                             <th scope='col'>작성일</th>
-                                            <th scope='col'>답변</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,7 +65,6 @@
                                             <td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td>
                                             <td>tanaka</td>
                                             <td>2022.10.14</td>
-                                            <td>답변대기</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>
@@ -75,7 +72,6 @@
                                             <td>배송문의ㅠㅜ</td>
                                             <td>tanaka</td>
                                             <td>2022.10.13</td>
-                                            <td>답변완료</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>
@@ -83,7 +79,6 @@
                                             <td onclick='location.href="fixQuestion"'>ㄴ 답변:배송문의ㅠㅜ</td>
                                             <td>관리자</td>
                                             <td>2022.10.13</td>
-                                            <td>-</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>
@@ -91,7 +86,6 @@
                                             <td>재입고 문의드려용~</td>
                                             <td>rightarm</td>
                                             <td>2022.10.12</td>
-                                            <td>답변완료</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>
@@ -99,7 +93,6 @@
                                             <td>ㄴ 답변:재입고 문의드려용~</td>
                                             <td>관리자</td>
                                             <td>2022.10.12</td>
-                                            <td>-</td>
                                         </tr>
                                     </tbody>
                                 </table>
