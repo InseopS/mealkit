@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
  			</div>
                 <div style='float: right'><a href='<%=request.getContextPath()%>/'>로그아웃</a></div>
             </div>
