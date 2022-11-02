@@ -57,7 +57,7 @@
                         <tr><th>제목</th><th>작성일</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td onclick='location.href="detail"'>마라키트 많이 맵나요?</td><td>2022.10.14</td></tr>
+                        <tr><td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td><td>2022.10.14</td></tr>
                         <tr><td>배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
                         <tr><td>ㄴ 답변: 배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
                     </tbody>
