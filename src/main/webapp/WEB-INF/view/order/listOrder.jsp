@@ -86,12 +86,12 @@
             <p>3개 / 29000원</p>
         </div>
         <div class='col-3 mt-2 ml-4'>
-            <a href='04.html' class='link flex-fill text-dark mt-5' role='button'><u>주문상세</u></a><br>
-            <a href='03.html' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+            <a href='detailOrder' class='link flex-fill text-dark mt-5' role='button'><u>주문상세</u></a><br>
+            <a href='listOrder' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
                 data-target='#orderCancleModal'><u>주문취소</u></a><br>
-            <a href='../exchange/apply' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
-            <a href='../return/apply' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
-            <a href='../review/add' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
+            <a href='../exchange/applyExchange' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
+            <a href='../return/applyReturn' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
+            <a href='../review/addReview' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
             </small>
         </div>
     </div>
