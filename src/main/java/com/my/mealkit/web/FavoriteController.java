@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("favorite")
 public class FavoriteController {
-	@GetMapping
+	@GetMapping("listFavorite")
 	 public ModelAndView favorite(ModelAndView mv) {
 	      mv.setViewName("favorite/listFavorite");
 	      return mv;
