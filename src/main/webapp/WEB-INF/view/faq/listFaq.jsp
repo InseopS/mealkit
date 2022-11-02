@@ -27,7 +27,7 @@
                         $('#down_arrow'+i).show();
                     })
                 })
-            }
+            } 
         </script>
         <style>
             #faqTitle {
