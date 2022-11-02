@@ -12,6 +12,31 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+<script>
+function init(){
+	$('#regBtn').click(() => {
+		let mealkitName = $('#mealkitName').val();
+		let price = $(#'price').val();
+		let description = $('#description').val();
+		let ingredient = $('#ingredient').val();
+		let mealkitImgfile = $(#'mealkitImgfile').val();
+		let foodTypeCode = $(#'foodTypeCode').val();
+		
+		$.ajax({
+			type:'post',
+			url: '${pageContext.request.contextPath}/admin/mealkit/addMealkit',
+			data: {
+				mealkitName: mealkitName,
+				price: price,
+				description: description,
+				ingredient: ingredient,
+				mealkitImgfile: mealkitImgfile,
+				foodTypeCode: foodTypeCode
+			}
+		})
+	})
+}
+</script>
 <style>
 hr {
     height: 1px;
@@ -27,43 +52,43 @@ hr {
     
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
+                    <form id='form' method='post' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>상품명:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='mealkitName' placeholder='상품명을 입력해주세요.' maxlength='15' required>
+                                    <input type='text' class='form-control' id='mealkitName' name='mealkitName' placeholder='상품명을 입력해주세요.' maxlength='15' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>판매가:</label>
                                 <div class='col pl-1'>
-                                    <input type='number' class='form-control' id='mealkitPrice' placeholder='원' required>
+                                    <input type='number' class='form-control' id='price' name='price' placeholder='원' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>상품설명:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='mealkitTitle' placeholder='내용을 입력해주세요.' maxlength='45' required>
+                                    <input type='text' class='form-control' id='description' name='description' placeholder='내용을 입력해주세요.' maxlength='45' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="mealkitContent"
-                                        style="height: 248px" maxlength='1300' required></textarea>
+                                    <textarea class='form-control' placeholder='내용을 입력해주세요.' id='ingredient' name='ingredient'
+                                        style='height: 248px' maxlength='1300' required></textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='mealkitImg' maxlength='45' required>
+                                    <input type='file' class='form-control' id='mealkitImgfile' name='mealkitImgfile' maxlength='45' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>카테고리:</label>
                                 <div class='col pl-1'>
-                                    <select class="form-control" name='category'>
+                                    <select class="form-control" name='foodTypeCode'>
                                         <option value='1'>한식</option>
                                         <option value='2'>중식</option>
                                         <option value='3'>일식</option>
@@ -76,8 +101,8 @@ hr {
                             <div class='row mx-auto justify-content-end'>
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
-                                        <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary'>등록</button>
+                                        <button type='button' class='btn btn-secondary' onClick='location.href="listMealkit"'>취소</button>
+                                        <button type='submit' class='btn btn-secondary' id='regBtn'>등록</button>
                                     </div>
                                 </div>
                             </div>

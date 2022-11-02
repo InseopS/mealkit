@@ -18,7 +18,7 @@ function listMealkits() {
 	
 	$.ajax({
 		method: 'post',
-		url: "<%=request.getContextPath()%>/admin/mealkit/listMealkit"
+		url: "<%=request.getContextPath()%>/admin/mealkit/listMealkits"
 	}).done(mealkits => {
 		if(mealkits.length) {
 			const mealkitArr = []
@@ -26,15 +26,15 @@ function listMealkits() {
 			$.each(mealkits, (i, mealkit) => {
 				mealkitArr.unshift(
                 	`<tr>
-                        <td class='align-middle'><div class='border w-auto' style='height: 75px;'>\${mealkit.mealkitImgfileName}</div></td>
+                		<td class='align-middle'> 
+							<input type='checkbox' value='\${mealkit.mealkitNum}' name='mealkitNum' id='mealkitNum' onclick='NoMultiChk(this)'/>
+						</td>
+                        <td class='align-middle'><img src='/attach/\${mealkit.mealkitImgfileName}'/></div></td>
                         <td class='align-middle'>\${mealkit.mealkitName}</td>
-                        <td class='align-middle'>\${mealkit.foodTypeCode}</td>
-                        <td class='align-middle'>\${mealkit.price}</td>
+                        <td class='align-middle'>\${mealkit.description}</td>
+                        <td class='align-middle'>\${mealkit.price}원</td>
                         <td class='align-middle'>\${mealkit.mealkitRegDate}</td>
-                        <td class='align-middle'>
-                            <a class='btn btn-secondary btn-sm' href='03.html'>수정</a>
-                            <a class='btn btn-secondary btn-sm' data-toggle='modal' data-target='#delModal'>삭제</a>
-                        </td>
+                        <td class='align-middle'>\${mealkit.foodTypeCode}</td>
                     </tr>`		
 				);
 			})
@@ -45,13 +45,78 @@ function listMealkits() {
 		}
 	})
 }
+function NoMultiChk(chk){
+  	var obj = document.getElementsByName('mealkitNum');
+   	for(var i=0; i<obj.length; i++){
+     	if(obj[i] != chk){
+       	obj[i].checked = false;
+     	}
+   	}
+}
 
 function init() {
 	$(listMealkits)
+	$('#delBtn').click(() => {
+		if($('#mealkitNum:checked').val()) {
+			$('#modalMsg').empty();
+			$('#modalMsg').text('밀키트를 삭제하시겠습니까?');
+			$('#confirmModal').modal();
+			$('#okBtn').hide();
+			$('#noBtn').show();
+			$('#yesBtn').show();
+		} else {
+			$('#modalMsg').empty();
+			$('#modalMsg').text('밀키트를 선택해주세요.');
+			$('#confirmModal').modal();
+			$('#noBtn').hide();
+			$('#yesBtn').hide();
+			$('#okBtn').show();
+		}
+	})
+	
+	$('#yesBtn').click(() => {
+		$('#confirmModal').modal('hide')
+		$.ajax({
+			url: 'del/' + $('#mealkitNum:checked').val(),
+			method: 'delete'
+		}).done(listMealkits)
+	})
+	
+	$('#fixBtn').click(() => {
+		if($('#mealkitNum:checked').val()) {
+			location.href='fixMealkit?mealkitNum='+ $('#mealkitNum:checked').val()
+		} else {
+			$('#modalTitle').text('밀키트 수정');
+			$('#modalMsg').text('수정하실 밀키트를 선택해주세요.');
+			$('#confirmModal').modal();
+			$('#noBtn').hide();
+			$('#yesBtn').hide();
+			$('#okBtn').show();
+		}
+	})
+	
+	$('#serchBtn').click(() => {
+		if($('#searchIn').val() == '') {
+			$('#modalTitle').text('밀키트 검색');
+			$('#modalMsg').text('검색하실 밀키트를 입력하세요.');
+			$('#confirmModal').modal();
+			$('#noBtn').hide();
+			$('#yesBtn').hide();
+			$('#okBtn').show();
+		} else {
+			
+		}
+	})
 }
 
 $(init)
 </script>
+<style>
+	img {
+		width: 140px;
+		height: 90px;
+	}
+</style>
 </head>
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
@@ -76,13 +141,13 @@ $(init)
                                     </a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav>                     
                     </div>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
                     <form>
                         <div class='row'>
                             <div class='col-2'>
-                                <select class='form-control' name='category'>
+                                <select class='form-control' name='searchCategory'>
                                     <option value='0' selected hidden>카테고리</option>
                                     <option value='1'>한식</option>
                                     <option value='2'>중식</option>
@@ -95,29 +160,37 @@ $(init)
                                 <input type='text' class='form-control' id='searchIn' placeholder='상품명을 입력해주세요.'>
                             </div>
                             <div class='col-2 d-flex'>
-                                <button type='button' id='serchUser' class='btn btn-secondary flex-fill'>검색</button>
+                                <button type='button' id='serchBtn' class='btn btn-secondary flex-fill'>검색</button>
                             </div>
+
                         </div>
                     </form>
+                    <div class='row mb-2' style='float: right'>
+	               		<button type='button' class='btn btn-secondary mr-1'
+	                        onclick='location.href="addMealkit"'>등록</button>
+	                    <a class='btn btn-secondary btn mr-1' id='fixBtn'>수정</a>
+	                    <a class='btn btn-secondary btn mr-3' id='delBtn'>삭제</a>                  
+	                </div>
                     <div class='mt-5'>
                         <table class='table table-sm'>
                             <colgroup>
+                                <col width='5%'>
                                 <col width='15%'>
                                 <col width='15%'>
                                 <col width='15%'>
                                 <col width='15%'>
                                 <col width='15%'>
-                                <col width='15%'>
-
+								<col width='15%'>
                             </colgroup>
                             <thead class='table-info'>
                                 <tr>
+                                	<th></th>
                                     <th scope='col'>상품</th>
                                     <th scope='col'>이름</th>
-                                    <th scope='col'>카테고리</th>
+                                    <th scope='col'>설명</th>
                                     <th scope='col'>판매가</th>
                                     <th scope='col'>등록일</th>
-                                    <th scope='col'>수정&ensp;/&ensp;삭제</th>
+                                    <th scope='col'>카테고리</th>
                                 </tr>
                             </thead>
                             <tbody id='mealkits'>
@@ -126,12 +199,8 @@ $(init)
                     <hr style='margin-top: -1rem;'>
                     </div>
                 </div>
-                </div>
+                </div>       		
                 <hr style='position: relative; bottom: 13%;'>
-                <div id='bottomBtn'>
-                    <button type='button' class='btn btn-secondary'
-                        onclick='location.href="02.html"'>등록</button>
-                </div>
             </div>
         </div>
     </div>
@@ -185,21 +254,22 @@ $(init)
         </div>
     </div>
 </footer>
-<div class='modal fade' id='delModal' tabindex='-1'>
+<div class='modal fade' id='confirmModal' tabindex='-1'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='delModalLabel'>상품삭제</p>
+                <p class='modal-title float-left' id='delModalLabel'>밀키트삭제</p>
                 <button bype='button' class='close' data-dismiss='modal'>
                     <span>&times;</span>
                 </button>
             </div>
-            <div class='modal-body text-center'>
-                <p>상품을 삭제하시겠습니까?</p>
-            </div>
+            <div class='modal-body'>
+				<p id='modalMsg' style='text-align: center'></p>
+			</div>
             <div class='modal-footer py-1'>
-                <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                <a class='btn btn-danger col-3' href="01.html" role="button">예</a>
+                <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                <a class='btn btn-danger col-3' id='yesBtn' role='button'>예</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='okBtn'>확인</button>
             </div>
         </div>
     </div>
