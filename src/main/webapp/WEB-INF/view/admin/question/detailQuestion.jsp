@@ -19,7 +19,7 @@
                     <h2 style='display: inline'>1:1문의</h2>&ensp;
                     <h6>문의상세</h6>
      <%@ include file ='../../include/adminTop2.jsp'%>
-            <div class='col' style='border: 1px solid'>
+<div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
                         <div class='row mt-3'>
@@ -45,7 +45,7 @@
                         <div class='row mx-auto justify-content-end'>
                             <div class='row mt-2 d-flex justify-content-end'>
                                 <div class='col'>
-                                    <button type='button' class='btn btn-secondary' onclick='location.href="03.html"'>답변작성</button>
+                                    <button type='button' class='btn btn-secondary' onclick='location.href="addQuestion"'>답변작성</button>
                                 </div>
                             </div>
                         </div>
