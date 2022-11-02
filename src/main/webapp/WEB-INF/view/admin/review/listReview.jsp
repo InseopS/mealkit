@@ -17,6 +17,7 @@
             text-align: center;
         }
     </style>
+    
 </head>
 
 <body>
@@ -76,7 +77,7 @@
                                             <th scope='col'>작성일</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='reviews'>
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td>0002</td>
