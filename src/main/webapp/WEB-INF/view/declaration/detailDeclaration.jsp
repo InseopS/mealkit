@@ -14,11 +14,11 @@
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
+    <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
     <style>
 
     </style>
 </head>
-<header>
 
 <%@ include file ='../include/headerTop.jsp'%>
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>

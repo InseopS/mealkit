@@ -12,6 +12,7 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
     hr {
         height: 1px;

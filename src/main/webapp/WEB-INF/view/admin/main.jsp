@@ -12,6 +12,7 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../res/admin.css'>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
 table {
     text-align: center;
@@ -77,7 +78,7 @@ table {
                                     <td>rightarm</td>
                                     <td>답변완료</td>
                                 </tr>
-                                <tr><th><td><td><td></td></td></th></tr>
+                                <tr><td></td><td></td><td></td><td></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -118,7 +119,7 @@ table {
                                     <td>ezen01</td>
                                     <td>기각</td>
                                 </tr>
-                                <tr><th><td><td><td></td></td></th></tr>
+                                <tr><td></td><td></td><td></td><td></td></tr>
                             </tbody>
                         </table>
                     </div>
