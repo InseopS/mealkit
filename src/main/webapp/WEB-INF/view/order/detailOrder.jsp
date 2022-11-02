@@ -132,7 +132,7 @@
           </div>
       </div>
         <div class='row d-flex mx-auto mt-5'>
-            <a href='order/list' class='btn flex-fill bg-dark text-white mt-5 mb-4' role='button'>주문내역</a>
+            <a href='listOrder' class='btn flex-fill bg-dark text-white mt-5 mb-4' role='button'>주문내역</a>
         </div>
     </div>
 </body>
