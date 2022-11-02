@@ -74,14 +74,14 @@
             <div class='row justify-content-end mr-1'>
                 <div class='col-5 mt-4 '>
                     <button type='button' class='btn btn-secondary btn-sm'
-                        onclick='location.href="../order/list"'>취소</button>
+                        onclick='location.href="../order/listOrder"'>취소</button>
                     <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
-                        data-target='#returnModal'>신청</button>
+                        data-target='#exchangeModal'>신청</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class='modal fade' id='returnModal' tabindex='-1'>
+    <div class='modal fade' id='exchangeModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -94,7 +94,7 @@
                     <p>교환을 신청 하시겠습니까?</p>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                        data-target='#requestOkModal' onclick='location.href="list"'>예</button>
+                        data-target='#requestOkModal' onclick='location.href="listExchange"'>예</button>
                 </div>
             </div>
         </div>
