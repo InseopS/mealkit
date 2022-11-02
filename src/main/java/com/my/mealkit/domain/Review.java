@@ -21,6 +21,6 @@ public class Review {
 	private String reviewImgFileName;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	private LocalDate reviewRegdate;
+	private LocalDate reviewRegDate;
 	private int orderNum;
 }
