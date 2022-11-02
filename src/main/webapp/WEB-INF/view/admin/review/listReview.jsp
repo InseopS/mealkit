@@ -120,7 +120,7 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
                         onclick='location.href="<%=request.getContextPath()%>admin/review/listReview"'>예</button>
                 </div>
             </div>
