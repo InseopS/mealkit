@@ -1,3 +1,5 @@
+<%@page import="com.my.mealkit.domain.Mealkit"%>
+<%@page import="java.util.List"%>
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
 <html lang='ko'>
 <head>
@@ -64,75 +66,54 @@
 
 <%@ include file ='include/headerTop.jsp'%>
 <%@ include file ='include/headerBottom.jsp'%>
-
 <body>
 	<div class='container' style='margin-top: 5rem;'>
-		<div class='carousel slide border w-auto' data-ride="carousel" id='mealkit_list' style='height: 170px; display: flex; justify-content: center; align-items: center; text-align: center;'>
+		<div class='carousel slide border w-auto' data-ride="carousel" id='mealkit_list' style='height: 300px; display: flex; justify-content: center; align-items: center; text-align: center;' >
 			<div class='carousel-inner'>
-				<div class='carousel-item active'>
-					<a href='mealkit/01.html'>
-						감바스이미지
-						<img />
-					</a>
-				</div>
-				<div class='carousel-item'>
-					<a href='mealkit/01.html'>
-						탕수육이미지
-						<img />
-					</a>
-				</div>
+			<c:forEach var='mealkit' items='${mealkitList}' varStatus='status'>
+				<c:choose>
+					<c:when test='${status.first}'>
+						<div class='carousel-item active'>
+							<a>						
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>	
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class='carousel-item'>
+							<a>	
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>	
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>	
 			</div>
-		</div>
-		<div id='product_list' class='carousel slide mt-3' data-ride='carousel' data-interval='20000'>
-			<div class='carousel-inner' style='text-align: center;'>
-				<div class='carousel-item active'>
-					<div class='row'>
-						<div class='col-6'>
-							<div class='card' id='card'>
-								<a href='mealkit/01.html'>
-									<p style='height: 5rem; display: flex; justify-content: center; align-items: center; text-align: center;'>냉우동이미지</p>
-									<img />
-								</a>
-							</div>
+		</div>		
+		<div id='product_list' class='carousel slide mt-3' data-ride='carousel' data-interval='20000'>		
+			<div class='carousel-inner'>
+			<c:forEach var='mealkit' items='${mealkitList}' varStatus='status'>
+				<c:choose>
+					<c:when test='${status.last}'>
+						<div class='carousel-item active'>
+							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 						</div>
-						<div class='col-6'>
-							<div class='card' id='card'>
-								<a href='mealkit/01.html'>
-									<p style='height: 5rem; display: flex; justify-content: center; align-items: center; text-align: center;'>불고기이미지</p>
-									<img />
-								</a>
-							</div>
+					</c:when>
+					<c:otherwise>
+						<div class='carousel-item'>
+							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 						</div>
-					</div>
-				</div>
-				<div class='carousel-item'>
-					<div class='row'>
-						<div class='col-6'>
-							<div class='card' id='card'>
-								<a href='mealkit/01.html'>
-									<p style='height: 5rem; display: flex; justify-content: center; align-items: center; text-align: center;'>매운갈비이미지</p>
-									<img />
-								</a>
-							</div>
-						</div>
-						<div class='col-6'>
-							<div class='card' id='card'>
-								<a href='mealkit/01.html'>
-									<p style='height: 5rem; display: flex; justify-content: center; align-items: center; text-align: center;'>회냉면이미지</p>
-									<img />
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>	
+			</div>	
 			<a href='#product_list' class='carousel-control-prev' data-slide='prev'>
 				<span class='carousel-control-prev-icon'></span>
 			</a>
 			<a href='#product_list' class='carousel-control-next' data-slide='next'>
 				<span class='carousel-control-next-icon'></span>
 			</a>
-		</div>
+		</div>	
 		<div class='row mt-2'>
 			<div class='col'>
 				<div class='jumbotron p-2 m-0'>
