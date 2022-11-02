@@ -30,7 +30,7 @@
             }
         </script>
         <style>
-            #qnaName {
+            #faqTitle {
                 font-size: small;
                 font-weight: bold;
             }
@@ -39,6 +39,12 @@
                 background-color:lightyellow;
                 font-size:14px;
                 padding-bottom: 1px;
+            }
+            
+            #btnSpan {
+            	padding:0 0;
+            	px: 0;
+            	py: 0;
             }
         </style>
     </head>
@@ -57,17 +63,17 @@
                 <div class="col">
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
-						    <div><p id='qnaName'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
+						    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
                             <div>
-                                <span class='navbar-toggler' type='button' data-toggle='collapse'
-                                    data-target='#qna_num1'>
+                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
+                                    data-target='#faqNum1'>
                                     <span class="material-icons" id='up_arrow1' style='display:none'>expand_less</span>
                                     <span class="material-icons" id='down_arrow1'>expand_more</span>
                                 </span>
                             </div>
                         </div>
                         <div>
-                            <div class='collapse navbar-collapse' id='qna_num1'>
+                            <div class='collapse navbar-collapse' id='faqNum1'>
                                 <div id='answer'>
                                     <p><span class="material-icons">mode_comment</span> 마이페이지 > 주문내역 > 교환/반품 신청
                                     경로로 들어가시면, 교환신청이 가능합니다 !</p>
@@ -78,9 +84,9 @@
                     <hr>
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
-						    <div><p id='qnaName'>회원] 비밀번호를 찾으려면 어떻게 하나요?</p></div>
+						    <div><p id='faqTitle'>회원] 비밀번호를 찾으려면 어떻게 하나요?</p></div>
                             <div>
-                                <span class='navbar-toggler' type='button' data-toggle='collapse'
+                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
                                     data-target='#qna_num2'>
                                     <span class="material-icons" id='up_arrow2' style='display:none'>expand_less</span>
                                     <span class="material-icons" id='down_arrow2'>expand_more</span>
@@ -98,9 +104,9 @@
                     <hr>
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
-						    <div><p id='qnaName'>배송] 송장이 조회가 되지 않아요</p></div>
+						    <div><p id='faqTitle'>배송] 송장이 조회가 되지 않아요</p></div>
                             <div>
-                                <span class='navbar-toggler' type='button' data-toggle='collapse'
+                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
                                     data-target='#qna_num3'>
                                     <span class="material-icons" id='up_arrow3' style='display:none'>expand_less</span>
                                     <span class="material-icons" id='down_arrow3'>expand_more</span>

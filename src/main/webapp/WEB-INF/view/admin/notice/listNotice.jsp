@@ -74,9 +74,9 @@
                                     <tbody>
                                         <tr>
                                             <th><input type='checkbox'></th>
-                                            <td>0007</td>
-                                            <td onclick='location.href="<%=request.getContextPath()%>/admin/notice/detailNotice"'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</td>
-                                            <td>2022.10.12</td>
+                                            <td id='noticeNum'>0007</td>
+                                            <td id='noticeTitle' onclick='location.href="<%=request.getContextPath()%>/admin/notice/detailNotice"'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</td>
+                                            <td id='noticeRegdate'>2022.10.12</td>
                                         </tr>
                                         <tr>
                                             <th><input type='checkbox'></th>

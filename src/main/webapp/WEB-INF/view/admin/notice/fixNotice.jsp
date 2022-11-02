@@ -32,7 +32,7 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='itle' minlength='1' maxlength='100' 
+                                    <input type='text' class='form-control' id='noticeTitle' minlength='1' maxlength='100' 
                                         required placeholder='제목을 입력해주세요.' value='10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내'>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeTitle'>
+                                    <input type='file' class='form-control' id='noticeImg'>
                                 </div>
                             </div>
                             <hr>

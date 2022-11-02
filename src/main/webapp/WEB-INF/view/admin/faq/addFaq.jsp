@@ -40,14 +40,14 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='noticeTitle' required
+                                    <input type='text' class='form-control' id='faqTitle' required
                                         minlength='1' maxlength='100' placeholder='제목을 입력해주세요.'>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="noticeContent" 
+                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="faqContent" 
                                         style="height: 464px; resize:none" minlength='1' maxlength='1300' required></textarea>
                                 </div>
                             </div>

@@ -13,10 +13,6 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
     <style>
-        #noticeInfo {
-            margin-top: 65px;
-        }
-
         #content {
             width: 100%;
         }
@@ -40,14 +36,14 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='noticeTitle' required minlength='1' maxlength='100' 
+                                    <input type='text' class='form-control' id='faqTitle' required minlength='1' maxlength='100' 
                                     placeholder='제목을 입력해주세요.' value='취소/교환/반품] 주문한 상품을 교환받고 싶어요.'>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="noticeContent" 
+                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="faqContent" 
                                         style="height: 29rem; resize:none" minlength='1' maxlength='1300' required>
 마이페이지 > 주문내역 > 교환/반품 신청 경로로 들어가시면, 교환신청이 가능합니다 !</textarea>
                                 </div>
@@ -57,7 +53,7 @@
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary' formaction='/admin/notice/listNotice'>수정</button>
+                                        <button type='submit' class='btn btn-secondary' formaction='/admin/faq/listFaq'>수정</button>
                                     </div>
                                 </div>
                             </div>

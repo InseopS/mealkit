@@ -32,7 +32,7 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='title' placeholder='제목을 입력해주세요.' 
+                                    <input type='text' class='form-control' id='noticeTitle' placeholder='제목을 입력해주세요.' 
                                         minlength='1' maxlength='100' required>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeTitle'>
+                                    <input type='file' class='form-control' id='noticeImg'>
                                 </div>
                             </div>
                             <hr>
