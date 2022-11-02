@@ -54,11 +54,11 @@
             <div class='col'>
                 <nav class='d-flex mt-3 justify-content-center'>
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4'
-                        onclick='location.href="../order/list"'>주문내역</button>
+                        onclick='location.href="../order/listOrder"'>주문내역</button>
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4'
-                        onclick='location.href="../exchange/list"'>교환내역</button>
+                        onclick='location.href="../exchange/listExchange"'>교환내역</button>
                     <button type='button' class='btn flex-fill ml-0.5 bg-dark text-white'
-                        onclick='location.href="list"'>반품내역</button>
+                        onclick='location.href="listReturn"'>반품내역</button>
                 </nav>
                 <hr style='border:solid 1px'>
             </div>
