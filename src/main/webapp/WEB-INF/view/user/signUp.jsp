@@ -14,21 +14,41 @@
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
+    <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
     <style>
         ::placeholder {
             font-size: 0.8em;
             font-weight: 400;
         }
     </style>
+    
+    <script>
+		$(document).on("keyup", "input[onlyEngNum]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
+		$(document).on("keyup", "input[phoneNum]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
+		
+		function handleOnInput(el, maxlength) {
+			if(el.value.length > maxlength) el.value = el.value.substr(0, maxlength);
+		};
+		
+		document.addEventListener("mouseup", function(event) {
+		    var obj = document.getElementById("emailCert");
+		    if (obj.contains(event.target)) {
+		    	console.log("test");
+		    	const email = $('#email').val();
+		    	const checkInput = $('#certNum');
+		    	
+		    	$.ajax({
+		    		type : 'get',
+		    		url : '<c:url value ="/user/emailCheck?email="/>'+email,
+		    		success : function (data) {
+		    			checkInput.attr('disabled',false);
+		    			code = data;
+		    		}			
+		    	});
+		    }
+		});
+	</script>
 </head>
-<script>
-function handleOnInput(el, maxlength) {
-	  if(el.value.length > maxlength)  {
-	    el.value 
-	      = el.value.substr(0, maxlength);
-	  }
-	}
-</script>
 
 <%@ include file ='../include/headerTop.jsp'%>
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -46,7 +66,7 @@ function handleOnInput(el, maxlength) {
             <div class='row inputBox mt-1'>
                 <label class='col-3 col-form-label'>아이디</label>
                 <div class='col px-1'>
-                    <input type='text' class='form-control' id='userId' pattern='.{2,10}' required title='2글자 이상 10글자 이하만 됩니다.'>
+                    <input type='text' class='form-control' id='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum>
                 </div>
                 <div class='col-4 pl-0'>
                     <button type='button' id='idDoubleCheck' class='btn btn-primary float-right' data-toggle='modal' data-target='#idDoubleCheckModal'>중복확인</button>
@@ -55,25 +75,25 @@ function handleOnInput(el, maxlength) {
             <div class='row inputBox'>
                 <label class='col-3 col-form-label' style='font-size: 93%'>비밀번호</label>
                 <div class='col pl-1'>
-                    <input type='password' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자' required>
+                    <input type='text' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>이름</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='userName' required>
+                    <input type='text' class='form-control' id='userName' required oninput='handleOnInput(this, 29)'>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>이메일</label>
                 <div class='col pl-1'>
-                    <input type='email' class='form-control' id='email' required>
+                    <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)'>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label' style='font-size: 93%'>인증번호</label>
                 <div class='col pl-1'>
-                    <input type='number' class='form-control' id='certNum' oninput='handleOnInput(this, 6)' required>
+                    <input type='number' class='form-control' id='certNum' name='certNum' oninput='handleOnInput(this, 6)' required>
                 </div>
             </div>
             <div class='row inputBox'>
@@ -88,7 +108,7 @@ function handleOnInput(el, maxlength) {
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>연락처</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='phoneNum' required>
+                    <input type='text' class='form-control' id='phoneNum' required oninput='handleOnInput(this, 13)'>
                 </div>
             </div>
             <div class='row inputBox'>
