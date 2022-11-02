@@ -15,28 +15,28 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <style>
-        #pagingDiv {
+        #paging_div {
                 background-color: white;
                 justify-content : center;
             }
-
+        
             .pagination_section {
                 position: relative;
                 margin-bottom: 15px;
                 width: 80%;
             }
-
+      
             .pagination_section a {
                 color: black;
                 padding: 10px 18px;
                 text-decoration: none;
             }
-
+      
             .pagination_section a:hover:not(.active) {
                 background-color: #031F3B;
                 color: white;
             }
-    </style>
+</style>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
