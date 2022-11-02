@@ -75,7 +75,7 @@
                     <div class='modal-footer py-1'>
                         <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
                         <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                            data-target='#deleteOkModal' onclick='location.href="list"'>예</button>
+                            data-target='#deleteOkModal' onclick='location.href="listQuestion"'>예</button>
                     </div>
                 </div>
             </div>
