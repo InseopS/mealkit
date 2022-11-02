@@ -7,18 +7,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.mealkit.domain.User;
+import com.my.mealkit.service.MailSendService;
 import com.my.mealkit.service.UserService;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
 	@Autowired private UserService userService;
+	@Autowired private MailSendService mailSendService;
 	
 	@RequestMapping("signUp")
 	public void signUp() {		
+	}
+	
+	@GetMapping("emailCheck")
+	@ResponseBody
+	public String emailCheck(String email) {
+		return mailSendService.joinEmail(email);
 	}
 	
 	@RequestMapping("welcome")
@@ -98,7 +107,5 @@ public class UserController {
 	@GetMapping("mypage")
 	public void mypage() {
 		
-	}
-	
-
+	}	
 }
