@@ -4,7 +4,7 @@
 <mapper namespace='com.my.mealkit.dao.map.NoticeMap'>
 	<select id='selectNotices' resultType='notice'>
 		select * from notices
-		order by notice_num desc
+		order by notice_num
 	</select>
 	
 	<select id='selectDetailNotices' resultType='notice'>
@@ -14,7 +14,7 @@
 	
 	<select id='selectAdminNotices' resultType='notice'>
 		select * from notices
-		order by notice_num desc
+		order by notice_num
 	</select>
 	
 	<select id='selectAdminDetailNotices' resultType='notice'>
@@ -24,7 +24,7 @@
 	
 	<insert id='insertAdminNotice'>
 		insert into notices(notice_num, notice_title, notice_content, notice_regdate, notice_img_file_name)
-		values(notice_num_seq.nextval, #{noticeTiTle}, #{notice_content}, sysdate, #{noticeImgFileName})
+		values(notice_num_seq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, #{noticeImgFileName})
 	</insert>
 	
 	<update id='updateAdminNotice'>
