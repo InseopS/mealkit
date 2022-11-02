@@ -23,7 +23,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<Review> getAdminReviews(){
+	public List<Review> getAdminReviews() {
 		return reviewDao.selectAdminReviews();
 	}
 	

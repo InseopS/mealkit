@@ -19,8 +19,8 @@ public class ReviewAdminController {
 	public void listReview() {		
 	}
 	
-	@GetMapping("/listReview")
+	@GetMapping("listReview")
 	public List<Review> getReviews(){
 		return reviewService.getAdminReviews();
-	}
+	}	
 }
