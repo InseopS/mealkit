@@ -72,7 +72,7 @@
         <br>
         <div class='row justify-content-end'>
             <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>취소</button>
+                <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/order/listOrder"'>취소</button>
                 &nbsp;
                 <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
             </div>
