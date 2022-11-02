@@ -44,7 +44,7 @@ table.latestList {
 						<tr>
 							<td class='mealkitImage'>
 								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${}'/>'/>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${미정}'/>'/>
 								</a>
 							</td>
 							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
@@ -52,7 +52,7 @@ table.latestList {
 						<tr>
 							<td class='mealkitImage'>
 								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${}'/>'/>
+									<img style='width:150px; height:150px;' src='<c:url value='/attach/${미정}'/>'/>
 								</a>
 							</td>
 							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>

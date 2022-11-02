@@ -46,7 +46,7 @@ table.cartList {
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
                                     <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${}'/>'/>
+                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${미정}'/>'/>
                                     </a>
                                 </td>
                                 <td>이젠밀키트<br>미나리 감자탕<br>수량 : 1<br>32,000원</td>
@@ -55,7 +55,7 @@ table.cartList {
                                 <th width='13%'><input type='checkbox'></th>
                                 <td class='mealkitImage'>
                                     <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${}'/>'/>
+                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${미정}'/>'/>
                                     </a>
                                 </td>
                                 <td>이젠밀키트<br>새우 감바스<br>수량 : 1<br>10,000원</td>
