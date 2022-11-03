@@ -75,25 +75,39 @@
             <div class='ml-3 mt-2 mr-0 rounded border'
                 style='width: 6rem; height: 6rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
                 <br>
-                <span><small>감바스</span>
-                <p>이미지</p></small>
+                <span><small>감바스</small></span>
+                <p><small>이미지</small></p>
             </div>
             <div class='col mt-2 ml-4 mr-3'>
                 <small><b>주문완료</b></small>
             </div>
         </div>
         <div class='col-4 mt-5'>
-            <span><small>감바스</span>
-            <p>3개 / 29000원</p>
+            <span><small>감바스</small></span>
+            <p><small>3개 / 29000원</small></p>
         </div>
         <div class='col-3 mt-2 ml-4'>
-            <a href='detailOrder' class='link flex-fill text-dark mt-5' role='button'><u>주문상세</u></a><br>
-            <a href='listOrder' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-                data-target='#orderCancelModal'><u>주문취소</u></a><br>
-            <a href='../exchange/applyExchange' class='link flex-fill text-dark mt-5' role='button'><u>교환신청</u></a><br>
-            <a href='../return/applyReturn' class='link flex-fill text-dark mt-5' role='button'><u>반품신청</u></a><br>
-            <a href='../review/addReview' class='link flex-fill text-dark mt-5' role='button'><u>리뷰작성</u></a>
-            </small>
+        	<p style='margin-top: 0px; margin-bottom: -20px;'>
+            	<a href='detailOrder' class='link flex-fill text-dark' style='text-decoration: underline;' role='button'><small>주문상세</small></a>
+            </p>
+            	<br>
+            <p style='margin-top: 0px; margin-bottom: -20px;'>
+	            <a href='listOrder' class='link flex-fill text-dark' style='text-decoration: underline;' role='button' data-toggle='modal'
+	                data-target='#orderCancelModal'><small>주문취소</small>
+	            </a></p>
+	      		<br>
+            <p style='margin-top: 0px; margin-bottom: -20px;'>
+            	<a href='../exchange/applyExchange' class='link flex-fill text-dark' style='text-decoration: underline;' role='button'><small>교환신청</small></a>
+            </p>
+            	<br>
+            <p style='margin-top: 0px; margin-bottom: -20px;'>
+            	<a href='../return/applyReturn' class='link flex-fill text-dark' style='text-decoration: underline;' role='button'><small>반품신청</small></a>
+            </p>
+            	<br>
+            <p style='margin-top: 0px; margin-bottom: -20px;'>
+            	<a href='../review/addReview' class='link flex-fill text-dark' style='text-decoration: underline;' role='button'><small>리뷰작성</small></a>
+            </p>
+         	
         </div>
     </div>
     <hr class='mt-2 ml-3 mr-3 mb-2'>
