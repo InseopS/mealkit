@@ -29,7 +29,7 @@
     <div id='mainContainerAddSub' class="container">
         <div class='row'>
             <div class='col'>
-                <div class>
+                <div>
                     <form class="mb-4">
                         <input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
                         <input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
