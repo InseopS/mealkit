@@ -40,13 +40,12 @@
                 <input type='password' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자'>
             </div>
         </div>
-            <a href='08.html'>
-                <div class='row d-flex mx-auto mt-5'>
-                    <button type='button' class='btn btn-primary flex-fill' >비밀번호 변경</button>
-                </div>
-            </a>
-        </div>
-    </div>
+        <a href='08.html'>
+            <span class='row d-flex mx-auto mt-5'>
+                <button type='button' class='btn btn-primary flex-fill' >비밀번호 변경</button>
+            </span>
+        </a>
+	</div>
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

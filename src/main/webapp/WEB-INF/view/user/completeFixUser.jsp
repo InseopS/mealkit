@@ -33,10 +33,10 @@ h5 {
             <div class='row justify-content-center'>
                 <p><br>변경하신 내용으로 회원수정이 됐습니다.</p>
             </div>
-            <a href='../main.html'>
-                <div class='row  d-flex mx-auto mt-5'>
+            <a href='../'>
+                <span class='row d-flex mx-auto mt-5'>
                     <button type='button' class='btn btn-primary flex-fill'>메인화면 바로가기</button>
-                </div>
+                </span>
             </a>
         </div>
     </div>

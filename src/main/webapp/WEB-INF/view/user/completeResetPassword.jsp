@@ -36,10 +36,10 @@
                 <div class='row justify-content-center mt-5'>
                     <p>회원님의 비밀번호가 변경됐습니다.</p>
                 </div>
-                <a href='03.html'>
-                    <div class='row  d-flex mx-auto mt-3'>
+                <a href='../'>
+                    <span class='row  d-flex mx-auto mt-3'>
                         <button type='button' class='btn btn-primary flex-fill'>로그인</button>
-                    </div>
+                    </span>
                 </a>
             </div>
         </div>
