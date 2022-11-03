@@ -2,6 +2,7 @@ package com.my.mealkit.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,11 +24,13 @@ public class ReviewController {
 	@Autowired private ReviewService reviewService;
 	
 	@RequestMapping("listReview")
-	public void listReview() {		
+	public String listReview() {
+		return "review/listReview";
 	}
 	
 	@RequestMapping("addReview")
-	public void addReview() {		
+	public String addReview() {
+		return "review/addReview";
 	}
 
 	@RequestMapping("fixReview")
@@ -36,6 +39,12 @@ public class ReviewController {
 	
 	@RequestMapping("detailReview")
 	public void detailReview() {		
+	}
+	
+	@ResponseBody
+	@PostMapping("listReview")
+	public List<Review> getReviews() {
+		return reviewService.getReviews();
 	}
 	
 	@ResponseBody
