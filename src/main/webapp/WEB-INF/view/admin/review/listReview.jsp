@@ -34,7 +34,7 @@
 					                    value='\${review.reviewNum}'/></td>
                            <td class='align-middle'>\${review.reviewNum}</td>
                            <td class='align-middle'>\${review.reviewNum}</td>
-                           <td class='align-middle'>\${review.reviewTitle}</td>
+                           <td class='align-middle'><a href='/review/detailReview?reviewNum=\${review.reviewNum}'>\${review.reviewTitle}</td>
                            <td class='align-middle'>\${review.reviewNum}</td>
                            <td class='align-middle'>\${review.reviewRegDate}</td>
                        </tr>`

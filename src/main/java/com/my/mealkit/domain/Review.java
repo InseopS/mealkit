@@ -3,6 +3,7 @@ package com.my.mealkit.domain;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -18,7 +19,8 @@ public class Review {
 	private String reviewTitle;
 	private String reviewContent;
 	private int rate;
-	private String reviewImgFileName;
+	private String reviewImgfileName;
+	private MultipartFile reviewImgfile;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate reviewRegDate;
