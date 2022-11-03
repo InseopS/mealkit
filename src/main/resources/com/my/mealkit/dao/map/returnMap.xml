@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.my.mealkit.dao.map.ReturnMap'>
+	<select id='selectReturns' resultType='return'>
+		select * from returns
+		where order_num = #{orderNum}
+		order by return_num
+	</select>
+	
+	<select id='selectAdminReturns' resultType='return'>
+		select * from returns
+		order by return_num
+	</select>
+	
+	<insert id='insertReturn'>
+		insert into returns(return_num, return_img_file_name, return_content,
+			return_reason_code, return_status_code, order_num)
+		values(return_num_seq.nextval, #{returnImgFileName}, #{returnContent},
+			#{returnReasonCode}, #{returnStatusCode}, #{orderNum})
+	</insert>
+	
+	<delete id='deleteReturn'>
+		delete returns
+		where return_num = #{returnNum}
+	</delete>
+</mapper>

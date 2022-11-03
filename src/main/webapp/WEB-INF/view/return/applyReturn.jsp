@@ -95,8 +95,8 @@
                 <div class='modal-body text-center'>
                     <p>반품을 신청 하시겠습니까?</p>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-					<button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                    	data-target='#requestOkModal' onclick='location.href="listReturn"'>예</button>
+               <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
+                       data-target='#requestOkModal' onclick='location.href="listReturn"'>예</button>
                 </div>
             </div>
         </div>
