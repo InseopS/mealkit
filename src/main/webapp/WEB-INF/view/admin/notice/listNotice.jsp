@@ -19,7 +19,7 @@
 		
 		$.ajax({
 			method:'get',
-			url:"<%=request.getContextPath() %>/admin/notice/listNotice"
+			url:"<%=request.getContextPath() %>/admin/notice/getNotice"
 		}).done(notices => {
 				if(notices.length) {
 					const noticeArr = []
@@ -30,8 +30,8 @@
 								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
-								<td>/*<a href='/notice/detailNotice?noticeNum=\${notice.noticeNum}'>*/
-									\${notice.noticeTitle}</td>
+								<td><a href='/notice/detailNotice?noticeNum=\${notice.noticeNum}'>
+										\${notice.noticeTitle}</td>
 								<td>\${notice.noticeRegdate}</td>
 							 </tr>`
 						);
