@@ -34,9 +34,9 @@ h5 {
                 <p>ezen01님, 가입을 축하합니다.<br><br>이제 이젠밀키트의<br>신선하고 맛있는 상품을 만나보세요.</p>
             </div>
             <a href='03.html'>
-                <div class='row  d-flex mx-auto mt-5'>
+                <span class='row  d-flex mx-auto mt-5'>
                     <button type='button' class='btn btn-primary flex-fill'>로그인</button>
-                </div>
+                </span>
             </a>
         </div>
     </div>

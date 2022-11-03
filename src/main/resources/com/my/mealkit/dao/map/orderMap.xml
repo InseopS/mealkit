@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.my.mealkit.dao.map.OrderMap'>
+	<select id='selectOrders' resultType='order'>
+		select * from orders
+		where user_id = #{userId}
+		order by order_num
+	</select>
+	
+	<select id='detailOrders' resultType='order'>
+		select * from orders
+		where order_num = #{orderNum}
+	</select>
+	
+	<select id='selectAdminOrders' resultType='order'>
+		select * from orders
+		order by order_num
+	</select>
+	
+	<select id='selectAdminOrderCancel' resultType='order'>
+		select * from orders
+		order by oder_num
+	</select>
+	
+	<insert id='insertOrder'>
+		insert into orders(order_num, order_date, request, user_id,
+			payment_code, order_status_code)
+		values(order_num_seq.nextval, #{orderDate}, #{request}, #{userId},
+			#{paymentCode}, #{orderStatusCode})		
+	</insert>
+	
+	<insert id='insertOrderMealkit'>
+		insert into orders_mealkits(order_mealkit_num, order_mealkit_count, order_num, mealkit_num)
+		values(#{orderMealkitNum}, #{orderMealkitCount}, #{oderNum}, #{mealkitNum})
+	</insert>
+	
+	<delete id='deleteOrder'>
+		delete orders
+		where order_num = #{orderNum}
+	</delete>
+</mapper>

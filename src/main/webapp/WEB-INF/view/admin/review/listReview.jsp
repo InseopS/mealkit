@@ -18,7 +18,69 @@
             text-align: center;
         }
     </style>
-    
+    <script>
+    function listReviews() {
+        $('#reviews').empty();
+        $.ajax({
+           method: 'post',
+           url: "<%=request.getContextPath()%>/admin/review/getReview"
+        }).done(reviews => {
+             if(reviews.length) {
+                const reviewArr = []
+                $.each(reviews, (i, review) => {
+                   reviewArr.unshift(
+                       	`<tr>
+                           <td><input type='checkbox' name='reviewNum' id='reviewNum'
+					                    value='\${review.reviewNum}'/></td>
+                           <td class='align-middle'>\${review.reviewNum}</td>
+                           <td class='align-middle'>\${review.reviewNum}</td>
+                           <td class='align-middle'><a href='/review/detailReview?reviewNum=\${review.reviewNum}'>\${review.reviewTitle}</td>
+                           <td class='align-middle'>\${review.reviewNum}</td>
+                           <td class='align-middle'>\${review.reviewRegDate}</td>
+                       </tr>`
+                   );
+                })
+                
+                $('#reviews').append(reviewArr.join(''))
+             } else { 
+                $('#reviews').append(
+                   '<tr><td colspan=6 class=text-center>리뷰가 없습니다.</td></tr>')
+             }
+        })
+     }
+     
+     function init() {
+    	 $(listReviews)
+    	 
+    	 $('#delBtn').click(() => {
+		if($('#reviewNum:checked').val()) {
+			$('#modalMsg').empty();
+			$('#modalMsg').text('리뷰를 삭제하시겠습니까?');
+			$('#confirmModal').modal();
+			$('#okBtn').hide();
+			$('#noBtn').show();
+			$('#yesBtn').show();
+		} else {
+			$('#modalMsg').empty();
+			$('#modalMsg').text('리뷰를 선택해주세요.');
+			$('#confirmModal').modal();
+			$('#noBtn').hide();
+			$('#yesBtn').hide();
+			$('#okBtn').show();
+		}
+	})
+	
+	$('#yesBtn').click(() => {
+		$('#confirmModal').modal('hide')
+		$.ajax({
+			url: 'del/' + $('#reviewNum:checked').val(),
+			method: 'delete'
+		}).done(listReviews)
+	})
+     }
+     
+     $(init)
+    </script>
 </head>
 
 <body>
@@ -104,26 +166,26 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtn'>
-                    <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+                    <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
+    <div class='modal fade' id='confirmModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰삭제</p>
+                    <p class="modal-title float-left" id='delModalLabel'>리뷰삭제</p>
                     <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
-                    <p>선택한 리뷰를 삭제하시겠습니까?</p>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                        onclick='location.href="<%=request.getContextPath()%>listReview"'>예</button>
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <a class='btn btn-danger col-3' id='yesBtn' role='button'>예</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='okBtn'>확인</button>
                 </div>
             </div>
         </div>

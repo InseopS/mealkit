@@ -16,5 +16,19 @@ public class UserServiceImpl implements UserService{
 		if(userDao.selectUser(user) != null) isGood = true;
 		return isGood;
 	}
+
+	@Override
+	public boolean idDoubleCheck(String userId) {
+		boolean isGood = false;
+		if(userDao.selectUserId(userId) == null) isGood = true;
+		return isGood;
+	}
+
+	@Override
+	public boolean emailDoubleCheck(String email) {
+		boolean isGood = false;
+		if(userDao.selectEmail(email) == null) isGood = true;
+		return isGood;
+	}
 }
 

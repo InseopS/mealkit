@@ -22,7 +22,7 @@
                     <a class='nav-link dropdown-toggle' data-toggle='dropdown'>고객센터</a>
                     <div class='dropdown-menu'>
                         <a class='dropdown-item' href='<%=request.getContextPath()%>/faq/listFaq'>자주묻는질문</a>
-                        <a class='dropdown-item' href='<%=request.getContextPath()%>/question/'>1:1문의</a>
+                        <a class='dropdown-item' href='<%=request.getContextPath()%>/question/listQuestion'>1:1문의</a>
                         <div class='dropdown-divider'></div>
                         <a class='dropdown-item' href='<%=request.getContextPath()%>/declaration/detailDeclaration'>신고</a>
                     </div>

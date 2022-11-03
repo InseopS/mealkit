@@ -68,7 +68,8 @@
         <div class='row justify-content-end'>
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="addQuestion"'>작성</button>
-        </div>
+        	</div>
+    	</div>
     </div>
     <div class='row d-flex mx-auto fixed-bottom mb-5' id='paging_div'>
         <nav aria-label='Page navigation example'>
