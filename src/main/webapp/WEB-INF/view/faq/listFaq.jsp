@@ -13,6 +13,7 @@
         <link rel='preconnect' href='https://fonts.googleapis.com'>
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
+		<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
         <script>
             for(let i = 1; i <= 10; i++) {
@@ -48,13 +49,13 @@
             }
         </style>
     </head>
-    <%@ include file ='../include/headerTop.jsp'%>
-        <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-            <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-            <div id="menuName">
-                <h3>자주묻는질문</h3>
-            </div>
-        </div>
+	<%@ include file ='../include/headerTop.jsp'%>
+	    <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+	        <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+	        <div id="menuName">
+	            <h3>자주묻는질문</h3>
+	        </div>
+	    </div>
 	<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <form>

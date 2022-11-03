@@ -13,6 +13,7 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../res/lib.css'>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
 </style>
 <script>
@@ -30,58 +31,14 @@
 });
 </script>
 </head>
-<header>
-    <nav class='navbar fixed-top navbar-light bg-light navbar-expand-sm p-0'>
-        <div class='container-fluid'>
-            <a class='navbar-brand ml-2' href='../main.html'>
-                <div id='logo'>로고이미지</div>
-            </a>
-
-			<div>
-				<p class='navbar-title flex-fill mr-1 my-0' style="font-family: 'Nanum Pen Script', cursive;">집밥을 특별하게</p>
-				<p class='navbar-title flex-fill mr-1 my-0' style="font-family: 'Nanum Pen Script', cursive;">쉐프의 밀키트</p>
-			</div>
-
-            <a class='text-dark flex-fill text-right mr-3' href='../cart/01.html'>
-                <span class="material-icons">shopping_cart</span>
-            </a>
-
-            <button class='navbar-toggler mr-4' type='button' data-toggle='collapse' data-target='#menu'>
-                <span class='navbar-toggler-icon'></span>
-            </button>
-        </div>
-        <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-            <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-            <div id="menuName">
-                <h3>감바스</h3>
-            </div>
-        </div>
-        <div class='collapse navbar-collapse' id='menu'>
-            <ul class='navbar-nav mr-auto'>
-                <li class='nav-item active'>
-                    <a class='nav-link' href='../user/03.html'>로그인</a>
-                </li>
-                <li class='nav-item active'>
-                    <a class='nav-link' href='../notice/01.html'>공지사항</a>
-                </li>
-                <li class='nav-item dropdown'>
-                    <a class='nav-link dropdown-toggle' data-toggle='dropdown'>고객센터</a>
-                    <div class='dropdown-menu'>
-                        <a class='dropdown-item' href='../faq/01.html'>자주묻는질문</a>
-                        <a class='dropdown-item' href='../question/02.html'>1:1문의</a>
-                        <div class='dropdown-divider'></div>
-                        <a class='dropdown-item' href='../declaration/02.html'>신고</a>
-                    </div>
-                </li>
-            </ul>
-            <form class='form-inline my-2 my-lg-0' action='03.html'>
-                <input type='search' class='form-control mr-sm-2' placeholder='상품을 입력해주세요.'/>
-                <button type='submit' class='btn btn-outline-dark my-2 my-sm-0'>검색</button>
-            </form>
-        </div>
-        </div>
-    </nav>
-</header>
+<%@ include file ='../include/headerTop.jsp'%>
+	<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+	    <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+	    <div id="menuName">
+	        <h3>감바스</h3>
+	    </div>
+	</div>
+<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
         <div class='row mt'>
@@ -173,4 +130,5 @@ OO레스토랑 쉐프의 레시피를
         </div>
     </div>
 </div>
+<%@ include file ='../include/footer.jsp'%>
 </html>

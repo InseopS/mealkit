@@ -1,25 +1,55 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <head>
-    <title>EAZEN MEALKIT</title>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
-    <link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' />
-    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-    <link rel='preconnect' href='https://fonts.googleapis.com'>
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-    <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
-    <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-    <style>
-        hr {
-            height: 1px;
-            background-color: lightgray;
-        }
-    </style>
+<title>EAZEN MEALKIT</title>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+<link rel='stylesheet' href='http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' />
+<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+<link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
+<link rel='stylesheet' type='text/css' href='../../res/admin.css'>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {
+	$('#fixBtn').click(() => {
+		let mealkitNum = <%=request.getParameter("mealkitNum") %>
+		let mealkitName = $('#mealkitName').val();
+		let price = $(#'price').val();
+		let description = $('#description').val();
+		let ingredient = $('#ingredient').val();
+		
+		let foodTypeCode = $(#'foodTypeCode').val();
+		
+		$.ajax({
+			url: 'fix',
+			method: 'post',
+			contentType: 'application/json',
+			data: JSON.stringify ({
+				mealkitNum: mealkitNum,
+				mealkitName: mealkitName,
+				price: price,
+				description: description,
+				ingredient: ingredient,
+				foodTypeCode: foodTypeCode
+			}).done(() => {
+				location.href='listMealkt'
+			})
+		})
+	})
+}
+</script>
+<style>
+    hr {
+        height: 1px;
+        background-color: lightgray;
+    }
+</style>
 </head>
-
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>상품수정</h2>&ensp;
@@ -27,30 +57,31 @@
     
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
-                        <div class='container mw-100 mt-5' style='width: 98%;'>
+                    <form id='form' method='post' encType='multipart/form-data'>               	    
+                        <div class='container mw-100 mt-5' style='width: 98%;'>                 	
                             <div class='row mt-3'>
-                                <label for='input' class='col-2 pr-2 col-form-label'>상품명:</label>
+                                <label for='input' class='col-2 pr-2 col-form-label'>상품명:</label>                 
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='itle' placeholder='상품명을 입력해주세요.' value='파스타'>
+                                    <input type='text' class='form-control' id='mealkitName' name='mealkitName' placeholder='상품명을 입력해주세요.' value='파스타' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>판매가:</label>
                                 <div class='col pl-1'>
-                                    <input type='number' class='form-control' id='noticeTitle' placeholder='원' value='8000'>
+                                    <input type='number' class='form-control' id='price' name='price' placeholder='원' value='8000' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>상품설명:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='noticeTitle' placeholder='내용을 입력해주세요.' value='집에서 간단하게 해먹을 수 있는 뽀모도로 파스타!'>
+                                    <input type='text' class='form-control' id='description' name='description' 
+                                    	placeholder='내용을 입력해주세요.' value='집에서 간단하게 해먹을 수 있는 뽀모도로 파스타!' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="noticeContent" style="height: 248px">
+                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="ingredient" name='ingredient' style="height: 248px" required>
 상큼한 토마토와 양송이, 이탈리아 파마산 치즈맛이 잘 어울리는 파스타입니다.
 </textarea>
                                 </div>
@@ -58,13 +89,13 @@
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeTitle'>
+                                    <input type='file' class='form-control' id='mealkitImgfile' name='mealkitImgfile' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>카테고리:</label>
                                 <div class='col pl-1'>
-                                    <select class="form-control" name='category'>
+                                    <select class="form-control" id='foodTypeCode' name='foodTypeCode' required>
                                         <option value='kor'>한식</option>
                                         <option value='chn'>중식</option>
                                         <option value='jpn'>일식</option>
@@ -77,12 +108,12 @@
                             <div class='row mx-auto justify-content-end'>
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
-                                        <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary'>수정</button>
+                                        <button type='button' class='btn btn-secondary' onClick='location.href="listMealkit"'>취소</button>
+                                        <button type='submit' class='btn btn-secondary' id='fixBtn'>수정</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>                        
+                        </div>                                    
                     </form>
                 </div>
             </div>

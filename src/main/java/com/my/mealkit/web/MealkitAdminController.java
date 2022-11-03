@@ -45,9 +45,15 @@ public class MealkitAdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/listMealkit")
+	@PostMapping("/listMealkits")
 	public List<Mealkit> getMealkits() {
 		return mealkitService.getMealkits();
+	}
+	
+	@ResponseBody
+	@PostMapping("/listMealkit/{mealkitNum}")
+	public List<Mealkit> getMealkit(@PathVariable int mealkitNum) {
+		return mealkitService.getMealkit(mealkitNum);
 	}
 	
 	@ResponseBody
@@ -73,8 +79,9 @@ public class MealkitAdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/fix")
+	@PostMapping("fix")
 	public void fixMealkit(@RequestBody Mealkit mealkit, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(mealkit);
 		mealkitService.fixMealkit(mealkit);
 	}
 	

@@ -6,6 +6,11 @@
 		select * from mealkits
 		order by mealkit_num
 	</select>
+	
+	<select id='selectMealkit' resultType='mealkit'>
+		select * from mealkits
+		where mealkit_num = #{mealkitNum}
+	</select>
 		
 	<select id='searchMealkit' resultType='mealkit'>
 		select * from mealkits
@@ -16,7 +21,7 @@
 		insert into mealkits(mealkit_num, mealkit_name, price, description, 
 			ingredient, mealkit_regdate, mealkit_img_file_name, food_type_code)
 		values(mealkit_num_seq.nextval, #{mealkitName}, #{price}, #{description}, 
-			#{ingredient}, #{mealkitRegDate}, #{mealkitImgfileName}, #{foodTypeCode})
+			#{ingredient}, sysdate, #{mealkitImgfileName}, #{foodTypeCode})
 	</insert>
 	
 	<update id='updateMealkit'>
@@ -25,8 +30,8 @@
 			price = #{price},
 			description = #{description},
 			ingredient = #{ingredient},
-			mealkit_regdate = #{mealkitRegDate},
-			mealkit_img_file_name = #{mealkitImgfileName},
+			mealkit_regdate = sysdate,
+			
 			food_type_code = #{foodTypeCode}
 		where mealkit_num = #{mealkitNum}	
 	</update>
