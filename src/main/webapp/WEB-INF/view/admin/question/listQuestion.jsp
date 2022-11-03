@@ -116,7 +116,7 @@
             <div class='modal-content'>
                 <div class='modal-header py-2'>
                     <p class='modal-title float-left' id='ModalLabel'>문의삭제</p>
-                    <button bype='button' class='close' data-dismiss='modal'>
+                    <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
