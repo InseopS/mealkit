@@ -68,7 +68,7 @@ h5 {
 <body>
     <div class='container' id='mainContainerAddSub'>
         <div class='row d-flex justify-content-center mt-5'>
-            <dlv class='col'>
+            <div class='col'>
                 <h5><b>주문 상품</b></h5>
                 <table class='list'>
                     <thead>
