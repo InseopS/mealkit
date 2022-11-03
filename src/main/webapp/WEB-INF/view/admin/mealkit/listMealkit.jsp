@@ -258,7 +258,7 @@ $(init)
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='delModalLabel'>밀키트삭제</p>
+                <p class='modal-title float-left' id='delModalLabel'>밀키트관리</p>
                 <button bype='button' class='close' data-dismiss='modal'>
                     <span>&times;</span>
                 </button>

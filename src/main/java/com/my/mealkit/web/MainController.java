@@ -19,10 +19,4 @@ public class MainController {
 		model.addAttribute("mealkitList", mealkitService.getMealkits());
 		return "main";
 	}
-	
-	@RequestMapping("/admin")
-	public String adminMain(Model model) {
-		model.addAttribute("mealkitList", mealkitService.getMealkits());
-		return "admin/listMealkit";
-	}
 }
