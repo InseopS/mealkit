@@ -21,6 +21,9 @@
                 text-align: center;
             }
         </style>
+        <script>
+        
+        </script>
     </head>
      <%@ include file ='../include/headerTop.jsp'%>
     

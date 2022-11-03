@@ -17,6 +17,9 @@
         <style>
 
         </style>
+         <script>
+        
+        </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -30,7 +33,6 @@
     <div id='mainContainerAddSub' class="container">
         <div class='row'>
             <div class='col'>
-                <div>
                     <form class="mb-4">
                         <input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
                         <input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
@@ -38,7 +40,6 @@
                         <input type='radio' name='star' value='2'> <span style="font-size:14px">★★</span>
                         <input type='radio' name='star' value='1' > <span style="font-size:14px">★</span>
                     </form>
-                </div>
             </div>
         </div>
         <div class='form-row'>
