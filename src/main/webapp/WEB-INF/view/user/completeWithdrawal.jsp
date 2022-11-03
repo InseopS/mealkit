@@ -33,10 +33,10 @@ h5 {
             <div class='row justify-content-center'>
                 <p>회원탈퇴가 되었습니다.<br><br>그동안 이젠밀키트를<br>이용해주셔서 감사합니다.</p>
             </div>
-            <a href='../main.html'>
-                <div class='row  d-flex mx-auto mt-5'>
+            <a href='../'>
+                <span class='row  d-flex mx-auto mt-5'>
                     <button type='button' class='btn btn-primary flex-fill'>메인화면 바로가기</button>
-                </div>
+                </span>
             </a>
         </div>
     </div>

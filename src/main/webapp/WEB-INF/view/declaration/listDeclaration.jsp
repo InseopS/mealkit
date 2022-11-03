@@ -64,7 +64,7 @@ table {
                 <td>2022.09.09</td>
                 <td>취소</td>
               </tr>
-              <tr><th><td><td></td></th></tr>
+              <tr><th></th><td></td><td></td></tr>
             </tbody>
           </table>
     </div>

@@ -1,5 +1,7 @@
 package com.my.mealkit.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +25,20 @@ public class UserController {
 	
 	@RequestMapping("signUp")
 	public void signUp() {		
+	}
+	
+	@ResponseBody
+	@RequestMapping("idDoubleCheck")
+	public boolean idDoubleCheck(@RequestParam("userId") String userId, HttpServletRequest request, HttpServletResponse response) {
+		boolean isGood = userService.idDoubleCheck(userId);
+		return isGood;
+	}
+	
+	@ResponseBody
+	@RequestMapping("emailDoubleCheck")
+	public boolean emailDoubleCheck(@RequestParam("email") String email, HttpServletRequest request, HttpServletResponse response) {
+		boolean isGood = userService.emailDoubleCheck(email);
+		return isGood;
 	}
 	
 	@GetMapping("emailCheck")
