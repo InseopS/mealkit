@@ -29,18 +29,6 @@ public class NoticeAdminController {
 		return noticeService.getAdminNotices();
 	}
 	
-	/*
-	@RequestMapping("listNotice")
-	public String listNotice() {
-		return "admin/notice/listNotice";
-	}
-	
-	@GetMapping("listNotice")
-	public List<Notice> getNotices() {
-		return noticeService.getAdminNotices();
-	}
-	*/
-	
 	@GetMapping("addNotice")
 	public String addNotice() {
 		return "admin/notice/addNotice";
