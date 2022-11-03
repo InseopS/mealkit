@@ -17,115 +17,135 @@
 <style>
 </style>
 <script>
- $(function () {
+function init() {
+	 var price;
+	 var amount;
+	 
+	 price = $('input[name="price"]').val();
+	 
+	$('#plusBtn').click(() => {
+		amount = $('input[name="amount"]').val();
+		$('input[name="amount"]').val(parseInt(amount) + 1);
+		
+		$('input[name="price"]').val(parseInt(price) * (parseInt(amount)+1));
+	})
+	
+	$('#minusBtn').click(() => {
+		amount = $('input[name="amount"]').val();
+		if(parseInt(amount) > 1) {
+			$('input[name="amount"]').val(parseInt(amount) - 1);
+			$('input[name="price"]').val(parseInt(price) * (parseInt(amount)-1));
+		} else {
+			$('input[name="amount"]').val(1);
+		}	
+	});
+	
     $('.favorite').click(function () {
         let check = $('.favorite').find('#favoriteIcon');
         if (check.hasClass('on')) {
             check.css('color', 'black');
         } else {
             check.css('color', 'red');
-            $('#favoriteModal').modal()
+            $('#mealkitModal').modal()
+            $('#modalMsg').empty();
+			$('#modalMsg').text('찜하기되었습니다.');
+			$('#confirmModal').modal();
+			$('#favriteOkBtn').show();
+			$('#cartOkBtn').hide();
         }
         check.toggleClass('on', 'off');
     });
-});
+    
+    $('#cartBtn').click(() => {
+        $('#mealkitModal').modal()
+        $('#modalMsg').empty();
+		$('#modalMsg').text('장바구니에 담았습니다.');
+		$('#confirmModal').modal();
+		$('#favriteOkBtn').hide();
+		$('#cartOkBtn').show();
+    })
+}
+
+$(init);
 </script>
 </head>
 <%@ include file ='../include/headerTop.jsp'%>
-	<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-	    <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-	    <div id="menuName">
-	        <h3>감바스</h3>
-	    </div>
-	</div>
+    <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+        <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+        <div id="menuName">
+        	<c:forEach var='mealkit' items='${mealkitList}'>
+            	<h3>${mealkit.mealkitName}</h3>
+            </c:forEach>	
+        </div>
+    </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
         <div class='row mt'>
             <div class='col'>
-                <div class='border w-auto' style='height: 200px; display: flex; justify-content: center; align-items: center; text-align: center;'>
-                    <p>감바스이미지</p>
-                </div>
+            	<c:forEach var='mealkit' items='${mealkitList}'>
+                    <img style="height:220px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+                </c:forEach>
             </div>
         </div>
         <div class='row'>
             <div class='col'>
                 <div class='border-bottom w-auto'>
-                    <h6 class='mt-1 mb-1'>맛있는 감바스</h6>
+                	<c:forEach var='mealkit' items='${mealkitList}'>
+                    	<h6 class='mt-1 mb-1'>${mealkit.description}</h6>
+                    </c:forEach>
                 </div>
                 <div class='border-bottom w-auto'>
-                    <h5 class='mt-1 mb-1'>양식</h5>
+                	<c:forEach var='mealkit' items='${mealkitList}'>
+                    	<h5 class='mt-1 mb-1' style='display:inline;'>${mealkit.price}</h5>
+                    </c:forEach>
+                    <span>원</span>
                 </div>
                 <div class='border-bottom w-auto'>
-                    <span class='mt-1 mb-1'>수량 : </span>
-                    <span class='mt-1 mb-1'>1개</span>
-                    <input class='btn btn-sm btn-secondary' type='button' value='+' style='width: 2rem;'/>
-                    <input class='btn btn-sm btn-secondary' type='button' value='-' style='width: 2rem;'/>
-                    <span class='float-right'>7900원</span>
+                    <span>수량 :</span>                 
+					<button type='button' class='btn btn-secondary btn-sm' id='minusBtn'>-</button>
+					<input type='text' style='border:none; width: 48px;' class='col-3 text-center' name='amount' id='amount' value='1' readonly='readonly' />
+					<button type='button' class='btn btn-secondary btn-sm' id='plusBtn'>+</button>			
+                    <c:forEach var='mealkit' items='${mealkitList}'>                   
+                   	 	<input type='text' style='border:none; float: right;' class='col-3 text-center' name='price' id='price' value='${mealkit.price}' readonly='readonly' />                  
+                    </c:forEach>
                 </div>
                 <div class='border w-auto mt-2 mb-1'>
+				<c:forEach var='mealkit' items='${mealkitList}'>                
 <pre>
-OO레스토랑 쉐프의 레시피를
-이용한 고급 감바스를
-집에서 손쉽게 만들수있습니다.
+${mealkit.ingredient}
 </pre>
+				</c:forEach>
                 </div>
                 <div>
                     <div class='favorite' style='display: inline'>
                         <span id='favoriteIcon' class="material-icons" style='font-size: 3rem;'>favorite</span>
                     </div>                  
                     <div style='display: inline;'>                            
-                        <a type='button' class='btn btn-secondary ml-5 mb-4' id='cartBtn' data-toggle='modal' data-target='#cartModal'>담기</a>
-                        <a type='button' class='btn btn-secondary ml-2 mb-4' id='buyBtn' href='../order/01.html'>구매</a>
+                        <a type='button' class='btn btn-secondary ml-5 mb-4' id='cartBtn' data-toggle='modal' data-target='#mealkitModal'>담기</a>
+                        <a type='button' class='btn btn-secondary ml-2 mb-4' id='buyBtn' href='../order/addOrder'>구매</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<footer>
-    <nav class='navbar fixed-bottom navbar-light bg-light'>
-        <div class='container-fluid'>
-            <a class='navbar-brand' href='../main.html'><span class='material-icons'>home</span></a>
-            <a class='navbar-brand' href='02.html'><span class='material-icons'>restaurant_menu</span></a>
-            <a class='navbar-brand' href='../review/02.html'><span class='material-icons'>rate_review</span></a>
-            <a class='navbar-brand' href='../user/mypage.html'><span class='material-icons'>person</span></a>
-            <a class='navbar-brand' href='../latest/01.html'><span class='material-icons'>history</span></a>
-        </div>
-    </nav>
-</footer>
-<div class='modal fade' id='favoriteModal' tabindex='-1'>
+<%@ include file ='../include/footer.jsp'%>
+<div class='modal fade' id='mealkitModal' tabindex='-1'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>찜하기</p>
+                <p class='modal-title float-left' id='myModalLabel'>상품안내</p>
                 <button bype='button' class='close' data-dismiss='modal'>
                     <span>&times;</span>
                 </button>
             </div>
             <div class='modal-body text-center'>
-                <p>찜하기 되었습니다.</p>
+                <p id='modalMsg' style='text-align: center'></p>
             </div>
             <div class='modal-footer py-1'>
-                <a data-dismiss='modal' class='btn btn-primary col-3'>확인</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class='modal fade' id='cartModal' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>장바구니</p>
-                <button bype='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body text-center'>
-                <p>장바구니에 담았습니다.</p>
-            </div>
-            <div class='modal-footer py-1'>
-                <a href='02.html' class='btn btn-primary col-3'>확인</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='favriteOkBtn'>확인</button>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='cartOkBtn' onclick="location.href='listMealkit'">확인</button>
             </div>
         </div>
     </div>

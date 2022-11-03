@@ -74,15 +74,15 @@
 				<c:choose>
 					<c:when test='${status.first}'>
 						<div class='carousel-item active'>
-							<a>						
-								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>						
+								<img style="height:300px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 							</a>	
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class='carousel-item'>
-							<a>	
-								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
+								<img style="height:300px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 							</a>	
 						</div>
 					</c:otherwise>
@@ -96,12 +96,16 @@
 				<c:choose>
 					<c:when test='${status.last}'>
 						<div class='carousel-item active'>
-							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>	
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>	
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class='carousel-item'>
-							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>	
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>
 						</div>
 					</c:otherwise>
 				</c:choose>

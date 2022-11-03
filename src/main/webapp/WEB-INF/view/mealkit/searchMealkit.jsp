@@ -24,12 +24,12 @@
 </script>
 </head>
 <%@ include file ='../include/headerTop.jsp'%>
-	<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-	    <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-	    <div id="menuName">
-	        <h3>만두</h3>
-	    </div>
-	</div>
+    <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+        <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+        <div id="menuName">
+            <h3>검색밀키트</h3>
+        </div>
+    </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
