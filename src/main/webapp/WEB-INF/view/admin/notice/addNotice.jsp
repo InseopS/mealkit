@@ -13,8 +13,25 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {
+	let noticeTitle = $('#noticeTitle').val();
+	let noticeAContent = $('#noticeContent').val();
 
+	$('#addNoticeBtn').click(( => {
+		$.ajax({
+			type:'post',
+			url: '${pageContext.request.contextPath}/admin/notice/add',
+			data: {
+				noticeTitle: noticeTitle,
+				noticeContent: noticeContent
+			}
+		})
+	})
+}
 
+$(init)
+</script>
 <style>
     hr {
         height: 1px;
