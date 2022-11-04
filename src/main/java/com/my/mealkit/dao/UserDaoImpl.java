@@ -24,4 +24,9 @@ public class UserDaoImpl implements UserDao {
 	public String selectEmail(String email) {
 		return userMap.selectEmail(email);
 	}
+
+	@Override
+	public void insertUser(User user) {
+		userMap.insertUser(user);
+	}
 }

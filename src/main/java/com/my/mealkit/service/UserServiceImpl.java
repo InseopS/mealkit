@@ -30,5 +30,10 @@ public class UserServiceImpl implements UserService{
 		if(userDao.selectEmail(email) == null) isGood = true;
 		return isGood;
 	}
+
+	@Override
+	public void addUser(User user) {
+		userDao.insertUser(user);
+	}	
 }
 

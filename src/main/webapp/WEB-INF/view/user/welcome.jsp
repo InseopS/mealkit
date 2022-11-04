@@ -31,9 +31,9 @@ h5 {
         <div class='col'>
             <h5><b>가입을 환영합니다!</b></h5><hr class='mb-5'>
             <div class='row justify-content-center'>
-                <p>ezen01님, 가입을 축하합니다.<br><br>이제 이젠밀키트의<br>신선하고 맛있는 상품을 만나보세요.</p>
+                <p><br>이제 이젠밀키트의<br>신선하고 맛있는 상품을 만나보세요.</p>
             </div>
-            <a href='03.html'>
+            <a href='login'>
                 <span class='row  d-flex mx-auto mt-5'>
                     <button type='button' class='btn btn-primary flex-fill'>로그인</button>
                 </span>
