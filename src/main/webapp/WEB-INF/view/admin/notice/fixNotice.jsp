@@ -13,6 +13,30 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {
+	$('#fixBtn').click(() => {
+		let noticeNum: <%=request.getParameter("noticeNum") %>;
+		let noticeTitle: $('#noticeTitle').val();
+		let noticeContent: $('#noticeContent').val();
+		
+		$.ajax({
+			url:"<%=request.getContextPath() %>/admin/notice/fix",
+			type: 'put',
+			contentType: 'application/json',
+			data: JSON.stringify ({
+				noticeNum: noticeNum,
+				noticeTitle: noticeTitle,
+				noticeContent: noticeContent
+			}).done(() => {
+				location.href='listNotice'
+			})
+		})
+	})
+}	
+$(init)
+</script>
+
 <style>
     hr {
         height: 1px;
@@ -28,7 +52,7 @@
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
+                    <form id='form' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
@@ -64,7 +88,7 @@
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary' formaction='/admin/notice/listNotice'>수정</button>
+                                        <button type='submit' class='btn btn-secondary' id='fixBtn'>수정</button>
                                     </div>
                                 </div>
                             </div>

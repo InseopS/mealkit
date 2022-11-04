@@ -4,12 +4,12 @@
 <mapper namespace='com.my.mealkit.dao.map.FaqMap'>
 	<select id='selectFaqs' resultType='faq'>
 		select * from faqs
-		order by faq_num desc
+		order by faq_num
 	</select>
 	
 	<select id='selectAdminFaqs' resultType='faq'>
 		select * from faqs
-		order by faq_num desc
+		order by faq_num
 	</select>
 	
 	<select id='selectAdminDetailFaq' resultType='faq'>

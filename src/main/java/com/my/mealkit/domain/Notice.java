@@ -23,5 +23,4 @@ public class Notice {
 	private LocalDate noticeRegdate;
 	private String noticeImgFileName;
 	private MultipartFile noticeImgFile;
-
 }
