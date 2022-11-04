@@ -27,8 +27,10 @@ public class MealkitController {
 		return "mealkit/listMealkit";
 	}
 	
-	@RequestMapping("/searchMealkit")
-	public String searchMealkit() {
+	@RequestMapping(value ="/searchMealkit", method=RequestMethod.GET )
+	public String searchMealkit(Model model, @RequestParam("search") String search) {
+		List<Mealkit> mealkitList = mealkitService.getSearchMealkit(search);
+		model.addAttribute("mealkitList", mealkitList);
 		return "mealkit/searchMealkit";
 	}
 	

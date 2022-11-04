@@ -22,23 +22,21 @@ function init() {
 		let price = $(#'price').val();
 		let description = $('#description').val();
 		let ingredient = $('#ingredient').val();
-		
+		let mealkitImgfile = $(#'mealkitImgfile').val();
 		let foodTypeCode = $(#'foodTypeCode').val();
 		
 		$.ajax({
-			url: 'fix',
-			method: 'post',
-			contentType: 'application/json',
-			data: JSON.stringify ({
+			type:'post',
+			url: '${pageContext.request.contextPath}/admin/mealkit/fixMealkit',
+			data: {
 				mealkitNum: mealkitNum,
 				mealkitName: mealkitName,
 				price: price,
 				description: description,
 				ingredient: ingredient,
+				mealkitImgfile: mealkitImgfile,
 				foodTypeCode: foodTypeCode
-			}).done(() => {
-				location.href='listMealkt'
-			})
+			}
 		})
 	})
 }
@@ -58,49 +56,57 @@ function init() {
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <form id='form' method='post' encType='multipart/form-data'>               	    
-                        <div class='container mw-100 mt-5' style='width: 98%;'>                 	
+                        <div class='container mw-100 mt-5' style='width: 98%;'>
+                        	<div class='row mt-3'>
+                                <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
+                                <div class='col pl-1'>
+                                    <c:forEach var='mealkit' items='${mealkitList}'>
+                   						 <img style="height:200px; width: 30%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+                					</c:forEach>
+                                </div>
+                            </div>                 	
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>상품명:</label>                 
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='mealkitName' name='mealkitName' placeholder='상품명을 입력해주세요.' value='파스타' required>
+                                	<c:forEach var='mealkit' items='${mealkitList}'>
+                                    	<input type='text' class='form-control' id='mealkitName' name='mealkitName' placeholder='상품명을 입력해주세요.' value='${mealkit.mealkitName}' required>
+                                	</c:forEach>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>판매가:</label>
                                 <div class='col pl-1'>
-                                    <input type='number' class='form-control' id='price' name='price' placeholder='원' value='8000' required>
+                                	<c:forEach var='mealkit' items='${mealkitList}'>
+                                    	<input type='number' class='form-control' id='price' name='price' placeholder='원' value='${mealkit.price}' required>
+                                    </c:forEach>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>상품설명:</label>
                                 <div class='col pl-1'>
+                                	<c:forEach var='mealkit' items='${mealkitList}'>
                                     <input type='text' class='form-control' id='description' name='description' 
-                                    	placeholder='내용을 입력해주세요.' value='집에서 간단하게 해먹을 수 있는 뽀모도로 파스타!' required>
+                                    	placeholder='내용을 입력해주세요.' value='${mealkit.description}' required>
+                                    </c:forEach>	
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
                                     <textarea class="form-control" placeholder="내용을 입력해주세요." id="ingredient" name='ingredient' style="height: 248px" required>
-상큼한 토마토와 양송이, 이탈리아 파마산 치즈맛이 잘 어울리는 파스타입니다.
-</textarea>
-                                </div>
-                            </div>
-                            <div class='row mt-3'>
-                                <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
-                                <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='mealkitImgfile' name='mealkitImgfile' required>
+<c:forEach var='mealkit' items='${mealkitList}'>${mealkit.ingredient}</c:forEach>
+									</textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>카테고리:</label>
                                 <div class='col pl-1'>
                                     <select class="form-control" id='foodTypeCode' name='foodTypeCode' required>
-                                        <option value='kor'>한식</option>
-                                        <option value='chn'>중식</option>
-                                        <option value='jpn'>일식</option>
-                                        <option value='west' selected>양식</option>
-                                        <option value='etc'>기타</option>
+                                        <option value='1'>한식</option>
+                                        <option value='2'>중식</option>
+                                        <option value='3'>일식</option>
+                                        <option value='4'>양식</option>
+                                        <option value='5'>기타</option>
                                     </select>
                                 </div>
                             </div>

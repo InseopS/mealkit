@@ -4,7 +4,7 @@
     <nav class='navbar fixed-top navbar-light bg-light navbar-expand-sm p-0'>
         <div class='container-fluid'>
             <a class='navbar-brand ml-2' href='<%=request.getContextPath()%>/'>
-                <div id='logo'>로고이미지</div>
+                <img src='/attach/logo.png'>
             </a>
 
 			<div>

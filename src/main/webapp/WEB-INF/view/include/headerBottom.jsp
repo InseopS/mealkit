@@ -29,8 +29,8 @@
                 </li>
             </ul>
             <form class='form-inline my-2 my-lg-0' action='<%=request.getContextPath()%>/mealkit/searchMealkit'>
-                <input type='search' class='form-control mr-sm-2' placeholder='상품을 입력해주세요.'/>
-                <button type='submit' class='btn btn-outline-dark my-2 my-sm-0'>검색</button>
+                <input type='text' id='search' name='search' class='form-control mr-sm-2' placeholder='상품을 입력해주세요.'/>
+                <button type='submit' id='submitBtn' class='btn btn-outline-dark my-2 my-sm-0'>검색</button>
             </form>
         </div>
     </nav>
