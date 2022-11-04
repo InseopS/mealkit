@@ -3,7 +3,9 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.MealkitMap'>
 	<select id='selectMealkits' resultType='mealkit'>
-		select * from mealkits
+		select mealkit.mealkits.*, mealkit.food_types.food_type_name
+		from mealkit.mealkits inner join mealkit.food_types 
+		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
 		order by mealkit_num
 	</select>
 	
@@ -13,8 +15,17 @@
 	</select>
 		
 	<select id='searchMealkit' resultType='mealkit'>
-		select * from mealkits
+		select mealkit.mealkits.*, mealkit.food_types.food_type_name
+		from mealkit.mealkits inner join mealkit.food_types 
+		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
 		where mealkit_name LIKE '%'||#{keyword}||'%'
+	</select>
+	
+	<select id='searchCategory' resultType='mealkit'>
+		select mealkit.mealkits.*, mealkit.food_types.food_type_name
+		from mealkit.mealkits inner join mealkit.food_types 
+		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
+		where mealkit.food_types.food_type_code LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	<insert id='insertMealkit'>
@@ -31,7 +42,6 @@
 			description = #{description},
 			ingredient = #{ingredient},
 			mealkit_regdate = sysdate,
-			
 			food_type_code = #{foodTypeCode}
 		where mealkit_num = #{mealkitNum}	
 	</update>
@@ -50,5 +60,6 @@
 		<result property='mealkitRegDate' column='mealkit_regdate'/>
 		<result property='mealkitImgfileName' column='mealkit_img_file_name'/>
 		<result property='foodTypeCode' column='food_type_code'/>
+		<result property='food_type_name' column='food_type_name'/>
 	</resultMap>
 </mapper>

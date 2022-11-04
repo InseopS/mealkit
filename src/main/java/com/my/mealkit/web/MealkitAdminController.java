@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,8 +42,10 @@ public class MealkitAdminController {
 		return "admin/mealkit/addMealkit";
 	}
 	
-	@RequestMapping("fixMealkit")
-	public String fixMealkit() {
+	@RequestMapping(value = "/fixMealkit", method=RequestMethod.GET)
+	public String fixMealkit(Model model, @RequestParam("mealkitNum") int mealkitNum) {
+		List<Mealkit> mealkitList = mealkitService.getMealkit(mealkitNum);
+		model.addAttribute("mealkitList", mealkitList);
 		return "admin/mealkit/fixMealkit";
 	}
 	
@@ -48,6 +53,20 @@ public class MealkitAdminController {
 	@PostMapping("/listMealkits")
 	public List<Mealkit> getMealkits() {
 		return mealkitService.getMealkits();
+	}
+	
+	@RequestMapping(value ="/searchMealkit", method=RequestMethod.GET )
+	public String searchMealkit(Model model, @RequestParam("search") String search) {		
+		List<Mealkit> mealkitList = mealkitService.getSearchMealkit(search);
+		model.addAttribute("mealkitList", mealkitList);
+		return "admin/mealkit/searchMealkit";
+	}
+	
+	@RequestMapping(value ="/searchCategory", method=RequestMethod.GET )
+	public String searchMealkit(Model model, @RequestParam("searchCategory") int searchCategory) {		
+		List<Mealkit> mealkitList = mealkitService.getSearchCategory(searchCategory);
+		model.addAttribute("mealkitList", mealkitList);
+		return "admin/mealkit/searchMealkit";
 	}
 	
 	@ResponseBody
@@ -79,10 +98,11 @@ public class MealkitAdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("fix")
-	public void fixMealkit(@RequestBody Mealkit mealkit, HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(mealkit);
-		mealkitService.fixMealkit(mealkit);
+	@PostMapping("/fixMealkit")
+	public ModelAndView fixMealkit(Mealkit mealkit, ModelAndView mv) throws IOException {
+		mealkitService.fixMealkit(mealkit);	
+		mv.setViewName("admin/mealkit/listMealkit");
+		return mv;
 	}
 	
 	@ResponseBody

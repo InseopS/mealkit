@@ -17,7 +17,10 @@
 <script type="text/javascript" src="/js/paging.js"></script>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
-
+#mealkits img {
+	width: 140px;
+	height: 90px;
+}
 </style>
 <script>
 
@@ -27,7 +30,7 @@
     <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
         <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
         <div id="menuName">
-            <h3>검색밀키트</h3>
+            <h3>'<%=request.getParameter("search") %>' 검색</h3>
         </div>
     </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -35,22 +38,35 @@
     <div id='mainContainerAddSub' class="container">
         <div class='row mt-2'>
             <div class='col'>
-                <table class='table' style='font-size: 75%;'>
-                    <thead><tr><th>상품</th><th>이름</th><th>가격</th><th>상세보기</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td class='border w-auto'>고기만두이미지</td>
-                            <th>고기만두</th>
-                            <td>5000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                        <tr>
-                            <td class='border w-auto'>김치만두이미지</td>
-                            <th>김치만두</th>
-                            <td>5000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                    </tbody>
+                <table class='table table-sm' style='font-size: 75%;'>
+                	<colgroup>
+                         <col width='15%'>
+                         <col width='20%'>
+                         <col width='20%'>
+                         <col width='20%'>
+                     </colgroup>
+                    <thead>
+                    	<tr>
+           	               <th scope='col'>상품</th>
+                           <th scope='col'>이름</th>
+                           <th scope='col'>판매가</th>
+                           <th scope='col'>설명</th>
+                    	</tr>
+                    </thead>
+                    <c:forEach var='mealkit' items='${mealkitList}'> 
+                    	<tbody id='mealkits'>
+                    	  <tr>     
+                   	   		<td class='align-middle'>
+                   	   			<a href='detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
+                        			<img src='/attach/${mealkit.mealkitImgfileName}'/>
+                        		</a>
+                   	   		</td>    	
+                    		<td class='align-middle'>${mealkit.mealkitName}</td>
+                    		<td class='align-middle'>${mealkit.price}</td>
+                    		<td class='align-middle'>${mealkit.description}</td>
+                    	  <tr>
+                    	</tbody>
+                    </c:forEach>
                 </table>
             </div>
         </div>

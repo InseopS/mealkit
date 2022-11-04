@@ -8,6 +8,7 @@ public interface MealkitService {
 	List<Mealkit> getMealkits();
 	List<Mealkit> getMealkit(int mealkitNum);
 	List<Mealkit> getSearchMealkit(String keyword);
+	List<Mealkit> getSearchCategory(int keyword);
 	void addMealkit(Mealkit mealkit);
 	void fixMealkit(Mealkit mealkit);
 	void delMealkit(int mealkitNum);

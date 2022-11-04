@@ -10,6 +10,7 @@ public interface MealkitMap {
 	List<Mealkit> selectMealkits();
 	List<Mealkit> selectMealkit(@Param("mealkitNum") int mealkitNum);
 	List<Mealkit> searchMealkit(@Param("keyword") String keyword);
+	List<Mealkit> searchCategory(@Param("keyword") int keyword);
 	void insertMealkit(Mealkit mealkit);
 	void updateMealkit(Mealkit mealkit);
 	void deleteMealkit(int mealkitNum);

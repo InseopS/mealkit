@@ -43,7 +43,7 @@
   border-color: #ccc;
 }
 
-img {
+#mealkits img {
 	width: 140px;
 	height: 90px;
 }
@@ -100,9 +100,9 @@ $(listMealkits)
                 <table class='table table-sm' style='font-size: 75%;'>
                 	<colgroup>
                          <col width='15%'>
-                         <col width='15%'>
-                         <col width='15%'>
-                         <col width='15%'>
+                         <col width='20%'>
+                         <col width='20%'>
+                         <col width='20%'>
                      </colgroup>
                     <thead>
                     	<tr>

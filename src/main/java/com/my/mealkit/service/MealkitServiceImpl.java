@@ -26,6 +26,11 @@ public class MealkitServiceImpl implements MealkitService {
 	public List<Mealkit> getSearchMealkit(String keyword) {
 		return mealkitDao.searchMealkit(keyword);
 	}
+	
+	@Override
+	public List<Mealkit> getSearchCategory(int keyword) {
+		return mealkitDao.searchCategory(keyword);
+	}
 
 	@Override
 	public void addMealkit(Mealkit mealkit) {

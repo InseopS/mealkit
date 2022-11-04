@@ -14,38 +14,6 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-function listMealkits() {
-	$('#mealkits').empty()
-	
-	$.ajax({
-		method: 'post',
-		url: "<%=request.getContextPath()%>/admin/mealkit/listMealkits"
-	}).done(mealkits => {
-		if(mealkits.length) {
-			const mealkitArr = []
-			
-			$.each(mealkits, (i, mealkit) => {
-				mealkitArr.unshift(
-                	`<tr>
-                		<td class='align-middle'> 
-							<input type='checkbox' value='\${mealkit.mealkitNum}' name='mealkitNum' id='mealkitNum' onclick='NoMultiChk(this)'/>
-						</td>
-                        <td class='align-middle'><img src='/attach/\${mealkit.mealkitImgfileName}'/></div></td>
-                        <td class='align-middle'>\${mealkit.mealkitName}</td>
-                        <td class='align-middle'>\${mealkit.description}</td>
-                        <td class='align-middle'>\${mealkit.price}원</td>
-                        <td class='align-middle'>\${mealkit.mealkitRegDate}</td>
-                        <td class='align-middle'>\${mealkit.foodTypeName}</td>
-                    </tr>`		
-				);
-			})
-			
-			$('#mealkits').append(mealkitArr.join(''))
-		} else {
-			$('#mealkits').append('<tr><td colspan=6 class=text-center>등록한 밀키트가 없습니다.</td></tr>')
-		}
-	})
-}
 function NoMultiChk(chk){
   	var obj = document.getElementsByName('mealkitNum');
    	for(var i=0; i<obj.length; i++){
@@ -56,7 +24,6 @@ function NoMultiChk(chk){
 }
 
 function init() {
-	$(listMealkits)
 	$('#delBtn').click(() => {
 		if($('#mealkitNum:checked').val()) {
 			$('#modalMsg').empty();
@@ -196,8 +163,21 @@ $(init)
                                     <th scope='col'>카테고리</th>
                                 </tr>
                             </thead>
-                            <tbody id='mealkits'>
-                            </tbody>
+                            <c:forEach var='mealkit' items='${mealkitList}'>
+	                            <tbody id='mealkits'>
+	                            	<tr>
+				                		<td class='align-middle'> 
+											<input type='checkbox' value='${mealkit.mealkitNum}' name='mealkitNum' id='mealkitNum' onclick='NoMultiChk(this)'/>
+										</td>
+				                        <td class='align-middle'><img src='/attach/${mealkit.mealkitImgfileName}'/></td>
+				                        <td class='align-middle'>${mealkit.mealkitName}</td>
+				                        <td class='align-middle'>${mealkit.description}</td>
+				                        <td class='align-middle'>${mealkit.price}원</td>
+				                        <td class='align-middle'>${mealkit.mealkitRegDate}</td>
+				                        <td class='align-middle'>${mealkit.foodTypeName}</td>
+                   					 </tr>
+	                            </tbody>
+                            </c:forEach>
                         </table>
                     <hr style='margin-top: -1rem;'>
                     </div>
