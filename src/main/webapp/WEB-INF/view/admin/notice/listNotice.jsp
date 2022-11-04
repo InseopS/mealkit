@@ -19,7 +19,7 @@
 		
 		$.ajax({
 			method:'get',
-			url:"<%=request.getContextPath() %>/admin/notice/getNotice"
+			url:"<%=request.getContextPath() %>/admin/notice/getNotices"
 		}).done(notices => {
 				if(notices.length) {
 					const noticeArr = []
@@ -30,7 +30,7 @@
 								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
-								<td><a href='notice/detailNotice?noticeNum=\${notice.noticeNum}'>
+								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
 										\${notice.noticeTitle}</td>
 								<td>\${notice.noticeRegdate}</td>
 							 </tr>`
@@ -50,7 +50,7 @@
 			
 		})
 		
-        $('#delNoticeBtn').click(() => {
+        $('#delBtn').click(() => {
 			if($('#noticeNum:checked').val()) {
         		$('#modalMsg').empty();
          		$('#modalMsg').text('선택한 공지를 삭제하시겠습니까?');
@@ -71,7 +71,7 @@
 		$('#delNoticeBtn').click(() => {
 			$('#deleteModal').modal('hide')
 	      	$.ajax({
-	        	 url: 'del/' + $('#noticeNum:checked').val(),
+	        	url: 'del/' + $('#noticeNum:checked').val(),
 	         	method: 'delete'
 			}).done(listNotices)
 		})
@@ -183,7 +183,7 @@
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtnGroup'>
                     <button type='button' id='addNoticeBtn' class='btn btn-secondary mr-2' onclick='location.href="addNotice"'>작성</button>
-                    <button type='button' id='delNoticeBtn' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+                    <button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                 </div>
             </div>
         </div>

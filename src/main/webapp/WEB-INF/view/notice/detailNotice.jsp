@@ -1,4 +1,5 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <html>
 
     <head>
@@ -15,6 +16,11 @@
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
         <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+        
+        <script>
+        
+        </script>
+        
         <style>
             #noticeTop {
                 font-weight: 600;
@@ -64,9 +70,11 @@
             <div class='row'>
                 <div class='col'>
 					<div id='noticeTop'>
-						<p id='noticeTitle'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</p>
+						<c:forEach var="notice" items="${noticeList}">
+						<p id='noticeTitle'>${notice.noticeTitle}</p>
 						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 13 &emsp; 조회수 3</p>
+						${notice.noticeRegdate}</p>
+						</c:forEach>
 					</div>
 					<hr>
                 </div>
@@ -77,17 +85,11 @@
                 </div>
             </div>
             <div class='row' id='noticeContent'>
+            <c:forEach var="notice" items="${noticeList}">
                 <pre>
-안녕하세요 !
-
-&lt;EZEN MEALKIT&gt; 관리자 입니다.
-
-10월 13일부터 10월 18일까지, 페이지 구현이
-
-진행될 예정입니다.
-
-감사합니다.
+${notice.noticeContent}
                 </pre>
+            </c:forEach>
             </div>
             <div class='row'>
                 <div class='col'>

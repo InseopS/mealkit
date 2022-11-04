@@ -47,7 +47,7 @@ $(init)
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form method='post'action='/admin/notice/listNotice'>
+                    <form id='form' method='post' action='/admin/notice/listNotice' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
@@ -65,7 +65,7 @@ $(init)
                                 </div>
                             </div>
                             <div class='row mt-3'>
-                                <label for='wwwww' class='col-2 pr-2 col-form-label'>이미지:</label>
+                                <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
                                     <input type='file' class='form-control' id='noticeImg'>
                                 </div>
