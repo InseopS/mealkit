@@ -15,7 +15,7 @@ public interface OrderMap {
 	void insertOrderMealkits(
 			@Param("orderMealkitNum") int orderMealkitNum, 
 			@Param("orderCount") int orderCount, 
-			@Param("oderNum") int orderNum, 
+			@Param("orderNum") int orderNum, 
 			@Param("mealkitNum") int mealkitNum); // 주문밀키트
 	void deleteOrder(int orderNum); // 주문취소
 }

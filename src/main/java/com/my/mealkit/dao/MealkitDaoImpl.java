@@ -26,6 +26,11 @@ public class MealkitDaoImpl implements MealkitDao {
 	public List<Mealkit> searchMealkit(String keyword) {
 		return mealkitMap.searchMealkit(keyword);
 	}
+	
+	@Override
+	public List<Mealkit> searchCategory(int keyword) {
+		return mealkitMap.searchCategory(keyword);
+	}
 
 	@Override
 	public void insertMealkit(Mealkit mealkit) {

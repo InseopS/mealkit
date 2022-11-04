@@ -24,10 +24,32 @@
 </style>
     
 <script>
-   let idDouble = 0
-   let emailDouble = 0
-   let emailCert = 0
-   let code
+	let idDouble = 0
+	let emailDouble = 0
+	let cert = 0
+	let code
+	
+function goPopup(){
+  var pop = window.open("/user/jusoPopup","pop","scrollbars=yes, resizable=yes"); 
+}
+	
+function jusoCallBack(basicAddress,detailAddress,zipCode){
+	document.form.basicAddress.value = basicAddress;
+	document.form.detailAddress.value = detailAddress;
+	document.form.zipCode.value = zipCode;
+}
+   
+function chkIdChange(val) {
+	idDouble = 0;
+}
+	
+function chkEmailChange(val) {
+	emailDouble = 0;
+}
+
+function chkCertChange(val) {
+	cert = 0;
+}
    
 $(document).on("keyup", "input[onlyEngNum]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
 $(document).on("keyup", "input[phoneNum]", function() {
@@ -39,9 +61,8 @@ function handleOnInput(el, maxlength) {
 };
 
 document.addEventListener("mouseup", function(event) {
-
 	if (document.getElementsByName("emailCert").length == 1){
-		var obj = document.getElementsByName("emailCert")[1].getAttribute("id");
+		var obj = document.getElementById("confirmBtn");
 		if (obj.contains(event.target)) {
 			const email = $('#email').val();
 			const checkInput = $('#certNum');
@@ -58,25 +79,6 @@ document.addEventListener("mouseup", function(event) {
 	}
 });
 
-document.addEventListener("mouseup", function(event) {
-    var obj = document.getElementById("confirmBtn");
-    if (document.getElementById("confirmBtn").getAttribute("id")){
-    if (obj.contains(event.target)) {
-    	console.log("test");
-    	const email = $('#email').val();
-    	const checkInput = $('#certNum');
-    	
-    	$.ajax({
-    		type : 'get',
-    		url : '<c:url value ="/user/emailCheck?email="/>'+email,
-    		success : function (data) {
-    			checkInput.attr('disabled',false);
-    			code = data;
-    		}			
-    	});
-    }
-    }
-});
 
 function init() {
 	$('#idDoubleCheck').click(() => {
@@ -115,11 +117,10 @@ function init() {
 				if(isGood) {
 					$('#modalLabel').text("이메일 중복확인")
 					$('#modalMsg').text("사용 가능한 이메일입니다.")
+					$('#modal').addClass("emailDoubleModal")
 					$('#confirmBtn').attr({
-						name: "emailCert",
-						"data-toggle": "modal",
-						"data-target": "#modal"
-						})
+						name: "emailCert"
+					})
 					$('#modal').modal()
 					emailDouble = 1
 				} else {
@@ -132,26 +133,58 @@ function init() {
 		}
 	})
 	
-	$(document).ready(function(){       
-	    $('#modal').on('hidden.bs.modal', function () {
-	    	$('#confirmBtn').removeAttr('name').removeAttr('data-toggle').removeAttr('data-target');
-	    }); 
-	});	
+	$(document).on("click", "button[name='emailCert']", function () {
+		$('#emailSendModal').modal()
+    	$('#confirmBtn').removeAttr('name')
+		$('#modal').removeClass("emailDoubleModal")
+	})	
 	
 	$('#emailCertConf').click(() => {
 		var certNum = $('#certNum').val();
 		if(certNum == code) {
 			$('#modalLabel').text("이메일 인증확인")
 			$('#modalMsg').text("인증이 완료됐습니다.")
+			$('#certNum').attr('readonly')
 			$('#modal').modal()
-			emailCert = 1
+			cert = 1
 		} else {
 			$('#modalLabel').text("이메일 인증확인")
 			$('#modalMsg').text("인증에 실패했습니다.")
 			$('#modal').modal()
-			emailCert = 0				
+			cert = 0				
 		}
 	})
+}
+
+function chkSignUp() {
+	let addrIsGood
+	if($('#zipCode').val() && $('#basicAddress').val() && $('#detailAddress').val()) {
+		addrIsGood = 1;
+	} else addrIsGood = 0;
+	
+	if((idDouble * emailDouble * cert * addrIsGood) == 1) {
+		let user = {
+			userId: $('#userId').val(),
+			password: $('#password').val(),
+			userName: $('#userName').val(),
+			email: $('#email').val(),
+			phoneNum: $('#phoneNum').val(),
+			zipCode: $('#zipCode').val(),
+			basicAddress: $('#basicAddress').val(),
+			detailAddress: $('#detailAddress').val()
+		};
+		$.ajax({
+			type:'post',
+			url:'signUp',
+			data: JSON.stringify(user),
+			contentType: 'application/json'
+		});
+	} else {
+		$('#modalLabel').text("회원가입")
+		$('#modalMsg').text("빈 칸이 있거나, 인증상태가 올바르지 않습니다.")
+		$('#modal').modal()
+		return false;
+	}
 }
 $(init)
 </script>
@@ -167,13 +200,13 @@ $(init)
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
-    <form action='welcome'>
+    <form id='form' name='form' action='welcome' method='POST' onsubmit='return chkSignUp();'>
         <div id='mainContainerAddSub' class='container'>
             <div style='width: 1px; height: 1px;'></div>
             <div class='row inputBox mt-1'>
                 <label class='col-3 col-form-label'>아이디</label>
                 <div class='col px-1'>
-                    <input type='text' class='form-control' id='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum>
+                    <input type='text' class='form-control' id='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum onchange='chkIdChange(this.value)'>
                 </div>
                 <div class='col-4 pl-0'>
                     <button type='button' id='idDoubleCheck' class='btn btn-primary float-right'>중복확인</button>
@@ -182,7 +215,7 @@ $(init)
             <div class='row inputBox'>
                 <label class='col-3 col-form-label' style='font-size: 93%'>비밀번호</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
+                    <input type='text' class='form-control' id='password' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
                 </div>
             </div>
             <div class='row inputBox'>
@@ -194,13 +227,13 @@ $(init)
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>이메일</label>
                 <div class='col pl-1'>
-                    <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)'>
+                    <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)'  onchange='chkEmailChange(this.value)'>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label' style='font-size: 93%'>인증번호</label>
                 <div class='col pl-1'>
-                    <input type='number' class='form-control' id='certNum' name='certNum' oninput='handleOnInput(this, 6)' required>
+                    <input type='number' class='form-control' id='certNum' name='certNum' required oninput='handleOnInput(this, 6)' onchange='chkCertChange(this.value)'>
                 </div>
             </div>
             <div class='row inputBox'>
@@ -215,32 +248,32 @@ $(init)
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>연락처</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='phoneNum' name='phoneNum' maxlength='13' required phoneNum>
+                    <input type='text' class='form-control' id='phoneNum' name='phoneNum' maxlength='13' pattern='.{13,13}' required phoneNum>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label class='col-3 col-form-label' style='font-size: 93%'>우편주소</label>
                 <div class='col px-1'>
-                    <input type='number' class='form-control' id='zipCode' name='zipcode' oninput='handleOnInput(this, 5)' required>
+                    <input type='text' class='form-control' id='zipCode' name='zipcode' readonly>
                 </div>
                 <div class='col-4 pl-0'>
-                    <input class='btn btn-primary float-right' type='button' value='주소검색'>
+                    <input class='btn btn-primary float-right' type='button' onClick="goPopup();" value='주소검색'>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label'>주소</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='basicAddress' name='basicAddress' required>
+                    <input type='text' class='form-control' id='basicAddress' name='basicAddress' readonly>
                 </div>
             </div>
             <div class='row inputBox'>
                 <label for='input' class='col-3 col-form-label' style='font-size: 93%'>상세주소</label>
                 <div class='col pl-1'>
-                    <input type='text' class='form-control' id='detailAddress' name='detailAddress' required>
+                    <input type='text' class='form-control' id='detailAddress' name='detailAddress' readonly>
                 </div>
             </div>
             <div class='row d-flex mx-auto mt-4'>
-                <button type='submit' class='btn btn-primary flex-fill'>회원가입</button>
+                <button type='submit' id='signUp' name='signUp' class='btn btn-primary flex-fill'>회원가입</button>
             </div>
         </div>
     </form>
@@ -251,7 +284,7 @@ $(init)
         <div class='modal-content'>
             <div class='modal-header py-2'>
                 <p class='modal-title float-left' id='modalLabel'></p>
-                <button bype='button' class='close' data-dismiss='modal'>
+                <button type='button' class='close' data-dismiss='modal'>
                     <span>&times;</span>
                 </button>
             </div>
@@ -260,6 +293,25 @@ $(init)
             </div>
             <div class='modal-footer py-1'>
                 <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='emailSendModal' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header py-2'>
+                <p class='modal-title float-left'>이메일 인증발송</p>
+                <button type='button' class='close' data-dismiss='modal'>
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body text-center'>
+                <p>인증메일이 발송됐습니다.</p>
+            </div>
+            <div class='modal-footer py-1'>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
             </div>
         </div>
     </div>

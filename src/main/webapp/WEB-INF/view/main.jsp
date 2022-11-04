@@ -16,6 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel='stylesheet' type='text/css' href='../res/lib.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkalami&family=Black+Han+Sans&family=Jua&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 <style>
 	#event_list a {
 		color: rgb(0, 0, 0);
@@ -61,47 +64,59 @@
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+	
 </style>
 </head>
 
 <%@ include file ='include/headerTop.jsp'%>
 <%@ include file ='include/headerBottom.jsp'%>
 <body>
-	<div class='container' style='margin-top: 5rem;'>
+	<div class='container mt-5' style='margin-top: 5rem;'>
+		<p class='navbar-title flex-fill mr-1 my-0 p-0' style="font-family: 'Black Han Sans', cursive; height: 50px;">
+			신규밀키트<img class='my-0' src='/attach/new.png'>
+		</p>
 		<div class='carousel slide border w-auto' data-ride="carousel" id='mealkit_list' style='height: 300px; display: flex; justify-content: center; align-items: center; text-align: center;' >
 			<div class='carousel-inner'>
 			<c:forEach var='mealkit' items='${mealkitList}' varStatus='status'>
 				<c:choose>
-					<c:when test='${status.first}'>
+					<c:when test='${status.last}'>
 						<div class='carousel-item active'>
-							<a>						
-								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>						
+								<img style="height:300px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 							</a>	
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class='carousel-item'>
-							<a>	
-								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
+								<img style="height:300px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
 							</a>	
 						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>	
 			</div>
-		</div>		
-		<div id='product_list' class='carousel slide mt-3' data-ride='carousel' data-interval='20000'>		
+		</div>
+		<hr>
+		<p class='navbar-title flex-fill mr-1 my-0 p-0' style="font-family: 'Black Han Sans', cursive; height: 25px;">
+			판매밀키트
+		</p>	
+		<div id='product_list' class='carousel slide mt-0' data-ride='carousel' data-interval='20000'>		
 			<div class='carousel-inner'>
 			<c:forEach var='mealkit' items='${mealkitList}' varStatus='status'>
 				<c:choose>
-					<c:when test='${status.last}'>
+					<c:when test='${status.first}'>
 						<div class='carousel-item active'>
-							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>	
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>	
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class='carousel-item'>
-							<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							<a href='mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>	
+								<img style="height:300px; width: 328px;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+							</a>
 						</div>
 					</c:otherwise>
 				</c:choose>

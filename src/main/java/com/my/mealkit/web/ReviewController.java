@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,32 +20,34 @@ import com.my.mealkit.service.ReviewService;
 @Controller 
 @RequestMapping("review")
 public class ReviewController {
-	@Value("${attachPath}") private String attachPath;
-	
 	@Autowired private ReviewService reviewService;
 	
-	@RequestMapping("listReview")
-	public String listReview() {
-		return "review/listReview";
+	@Value("${attachPath}") private String attachPath;
+	
+	@GetMapping("listReview")
+	public ModelAndView list(ModelAndView mv) {
+	   mv.setViewName("review/listReview");
+	   return mv;
 	}
+	
+	@PostMapping("getReview")
+	public List<Review> getReviews(){
+		return reviewService.getReviews();
+	}	
 	
 	@RequestMapping("addReview")
 	public String addReview() {
 		return "review/addReview";
 	}
-
+	
 	@RequestMapping("fixReview")
-	public void fixReview() {		
+	public String fixReview() {
+		return "review/fixReview";
 	}
 	
 	@RequestMapping("detailReview")
-	public void detailReview() {		
-	}
-	
-	@ResponseBody
-	@PostMapping("listReview")
-	public List<Review> getReviews() {
-		return reviewService.getReviews();
+	public String detailReview() {
+		return "review/detailReview";
 	}
 	
 	@ResponseBody

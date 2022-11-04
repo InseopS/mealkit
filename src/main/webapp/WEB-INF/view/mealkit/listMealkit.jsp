@@ -42,56 +42,77 @@
   background-color: #fafafa;
   border-color: #ccc;
 }
+
+#mealkits img {
+	width: 140px;
+	height: 90px;
+}
 </style>
 <script>
+function listMealkits() {
+	$('#mealkits').empty()
+	
+	$.ajax({
+		metod:'post',
+		url: "<%=request.getContextPath()%>/mealkit/listMealkits"
+	}).done(mealkits => {
+		if(mealkits.length) {
+			const mealkitArr = []
+			
+			$.each(mealkits, (i, mealkit) => {
+				mealkitArr.unshift(
+                	`<tr>
+                        <td class='align-middle'>
+                        	<a href='detailMealkit?mealkitNum=\${mealkit.mealkitNum}'>
+                        		<img src='/attach/\${mealkit.mealkitImgfileName}'/>
+                        	</a>
+                        </td>
+                        <td class='align-middle'>\${mealkit.mealkitName}</td>                     
+                        <td class='align-middle'>\${mealkit.price}원</td>
+                        <td class='align-middle'>\${mealkit.description}</td>
+                    </tr>`		
+				);
+			})
+			
+			$('#mealkits').append(mealkitArr.join(''))
+		} else {
+			$('#mealkits').append('<tr><td colspan=4 class=text-center>판매중인 밀키트가 없습니다.</td></tr>')
+		}
+	})
+}
+
+$(listMealkits)
 
 </script>
 </head>
 <%@ include file ='../include/headerTop.jsp'%>
-	<div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
-	    <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
-	    <div id="menuName">
-	        <h3>전체밀키트</h3>
-	    </div>
-	</div>
+    <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
+        <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
+        <div id="menuName">
+            <h3>전체밀키트</h3>
+        </div>
+    </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
         <div class='row mt-2'>
             <div class='col'>
-                <table class='table' style='font-size: 75%;'>
-                    <thead><tr><th>상품</th><th>이름</th><th>가격</th><th>상세보기</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td class='border w-auto'>파스타이미지</td>
-                            <th>파스타</th>
-                            <td>8000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                        <tr>
-                            <td class='border w-auto'>고기만두이미지</td>
-                            <th>고기만두</th>
-                            <td>5000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                        <tr>
-                            <td class='border w-auto'>김치만두이미지</td>
-                            <th>김치만두</th>
-                            <td>5000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                        <tr>
-                            <td class='border w-auto'>부대찌개이미지</td>
-                            <th>부대찌개</th>
-                            <td>16000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
-                        <tr>
-                            <td class='border w-auto'>떡볶이이미지</td>
-                            <th>떡볶이</th>
-                            <td>3000원</td>
-                            <td><a href='01.html' class='btn btn-secondary btn-sm'>상세</a></td>
-                        </tr>
+                <table class='table table-sm' style='font-size: 75%;'>
+                	<colgroup>
+                         <col width='15%'>
+                         <col width='20%'>
+                         <col width='20%'>
+                         <col width='20%'>
+                     </colgroup>
+                    <thead>
+                    	<tr>
+           	               <th scope='col'>상품</th>
+                           <th scope='col'>이름</th>
+                           <th scope='col'>판매가</th>
+                           <th scope='col'>설명</th>
+                    	</tr>
+                    </thead>
+                    <tbody id='mealkits'>
                     </tbody>
                 </table>
             </div>

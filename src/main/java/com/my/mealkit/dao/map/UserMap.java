@@ -8,4 +8,5 @@ public interface UserMap {
 	User selectUser(User user);
 	String selectUserId(@Param("userId") String userId);
 	String selectEmail(@Param("email") String email);
+	void insertUser(User user);
 }
