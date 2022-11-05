@@ -13,18 +13,64 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <style>
-        table {
-            text-align: center;
-            font-size: smaller;
-        }
-    </style>
+<style>
+table {
+    text-align: center;
+    font-size: smaller;
+}
+</style>
+<script>
+function listUsers() {
+	$('input').not(':radio').val('')
+	$('#users').empty()
+	
+	$.ajax({
+		url: 'getUsers',
+		dataType: 'json',
+		success: users => {
+			if(users.length) {
+				const userArr = []					
+				$.each(users, (i, user) => {
+				    userArr.unshift(
+				        `<tr>
+				            <th><input type='checkbox' class='mt-3' name='userId' id='userId'
+				                    value='\${user.userId}'/></th>
+		                    <td class='align-middle'>\${user.userId}</td>
+                               <td class='align-middle'>\${user.userName}</td>
+                               <td class='align-middle'>\${user.phoneNum}</td>
+                               <td>\${user.basicAddress}<br>\${user.detailAddress} (\${user.zipCode})</td>
+				        </tr>`
+				    )
+				})
+				
+				$('#users').append(userArr.join(''))
+			}
+		}
+	})
+}
+
+function init() {
+	listUsers()
+	
+	$('#delUserOkBtn').click(() => {
+		for (var i = 0; i < $('#userId:checked').length; i++) {
+			$.ajax({
+				url: 'delUser/' + $('#userId:checked').eq(i).val(),
+				method: 'delete'
+			})
+		}
+		listUsers()
+	})
+}
+
+$(init)
+</script>
 </head>
 
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
-                    <h2 style='display: inline'>신고</h2>&ensp;
-                    <h6>신고상세</h6>
+                    <h2 style='display: inline'>회원조회</h2>&ensp;
+                    <h6>회원목록</h6>
     <%@ include file ='../../include/adminTop2.jsp'%>
 
             <div class='col' style='border: 1px solid;'>
@@ -64,63 +110,22 @@
                                 <table class='table table-hover my-0'>
                                     <colgroup>
                                         <col width='5%'>
-                                        <col width='13%'>
-                                        <col width='13%'>
-                                        <col width='13%'>
-                                        <col width='18%'>
-                                        <col width='38%'>
+                                        <col width='15%'>
+                                        <col width='15%'>
+                                        <col width='20%'>
+                                        <col width='45%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
                                             <th scope='col'></th>
-                                            <th scope='col'>회원번호</th>
                                             <th scope='col'>아이디</th>
                                             <th scope='col'>이름</th>
                                             <th scope='col'>연락처</th>
                                             <th scope='col'>주소</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><input type='checkbox' class='mt-3'></th>
-                                            <td class='align-middle'>0010</td>
-                                            <td class='align-middle'>projectmk</td>
-                                            <td class='align-middle'>김민석</td>
-                                            <td class='align-middle'>010-5555-0000</td>
-                                            <td>서울특별시 관악구 신림로 340(신림동)<br>르네상스쇼핑몰 601호 (08754)</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox' class='mt-3'></th>
-                                            <td class='align-middle'>0009</td>
-                                            <td class='align-middle'>seop2</td>
-                                            <td class='align-middle'>송인섭</td>
-                                            <td class='align-middle'>010-9876-5678</td>
-                                            <td>서울특별시 관악구 신림로 340(신림동)<br>르네상스쇼핑몰 602호 (08754)</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox' class='mt-3'></th>
-                                            <td class='align-middle'>0008</td>
-                                            <td class='align-middle'>rightarm</td>
-                                            <td class='align-middle'>양승일</td>
-                                            <td class='align-middle'>010-1111-2222</td>
-                                            <td>서울특별시 관악구 신림로 340(신림동)<br>르네상스쇼핑몰 102호 (08754)</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox' class='mt-3'></th>
-                                            <td class='align-middle'>0007</td>
-                                            <td class='align-middle'>writerHan</td>
-                                            <td class='align-middle'>한석봉</td>
-                                            <td class='align-middle'>010-1592-1592</td>
-                                            <td>서울특별시 관악구 신림로 340(신림동)<br>르네상스쇼핑몰 202호 (08754)</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox' class='mt-3'></th>
-                                            <td class='align-middle'>0006</td>
-                                            <td class='align-middle'>ezen01</td>
-                                            <td class='align-middle'>한아름</td>
-                                            <td class='align-middle'>010-1234-5678</td>
-                                            <td>서울특별시 관악구 신림로 340(신림동)<br>르네상스쇼핑몰 601호 (08754)</td>
-                                        </tr>
+                                    <tbody id='users'>
+
                                     </tbody>
                                 </table>
                                 <hr class='mt-0'>
@@ -151,7 +156,7 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
+                    <button type='button' id='delUserOkBtn' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
                 </div>
             </div>
         </div>

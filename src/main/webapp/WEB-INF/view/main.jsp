@@ -71,7 +71,7 @@
 <%@ include file ='include/headerTop.jsp'%>
 <%@ include file ='include/headerBottom.jsp'%>
 <body>
-	<div class='container mt-5' style='margin-top: 5rem;'>
+	<div class='container' id='mainContainer'>
 		<p class='navbar-title flex-fill mr-1 my-0 p-0' style="font-family: 'Black Han Sans', cursive; height: 50px;">
 			신규밀키트<img class='my-0' src='/attach/new.png'>
 		</p>
