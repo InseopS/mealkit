@@ -9,11 +9,14 @@ import com.my.mealkit.domain.User;
 @Service
 public class UserServiceImpl implements UserService{
 	@Autowired private UserDao userDao;
-
+	
 	@Override
 	public boolean loginVerify(User user) {
 		boolean isGood = false;
-		if(userDao.selectUser(user) != null) isGood = true;
+		User targetUser = userDao.selectUser(user);
+		if(targetUser != null) {
+			if(user.getUserId().equals(targetUser.getUserId()) && user.getPassword().equals(targetUser.getPassword())) isGood = true;
+		}
 		return isGood;
 	}
 
@@ -30,10 +33,25 @@ public class UserServiceImpl implements UserService{
 		if(userDao.selectEmail(email) == null) isGood = true;
 		return isGood;
 	}
+	
+	@Override
+	public String findUserId(String email) {
+		return userDao.findUserId(email);
+	}
 
+	@Override
+	public User getUser(String userId) {
+		return userDao.selectUser(userId);
+	}
+	
 	@Override
 	public void addUser(User user) {
 		userDao.insertUser(user);
-	}	
+	}
+	
+	@Override
+	public void delUser(String userId) {
+		userDao.deleteUser(userId);
+	}
 }
 

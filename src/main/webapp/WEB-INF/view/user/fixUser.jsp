@@ -20,18 +20,6 @@
             font-size: 0.8em;
             font-weight: 400;
         }
-
-        input[type='date']::before {
-            content: attr(data-placeholder);
-            width: 100%;
-            font-size: 0.8rem;
-            color: rgba(0, 0, 0, 0.550);
-        }
-
-        input[type='date']:focus::before,
-        input[type='date']:valid::before {
-            display: none;
-        }
     </style>
 </head>
 

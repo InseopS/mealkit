@@ -54,7 +54,7 @@ public class UserController {
 	@GetMapping("emailCheck")
 	@ResponseBody
 	public String emailCheck(String email) {
-		return mailSendService.joinEmail(email);
+		return mailSendService.emailWrite(email);
 	}
 	
 	@RequestMapping("welcome")
@@ -79,7 +79,7 @@ public class UserController {
 		if(userService.loginVerify(user)) {
 			session.setAttribute("userId", user.getUserId());
 			if(user.getUserId().equals("admin")) {
-				mv.setViewName("redirect:../admin/main");
+				mv.setViewName("redirect:../admin/");
 			} else {
 				mv.setViewName("redirect:/");
 			}
@@ -104,7 +104,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("completeFindId")
-	public void completeFindId() {		
+	public ModelAndView completeFindId(@RequestParam(value="email", required=false) String email, ModelAndView mv) {
+		if(email != null) {
+			String userId = userService.findUserId(email);				
+			mv.addObject("userId", userId);
+		} else {
+			mv.setViewName("redirect:/");
+		}
+		return mv;
 	}
 	
 	@RequestMapping("findPassword")
@@ -127,12 +134,34 @@ public class UserController {
 	public void completeFixUser() {		
 	}
 	
-	@RequestMapping("completeWithdrawal")
-	public void completeWithdrawal() {		
+	@RequestMapping("withdrawal")
+	public ModelAndView withdrawal(HttpSession session, ModelAndView mv) {
+		if(session.getAttribute("userId") != null) {
+			String userId = session.getAttribute("userId").toString();
+			userService.delUser(userId);
+			session.invalidate();
+			mv.setViewName("user/completeWithdrawal");
+		} else {
+		mv.setViewName("redirect:/");
+		}
+		
+		return mv;
 	}
 	
-	@GetMapping("mypage")
-	public void mypage() {
+	@RequestMapping("completeWithdrawal")
+	public void completeWithdrawal() {
+	}
+	
+	@RequestMapping("mypage")
+	public ModelAndView mypage(HttpSession session, ModelAndView mv) {		
+		if(session.getAttribute("userId") != null) {
+			String userId = session.getAttribute("userId").toString();
+			User user = userService.getUser(userId);
+			mv.addObject(user);
+		} else {
+		mv.setViewName("redirect:/");
+		}
 		
-	}	
+		return mv;
+	}
 }
