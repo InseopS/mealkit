@@ -75,22 +75,22 @@ document.addEventListener("mouseup", function(event) {
 				success : function (data) {
 					code = data;
 				}			
-			});
+			})
 		}
 	}
-});
+})
 
 
 function init() {
 	$('#idDoubleCheck').click(() => {
-		var userId = $('#userId').val();
+		var userId = $('#userId').val()
 		if(userId) {
-		$.ajax({
-			url: '${pageContext.request.contextPath}/user/idDoubleCheck',
-			data:{
-				userId:userId
-			}
-		}).done(isGood => {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/user/idDoubleCheck',
+				data:{
+					userId:userId
+				}
+			}).done(isGood => {
 				if(isGood) {
 					$('#modalLabel').text("아이디 중복확인")
 					$('#modalMsg').text("사용 가능한 아이디입니다.")
@@ -107,7 +107,7 @@ function init() {
 	})
 	
 	$('#emailDoubleCheck').click(() => {
-		var email = $('#email').val();
+		var email = $('#email').val()
 		if(email) {
 		$.ajax({
 			url: '${pageContext.request.contextPath}/user/emailDoubleCheck',
@@ -141,7 +141,7 @@ function init() {
 	})	
 	
 	$('#emailCertConf').click(() => {
-		var certNum = $('#certNum').val();
+		var certNum = $('#certNum').val()
 		if(certNum == code) {
 			$('#modalLabel').text("이메일 인증확인")
 			$('#modalMsg').text("인증이 완료됐습니다.")
@@ -159,8 +159,8 @@ function init() {
 function chkSignUp() {
 	let addrIsGood
 	if($('#zipCode').val() && $('#basicAddress').val() && $('#detailAddress').val()) {
-		addrIsGood = 1;
-	} else addrIsGood = 0;
+		addrIsGood = 1
+	} else addrIsGood = 0
 	
 	if((idDouble * emailDouble * cert * addrIsGood) == 1) {
 		let user = {
@@ -172,18 +172,18 @@ function chkSignUp() {
 			zipCode: $('#zipCode').val(),
 			basicAddress: $('#basicAddress').val(),
 			detailAddress: $('#detailAddress').val()
-		};
+		}
 		$.ajax({
 			type:'post',
 			url:'signUp',
 			data: JSON.stringify(user),
 			contentType: 'application/json'
-		});
+		})
 	} else {
 		$('#modalLabel').text("회원가입")
 		$('#modalMsg').text("빈 칸이 있거나, 인증상태가 올바르지 않습니다.")
 		$('#modal').modal()
-		return false;
+		return false
 	}
 }
 $(init)
@@ -206,7 +206,11 @@ $(init)
         <div class='row inputBox mt-1'>
             <label class='col-3 col-form-label'>아이디</label>
             <div class='col px-1'>
+<<<<<<< HEAD
                 <input type='text' class='form-control' id='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum onchange='chkIdChange(this.value)'>
+=======
+                <input type='text' class='form-control' id='userId' name='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum onchange='chkIdChange(this.value)'>
+>>>>>>> refs/heads/dev
             </div>
             <div class='col-4 pl-0'>
                 <button type='button' id='idDoubleCheck' class='btn btn-primary float-right'>중복확인</button>
@@ -215,6 +219,7 @@ $(init)
         <div class='row inputBox'>
             <label class='col-3 col-form-label' style='font-size: 93%'>비밀번호</label>
             <div class='col pl-1'>
+<<<<<<< HEAD
                 <input type='text' class='form-control' id='password' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
             </div>
         </div>
@@ -255,6 +260,48 @@ $(init)
             <label class='col-3 col-form-label' style='font-size: 93%'>우편주소</label>
             <div class='col px-1'>
                 <input type='text' class='form-control' id='zipCode' name='zipcode' readonly>
+=======
+                <input type='text' class='form-control' id='password' name='password' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label for='input' class='col-3 col-form-label'>이름</label>
+            <div class='col pl-1'>
+                <input type='text' class='form-control' id='userName' name='userName' required oninput='handleOnInput(this, 29)'>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label for='input' class='col-3 col-form-label'>이메일</label>
+            <div class='col pl-1'>
+                <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)' onchange='chkEmailChange(this.value)'>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label for='input' class='col-3 col-form-label' style='font-size: 93%'>인증번호</label>
+            <div class='col pl-1'>
+                <input type='number' class='form-control' id='certNum' name='certNum' required oninput='handleOnInput(this, 6)' onchange='chkCertChange(this.value)'>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label class='col-3 col-form-label' style='margin-right: 4px;'></label>
+            <div class='col d-flex mx-auto pl-0'>
+                <button type='button' id='emailDoubleCheck' class='btn btn-primary flex-fill'>중복확인</button>
+            </div>
+            <div class='col d-flex mx-auto pl-0'>
+                <button type='button' id='emailCertConf' class='btn btn-primary flex-fill'>인증확인</button>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label for='input' class='col-3 col-form-label'>연락처</label>
+            <div class='col pl-1'>
+                <input type='text' class='form-control' id='phoneNum' name='phoneNum' maxlength='13' pattern='.{13,13}' required phoneNum>
+            </div>
+        </div>
+        <div class='row inputBox'>
+            <label class='col-3 col-form-label' style='font-size: 93%'>우편주소</label>
+            <div class='col px-1'>
+                <input type='text' class='form-control' id='zipCode' name='zipCode' readonly>
+>>>>>>> refs/heads/dev
             </div>
             <div class='col-4 pl-0'>
                 <input class='btn btn-primary float-right' type='button' onClick="goPopup();" value='주소검색'>

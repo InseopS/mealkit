@@ -1,5 +1,7 @@
 package com.my.mealkit.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,14 @@ public class UserServiceImpl implements UserService{
 	public String findUserId(String email) {
 		return userDao.findUserId(email);
 	}
+<<<<<<< HEAD
+=======
+	
+	@Override
+	public List<User> getUsers() {
+		return userDao.selectUsers();
+	}
+>>>>>>> refs/heads/dev
 
 	@Override
 	public User getUser(String userId) {
@@ -50,6 +60,19 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+<<<<<<< HEAD
+=======
+	public void resetPassword(String userId, String email, String password) {
+		userDao.updatePassword(userId, email, password);
+	}
+	
+	@Override
+	public void fixUser(User user) {
+		userDao.updateUser(user);
+	}
+
+	@Override
+>>>>>>> refs/heads/dev
 	public void delUser(String userId) {
 		userDao.deleteUser(userId);
 	}

@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.UserMap'>
+<<<<<<< HEAD
+	<select id='selectUser' resultType='user'>
+		select *
+=======
+	<select id='selectUsers' resultType='user'>
+		select user_id, user_name, phone_num, zip_code, basic_address, detail_address
+>>>>>>> refs/heads/dev
+		from users
+<<<<<<< HEAD
+=======
+	</select>
 	<select id='selectUser' resultType='user'>
 		select *
 		from users
+>>>>>>> refs/heads/dev
 		where user_id = #{userId}
 	</select>
 	<select id='selectUserId' resultType='string'>
@@ -25,8 +37,25 @@
 	<insert id='insertUser'>
 		insert into users
 		values (#{userId}, #{password}, #{userName}, #{email},
+<<<<<<< HEAD
 		 #{phoneNum}, #{zipCode}, #{basicAddress}, #{detailAddress})
 	</insert>	
+=======
+			#{phoneNum}, #{zipCode}, #{basicAddress}, #{detailAddress})
+	</insert>
+	<update id='updatePassword'>
+		update users
+		set password = #{password}
+		where user_id = #{userId} and email = #{email} 
+	</update>
+	<update id='updateUser'>
+		update users
+		set password = #{password}, user_name = #{userName}, email = #{email}, phone_num = #{phoneNum},
+			zip_code = #{zipCode}, basic_address = #{basicAddress}, detail_address = #{detailAddress}
+		where user_id = #{userId}
+		
+	</update>
+>>>>>>> refs/heads/dev
 	<delete id='deleteUser'>
 		delete users
 		where user_id = #{userId}

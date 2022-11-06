@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -119,15 +120,52 @@ public class UserController {
 	}
 	
 	@RequestMapping("resetPassword")
-	public void resetPassword() {		
+	public ModelAndView resetPassword(User user, ModelAndView mv) {
+		if(user != null) {
+			if(user.getUserId().equals(userService.findUserId(user.getEmail()))) {
+				mv.addObject(user);
+			} else {
+				mv.setViewName("redirect:/");
+			}
+		} else {
+			mv.setViewName("redirect:/");
+		}
+		return mv;
 	}
 	
 	@RequestMapping("completeResetPassword")
-	public void completeResetPassword() {		
+	public ModelAndView completeResetPassword(User user, ModelAndView mv) {
+		if(user != null) {
+			String userId = user.getUserId();
+			String email = user.getEmail();
+			String password = user.getPassword();
+			userService.resetPassword(userId, email, password);
+		} else {
+			mv.setViewName("redirect:/");
+		}
+		return mv;
 	}
 	
-	@RequestMapping("fixUser")
-	public void fixUser() {		
+	@GetMapping("fixUser")
+	public ModelAndView fixUserIn(HttpSession session, ModelAndView mv) {		
+		if(session.getAttribute("userId") != null) {
+			String userId = session.getAttribute("userId").toString();
+			User user = userService.getUser(userId);
+			mv.addObject(user);
+		} else {
+		mv.setViewName("redirect:/");
+		}
+		
+		return mv;
+	}
+	
+	@PutMapping("fixUser")
+	public void fixUser(HttpSession session, @RequestBody User user) {
+		String userId = session.getAttribute("userId").toString();
+		User userTmp = userService.getUser(userId);
+		user.setUserId(userId);
+		if(user.getPassword() == "") user.setPassword(userTmp.getPassword());
+		userService.fixUser(user);
 	}
 	
 	@RequestMapping("completeFixUser")
