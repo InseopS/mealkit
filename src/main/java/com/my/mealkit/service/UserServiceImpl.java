@@ -40,14 +40,11 @@ public class UserServiceImpl implements UserService{
 	public String findUserId(String email) {
 		return userDao.findUserId(email);
 	}
-<<<<<<< HEAD
-=======
 	
 	@Override
 	public List<User> getUsers() {
 		return userDao.selectUsers();
 	}
->>>>>>> refs/heads/dev
 
 	@Override
 	public User getUser(String userId) {
@@ -60,8 +57,6 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-<<<<<<< HEAD
-=======
 	public void resetPassword(String userId, String email, String password) {
 		userDao.updatePassword(userId, email, password);
 	}
@@ -72,7 +67,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
->>>>>>> refs/heads/dev
 	public void delUser(String userId) {
 		userDao.deleteUser(userId);
 	}

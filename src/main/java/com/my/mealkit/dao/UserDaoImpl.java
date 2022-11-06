@@ -49,8 +49,6 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-<<<<<<< HEAD
-=======
 	public void updatePassword(String userId, String email, String password) {
 		userMap.updatePassword(userId, email, password);
 	}
@@ -61,7 +59,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
->>>>>>> refs/heads/dev
 	public void deleteUser(String userId) {
 		userMap.deleteUser(userId);
 	}

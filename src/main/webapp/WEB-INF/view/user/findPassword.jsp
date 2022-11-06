@@ -15,14 +15,6 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-<<<<<<< HEAD
-    <style>
-        ::placeholder {
-            font-size: 0.8em;
-            font-weight: 400;
-        }
-    </style>
-=======
 <style>
 ::placeholder {
     font-size: 0.8em;
@@ -99,7 +91,6 @@ function chkFindPassword() {
 }
 $(init)
 </script>
->>>>>>> refs/heads/dev
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>

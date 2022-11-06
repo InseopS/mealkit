@@ -13,10 +13,7 @@ public interface UserMap {
 	String findUserId(@Param("email") String email);
 	String selectEmail(@Param("email") String email);
 	void insertUser(User user);
-<<<<<<< HEAD
-=======
 	void updatePassword(@Param("userId") String userId, @Param("email") String email, @Param("password") String password);
 	void updateUser(User user);
->>>>>>> refs/heads/dev
 	void deleteUser(String userId);
 }

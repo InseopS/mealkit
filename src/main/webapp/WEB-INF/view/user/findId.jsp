@@ -16,77 +16,16 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
-<<<<<<< HEAD
-=======
 ::placeholder {
     font-size: 0.8em;
     font-weight: 400;
 }
 </style>
->>>>>>> refs/heads/dev
 
-<<<<<<< HEAD
-::placeholder {
-    font-size: 0.8em;
-    font-weight: 400;
-}
-</style>
-=======
-<script>
-let sendedEmail = 0
-let code
->>>>>>> refs/heads/dev
-
-<<<<<<< HEAD
 <script>
 let sendedEmail = 0
 let code
 
-function chkEmailChange(val) {
-	sendedEmail = 0
-}
-
-function handleOnInput(el, maxlength) {
-	if(el.value.length > maxlength) el.value = el.value.substr(0, maxlength)
-}
-
-function init() {
-	$('#emailCert').click(() => {		
-		const email = $('#email').val()		
-		if(email) {
-			$.ajax({
-				url: '${pageContext.request.contextPath}/user/emailDoubleCheck',
-				data:{
-					email:email
-				}
-			}).done(isGood => {
-					if(!isGood) {
-						$.ajax({
-							type : 'get',
-							url : '<c:url value ="/user/emailCheck?email="/>'+email,
-							success : function (data) {
-								code = data;
-							}			
-						})						
-						$('#modalLabel').text("이메일 인증발송")
-						$('#modalMsg').text("인증메일이 발송됐습니다.")
-						$('#modal').modal()
-						sendedEmail = 1
-					} else {
-						$('#modalLabel').text("아이디 찾기")
-						$('#modalMsg').text("가입하지 않은 이메일입니다.")
-						$('#modal').modal()
-					}
-				})	
-		}		
-	})
-}
-
-function chkFindId() {
-	var certNum = $('#certNum').val()
-	if(certNum == code && sendedEmail == 1) {
-		console.log("test")
-=======
 function chkEmailChange(val) {
 	sendedEmail = 0
 }
@@ -130,7 +69,6 @@ function init() {
 function chkFindId() {
 	var certNum = $('#certNum').val()
 	if(certNum == code && sendedEmail == 1) {
->>>>>>> refs/heads/dev
 	} else {
 		$('#modalLabel').text("아이디 찾기")
 		$('#modalMsg').text("인증번호가 올바르지 않습니다.")
@@ -176,28 +114,6 @@ $(init)
 	        <button type='submit' id='findId' class='btn btn-primary flex-fill'>아이디 확인</button>
 	    </div>
 	</div>
-<<<<<<< HEAD
-	<div class='modal fade' id='modal' tabindex='-1'>
-	    <div class='modal-dialog'>
-	        <div class='modal-content'>
-	            <div class='modal-header py-2'>
-	                <p class='modal-title float-left' id='modalLabel'></p>
-	                <button type='button' class='close' data-dismiss='modal'>
-	                    <span>&times;</span>
-	                </button>
-	            </div>
-	            <div class='modal-body text-center'>
-	                <p id='modalMsg'></p>
-	            </div>
-	            <div class='modal-footer py-1'>
-	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-</form>
-
-=======
 </form>
 
 <div class='modal fade' id='modal' tabindex='-1'>
@@ -218,7 +134,6 @@ $(init)
         </div>
     </div>
 </div>
->>>>>>> refs/heads/dev
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

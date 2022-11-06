@@ -9,16 +9,10 @@ public interface UserService {
 	boolean idDoubleCheck(String userId);
 	boolean emailDoubleCheck(String email);
 	String findUserId(String email);
-<<<<<<< HEAD
-=======
 	List<User> getUsers();
->>>>>>> refs/heads/dev
 	User getUser(String userId);
 	void addUser(User user);
-<<<<<<< HEAD
-=======
 	void resetPassword(String userId, String email, String password);
 	void fixUser(User user);
->>>>>>> refs/heads/dev
 	void delUser(String userId);
 }
