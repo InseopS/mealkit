@@ -24,7 +24,7 @@
                         <a class='dropdown-item' href='<%=request.getContextPath()%>/faq/listFaq'>자주묻는질문</a>
                         <a class='dropdown-item' href='<%=request.getContextPath()%>/question/listQuestion'>1:1문의</a>
                         <div class='dropdown-divider'></div>
-                        <a class='dropdown-item' href='<%=request.getContextPath()%>/declaration/detailDeclaration'>신고</a>
+                        <a class='dropdown-item' href='<%=request.getContextPath()%>/declaration/listDeclaration'>신고</a>
                     </div>
                 </li>
             </ul>

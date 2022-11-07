@@ -10,6 +10,7 @@ public interface UserService {
 	boolean emailDoubleCheck(String email);
 	String findUserId(String email);
 	List<User> getUsers();
+	List<User> getSearchUsers(String keyword);
 	User getUser(String userId);
 	void addUser(User user);
 	void resetPassword(String userId, String email, String password);

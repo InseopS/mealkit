@@ -6,6 +6,11 @@
 		select user_id, user_name, phone_num, zip_code, basic_address, detail_address
 		from users
 	</select>
+	<select id='selectSearchUsers' resultType='user'>
+		select user_id, user_name, phone_num, zip_code, basic_address, detail_address
+		from users
+		where user_id LIKE '%'||#{keyword}||'%'
+	</select>
 	<select id='selectUser' resultType='user'>
 		select *
 		from users

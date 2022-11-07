@@ -18,6 +18,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public List<User> selectSearchUsers(String keyword) {
+		return userMap.selectSearchUsers(keyword);
+	}
+
+	@Override
 	public User selectUser(User user) {
 		return userMap.selectUser(user);
 	}

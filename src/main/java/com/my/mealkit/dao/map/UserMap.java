@@ -8,6 +8,7 @@ import com.my.mealkit.domain.User;
 
 public interface UserMap {
 	List<User> selectUsers();
+	List<User> selectSearchUsers(@Param("keyword") String keyword);
 	User selectUser(User user);
 	String selectUserId(@Param("userId") String userId);
 	String findUserId(@Param("email") String email);

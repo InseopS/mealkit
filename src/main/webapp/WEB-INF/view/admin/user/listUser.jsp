@@ -61,6 +61,37 @@ function init() {
 		}
 		listUsers()
 	})
+	
+	$('#searchBtn').click(() => {
+		$('#users').empty()		
+		let keyword = $('#searchUserId').val()
+		
+		if(keyword != "") {
+			$.ajax({
+				url: 'searchUsers/' + keyword,
+				dataType: 'json',
+				success: users => {
+					if(users.length) {
+						const userArr = []					
+						$.each(users, (i, user) => {
+						    userArr.unshift(
+						        `<tr>
+						            <th><input type='checkbox' class='mt-3' name='userId' id='userId'
+						                    value='\${user.userId}'/></th>
+				                    <td class='align-middle'>\${user.userId}</td>
+		                               <td class='align-middle'>\${user.userName}</td>
+		                               <td class='align-middle'>\${user.phoneNum}</td>
+		                               <td>\${user.basicAddress}<br>\${user.detailAddress} (\${user.zipCode})</td>
+						        </tr>`
+						    )
+						})						
+						$('#users').append(userArr.join(''))
+					}
+				},
+				fail: $('#users').append(`<tr><th colspan='5'>검색 결과가 없습니다.</th></tr>`)
+			})
+		} else listUsers()
+	})
 }
 
 $(init)
@@ -98,10 +129,10 @@ $(init)
                             <label class='col-2 col-form-label' style='text-align: right; font-weight: 600;'>검색:
                             </label>
                             <div class='col px-0'>
-                                <input type='text' class='form-control' id='userId' placeholder='회원아이디 또는 회원이름을 입력해주세요.'>
+                                <input type='text' class='form-control' id='searchUserId' name='searchUserId' placeholder='회원아이디를 입력해주세요.'>
                             </div>
                             <div class='col-2 d-flex'>
-                                <button type='button' id='serchUser' class='btn btn-secondary'>검색</button>
+                                <button type='button' id='searchBtn' name='searchBtn' class='btn btn-secondary'>검색</button>
                             </div>
                         </div>
 

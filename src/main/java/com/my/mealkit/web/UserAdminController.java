@@ -28,6 +28,12 @@ public class UserAdminController {
 		return userService.getUsers();
 	}
 	
+	@GetMapping("searchUsers/{keyword}")
+	public List<User> searchUsers(@PathVariable String keyword) {		
+		List<User> userList = userService.getSearchUsers(keyword);
+		return userList;
+	}
+	
 	@DeleteMapping("delUser/{userId}")
 	public void delUser(@PathVariable String userId) {
 		userService.delUser(userId);
