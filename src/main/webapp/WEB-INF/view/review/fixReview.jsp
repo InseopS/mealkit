@@ -15,7 +15,7 @@
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
         <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
         <style>
-
+ 
         </style>
 
     </head>
