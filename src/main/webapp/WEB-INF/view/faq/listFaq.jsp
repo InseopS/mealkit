@@ -16,6 +16,50 @@
 		<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
         <script>
+        function listFaqs(){
+        	$('#faqs').empty();
+        	$.ajax({
+        		type:'post',
+        		url:"<%=request.getContextPath() %>/faq/getFaqs"
+        	}).done(faqs => {
+        		if(faqs.length) {
+        			const faqArr = []
+        			
+        			$.each(faqs, (i, faq) => {
+        				faqArr.unshift(
+        					`<div id='qna'>
+		                        <div class='d-flex justify-content-between'>
+								    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
+		                            <div>
+		                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
+		                                    data-target='#faqNum1'>
+		                                    <span class="material-icons" id='up_arrow1' style='display:none'>expand_less</span>
+		                                    <span class="material-icons" id='down_arrow1'>expand_more</span>
+		                                </span>
+		                            </div>
+		                        </div>
+		                        <div>
+		                            <div class='collapse navbar-collapse' id='faqNum1'>
+		                                <div id='answer'>
+		                                    <p><span class="material-icons">mode_comment</span> 마이페이지 > 주문내역 > 교환/반품 신청
+		                                    경로로 들어가시면, 교환신청이 가능합니다 !</p>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <hr>`
+        						
+        						
+        				);
+        			})
+        			$('#faqs').append(faqArr.join(''))
+        		} else {
+        			$('#faqs').append('<tr><td colspan=5 class=text-center>Q&A가 없습니다.</td></tr>')
+        		}
+        	}) 
+        }
+        $(listFaqs)
+        
             for(let i = 1; i <= 10; i++) {
                 $(function(){
                     $('#down_arrow'+i).click(function() {
@@ -29,6 +73,8 @@
                     })
                 })
             } 
+            
+            
         </script>
         <style>
             #faqTitle {
@@ -61,7 +107,7 @@
     <form>
         <div id='mainContainerAddSub' class="container">
             <div class='row d-flex'>
-                <div class="col">
+                <div id='faqs' class="col">
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
 						    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
