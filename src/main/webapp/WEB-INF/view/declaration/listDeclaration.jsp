@@ -15,12 +15,45 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <style>
+<style>
 table {
     text-align: center;
     font-size: smaller;
 }
-    </style>
+</style>
+<script>
+function listDeclarations() {
+	$('input').not(':radio').val('')
+	$('#declaration').empty()
+	
+	$.ajax({
+		url: 'getDeclarations',
+		dataType: 'json',
+		success: declarations => {
+			if(declarations.length) {
+				const declarationArr = []					
+				$.each(declarations, (i, declaration) => {
+				    declarationArr.unshift(
+				        `<tr>
+				            <th><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></th>
+                            <td>\${declaration.declarationRegdate}</td>
+                            <td>\${declaration.declarationStatusName}</td>
+				        </tr>`
+				    )
+				})
+				
+				$('#declarations').append(declarationArr.join(''))
+			}
+		}
+	})
+}
+
+function init() {
+	listDeclarations()	
+}
+
+$(init)
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -43,27 +76,7 @@ table {
                 <th scope='col'>처리상태</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th><a href='03.html'>대출광고 신고합니다.</a></th>
-                <td>2022.10.14</td>
-                <td>처리중</td>
-              </tr>
-              <tr>
-                <th>욕설 신고합니다.</th>
-                <td>2022.10.01</td>
-                <td>삭제</td>
-              </tr>
-              <tr>
-                <th>비방 신고합니다.</th>
-                <td>2022.09.15</td>
-                <td>기각</td>
-              </tr>
-              <tr>
-                <th>이거 신고되나요?</th>
-                <td>2022.09.09</td>
-                <td>취소</td>
-              </tr>
+            <tbody id='declarations'>
               <tr><th></th><td></td><td></td></tr>
             </tbody>
           </table>
