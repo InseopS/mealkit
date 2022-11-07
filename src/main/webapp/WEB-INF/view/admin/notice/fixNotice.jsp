@@ -14,25 +14,23 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+let testNum  = <%=request.getParameter("noticeNum")%>
 function init() {
 	$('#fixNoticeBtn').click(() => {
-		let noticeNum = <%=request.getParameter("noticeNum") %>
-		let noticeTitle = $('#noticeTitle').val();
-		let noticeContent = $('#noticeContent').val();
-		let noticeImgFile = $('#noticeImgFile').val();
+		let notice = {
+			noticeNum: testNum,
+			noticeTitle: $('#noticeTitle').val(),
+			noticeContent: $('#noticeContent').val()
+		}
 		
 		$.ajax({
-			url:"<%=request.getContextPath() %>/admin/notice/fix",
-			type: 'post',
-			data:{
-				noticeNum: noticeNum,
-				noticeTitle: noticeTitle,
-				noticeContent: noticeContent
-				noticeImgFile: noticeImgFile
-			}
+			type: 'put',
+			url: 'fixNotice',
+			data: JSON.stringify(notice),
+			contentType: 'application/json'
 		})
 	})
-}	
+}
 $(init)
 </script>
 
@@ -56,24 +54,19 @@ $(init)
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='noticeTitle' minlength='1' maxlength='100' 
-                                        required placeholder='제목을 입력해주세요.' value='10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내'>
+                                	<c:forEach var='notice' items='${noticeList}'>
+                                    	<input type='text' class='form-control' id='noticeTitle' name='noticeTitle' minlength='1' maxlength='100' 
+                                        	required placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}'>
+                                    </c:forEach>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder="내용을 입력해주세요." id="noticeContent" style="height: 410px; resize:none" 
-                                        minlength='1' maxlength='1300' required>
-안녕하세요!
-
-<EZEN MEALKIT> 관리자 입니다.
-
-10월 13일부터 10월 18일까지, 페이지 구현이
-
-진행될 예정입니다.
-
-감사합니다.</textarea>
+           	                    	<c:forEach var='notice' items='${noticeList}'>
+                                    	<textarea class="form-control" placeholder="내용을 입력해주세요." id='noticeContent' name='noticeContent' style="height: 410px; resize:none" 
+                                        	minlength='1' maxlength='1300' required>${notice.noticeContent}</textarea>
+									</c:forEach>          
                                 </div>
                             </div>
                             <div class='row mt-3'>
@@ -87,7 +80,7 @@ $(init)
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary' id='fixNoticeBtn'>수정</button>
+                                        <button type='button' class='btn btn-secondary' id='fixNoticeBtn'>수정</button>
                                     </div>
                                 </div>
                             </div>

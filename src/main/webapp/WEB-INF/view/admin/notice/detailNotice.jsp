@@ -33,6 +33,10 @@ function init() {
 			location.href='listNotice'
 		})
 	})
+	
+	$('#fixNoticeBtn').click(() => {
+		location.href='fixNotice?noticeNum=' + <%=request.getParameter("noticeNum") %>
+	})
 }
  
 $(init)
@@ -71,7 +75,7 @@ $(init)
                             <div class='col pl-1'>
                             <c:forEach var="notice" items="${noticeList}">
                                 <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
-                                </c:forEach>
+                            </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
@@ -95,7 +99,7 @@ ${notice.noticeContent}
                         <hr>
                         <div class='row mt-4 d-flex justify-content-end'>
                             <button type='button' class='btn btn-secondary mr-1' onClick="location.href='<%=request.getContextPath()%>/admin/notice/listNotice'">목록</button>
-                            <button type='button' class='btn btn-secondary mr-1' onClick="location.href='<%=request.getContextPath()%>/admin/notice/fixNotice'">수정</button>
+                            <button type='button' id='fixNoticeBtn' class='btn btn-secondary mr-1'>수정</button>
                             <button type='button' class='btn btn-secondary mr-3' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                         </div>
                     </div>

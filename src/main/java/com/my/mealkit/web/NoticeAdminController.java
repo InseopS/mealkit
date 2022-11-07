@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +66,6 @@ public class NoticeAdminController {
 			notice.setNoticeImgFileName(noticeFileName);
 			System.out.println(notice.getNoticeImgFileName());
 			noticeService.addAdminNotice(notice);
-			
 		} catch(NullPointerException e) {}
 		
 		mv.setViewName("admin/notice/listNotice");
@@ -75,28 +78,49 @@ public class NoticeAdminController {
 		} catch(IOException e) {}
 	}
 	
-	@RequestMapping("fixNotice")
-	public String fixNotice() {
-		return "admin/notice/fixNotice";
-	}
-	
-	
-	/*
-	@RequestMapping(value = "fixNotice", method=RequestMethod.GET)
+	@RequestMapping(value ="fixNotice", method=RequestMethod.GET)
 	public String fixNotice(Model model, @RequestParam("noticeNum") int noticeNum) {
-		List<Notice> noticeList = noticeService.getAdminDetailNotices(noticeNum);
+		List<Notice> noticeList = noticeService.getNotice(noticeNum);
+		System.out.println(noticeList);
 		model.addAttribute("noticeList", noticeList);
 		return "admin/notice/fixNotice";
 	}
-	
+	/*
 	@ResponseBody
-	@PostMapping("/fixNotice")
+	@PutMapping("fixNotice")
 	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {
+		System.out.println(notice.getNoticeTitle());
+		System.out.println(notice.getNoticeNum()+"123456789");
 		noticeService.fixAdminNotice(notice);
 		mv.setViewName("admin/notice/listNotice");
 		return mv;
 	}
 	*/
+	
+	@PutMapping("fixNotice")
+	public void fixNotice(@RequestBody Notice notice) {
+		System.out.println("2222");
+		noticeService.fixAdminNotice(notice);
+	}
+	
+	/*
+	@ResponseBody
+	@PostMapping("/fixNotice")
+	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {
+		System.out.println(notice.getNoticeNum() + "dd");
+		try {
+			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
+			
+			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
+			notice.setNoticeImgFileName(noticeFileName);
+			
+			noticeService.fixAdminNotice(notice);
+		} catch(NullPointerException e) {}
+		mv.setViewName("admin/notice/listNotice");
+		return mv;
+	}
+	*/
+	
 	@ResponseBody
 	@DeleteMapping("del/{noticeNum}")
 	public void delNotice(@PathVariable int noticeNum) {
