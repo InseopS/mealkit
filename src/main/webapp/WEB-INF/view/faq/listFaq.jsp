@@ -16,19 +16,63 @@
 		<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
         <script>
-            for(let i = 1; i <= 10; i++) {
-                $(function(){
-                    $('#down_arrow'+i).click(function() {
-                        $('#down_arrow'+i).hide();
-                        $('#up_arrow'+i).show();
-                    })
-
-                    $('#up_arrow'+i).click(function() {
-                        $('#up_arrow'+i).hide();
-                        $('#down_arrow'+i).show();
-                    })
+        function listFaqs(){
+        	$('#faqs').empty();
+        	$.ajax({
+        		type:'post',
+        		url:"<%=request.getContextPath() %>/faq/getFaqs"
+        	}).done(faqs => {
+        		if(faqs.length) {
+        			const faqArr = []
+        			
+        			$.each(faqs, (i, faq) => {
+        				faqArr.unshift(
+        					`<div id='qna'>
+		                        <div class='d-flex justify-content-between'>
+								    <div><p id='faqTitle'>\${faq.faqTitle}</p></div>
+		                            <div>
+		                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
+		                                    data-target='#faqNum'+\${faq.faqNum}'>
+		                                    <span class="material-icons" id='up_arrow\${faq.faqNum}' style='display:none'>expand_less</span>
+		                                    <span class="material-icons" id='down_arrow\${faq.faqNum}'>expand_more</span>
+		                                </span>
+		                            </div>
+		                        </div>
+		                        <div>
+		                            <div class='collapse navbar-collapse' id='faqNum'+\${faq.faqNum}>
+		                                <div id='answer'>
+		                                    <p><span class="material-icons">mode_comment</span> \${faq.faqContent}</p>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <hr>`
+        				);
+        			})
+        			$('#faqs').append(faqArr.join(''))
+        		} else {
+        			$('#faqs').append('<div><p>등록된 Q&A가 없습니다.</p></div>')
+        		}
+        	}) 
+        }
+        function arrow() {
+        for(let i = 1; i <= 10; i++) {
+            $(function(){
+                $('#down_arrow'+i).click(function() {
+                    $('#down_arrow'+i).hide();
+                    $('#up_arrow'+i).show();
                 })
-            } 
+
+                $('#up_arrow'+i).click(function() {
+                    $('#up_arrow'+i).hide();
+                    $('#down_arrow'+i).show();
+                })
+            })
+        }
+        }
+        $(listFaqs)
+        $(arrow)
+            
         </script>
         <style>
             #faqTitle {
@@ -61,7 +105,7 @@
     <form>
         <div id='mainContainerAddSub' class="container">
             <div class='row d-flex'>
-                <div class="col">
+                <div id='faqs' class="col">
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
 						    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>

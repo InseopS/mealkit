@@ -9,7 +9,7 @@ import com.my.mealkit.domain.Faq;
 public interface FaqMap {
 	List<Faq> selectFaqs();
 	List<Faq> selectAdminFaqs();
-	List<Faq> selectAdminDetailFaq(@Param("FaqNum") int faqNum);
+	List<Faq> selectAdminDetailFaq(@Param("faqNum") int faqNum);
 	void insertAdminFaq(Faq faq);
 	void updateAdminFaq(Faq faq);
 	void deleteAdminFaq(@Param("faqNum") int faqNum);

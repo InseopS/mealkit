@@ -18,8 +18,8 @@
 		$('#notices').empty();
 		
 		$.ajax({
-			method:'get',
-			url:"<%=request.getContextPath() %>/admin/notice/getNotice"
+			method:'post',
+			url:"<%=request.getContextPath() %>/admin/notice/getNotices"
 		}).done(notices => {
 				if(notices.length) {
 					const noticeArr = []
@@ -30,7 +30,7 @@
 								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
-								<td><a href='/notice/detailNotice?noticeNum=\${notice.noticeNum}'>
+								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
 										\${notice.noticeTitle}</td>
 								<td>\${notice.noticeRegdate}</td>
 							 </tr>`
@@ -42,8 +42,41 @@
 				}
 		})
 	}
-    $(listNotices)
-    
+
+    function init() {
+		$(listNotices)
+        
+		$('#addNoticeBtn').click(() => {
+			
+		})
+		
+        $('#delBtn').click(() => {
+			if($('#noticeNum:checked').val()) {
+        		$('#modalMsg').empty();
+         		$('#modalMsg').text('선택한 공지를 삭제하시겠습니까?');
+         		$('#deleteModal').modal();
+         		$('#okBtn').hide();
+         		$('#noBtn').show();
+         		$('#delNoticeBtn').show();
+      		} else {
+         		$('#modalMsg').empty();
+         		$('#modalMsg').text('삭제할 공지를 선택해주세요.');
+         		$('#deleteModal').modal();
+         		$('#okBtn').show();
+         		$('#noBtn').hide();
+         		$('#delNoticeBtn').hide();
+      		}
+   		})
+   
+		$('#delNoticeBtn').click(() => {
+			$('#deleteModal').modal('hide')
+	      	$.ajax({
+	        	url: 'del/' + $('#noticeNum:checked').val(),
+	         	method: 'delete'
+			}).done(listNotices)
+		})
+	}
+	$(init)
     </script>
     
     <style>
@@ -108,7 +141,7 @@
                                     <tbody id='notices'>
                                         <tr>
                                             <th><input type='checkbox'></th>
-                                            <td id='noticeNum'>0007</td>
+                                            <td>0007</td>
                                             <td id='noticeTitle' onclick='location.href="<%=request.getContextPath()%>/admin/notice/detailNotice"'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</td>
                                             <td id='noticeRegdate'>2022.10.12</td>
                                         </tr>
@@ -145,30 +178,32 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtnGroup'>
-                    <button type='button' class='btn btn-secondary mr-2' onclick='location.href="<%=request.getContextPath()%>/admin/notice/addNotice"'>작성</button>
-                    <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+                    <button type='button' id='addNoticeBtn' class='btn btn-secondary mr-2' onclick='location.href="./addNotice"'>작성</button>
+                    <button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
+	<div class='modal fade' id='deleteModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
+                    <p class="modal-title float-left" id='delModalLabel'>공지삭제</p>
                     <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
-                    <p>선택한 공지를 삭제하시겠습니까?</p>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                        onclick='location.href="<%=request.getContextPath()%>/admin/notice/listNotice"'>예</button>
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <a class='btn btn-danger col-3' id='delNoticeBtn' role='button'>예</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='okBtn'>확인</button>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 <footer>
     <div id='footer_text' class='bg-dark text-light'>

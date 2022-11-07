@@ -14,6 +14,33 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+function listFaqs(){
+	$('#faqs').empty();
+	$.ajax({
+		method:'post',
+		url:"<%=request.getContextPath() %>/admin/faq/getFaqs"
+	}).done(faqs => {
+		if(faqs.length) {
+			const faqArr = []
+			
+			$.each(faqs, (i, faq) => {
+				faqArr.unshift(
+                    `<tr>
+                        <th name='faqNum' id='faqNum'><input type='checkbox' value='\${faq.faqNum}'></th>
+                        <td id='faqNum'>\${faq.faqNum}</td>
+                        <td id='faqTitle'><a href='detailFaq?faqNum=\${faq.faqNum}'>
+                        	\${faq.faqTitle}</td>
+                    </tr>`
+				);
+			})
+			$('#faqs').append(faqArr.join(''))
+		} else {
+			$('#faqs').append('<tr><td colspan=5 class=text-center>Q&A가 없습니다.</td></tr>')
+		}
+	}) 
+}
+$(listFaqs)
+
 </script>
 <style>
     table {
@@ -61,7 +88,7 @@
                                             <th scope='col'>제목</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='faqs'>
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td id='faqNum'>0003</td>

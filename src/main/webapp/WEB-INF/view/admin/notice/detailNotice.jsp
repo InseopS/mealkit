@@ -1,4 +1,5 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <head>
 <title>EAZEN MEALKIT</title>
 <meta charset='utf-8'>
@@ -13,6 +14,30 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {	
+    $('#delBtn').click(() => {
+    		$('#modalMsg').empty();
+     		$('#modalMsg').text('해당 공지를 삭제하시겠습니까?');
+     		$('#deleteModal').modal();
+     		$('#noBtn').show();
+     		$('#delNoticeBtn').show();
+		})
+
+	$('#delNoticeBtn').click(() => {
+		$('#deleteModal').modal('hide')
+      	$.ajax({
+        	url: 'del/' + <%=request.getParameter("noticeNum") %>,
+         	method: 'delete'
+		}).done(() => {
+			location.href='listNotice'
+		})
+	})
+}
+ 
+$(init)
+</script>
+
 <style>
     hr {
         height: 1px;
@@ -39,7 +64,9 @@
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내' disabled>
+                            <c:forEach var="notice" items="${noticeList}">
+                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
@@ -51,15 +78,11 @@
                                             <p id='noticeImg' class='pt-2'>로고이미지</p>
                                         </div>
                                     </div>
-                                    안녕하세요!
-                                    <br>
-                                    &lt;EZEN MEALKIT&gt; 관리자 입니다.
-                                    <br>
-                                    10월 13일부터 10월 18일까지 페이지 구현이
-                                    <br>
-                                    진행될 예정입니다.
-                                    <br>
-                                    감사합니다.
+                                    <c:forEach var="notice" items="${noticeList}">
+						                <pre>
+${notice.noticeContent}
+						                </pre>
+						            </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -123,21 +146,19 @@
             </div>
         </div>
     </div>
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
+	<div class='modal fade' id='deleteModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class='modal-title float-left' id='myModalLabel'></p>
-                    <button bype='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
+                    <p class="modal-title float-left" id='delModalLabel'>공지삭제</p>
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
-                    <p>해당 공지를 삭제하시겠습니까?</p>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'>해당 공지를 삭제하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                    <button type='button' class='btn btn-primary col-3' onClick="location.href='<%=request.getContextPath()%>/admin/notice/listNotice'">예</button>
+                	<button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <a class='btn btn-danger col-3' id='delNoticeBtn' role='button'>예</a>
                 </div>
             </div>
         </div>
