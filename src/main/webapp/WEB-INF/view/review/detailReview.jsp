@@ -22,7 +22,7 @@
             }
         </style>
         <script>
-        
+
         </script>
     </head>
      <%@ include file ='../include/headerTop.jsp'%>
@@ -38,37 +38,48 @@
 	<div id='mainContainerAddSub' class="container">
         <div class='container mr-1 ml-1'>
             <div class='row d-flex justify-content-between'>
-                    <div id='star'>
-                        ★★★★★ 아주좋아요
+                    <div>
+                    	<c:forEach var='review' items='${reviewList}'>
+                        ${review.rate}
+                        </c:forEach>
                     </div>
-                    <div id='date'>
-                        2022.10.13
+                    <div>
+                        <c:forEach var='review' items='${reviewList}'>
+                        ${review.reviewRegDate}
+                        </c:forEach>
                     </div>
-            </div>
-            <div class='row' id='item'>
-                [구매제품] 2인 바싹 불고기 세트 
             </div>
             <div class='row'>
-                <div class='col' id='title'>
-                    맛있습니다.
+                <c:forEach var='review' items='${reviewList}'>
+                ${review.rate}
+                </c:forEach>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    <c:forEach var='review' items='${reviewList}'>
+                        ${review.reviewTitle}
+                        </c:forEach>
                 </div>
             </div>
         </div>
         <hr>
         <div class='container'>
             <div class='col-14'>
-                <div class='card' id='card'>
-                    <p id='img'>불고기이미지</p>
-                    <img />
-                </div>
+                    <c:forEach var='review' items='${reviewList}'>
+                        <img style="height:220px; width: 100%;" src='<c:url value="/attach/${review.reviewImgfileName}"/>'/>
+                    </c:forEach>
             </div>
             <br>
             <div class='row ml-1'>
-            맛이 깔끔한게 아주 좋네요.
+            <c:forEach var='review' items='${reviewList}'>
+                        ${review.reviewContent}
+                        </c:forEach>
             </div>
             <br>
             <div class='row ml-1'>
-                작성자 : asdf232
+                <c:forEach var='review' items='${reviewList}'>
+                        ${review.rate}
+                        </c:forEach>
             </div>
             <br>
         </div>
@@ -79,7 +90,7 @@
         &nbsp;
         <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal'>수정</button>
         &nbsp;
-        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
         </div>
     </div>
     <div class='modal fade' id='declarationModal' tabindex='-1'>
@@ -108,12 +119,12 @@
                     <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
                 </div>
                 <div class='modal-body text-center'>
-                    <p>리뷰를 삭제하시겠습니까?</p>
+                    <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
                     <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>예</button>         
+                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"' id='yesBtn'>예</button>         
                 </div>
             </div>
         </div>

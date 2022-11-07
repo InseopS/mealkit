@@ -36,9 +36,9 @@
                 background-color: #031F3B;
                 color: white;
             }
-        </style>
-        <script>
 
+        </style>
+        <script>     
         function listReviews() {
             $('#reviews').empty();
             $.ajax({
@@ -57,8 +57,8 @@
                     		 	[구매제품] \${review.reviewContent}
 	                         </div>
 	                         <div class='row'>
-	                             <div class='col'>
-	                             	\${review.reviewTitle}
+	                             <div class='col'> <a href='/review/detailReview?reviewNum=\${review.reviewNum}'>
+	                             	\${review.reviewTitle} </a>
 	                             </div>
 	                         </div>
 	                         <hr>`
@@ -72,8 +72,11 @@
                  }
             })
          }
+        function init(){
+        	 $(listReviews) 
+        }
         
-        $(listReviews)
+        $(init)
         </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
@@ -86,7 +89,7 @@
 	<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
-        <div class='container mr-1 ml-1'  onclick='location.href="<%=request.getContextPath()%>/review/detailReview"' id='reviews'>
+        <div class='container mr-1 ml-1' id='reviews'>
             <div class='row d-flex justify-content-between'>
                     <div id='star'>
                         ★★★★★ 아주좋아요
