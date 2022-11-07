@@ -21,5 +21,5 @@ public class Question {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate questionRegdate;
-	private int userId;
+	private String userId;
 }

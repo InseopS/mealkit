@@ -25,8 +25,8 @@ function addQuestion() {
 			method:'post',
 			url:'<%=request.getContextPath()%>/question/addQuestion',
 			data: {
-				questionTitle: $('questionTitle').val(),
-				questionContent: $('questionContent').val()
+				questionTitle: $('#questionTitle').val(),
+				questionContent: $('#questionContent').val()
 			}
 		})
 	})
@@ -52,7 +52,7 @@ $(addQuestion)
 	                제목 :
 	            </div>
 	            <div class='col mt-3 ml-2'> 
-	                   <textarea class='form-control' style='resize: none;' cols='30' rows='1' placeholder='제목을 입력해주세요.' name='questionTitle' maxlength='50' ></textarea>
+	                   <textarea class='form-control' style='resize: none;' cols='30' rows='1' placeholder='제목을 입력해주세요.' id='questionTitle' maxlength='50' ></textarea>
 	            </div>
 	        </div>
 	        <br>
@@ -61,7 +61,7 @@ $(addQuestion)
 	                내용 :
 	            </div>
 	            <div class='col mt-0'>
-	                    <textarea class='form-control' style='resize: none;' cols='30' rows='5' placeholder='내용을 입력해주세요.' name='questionContent'  maxlength='1300' ></textarea>
+	                    <textarea class='form-control' style='resize: none;' cols='30' rows='5' placeholder='내용을 입력해주세요.' id='questionContent'  maxlength='1300' ></textarea>
 	            </div>
 	        </div>
 	        <br>
