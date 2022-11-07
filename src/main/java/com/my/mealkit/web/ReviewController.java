@@ -7,9 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +35,7 @@ public class ReviewController {
 	   return mv;
 	}
 	
+	@ResponseBody
 	@PostMapping("getReview")
 	public List<Review> getReviews(){
 		return reviewService.getReviews();
@@ -43,11 +49,6 @@ public class ReviewController {
 	@RequestMapping("fixReview")
 	public String fixReview() {
 		return "review/fixReview";
-	}
-	
-	@RequestMapping("detailReview")
-	public String detailReview() {
-		return "review/detailReview";
 	}
 	
 	@ResponseBody
@@ -71,4 +72,17 @@ public class ReviewController {
 			reviewFile.transferTo(new File(reviewFileName));
 		} catch(IOException e) {}
 	}
+	
+	@ResponseBody
+	@DeleteMapping("del/{reviewNum}")
+	public void delReview(@PathVariable int reviewNum) {
+		reviewService.delReview(reviewNum);
+	}
+	
+	@RequestMapping(value ="detailReview", method=RequestMethod.GET)
+	   public String detailReview(Model model, @RequestParam("reviewNum") int reviewNum) {
+	      List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
+	      model.addAttribute("reviewList", reviewList);
+	      return "review/detailReview";
+	   }
 }

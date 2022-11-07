@@ -4,7 +4,14 @@
 <mapper namespace='com.my.mealkit.dao.map.ReviewMap'>
 	<select id='selectReviews' resultType='review'>
 		select mealkit.reviews.* , mealkit.orders.order_num
-		from  mealkit.reviews inner join orders
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
+		order by review_num
+	</select>
+	
+	<select id='selectAdminReviews' resultType='review'>
+		select mealkit.reviews.* , mealkit.orders.order_num
+		from mealkit.reviews inner join mealkit.orders
 		on mealkit.reviews.order_num = mealkit.orders.order_num 
 		order by review_num
 	</select>
@@ -12,11 +19,6 @@
 	<select id='detailReviews' resultType='review'>
 		select * from reviews
 		where review_num = #{reviewNum}
-	</select>
-	
-	<select id='selectAdminReviews' resultType='review'>
-		select * from reviews
-		order by review_num
 	</select>
 	
 	<select id='detailAdminReviews' resultType='review'>
@@ -27,8 +29,8 @@
 	<insert id='insertReview'>
 		insert into reviews(review_num, review_title, review_content, rate, 
 			review_img_file_name, review_regdate)
-		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate}
-			#{reviewImgFileName}, sysdate)
+		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate},
+			#{reviewImgfileName}, sysDate)
 	</insert>
 	
 	<update id='updateReview'>
@@ -36,8 +38,8 @@
 		set review_title = #{title}, 
 			review_content = #{content},
 			rate = #{rate},
-			review_img_file_name = #{reviewImgFileName}
-			review_regdate = #{reviewRegDate},
+			review_img_file_name = #{reviewImgfileName}
+			review_regdate = sysDate,
 		where review_num = #{reviewNum}
 	</update>
 	

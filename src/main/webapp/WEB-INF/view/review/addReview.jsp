@@ -20,7 +20,7 @@
          <script>
          function init(){
         		$('#regBtn').click(() => {
-        			let rate = $('input[name=star]').val();
+        			let rate = $('#rate').val();
         			let reviewTitle = $('#reviewTitle').val();
         			let reviewContent = $('#reviewContent').val();
         			let reviewImgfile = $('#reviewImgfile').val();
@@ -50,22 +50,25 @@
 <body>
     <div id='mainContainerAddSub' class="container">
     <form id='form' method='post' encType='multipart/form-data'>
-        <div class='row'>
-            <div class='col mb-3'>
-            	<input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
-            	<input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
-            	<input type='radio' name='star' value='3'> <span style="font-size:14px">★★★</span>
-            	<input type='radio' name='star' value='2'> <span style="font-size:14px">★★</span>
-            	<input type='radio' name='star' value='1' > <span style="font-size:14px">★</span>
-            </div>
-        </div>
+         <div class='row mb-2'>
+         	<label for='input' class='col-2 pr-2 col-form-label'>별점:</label>
+         	<div class='col pl-1'>
+         		<select class="form-control" name='rate'>
+         			<option value='5'>★★★★★</option>
+         			<option value='4'>★★★★</option>
+         			<option value='3'>★★★</option>
+         			<option value='2'>★★</option>
+         			<option value='1'>★</option>
+         		</select>
+         	</div>
+         </div>
         <div class='row'>
             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
             	<div class='col pl-1'>
            			<input type='text' class='form-control' id='reviewTitle' name='reviewTitle' placeholder='제목을 입력해주세요.' maxlength='15' required>
             	</div>
        	</div>
-        <div class='row mt-3'>
+        <div class='row mt-2'>
             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
             	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent'
@@ -84,28 +87,10 @@
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/order/listOrder"'>취소</button>
                 &nbsp;
-                <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
+                <button type='submit' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
             </div>
         </div>
         </form>
-    </div>
-    <div class='modal fade' id='writeModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰작성</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>리뷰를 작성하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal' id='regBtn'
-                    	>예</button>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>
