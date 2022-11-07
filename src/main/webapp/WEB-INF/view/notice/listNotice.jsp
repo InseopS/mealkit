@@ -1,5 +1,4 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
-<html>
     <head>
         <title>EAZEN MEALKIT</title>
         <meta charset='utf-8'>
@@ -15,22 +14,20 @@
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
         <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
         <script>
-	
     	function listNotices() {
     		$('#notices').empty();
-    		
     		$.ajax({
-    			method:'get',
-    			url:"<%=request.getContextPath() %>/admin/notice/getNotices"
+    			type:'post',
+    			url:"<%=request.getContextPath() %>/notice/getNotices"
     		}).done(notices => {
     				if(notices.length) {
     					const noticeArr = []
     					
     					$.each(notices, (i, notice) => {
     						noticeArr.unshift(
-    							`<div id='noticeList' class='mt-2' onClick="location.href='<%=request.getContextPath()%>/notice/detailNotice'">
+    							`<div id='noticeList' class='mt-2'>
     								<p id='noticeTitle'><a href='/notice/detailNotice?noticeNum=\${notice.noticeNum}'>
-    								\${notice.noticeTitle}</p>
+    								\${notice.noticeTitle}</a></p>
     								<p id='noticeInfo'>관리자<br/>
     								\${notice.noticeRegdate} &emsp;</p>
     							</div>
@@ -39,7 +36,7 @@
     					})
     					$('#notices').append(noticeArr.join(''))
     				} else {
-    					$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
+    					$('#notices').append('<div class=text-center><p>공지사항이 없습니다.</p></div>')	
     				}
     		})
     	}
@@ -94,31 +91,30 @@
         <div id='mainContainerAddSub' class="container">
             <div class='row'>
                 <div class='col' id='notices'>
-					<div id='noticeList' class='mt-2' onClick="location.href='<%=request.getContextPath()%>/notice/detailNotice'">
+					<div id='noticeList' class='mt-2'>
 						<p id='noticeTitle'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</p>
 						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 12 &emsp; 조회수 3</p>
+						2022. 10. 12</p>
 					</div>
 					<hr>
 					<div id='noticeList'>
 						<h6 id='noticeTitle'>[공지] 추석 이벤트 안내</h6>
 						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 11 &emsp; 조회수 2</p>
+						2022. 10. 11</p>
 					</div>
 					<hr>
 					<div id='noticeList'>
 						<h6 id='noticeTitle'>[당첨자발표] 오픈이벤트 당첨자 발표안내</h6>
 						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 10 &emsp; 조회수 4</p>
+						2022. 10. 10</p>
 					</div>
 					<hr>
 					<div id='noticeList'>
 						<h6 id='noticeTitle'>[배송] 명절 배송지연 안내</h6>
 						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 09 &emsp; 조회수 1</p>
+						2022. 10. 09</p>
 					</div>
 					<hr>
-				
                 </div>
             </div>
 			<div class='row d-flex mx-auto fixed-bottom mb-5' id='pagingDiv'>
@@ -135,4 +131,3 @@
     </form>
 </body>
 <%@ include file ='../include/footer.jsp'%>
-</html>

@@ -15,21 +15,22 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 function init() {
-	let noticeTitle = $('#noticeTitle').val();
-	let noticeAContent = $('#noticeContent').val();
-
 	$('#addNoticeBtn').click(( => {
+		let noticeTitle = $('#noticeTitle').val();
+		let noticeContent = $('#noticeContent').val();
+		let noticeImgFileName = $('#noticeImg').val();
+		
 		$.ajax({
+			url:"<%=request.getContextPath() %>/admin/notice/addNotice",
 			type:'post',
-			url: '${pageContext.request.contextPath}/admin/notice/add',
 			data: {
 				noticeTitle: noticeTitle,
-				noticeContent: noticeContent
+				noticeContent: noticeContent,
+				noticeImgFileName: noticeImgFileName
 			}
 		})
 	})
 }
-
 $(init)
 </script>
 <style>
@@ -47,27 +48,27 @@ $(init)
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form id='form' method='post' action='/admin/notice/listNotice' encType='multipart/form-data'>
+                    <form id='form' method='post' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
                                     <input type='text' class='form-control' name='noticeTitle' id='noticeTitle' placeholder='제목을 입력해주세요.' 
-                                        minlength='1' maxlength='100' required>
+                                        maxlength='100' required>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
                                     <textarea class="form-control" name='noticeContent' id="noticeContent" placeholder="내용을 입력해주세요." 
-                                    	minlength='1' maxlength='1300' required 
+                                    	maxlength='1300' required 
                                     	style="height: 410px; resize:none "></textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeImg'>
+                                    <input type='file' class='form-control' id='noticeImg' name='noticeImg'>
                                 </div>
                             </div>
                             <hr>

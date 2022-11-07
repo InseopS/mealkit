@@ -29,51 +29,49 @@
         				faqArr.unshift(
         					`<div id='qna'>
 		                        <div class='d-flex justify-content-between'>
-								    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
+								    <div><p id='faqTitle'>\${faq.faqTitle}</p></div>
 		                            <div>
 		                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
-		                                    data-target='#faqNum1'>
-		                                    <span class="material-icons" id='up_arrow1' style='display:none'>expand_less</span>
-		                                    <span class="material-icons" id='down_arrow1'>expand_more</span>
+		                                    data-target='#faqNum'+\${faq.faqNum}'>
+		                                    <span class="material-icons" id='up_arrow\${faq.faqNum}' style='display:none'>expand_less</span>
+		                                    <span class="material-icons" id='down_arrow\${faq.faqNum}'>expand_more</span>
 		                                </span>
 		                            </div>
 		                        </div>
 		                        <div>
-		                            <div class='collapse navbar-collapse' id='faqNum1'>
+		                            <div class='collapse navbar-collapse' id='faqNum'+\${faq.faqNum}>
 		                                <div id='answer'>
-		                                    <p><span class="material-icons">mode_comment</span> 마이페이지 > 주문내역 > 교환/반품 신청
-		                                    경로로 들어가시면, 교환신청이 가능합니다 !</p>
+		                                    <p><span class="material-icons">mode_comment</span> \${faq.faqContent}</p>
 		                                </div>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <hr>`
-        						
-        						
         				);
         			})
         			$('#faqs').append(faqArr.join(''))
         		} else {
-        			$('#faqs').append('<tr><td colspan=5 class=text-center>Q&A가 없습니다.</td></tr>')
+        			$('#faqs').append('<div><p>등록된 Q&A가 없습니다.</p></div>')
         		}
         	}) 
         }
-        $(listFaqs)
-        
-            for(let i = 1; i <= 10; i++) {
-                $(function(){
-                    $('#down_arrow'+i).click(function() {
-                        $('#down_arrow'+i).hide();
-                        $('#up_arrow'+i).show();
-                    })
-
-                    $('#up_arrow'+i).click(function() {
-                        $('#up_arrow'+i).hide();
-                        $('#down_arrow'+i).show();
-                    })
+        function arrow() {
+        for(let i = 1; i <= 10; i++) {
+            $(function(){
+                $('#down_arrow'+i).click(function() {
+                    $('#down_arrow'+i).hide();
+                    $('#up_arrow'+i).show();
                 })
-            } 
-            
+
+                $('#up_arrow'+i).click(function() {
+                    $('#up_arrow'+i).hide();
+                    $('#down_arrow'+i).show();
+                })
+            })
+        }
+        }
+        $(listFaqs)
+        $(arrow)
             
         </script>
         <style>

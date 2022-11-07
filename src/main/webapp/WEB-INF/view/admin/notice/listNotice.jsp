@@ -18,7 +18,7 @@
 		$('#notices').empty();
 		
 		$.ajax({
-			method:'get',
+			method:'post',
 			url:"<%=request.getContextPath() %>/admin/notice/getNotices"
 		}).done(notices => {
 				if(notices.length) {
@@ -76,11 +76,7 @@
 			}).done(listNotices)
 		})
 	}
-     
 	$(init)
-	
-	
-	
     </script>
     
     <style>
@@ -182,7 +178,7 @@
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtnGroup'>
-                    <button type='button' id='addNoticeBtn' class='btn btn-secondary mr-2' onclick='location.href="addNotice"'>작성</button>
+                    <button type='button' id='addNoticeBtn' class='btn btn-secondary mr-2' onclick='location.href="./addNotice"'>작성</button>
                     <button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                 </div>
             </div>

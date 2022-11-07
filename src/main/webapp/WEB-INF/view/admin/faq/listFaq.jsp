@@ -16,10 +16,9 @@
 <script>
 function listFaqs(){
 	$('#faqs').empty();
-	
 	$.ajax({
-		type:'get',
-		url:"<%=request.getContextPath() %>/admin/faq/list"
+		method:'post',
+		url:"<%=request.getContextPath() %>/admin/faq/getFaqs"
 	}).done(faqs => {
 		if(faqs.length) {
 			const faqArr = []
@@ -29,7 +28,7 @@ function listFaqs(){
                     `<tr>
                         <th name='faqNum' id='faqNum'><input type='checkbox' value='\${faq.faqNum}'></th>
                         <td id='faqNum'>\${faq.faqNum}</td>
-                        <td id='faqTitle'>//<a href='detailFaq?faqNum=\${faq.faqNum}'>
+                        <td id='faqTitle'><a href='detailFaq?faqNum=\${faq.faqNum}'>
                         	\${faq.faqTitle}</td>
                     </tr>`
 				);

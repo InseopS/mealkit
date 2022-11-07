@@ -16,21 +16,18 @@
 <script>
 function init() {
 	$('#fixBtn').click(() => {
-		let noticeNum: <%=request.getParameter("noticeNum") %>;
-		let noticeTitle: $('#noticeTitle').val();
-		let noticeContent: $('#noticeContent').val();
+		let noticeNum = <%=request.getParameter("noticeNum") %>
+		let noticeTitle = $('#noticeTitle').val();
+		let noticeContent = $('#noticeContent').val();
 		
 		$.ajax({
+			type: 'post',
 			url:"<%=request.getContextPath() %>/admin/notice/fix",
-			type: 'put',
-			contentType: 'application/json',
-			data: JSON.stringify ({
+			data:{
 				noticeNum: noticeNum,
 				noticeTitle: noticeTitle,
 				noticeContent: noticeContent
-			}).done(() => {
-				location.href='listNotice'
-			})
+			}
 		})
 	})
 }	

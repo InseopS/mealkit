@@ -64,7 +64,9 @@ $(init)
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeNum}[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내' disabled>
+                            <c:forEach var="notice" items="${noticeList}">
+                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
@@ -78,18 +80,9 @@ $(init)
                                     </div>
                                     <c:forEach var="notice" items="${noticeList}">
 						                <pre>
-									${notice.noticeContent}
+${notice.noticeContent}
 						                </pre>
 						            </c:forEach>
-                                    안녕하세요!
-                                    <br>
-                                    &lt;EZEN MEALKIT&gt; 관리자 입니다.
-                                    <br>
-                                    10월 13일부터 10월 18일까지 페이지 구현이
-                                    <br>
-                                    진행될 예정입니다.
-                                    <br>
-                                    감사합니다.
                                 </div>
                             </div>
                         </div>
