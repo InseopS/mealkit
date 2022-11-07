@@ -7,6 +7,17 @@
 		order by notice_num
 	</select>
 	
+	<select id='selectNotice' resultType='notice'>
+		select * from notices
+		where notice_num = #{noticeNum}
+	</select>
+	
+	<select id='searchNotice' resultType='notice'>
+		select *
+		from notices
+		where notice_title LIKE '%'||#{keyword}||'%'
+	</select>
+	
 	<select id='selectDetailNotices' resultType='notice'>
 		select * from notices
 		where notice_num = #{noticeNum}

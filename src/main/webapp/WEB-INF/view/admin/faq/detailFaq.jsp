@@ -13,6 +13,9 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+
+</script>
 <style>
     hr {
         height: 1px;
@@ -31,14 +34,18 @@
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='faqTitle' placeholder='제목을 입력해주세요.' value='취소/교환/반품] 주문한 상품을 교환받고 싶어요' disabled>
+                            <c:forEach var="faq" items="${faqList}">
+                                <input type='text' class='form-control bg-light' id='faqTitle' placeholder='제목을 입력해주세요.' value='${faq.faqTitle}' disabled>
+                            </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
+                            <c:forEach var="faq" items="${faqList}">
                                 <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>
-마이페이지 > 주문내역 > 교환/반품 신청 경로로 들어가시면, 교환신청이 가능합니다 !</textarea>
+${faq.faqContent}</textarea>
+							</c:forEach>
                             </div>
                         </div>
                         <hr>

@@ -13,6 +13,16 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Autowired private NoticeMap noticeMap;
 	
 	@Override
+	public List<Notice> selectNotice(int noticeNum) {
+		return noticeMap.selectNotice(noticeNum);
+	}
+	
+	@Override
+	public List<Notice> searchNotice(String keyword) {
+		return noticeMap.searchNotice(keyword);
+	}
+	
+	@Override
 	public List<Notice> selectNotices() {
 		return noticeMap.selectNotices();
 	}

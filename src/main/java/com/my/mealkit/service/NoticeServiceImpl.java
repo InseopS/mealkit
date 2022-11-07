@@ -13,8 +13,18 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired private NoticeDao noticeDao;
 	
 	@Override
+	public List<Notice> getNotice(int noticeNum) {
+		return noticeDao.selectNotice(noticeNum);
+	}
+	
+	@Override
 	public List<Notice> getNotices() {
 		return noticeDao.selectNotices();
+	}
+	
+	@Override
+	public List<Notice> getSearchNotice(String keyword) {
+		return noticeDao.searchNotice(keyword);
 	}
 	
 	@Override
