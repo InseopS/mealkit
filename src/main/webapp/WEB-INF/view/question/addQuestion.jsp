@@ -18,6 +18,21 @@
 <style>
 
 </style>
+<script>
+function addQuestion() {
+	$('writeQuestionBtn').click(() => {
+		$.ajax({
+			method:'post',
+			url:'<%=request.getContextPath()%>/question/addQuestion',
+			data: {
+				questionTitle: $('questionTitle').val(),
+				questionContent: $('questionContent').val()
+			}
+		})
+	})
+}
+$(addQuestion)
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -31,36 +46,33 @@
 
 <body>
     <div id='mainContainerAddSub' class='container'>
-        <div class='form-row'>
-            <div class='col-2 mt-3 ml-2' > 
-                제목 :
-            </div>
-            <div class='col ml-0 mt-3 mr-0'> 
-                <form>
-                    <textarea style='resize: none;' cols='30' rows='1' placeholder='내용을 입력해주세요.' id='title' 
-                        ></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='form-row'>
-            <div class='col-2 mt-0 ml-2'> 
-                내용 :
-            </div>
-            <div class='col mt-0'> 
-                <form>
-                    <textarea maxlength='1300' style='resize: none;' cols='30' rows='5' placeholder='내용을 입력해주세요.' id='content'></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='row justify-content-end mr-3'>
-            <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
-                &nbsp;
-                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>작성</button>
-            </div>
-        </div>
+	    <form  method='post' >
+	        <div class='row' >
+	            <div class='col-2.5 mt-3 ml-3' > 
+	                제목 :
+	            </div>
+	            <div class='col mt-3 ml-2'> 
+	                   <textarea class='form-control' style='resize: none;' cols='30' rows='1' placeholder='제목을 입력해주세요.' name='questionTitle' maxlength='50' ></textarea>
+	            </div>
+	        </div>
+	        <br>
+	        <div class='row'>
+	            <div class='col-2.5 mt-0 ml-3 mr-2'> 
+	                내용 :
+	            </div>
+	            <div class='col mt-0'>
+	                    <textarea class='form-control' style='resize: none;' cols='30' rows='5' placeholder='내용을 입력해주세요.' name='questionContent'  maxlength='1300' ></textarea>
+	            </div>
+	        </div>
+	        <br>
+	        <div class='row justify-content-end'>
+	            <div class='col d-flex justify-content-end'>
+	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
+	                &nbsp;
+	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"' id='writeQuestionBtn'>작성</button>
+	            </div>
+	        </div>
+        </form>
     </div>
 </body>
 
