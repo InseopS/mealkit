@@ -3,18 +3,22 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.ReviewMap'>
 	<select id='selectReviews' resultType='review'>
-		select * from reviews
+		select mealkit.reviews.* , mealkit.orders.order_num
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
 		order by review_num
+	</select>
+	
+	<select id='selectAdminReviews' resultType='review'>
+		select mealkit.reviews.* , mealkit.orders.order_num
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
+		order by review_num 
 	</select>
 	
 	<select id='detailReviews' resultType='review'>
 		select * from reviews
 		where review_num = #{reviewNum}
-	</select>
-	
-	<select id='selectAdminReviews' resultType='review'>
-		select * from reviews
-		order by review_num
 	</select>
 	
 	<select id='detailAdminReviews' resultType='review'>
@@ -24,9 +28,9 @@
 	
 	<insert id='insertReview'>
 		insert into reviews(review_num, review_title, review_content, rate, 
-			review_img_file_name, review_regdate, order_num)
-		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate}
-			#{reviewImgfileName}, sysdate, 1)
+			review_img_file_name, review_regdate)
+		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate},
+			#{reviewImgfileName}, sysDate)
 	</insert>
 	
 	<update id='updateReview'>
@@ -35,7 +39,7 @@
 			review_content = #{content},
 			rate = #{rate},
 			review_img_file_name = #{reviewImgfileName}
-			review_regdate = #{reviewRegDate},
+			review_regdate = sysDate,
 		where review_num = #{reviewNum}
 	</update>
 	
@@ -48,14 +52,4 @@
 		delete reviews
 		where review_num = #{reviewNum}
 	</delete>
-	
-	<resultMap id='reviewMap' type='review'>
-		<id property='reviewNum' column='review_num'/>
-		<result property='reviewTitle' column='review_title'/>
-		<result property='reviewContent' column='review_content'/>
-		<result property='rate' column='rate'/>
-		<result property='reviewImgFileName' column='review_img_file_name'/>
-		<result property='reviewRegDate' column='review_regdate'/>
-		<result property='orderNum' column='order_num'/>
-	</resultMap>
 </mapper> 
