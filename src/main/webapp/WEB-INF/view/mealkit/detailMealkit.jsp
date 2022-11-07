@@ -80,7 +80,7 @@ $(init);
     </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
-    <div id='mainContainerAddSub' class="container">
+    <div id='mainContainerAddSub' class='container'>
         <div class='row mt'>
             <div class='col'>
             	<c:forEach var='mealkit' items='${mealkitList}'>

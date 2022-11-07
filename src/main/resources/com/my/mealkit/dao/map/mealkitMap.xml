@@ -3,9 +3,9 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.MealkitMap'>
 	<select id='selectMealkits' resultType='mealkit'>
-		select mealkit.mealkits.*, mealkit.food_types.food_type_name
-		from mealkit.mealkits inner join mealkit.food_types 
-		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
+		select mealkits.*, food_types.food_type_name
+		from mealkits inner join food_types 
+		on mealkits.food_type_code = food_types.food_type_code
 		order by mealkit_num
 	</select>
 	
@@ -14,18 +14,18 @@
 		where mealkit_num = #{mealkitNum}
 	</select>
 		
-	<select id='searchMealkit' resultType='mealkit'>
-		select mealkit.mealkits.*, mealkit.food_types.food_type_name
-		from mealkit.mealkits inner join mealkit.food_types 
-		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
+	<select id='searchMealkits' resultType='mealkit'>
+		select mealkits.*, food_types.food_type_name
+		from mealkits inner join food_types 
+		on mealkits.food_type_code = food_types.food_type_code
 		where mealkit_name LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	<select id='searchCategory' resultType='mealkit'>
-		select mealkit.mealkits.*, mealkit.food_types.food_type_name
-		from mealkit.mealkits inner join mealkit.food_types 
-		on mealkit.mealkits.food_type_code = mealkit.food_types.food_type_code
-		where mealkit.food_types.food_type_code LIKE '%'||#{keyword}||'%'
+		select mealkits.*, food_types.food_type_name
+		from mealkits inner join food_types 
+		on mealkits.food_type_code = food_types.food_type_code
+		where food_types.food_type_code LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	<insert id='insertMealkit'>
@@ -50,16 +50,4 @@
 		delete mealkits
 		where mealkit_num = #{mealkitNum}
 	</delete>
-	
-	<resultMap id='mealkitMap' type='mealkit'>
-		<id property='mealkitNum' column='mealkit_num'/>
-		<result property='mealkitName' column='mealkit_name'/>
-		<result property='price' column='price'/>
-		<result property='description' column='description'/>
-		<result property='ingredient' column='ingredient'/>
-		<result property='mealkitRegDate' column='mealkit_regdate'/>
-		<result property='mealkitImgfileName' column='mealkit_img_file_name'/>
-		<result property='foodTypeCode' column='food_type_code'/>
-		<result property='food_type_name' column='food_type_name'/>
-	</resultMap>
 </mapper>

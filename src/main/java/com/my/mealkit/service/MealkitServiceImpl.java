@@ -23,8 +23,8 @@ public class MealkitServiceImpl implements MealkitService {
 	}
 
 	@Override
-	public List<Mealkit> getSearchMealkit(String keyword) {
-		return mealkitDao.searchMealkit(keyword);
+	public List<Mealkit> getSearchMealkits(String keyword) {
+		return mealkitDao.searchMealkits(keyword);
 	}
 	
 	@Override

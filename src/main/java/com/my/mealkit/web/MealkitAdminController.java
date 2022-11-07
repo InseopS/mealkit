@@ -57,7 +57,7 @@ public class MealkitAdminController {
 	
 	@RequestMapping(value ="/searchMealkit", method=RequestMethod.GET )
 	public String searchMealkit(Model model, @RequestParam("search") String search) {		
-		List<Mealkit> mealkitList = mealkitService.getSearchMealkit(search);
+		List<Mealkit> mealkitList = mealkitService.getSearchMealkits(search);
 		model.addAttribute("mealkitList", mealkitList);
 		return "admin/mealkit/searchMealkit";
 	}

@@ -7,7 +7,7 @@ import com.my.mealkit.domain.Mealkit;
 public interface MealkitDao {
 	List<Mealkit> selectMealkits();
 	List<Mealkit> selectMealkit(int mealkitNum);
-	List<Mealkit> searchMealkit(String keyword);
+	List<Mealkit> searchMealkits(String keyword);
 	List<Mealkit> searchCategory(int keyword);
 	void insertMealkit(Mealkit mealkit);
 	void updateMealkit(Mealkit mealkit);
