@@ -60,7 +60,7 @@
          			<option value='2'>★★</option>
          			<option value='1'>★</option>
          		</select>
-         	</div>
+         	</div> 
          </div>
         <div class='row'>
             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>

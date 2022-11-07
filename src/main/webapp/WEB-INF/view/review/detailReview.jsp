@@ -61,7 +61,7 @@
                         </c:forEach>
                 </div>
             </div>
-        </div>
+        </div> 
         <hr>
         <div class='container'>
             <div class='col-14'>

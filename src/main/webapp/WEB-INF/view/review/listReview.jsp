@@ -19,7 +19,7 @@
                 background-color: white;
                 justify-content : center;
             }
-
+ 
             .pagination_section {
                 position: relative;
                 margin-bottom: 15px;

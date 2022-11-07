@@ -13,7 +13,7 @@
 		select mealkit.reviews.* , mealkit.orders.order_num
 		from mealkit.reviews inner join mealkit.orders
 		on mealkit.reviews.order_num = mealkit.orders.order_num 
-		order by review_num
+		order by review_num 
 	</select>
 	
 	<select id='detailReviews' resultType='review'>
