@@ -26,7 +26,7 @@
 		insert into reviews(review_num, review_title, review_content, rate, 
 			review_img_file_name, review_regdate, order_num)
 		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate}
-			#{reviewImgFileName}, #{reviewRegDate}, #{orderNum})
+			#{reviewImgfileName}, sysdate, 1)
 	</insert>
 	
 	<update id='updateReview'>
@@ -34,7 +34,7 @@
 		set review_title = #{title}, 
 			review_content = #{content},
 			rate = #{rate},
-			review_img_file_name = #{reviewImgFileName}
+			review_img_file_name = #{reviewImgfileName}
 			review_regdate = #{reviewRegDate},
 		where review_num = #{reviewNum}
 	</update>

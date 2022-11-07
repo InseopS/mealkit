@@ -17,7 +17,27 @@
         <style>
 
         </style>
-
+         <script>
+         function init(){
+        		$('#regBtn').click(() => {
+        			let rate = $('input[name=star]').val();
+        			let reviewTitle = $('#reviewTitle').val();
+        			let reviewContent = $('#reviewContent').val();
+        			let reviewImgfile = $('#reviewImgfile').val();
+        			
+        			$.ajax({
+        				type:'post',
+        				url: '${pageContext.request.contextPath}/review/addReview',
+        				data: {
+        					rate: rate,
+        					reviewTitle: reviewTitle,
+        					reviewContent: reviewContent,
+        					reviewImgfile: reviewImgfile
+        				}
+        			})
+        		})
+        	}
+        </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -29,42 +49,33 @@
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
+    <form id='form' method='post' encType='multipart/form-data'>
         <div class='row'>
-            <div class='col'>
-                    <form class="mb-4">
-                        <input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
-                        <input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
-                        <input type='radio' name='star' value='3'> <span style="font-size:14px">★★★</span>
-                        <input type='radio' name='star' value='2'> <span style="font-size:14px">★★</span>
-                        <input type='radio' name='star' value='1' > <span style="font-size:14px">★</span>
-                    </form>
+            <div class='col mb-3'>
+            	<input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
+            	<input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
+            	<input type='radio' name='star' value='3'> <span style="font-size:14px">★★★</span>
+            	<input type='radio' name='star' value='2'> <span style="font-size:14px">★★</span>
+            	<input type='radio' name='star' value='1' > <span style="font-size:14px">★</span>
             </div>
         </div>
-        <div class='form-row'>
-            <div class='col-2' >
-                제목 :
-            </div>
-            <div class='col'>
-                <form>
-                    <textarea style="resize: none;" cols='33' rows='1' maxlength="13" placeholder='제목을 입력해주세요.' id='title'></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='form-row'>
-            <div class='col-2' >
-                내용 :
-            </div>
-            <div class='col'>
-                <form>
-                    <textarea style="resize: none;" cols='33' rows='8' maxlength="1333" placeholder='내용을 입력해주세요.' id='content'></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
         <div class='row'>
-            <div class='col'>
-                <span style="font-size:13px">이미지등록:&nbsp;&nbsp;<input type='file' accept="image/*" style="font-size:13px"></span>
+            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+            	<div class='col pl-1'>
+           			<input type='text' class='form-control' id='reviewTitle' name='reviewTitle' placeholder='제목을 입력해주세요.' maxlength='15' required>
+            	</div>
+       	</div>
+        <div class='row mt-3'>
+            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            <div class='col pl-1'>
+            	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent'
+            		style='height: 220px' maxlength='1300' required></textarea>
+         	</div>
+       	</div>
+        <div class='row mt-3'>
+            <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
+            <div class='col pl-1'>
+            	<input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile' maxlength='45'>
             </div>
         </div>
         <hr>
@@ -73,27 +84,10 @@
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/order/listOrder"'>취소</button>
                 &nbsp;
-                <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
+                <button type='submit' class='btn btn-secondary'>작성</button>
             </div>
         </div>
-    </div>
-    <div class='modal fade' id='writeModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰작성</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>리뷰를 작성하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>예</button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>

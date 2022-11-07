@@ -54,12 +54,13 @@ public class NoticeAdminController {
 	@ResponseBody
 	@PostMapping("addNotice")
 	public ModelAndView addNotice(Notice notice, ModelAndView mv) throws IOException {
+		System.out.println(notice.getNoticeImgFileName());
 		try {
 			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
 			
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);
-			
+			System.out.println(notice.getNoticeImgFileName());
 			noticeService.addAdminNotice(notice);
 		} catch(NullPointerException e) {}
 		

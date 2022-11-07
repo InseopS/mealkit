@@ -83,7 +83,6 @@ public class MealkitAdminController {
 			
 			saveMealkitFile(attachPath + "/" + mealkitFileName, mealkit.getMealkitImgfile());
 			mealkit.setMealkitImgfileName(mealkitFileName);
-			
 			mealkitService.addMealkit(mealkit);
 		} catch(NullPointerException e) {}
 		

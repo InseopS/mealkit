@@ -43,8 +43,8 @@
             $('#reviews').empty();
             $.ajax({
                method: 'post',
-               url: "<%=request.getContextPath()%>/review/getReview"
-            }).done(reviews => {
+               url: "<%=request.getContextPath()%>/admin/review/getReview"
+            }).done(reviews => {           	
                  if(reviews.length) {
                     const reviewArr = []
                     $.each(reviews, (i, review) => {

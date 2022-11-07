@@ -3,10 +3,12 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.CartMap'>
 	<select id='selectCarts' resultType='cart'>
-		select *
-		from carts join mealkits
-		on carts.mealkit_num = mealkit.mealkit_num
-		where user_id = #{userId}
+		SELECT CARTS.*, MEALKITS.MEALKIT_NAME, MEALKITS.PRICE, MEALKITS.MEALKIT_IMG_FILE_NAME
+		FROM CARTS INNER JOIN MEALKITS
+		ON CARTS.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
+		INNER JOIN USERS
+		ON CARTS.USER_ID = USERS.USER_ID
+		WHERE users.user_id = #{userId}
 	</select>
 
 	<select id='selectCart' resultType='cart'>
