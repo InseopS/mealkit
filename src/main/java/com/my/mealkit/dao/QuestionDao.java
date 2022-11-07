@@ -1,10 +1,10 @@
-package com.my.mealkit.dao.map;
+package com.my.mealkit.dao;
 
 import java.util.List;
 
 import com.my.mealkit.domain.Question;
 
-public interface QuestionMap {
+public interface QuestionDao {
 	List<Question> selectQuestions();
 	List<Question> selectAdminQuestions();
 	void insertQuestion(Question question);

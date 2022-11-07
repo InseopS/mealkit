@@ -4,7 +4,6 @@
 <mapper namespace='com.my.mealkit.dao.map.QuestionMap'>
 	<select id='selectQuestions' resultType='question'>
 		select * from questions
-		where user_id = #{userId}
 		order by question_num
 	</select>
 	
@@ -13,16 +12,16 @@
 		order by question_num
 	</select>
 	
-	<insert id='insertQuestion'> 문의글작성
+	<insert id='insertQuestion'>
 		insert into questions(question_num, question_title, question_content,
 			question_regdate, user_id)
 		values(question_num_seq.nextval, #{questionTitle}, #{questionContent},
-			#{questionRegdate}, #{userId})
+			sysdate, #{userId})
 	</insert>
 	
-	<insert id='insertAdminQuestion'> 답변작성
+	<insert id='insertAdminQuestion'>
 		insert into questions(question_num, question_title, answer_content, question_regdate)
-		values(#{questionNum}, #{questionTitle}, #{answerContent}, #{questionRegdate})
+		values(#{questionNum}, #{questionTitle}, #{answerContent}, sysdate)
 	</insert>
 	
 	<update id='updateQuestion'>

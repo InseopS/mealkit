@@ -62,6 +62,7 @@ public class NoticeAdminController {
 			notice.setNoticeImgFileName(noticeFileName);
 			System.out.println(notice.getNoticeImgFileName());
 			noticeService.addAdminNotice(notice);
+			
 		} catch(NullPointerException e) {}
 		
 		mv.setViewName("admin/notice/listNotice");

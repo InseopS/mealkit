@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("return")
+@RequestMapping("returnMealkit")
 public class ReturnController {
 	
 	@GetMapping("applyReturn")
 	public ModelAndView applyReturn(ModelAndView mv) {
-		mv.setViewName("return/applyReturn");
+		mv.setViewName("returnMealkit/applyReturn");
 		return mv;
 	}
 	
 	@GetMapping("listReturn")
 	public ModelAndView listReturn(ModelAndView mv) {
-		mv.setViewName("return/listReturn");
+		mv.setViewName("returnMealkit/listReturn");
 		return mv;
 	}
 }

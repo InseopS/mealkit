@@ -19,19 +19,16 @@
                 background-color: white;
                 justify-content : center;
             }
-
             .pagination_section {
                 position: relative;
                 margin-bottom: 15px;
                 width: 80%;
             }
-
             .pagination_section a {
                 color: black;
                 padding: 10px 18px;
                 text-decoration: none;
             }
-
             .pagination_section a:hover:not(.active) {
                 background-color: #031F3B;
                 color: white;
@@ -55,7 +52,7 @@
                 <nav class='d-flex mt-3 justify-content-center'>
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4' onclick='location.href="../order/listOrder"'>주문내역</button>
                     <button type='button' class='btn flex-fill mr-4 bg-dark text-white' onclick='location.href="listExchange"'>교환내역</button>
-                    <button type='button' class='btn flex-fill  ml-0.5 btn-outline-dark' onclick='location.href="../return/listReturn"'>반품내역</button>
+                    <button type='button' class='btn flex-fill  ml-0.5 btn-outline-dark' onclick='location.href="../returnMealkit/listReturn"'>반품내역</button>
                 </nav>
                 <hr style='border:solid 1px'>
             </div>
@@ -121,4 +118,3 @@
 <%@ include file ='../include/footer.jsp'%>
 
 </html>
-

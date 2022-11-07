@@ -48,9 +48,14 @@ $(init)
         width: 115px;
         margin:0 auto;
         justify-content: center;
-        border: solid 1px lightgrey;
+        
         align-items: center;
     }
+    
+    img {
+		width: 140px;
+		height: 80px;
+	}
 </style>
 </head>
 <body>
@@ -75,7 +80,8 @@ $(init)
                                 <div class='form-control bg-light' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
                                     <div class='row my-5' id='contentLogo'>
                                         <div class='col'>
-                                            <p id='noticeImg' class='pt-2'>로고이미지</p>
+                                            <!-- <p id='noticeImg' class='pt-2'>로고이미지</p> -->
+                                            <img src='/attach/\${notice.noticeImgFileName}'/>
                                         </div>
                                     </div>
                                     <c:forEach var="notice" items="${noticeList}">

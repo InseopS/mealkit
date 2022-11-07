@@ -15,18 +15,20 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 function init() {
-	$('#fixBtn').click(() => {
+	$('#fixNoticeBtn').click(() => {
 		let noticeNum = <%=request.getParameter("noticeNum") %>
 		let noticeTitle = $('#noticeTitle').val();
 		let noticeContent = $('#noticeContent').val();
+		let noticeImgFile = $('#noticeImgFile').val();
 		
 		$.ajax({
-			type: 'post',
 			url:"<%=request.getContextPath() %>/admin/notice/fix",
+			type: 'post',
 			data:{
 				noticeNum: noticeNum,
 				noticeTitle: noticeTitle,
 				noticeContent: noticeContent
+				noticeImgFile: noticeImgFile
 			}
 		})
 	})
@@ -77,7 +79,7 @@ $(init)
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeImg'>
+                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
                                 </div>
                             </div>
                             <hr>
@@ -85,7 +87,7 @@ $(init)
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='submit' class='btn btn-secondary' id='fixBtn'>수정</button>
+                                        <button type='submit' class='btn btn-secondary' id='fixNoticeBtn'>수정</button>
                                     </div>
                                 </div>
                             </div>

@@ -23,8 +23,8 @@ public class ReturnDaoImpl implements ReturnDao{
 	}
 	
 	@Override
-	public void insertReturn(Return banpum) {
-		returnMap.insertReturn(banpum);
+	public void insertReturn(Return returnMealkit) {
+		returnMap.insertReturn(returnMealkit);
 	}
 	
 	@Override
