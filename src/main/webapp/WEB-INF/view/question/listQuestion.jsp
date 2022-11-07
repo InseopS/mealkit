@@ -38,6 +38,36 @@
                 color: white;
             }
 </style>
+<script>
+	function listQuestions() {
+		$('#questions').empty();
+		
+		$.ajax({
+			method: 'get',
+			url: '<%=request.getContextPath()%>/question/getQuestions'
+		}).done(questions => {
+			if(questions.length) {
+				const questionArr = []
+				
+				$.each(questions, (i, question) => {
+					questionArr.unshift(
+						`<tr>
+							<td><a href='detailQuestion'>\${question.questionTitle}</td>
+							<td>\${question.questionRegdate}</td>
+						</tr>`
+					);
+				})
+				
+				$('#questions').append(questionArr.join(''))
+			} else {
+				$('#questions').append(
+					'<tr><td colspan=4 class=text-center>문의가 없습니다.</td></tr>')
+			}
+		})
+	}
+	
+	$(listQuestions)
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -57,10 +87,7 @@
                     <thead class='thead-light'>
                         <tr><th>제목</th><th>작성일</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td><td>2022.10.14</td></tr>
-                        <tr><td>배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
-                        <tr><td>ㄴ 답변: 배송문의ㅠㅜ</td><td>2022.10.13</td></tr>
+                    <tbody id='questions'>
                     </tbody>
                 </table>
             </div>

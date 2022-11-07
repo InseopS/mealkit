@@ -88,7 +88,7 @@
             <small>바질파스타<br>1개 / 19900원</small>
         </div>
         <div class='col-3 mt-5 ml-4'>
-            <a href='02.html' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+            <a href='listReturn' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
                 data-target='#returnCancelModal' style='text-decoration: underline;'><small>반품취소</small></a>
         </div>
     </div>
