@@ -15,9 +15,9 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <style>
+<style>
 .infoLabel {
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
     margin-bottom: 0;
     font-size: small;
 }
@@ -30,7 +30,7 @@
 hr {
     margin: 0;
 }
-    </style>
+</style>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -49,37 +49,33 @@ hr {
             <div class='row mt-4'>
                 <div class='col'>
                     <p class='infoLabel'>이름</p>
-                    <p class='infoValue'>한아름</p>
+                    <p class='infoValue'>${user.userName}</p>
                     <hr>
 
                     <p class='infoLabel'>아이디</p>
-                    <p class='infoValue'>ezen01</p>
-                    <hr>
-
-                    <p class='infoLabel'>생년월일</p>
-                    <p class='infoValue'>1992-04-13</p>
+                    <p class='infoValue'>${user.userId}</p>
                     <hr>
 
                     <p class='infoLabel'>이메일</p>
-                    <p class='infoValue'>ezen01@gmail.com</p>
-                    <hr>
-
+                    <p class='infoValue'>${user.email}</p>
+                    <hr>                    
+                    
                     <p class='infoLabel'>연락처</p>
-                    <p class='infoValue'>010-1234-5678</p>
+                    <p class='infoValue'>${user.phoneNum}</p>
                     <hr>
 
                     <p class='infoLabel'>주소</p>
-                    <p class='infoValue'>서울특별시 관악구 신림로 340(신림동) (08754)</p>
+                    <p class='infoValue'>${user.basicAddress} (${user.zipCode})</p>
                     <hr>
-                    <p class='infoValue'>르네상스쇼핑몰 601호</p>
+                    <p class='infoValue'>${user.detailAddress}</p>
                     <hr>
                 </div>
             </div>
             <div class='row mt-5'>
                 <div id='loginSubNav' class='col'>
-                    <a href='../order/03.html'>주문내역 |&nbsp;</a>
-                    <a href='../favorite/01.html'>찜한상품 |&nbsp;</a>
-                    <a href='09.html'>회원수정 |&nbsp;</a>
+                    <a href='../order/listOrder'>주문내역 |&nbsp;</a>
+                    <a href='../favorite/listFavorite'>찜한상품 |&nbsp;</a>
+                    <a href='fixUser'>회원수정 |&nbsp;</a>
                     <a href='#' data-toggle='modal' data-target='#emailCertModal'> 회원탈퇴</a>
                 </div>
             </div>
@@ -99,7 +95,7 @@ hr {
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                    <a class='btn btn-danger col-3' href="11.html" role="button">예</a>
+                    <a class='btn btn-danger col-3' href="withdrawal" role="button">예</a>
                 </div>
             </div>
         </div>

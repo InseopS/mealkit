@@ -16,7 +16,9 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <style>
-
+h5 {
+	color: #0f56ba
+}
 </style>
 </head>
 
@@ -24,7 +26,7 @@
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
     <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
     <div id="menuName">
-        <h3>비밀번호 찾기</h3>
+        <h3>아이디 찾기</h3>
     </div>
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -34,7 +36,7 @@
         <div class='row mt-5 text-center' >
             <div class='col'>
                 <div class='row justify-content-center mt-5'>
-                    <p>회원님의 비밀번호가 변경됐습니다.</p>
+					<p>아이디: ${userId}</p>
                 </div>
                 <a href='login'>
                     <span class='row d-flex mx-auto mt-3'>

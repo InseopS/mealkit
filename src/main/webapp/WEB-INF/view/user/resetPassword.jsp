@@ -21,6 +21,15 @@
             font-weight: 400;
 }
 </style>
+<script>
+$(document).on("keyup", "input[onlyEngNum]", function() {
+	$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,""))
+})
+
+function handleOnInput(el, maxlength) {
+	if(el.value.length > maxlength) el.value = el.value.substr(0, maxlength)
+}
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -33,19 +42,21 @@
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
-    <div class='container' id='mainContainerAddSub'>
-        <div class="row inputBox">
-            <label for="input" class="col-3 col-form-label mt-5" style='font-size: 70%'>새 비밀번호</label>
-            <div class="col pl-1 mt-5 mb-5">
-                <input type='password' class='form-control' id='userPw' placeholder='비밀번호는 6자리 이상의 영문/숫자'>
+	<form id='form' name='form' action='completeResetPassword' method='POST'>
+	    <div class='container' id='mainContainerAddSub'>
+	        <div class="row inputBox">
+	            <label for="input" class="col-3 col-form-label mt-5" style='font-size: 70%'>새 비밀번호</label>
+	            <div class="col pl-1 mt-5 mb-5">
+	 				<input type='hidden' id='userId' name='userId' value='${user.userId}'>
+	 				<input type='hidden' id='email' name='email' value='${user.email}'>
+	                <input type='text' class='form-control' id='password' name='password' placeholder='비밀번호는 6자리 이상의 영문/숫자' pattern='.{6,20}' required oninput='handleOnInput(this, 20)' onlyEngNum>
+	            </div>
+	        </div>
+            <div class='row d-flex mx-auto mt-5'>
+                <button type='submit' class='btn btn-primary flex-fill' >비밀번호 변경</button>
             </div>
-        </div>
-        <a href='08.html'>
-            <span class='row d-flex mx-auto mt-5'>
-                <button type='button' class='btn btn-primary flex-fill' >비밀번호 변경</button>
-            </span>
-        </a>
-	</div>
+		</div>
+	</form>
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

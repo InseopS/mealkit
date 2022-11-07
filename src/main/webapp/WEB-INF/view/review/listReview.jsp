@@ -37,6 +37,44 @@
                 color: white;
             }
         </style>
+        <script>
+        
+        function listReviews() {
+            $('#reviews').empty();
+            $.ajax({
+               method: 'post',
+               url: "<%=request.getContextPath()%>/admin/review/getReview"
+            }).done(reviews => {
+                 if(reviews.length) {
+                    const reviewArr = []
+                    $.each(reviews, (i, review) => {
+                       reviewArr.unshift(
+                           	`<div class='row d-flex justify-content-between'>
+                             <div>\${review.rate}</div>
+                    		 <div>\${review.reviewRegDate}</div>
+                    		 </div>
+                    		 <div class='row'>
+                    		 	[구매제품] \${review.reviewContent}
+	                         </div>
+	                         <div class='row'>
+	                             <div class='col'>
+	                             	\${review.reviewTitle}
+	                             </div>
+	                         </div>
+	                         <hr>`
+                       );
+                    })
+                    
+                    $('#reviews').append(reviewArr.join(''))
+                 } else { 
+                    $('#reviews').append(
+                       '<div class=text-center>리뷰가 없습니다.</div>')
+                 }
+            })
+         }
+        
+        $(listReviews)
+        </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -48,7 +86,7 @@
 	<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
-        <div class='container mr-1 ml-1'  onclick='location.href="<%=request.getContextPath()%>/review/detailReview"'>
+        <div class='container mr-1 ml-1'  onclick='location.href="<%=request.getContextPath()%>/review/detailReview"' id='reviews'>
             <div class='row d-flex justify-content-between'>
                     <div id='star'>
                         ★★★★★ 아주좋아요
@@ -65,27 +103,8 @@
                     맛있습니다.
                 </div>
             </div>
+            <hr>
         </div>
-        <hr>
-        <div class='container mr-1 ml-1'>
-            <div class='row d-flex justify-content-between'>
-                <div id='star'>
-                    ★★★★★ 아주좋아요
-                </div>
-                <div id='date'>
-                    2022.10.13
-                </div>
-            </div>
-            <div class='row' id='item'>
-                [구매제품] 제육볶음
-            </div>
-            <div class='row'>
-                <div class='col' id='title'>
-                    최고에요!
-                </div>
-            </div>
-        </div>
-        <hr>
 	</div>
     <div class="row d-flex mx-auto fixed-bottom mb-5" id='paging_div'>
         <nav aria-label="Page navigation example">
