@@ -3,25 +3,23 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.QuestionMap'>
 	<select id='selectQuestions' resultType='question'>
-		select * from questions
-		order by question_num
+		select * 
+		from questions
 	</select>
 	
 	<select id='selectAdminQuestions' resultType='question'>
-		select * from questions
-		order by question_num
+		select * 
+		from questions
 	</select>
 	
 	<insert id='insertQuestion'>
-		insert into questions(question_num, question_title, question_content,
-			question_regdate, user_id)
-		values(question_num_seq.nextval, #{questionTitle}, #{questionContent},
-			sysdate, #{userId})
+		insert into questions(question_num, question_title, question_content, question_regdate)
+		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, sysDate)
 	</insert>
 	
 	<insert id='insertAdminQuestion'>
 		insert into questions(question_num, question_title, answer_content, question_regdate)
-		values(#{questionNum}, #{questionTitle}, #{answerContent}, sysdate)
+		values(#{questionNum}, #{questionTitle}, #{answerContent}, sysDate)
 	</insert>
 	
 	<update id='updateQuestion'>
