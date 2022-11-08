@@ -18,26 +18,26 @@
  
         </style>
 <script>
-function init() {
-	$('#fixBtn').click(() => {
-		let reviewNum = <%=request.getParameter("reviewNum") %>
-		let rate = $('#rate').val();
-		let reviewTitle = $('#reviewTitle').val();
-		let reviewContent = $('#reviewContent').val();
-		let reviewImgfile = $('#reviewImgfile').val();
-		
-		$.ajax({
-			type:'post',
-			url: '${pageContext.request.contextPath}/review/fixReview',
-			data: {
-				rate: rate,
-				reviewTitle: reviewTitle,
-				reviewContent: reviewContent,
-				reviewImgfile: reviewImgfile
+		let reviewNumber = <%=request.getParameter("reviewNum") %>
+	function init() {
+		$('#fixBtn').click(() => {
+			let review {
+			     reviewNum: reviewNumber;
+				 rate = $('#rate').val();
+				 reviewTitle = $('#reviewTitle').val();
+				 reviewContent = $('#reviewContent').val();
+				 reviewImgfile = $('#reviewImgfile').val();
 			}
+			
+			$.ajax({
+				type:'put',
+				url: 'fixReview',
+				data: JSON.stringify(review),
+				contentType: 'applicatiopn/json',
+				success: location.href='listReview'
+			})
 		})
-	})
-}
+	}
 </script>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
@@ -74,11 +74,10 @@ function init() {
         <div class='row mt-2'>
             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
+            	<c:forEach var='review' items='${reviewList}'>
             	<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px' required>
-					<c:forEach var='review' items='${reviewList}'>
-						${review.reviewContent}
-					</c:forEach>
-				</textarea>
+					${review.reviewContent}</textarea>
+				</c:forEach>
             </div>
        	</div>
         <div class='row mt-3'>
