@@ -23,7 +23,7 @@ function addQuestion() {
 	$('writeQuestionBtn').click(() => {
 		$.ajax({
 			method:'post',
-			url:'<%=request.getContextPath()%>/question/addQuestion',
+			url:'${pageContext.request.contextPath}/question/addQuestion',
 			data: {
 				questionTitle: $('#questionTitle').val(),
 				questionContent: $('#questionContent').val()
@@ -31,7 +31,6 @@ function addQuestion() {
 		})
 	})
 }
-$(addQuestion)
 </script>
 </head>
 
@@ -46,26 +45,21 @@ $(addQuestion)
 
 <body>
     <div id='mainContainerAddSub' class='container'>
-	    <form  method='post' >
-	        <div class='row' >
-	            <div class='col-2.5 mt-3 ml-3' > 
-	                제목 :
-	            </div>
-	            <div class='col mt-3 ml-2'> 
-	                   <textarea class='form-control' style='resize: none;' cols='30' rows='1' placeholder='제목을 입력해주세요.' id='questionTitle' maxlength='50' ></textarea>
-	            </div>
+	    <form  id='form' method='post' encType='multipart/form-data'>
+	        <div class='row mt-3'>
+	        	<label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+	        	<div class='col pl-1'>
+           			<input type='text' class='form-control' id='questionTitle' name='questionTitle' placeholder='제목을 입력해주세요.' maxlength='15' required>
+            	</div>
 	        </div>
-	        <br>
-	        <div class='row'>
-	            <div class='col-2.5 mt-0 ml-3 mr-2'> 
-	                내용 :
-	            </div>
-	            <div class='col mt-0'>
-	                    <textarea class='form-control' style='resize: none;' cols='30' rows='5' placeholder='내용을 입력해주세요.' id='questionContent'  maxlength='1300' ></textarea>
-	            </div>
+	        <div class='row mt-3'>
+	            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            	<div class='col pl-1'>
+            	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='questionContent' name='questionContent'
+            		style='height: 220px' maxlength='1300' required></textarea>
+         		</div>
 	        </div>
-	        <br>
-	        <div class='row justify-content-end'>
+	        <div class='row mt-2 justify-content-end'>
 	            <div class='col d-flex justify-content-end'>
 	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
 	                &nbsp;

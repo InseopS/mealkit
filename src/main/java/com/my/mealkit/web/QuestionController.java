@@ -1,9 +1,12 @@
 package com.my.mealkit.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +26,8 @@ import com.my.mealkit.service.QuestionService;
 @RequestMapping("question")
 public class QuestionController {
 	@Autowired private QuestionService questionService;
+	
+	@Value("${attachPath}") private String attachPath;
 
 	@GetMapping("listQuestion")
 	public ModelAndView listQuestion(ModelAndView mv) {
@@ -34,6 +41,7 @@ public class QuestionController {
 		return questionService.getQuestions();
 	}
 	
+	
 	@RequestMapping("addQuestion")
 	public String addQuestion() {
 		return "question/addQuestion";
@@ -41,15 +49,22 @@ public class QuestionController {
 	
 	@ResponseBody
 	@PostMapping("addQuestion")
-	public void addQuestion(Question question) {
-		questionService.addQuestion(question);
-	}
-	
-	@GetMapping("detailQuestion")
-	public ModelAndView detailQuestion(ModelAndView mv) {
-		mv.setViewName("question/detailQuestion");
+	public ModelAndView addQuestion(Question question, ModelAndView mv) throws IOException {
+		try {
+			questionService.addQuestion(question);
+		} catch(NullPointerException e) {}
+		
+		mv.setViewName("question/listQuestion");
 		return mv;
 	}
+	
+	@RequestMapping(value ="detailQuestion", method=RequestMethod.GET)
+	public String detailQuestion(Model model, @RequestParam("questionNum") int questionNum) {
+		List<Question> questionList = questionService.getQuestion(questionNum);
+		model.addAttribute("questionList", questionList);
+		return "question/detailQuestion";
+	}
+	
 	
 	@PutMapping("fixQuestion")
 	public void fixQuestion(@RequestBody Question question) {

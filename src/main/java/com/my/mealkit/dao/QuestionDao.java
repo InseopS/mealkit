@@ -5,6 +5,8 @@ import java.util.List;
 import com.my.mealkit.domain.Question;
 
 public interface QuestionDao {
+	List<Question> selectQuestion(int questionNum);
+	List<Question> selectAdminQuestion(int questionNum);
 	List<Question> selectQuestions();
 	List<Question> selectAdminQuestions();
 	void insertQuestion(Question question);
