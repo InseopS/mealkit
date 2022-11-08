@@ -13,6 +13,11 @@ public class FaqServiceImpl implements FaqService {
 	@Autowired private FaqDao faqDao;
 	
 	@Override
+	public List<Faq> getFaq(int faqNum) {
+		return faqDao.selectFaq(faqNum);
+	}
+	
+	@Override
 	public List<Faq> getFaqs() {
 		return faqDao.selectFaqs();
 	}
