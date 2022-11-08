@@ -63,9 +63,44 @@
 	dl {
 		margin-top: 0;
 		margin-bottom: 0;
-	}
-	
+	}	
 </style>
+<script>
+function listNotices() {
+	$('#notices').empty();
+	$.ajax({
+		type:'post',
+		url:"<%=request.getContextPath() %>/notice/getNotices"
+	}).done(notices => {
+			if(notices.length) {
+				const noticeArr = []
+				for(i = notices.length; i > 0; i--) {
+					if(i == notices.length) {
+						console.log("noticeNum = ", notices[i-1].noticeNum)
+						noticeArr.push(
+								`<div class='carousel-item active'>
+									<a href='/notice/detailNotice?noticeNum=\${notices[i-1].noticeNum}'><strong>공지]</strong>
+									<small>\${notices[i-1].noticeTitle}</small></a></div>`
+							);
+					}
+					if(notices.length != i && i > notices.length-4) {
+						console.log("noticeNum = ", notices[i-1].noticeNum)
+						noticeArr.push(
+							`<div class='carousel-item'>
+									<a href='/notice/detailNotice?noticeNum=\${notices[i-1].noticeNum}'><strong>공지]</strong>
+									<small>\${notices[i-1].noticeTitle}</small></a></div>`
+						);
+					}
+				}
+				$('#notices').append(noticeArr.join(''))
+			} else {
+				$('#notices').append(`<div class='carousel-item active'><small>공지사항이 없습니다.</small></div>`)	
+			}
+	})
+}
+
+$(listNotices)   
+</script>
 </head>
 
 <%@ include file ='include/headerTop.jsp'%>
@@ -133,13 +168,8 @@
 			<div class='col'>
 				<div class='jumbotron p-2 m-0'>
 					<div class='carousel slide' data-ride='carousel' data-interval='5000' id='event_list' style='font-size: 88%'>
-						<div class='carousel-inner'>
-							<div class='carousel-item active'>
-								<a href='#' ><strong>공지] </strong><small>추석 이벤트 안내</small></a>
-							</div>
-							<div class='carousel-item'>
-								<a href='notice/02.html'><strong>공지] </strong><small>10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</small></a>
-							</div>
+						<div class='carousel-inner' id='notices'>
+
 						</div>
 					</div>
 				</div>
