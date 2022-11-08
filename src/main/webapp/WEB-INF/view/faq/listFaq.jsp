@@ -70,9 +70,12 @@
             })
         }
         }
-        $(listFaqs)
-        $(arrow)
-            
+        function init() {
+        	listFaqs()
+        	arrow()
+        }
+        
+        $(init)
         </script>
         <style>
             #faqTitle {

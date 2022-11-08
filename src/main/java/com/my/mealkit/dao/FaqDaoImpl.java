@@ -2,6 +2,7 @@ package com.my.mealkit.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,11 @@ import com.my.mealkit.domain.Faq;
 @Repository
 public class FaqDaoImpl implements FaqDao {
 	@Autowired private FaqMap faqMap;
+	
+	@Override
+	public List<Faq> selectFaq(int faqNum) {
+		return faqMap.selectFaq(faqNum);
+	}
 	
 	@Override
 	public List<Faq> selectFaqs() {

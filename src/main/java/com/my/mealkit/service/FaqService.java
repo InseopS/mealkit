@@ -5,6 +5,7 @@ import java.util.List;
 import com.my.mealkit.domain.Faq;
 
 public interface FaqService {
+	List<Faq> getFaq(int faqNum);
 	List<Faq> getFaqs();
 	List<Faq> getAdminFaqs();
 	List<Faq> getAdminDetailFaq(int faqNum);

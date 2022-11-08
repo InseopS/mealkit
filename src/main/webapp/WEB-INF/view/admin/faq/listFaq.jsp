@@ -14,7 +14,7 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-function listFaqs(){
+function listFaqs() {
 	$('#faqs').empty();
 	$.ajax({
 		method:'post',
@@ -26,9 +26,9 @@ function listFaqs(){
 			$.each(faqs, (i, faq) => {
 				faqArr.unshift(
                     `<tr>
-                        <th name='faqNum' id='faqNum'><input type='checkbox' value='\${faq.faqNum}'></th>
-                        <td id='faqNum'>\${faq.faqNum}</td>
-                        <td id='faqTitle'><a href='detailFaq?faqNum=\${faq.faqNum}'>
+                        <th><input type='checkbox' value='\${faq.faqNum}' name='faqNum' id='faqNum'></th>
+                        <td>\${faq.faqNum}</td>
+                        <td><a href='detailFaq?faqNum=\${faq.faqNum}'>
                         	\${faq.faqTitle}</td>
                     </tr>`
 				);
@@ -39,7 +39,37 @@ function listFaqs(){
 		}
 	}) 
 }
-$(listFaqs)
+
+function init() {
+	$(listFaqs)
+    
+    $('#delBtn').click(() => {
+		if($('#faqNum:checked').val()) {
+    		$('#modalMsg').empty();
+     		$('#modalMsg').text('선택한 Q&A 항목을 삭제하시겠습니까?');
+     		$('#deleteModal').modal();
+     		$('#okBtn').hide();
+     		$('#noBtn').show();
+     		$('#delFaqBtn').show();
+  		} else {
+     		$('#modalMsg').empty();
+     		$('#modalMsg').text('삭제할 Q&A 항목을 선택해주세요.');
+     		$('#deleteModal').modal();
+     		$('#okBtn').show();
+     		$('#noBtn').hide();
+     		$('#delFaqBtn').hide();
+  		}
+	})
+
+	$('#delFaqBtn').click(() => {
+		$('#deleteModal').modal('hide')
+      	$.ajax({
+        	url: 'del/' + $('#faqNum:checked').val(),
+         	method: 'delete'
+		}).done(listFaqs)
+	})
+}
+$(init)
 
 </script>
 <style>
@@ -113,77 +143,30 @@ $(listFaqs)
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtnGroup'>
-                    <button type='button' class='btn btn-secondary mr-2' onclick='location.href="<%=request.getContextPath()%>/admin/faq/addFaq"'>작성</button>
-                    <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+                    <button type='button' id='addFaqBtn' class='btn btn-secondary mr-2' onclick='location.href="./addFaq"'>작성</button>
+                    <button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal'>삭제</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
+	<div class='modal fade' id='deleteModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
+                    <p class="modal-title float-left" id='delModalLabel'>공지삭제</p>
                     <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
-                    <p>선택한 Q&A를 삭제하시겠습니까?</p>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/admin/faq/listFaq"'>예</button>
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <a class='btn btn-danger col-3' id='delFaqBtn' role='button'>예</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='okBtn'>확인</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<footer>
-    <div id='footer_text' class='bg-dark text-light'>
-            <span><a href="#">이용약관 |&nbsp;</a></span>
-            <span><a href="#"><strong> 개인정보처리방침 |&nbsp;</strong></a></span>
-            <span><a href="#"> 법적고지 |&nbsp;</a></span>
-            <span><a href="#"> 고객행복센터</a></span>
-        <br>
-        <div class="comp_info">
-            <p class="company my-0">이젠밀키트(주)</p>
-            <div class="line_wrap">
-                <dl>
-                    <dt>대표이사</dt>
-                    <dd>&nbsp;최한석, 한아름</dd>
-                </dl>
-            </div>
-            <div class="line_wrap">
-                <dl>
-                    <dd>
-                        <address class="my-0">서울시 관악구 신림로 340 이젠밀키트 (우) 08754 (ezan@gmail.com)</address>
-                    </dd>
-                </dl>
-            </div>
-            <div class="line_wrap">
-                <dl>
-                    <dt>사업자등록번호</dt>
-                    <dd><span class="ff_avr">&nbsp;123-45-67890</span></dd>
-                </dl>
-            </div>
-            <div class="line_wrap">
-                <dl>
-                    <dt>통신판매업신고</dt>
-                    <dd>&nbsp;중구 제 07767호&nbsp;
-                        <a href="#"><strong>사업자정보확인</strong></a>
-                    </dd>
-                </dl>
-            </div>
-            <div class="line_wrap">
-                <dl>
-                    <dt>개인정보보호책임자</dt>
-                    <dd>&nbsp;양승일</dd>
-                </dl>
-                <dl>
-                    <dt>호스팅제공자</dt>
-                    <dd>&nbsp;이젠밀키트㈜ </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-</footer>
+<%@include file ='../../include/adminFooter.jsp'%>
