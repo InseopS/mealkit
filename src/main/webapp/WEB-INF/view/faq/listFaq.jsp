@@ -16,7 +16,7 @@
 		<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
         <script>
-        function listFaqs(){
+        function listFaqs() {
         	$('#faqs').empty();
         	$.ajax({
         		type:'post',
@@ -32,14 +32,14 @@
 								    <div><p id='faqTitle'>\${faq.faqTitle}</p></div>
 		                            <div>
 		                                <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
-		                                    data-target='#faqNum'+\${faq.faqNum}'>
+		                                    data-target='#faqNum\${faq.faqNum}'>
 		                                    <span class="material-icons" id='up_arrow\${faq.faqNum}' style='display:none'>expand_less</span>
 		                                    <span class="material-icons" id='down_arrow\${faq.faqNum}'>expand_more</span>
 		                                </span>
 		                            </div>
 		                        </div>
 		                        <div>
-		                            <div class='collapse navbar-collapse' id='faqNum'+\${faq.faqNum}>
+		                            <div class='collapse navbar-collapse' id='faqNum\${faq.faqNum}'>
 		                                <div id='answer'>
 		                                    <p><span class="material-icons">mode_comment</span> \${faq.faqContent}</p>
 		                                </div>
@@ -55,21 +55,23 @@
         		}
         	}) 
         }
-        function arrow() {
-        for(let i = 1; i <= 10; i++) {
-            $(function(){
-                $('#down_arrow'+i).click(function() {
-                    $('#down_arrow'+i).hide();
-                    $('#up_arrow'+i).show();
-                })
 
-                $('#up_arrow'+i).click(function() {
-                    $('#up_arrow'+i).hide();
-                    $('#down_arrow'+i).show();
+    
+        	for(let i = 1; i <= 10; i++) {
+                $(function(){
+                    $('#down_arrow'+i).click(function() {
+                        $('#down_arrow'+i).hide();
+                        $('#up_arrow'+i).show();
+                    })
+
+                    $('#up_arrow'+i).click(function() {
+                        $('#up_arrow'+i).hide();
+                        $('#down_arrow'+i).show();
+                    })
                 })
-            })
-        }
-        }
+            }
+        
+        
         function init() {
         	listFaqs()
         	arrow()

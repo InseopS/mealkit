@@ -79,6 +79,11 @@
         table {
             text-align: center;
         }
+        
+		a { 
+    		color: inherit;
+    		text-decoration:none;
+    	}
     </style>
 </head>
 
