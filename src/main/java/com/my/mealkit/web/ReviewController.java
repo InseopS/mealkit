@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Notice;
 import com.my.mealkit.domain.Review;
 import com.my.mealkit.service.ReviewService;
 

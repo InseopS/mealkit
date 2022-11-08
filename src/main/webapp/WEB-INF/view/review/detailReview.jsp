@@ -77,7 +77,7 @@
             </div>
             <div class='row'>
                 <c:forEach var='review' items='${reviewList}'>
-                [구매제품] ${review.reviewContent}
+                [구매제품] ${review.mealkitName}
                 </c:forEach>
             </div>
             <div class='row'>
@@ -104,7 +104,7 @@
             <br>
             <div class='row ml-1'>
                 <c:forEach var='review' items='${reviewList}'>
-                        ${review.rate}
+                        ${review.userId}
                         </c:forEach>
             </div>
             <br>

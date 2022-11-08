@@ -54,7 +54,7 @@
                     		 <div>\${review.reviewRegDate}</div>
                     		 </div>
                     		 <div class='row'>
-                    		 	[구매제품] \${review.reviewContent}
+                    		 	[구매제품] \${review.mealkitName}
 	                         </div>
 	                         <div class='row'>
 	                             <div class='col'> <a href='/review/detailReview?reviewNum=\${review.reviewNum}'>

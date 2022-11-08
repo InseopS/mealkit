@@ -31,11 +31,11 @@
                    reviewArr.unshift(
                        	`<tr>
                            <td><input type='checkbox' name='reviewNum' id='reviewNum'
-					                    value='\${review.reviewNum}'/></td>
+					                    value='\${review.reviewNum}' onclick='NoMultiChk(this)'/></td>
                            <td class='align-middle'>\${review.reviewNum}</td>
-                           <td class='align-middle'>\${review.reviewNum}</td>
+                           <td class='align-middle'>\${review.mealkitName}</td>
                            <td class='align-middle'><a href='/review/detailReview?reviewNum=\${review.reviewNum}'>\${review.reviewTitle}</td>
-                           <td class='align-middle'>\${review.reviewNum}</td>
+                           <td class='align-middle'>\${review.userId}</td>
                            <td class='align-middle'>\${review.reviewRegDate}</td>
                        </tr>`
                    );
@@ -48,7 +48,16 @@
              }
         })
      }
-     
+
+    function NoMultiChk(chk){
+      	var obj = document.getElementsByName('reviewNum');
+       	for(var i=0; i<obj.length; i++){
+         	if(obj[i] != chk){
+           	obj[i].checked = false;
+         	}
+       	}
+    }
+    
      function init() {
     	 $(listReviews)
     	 
