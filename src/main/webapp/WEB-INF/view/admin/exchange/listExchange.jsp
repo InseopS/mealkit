@@ -13,8 +13,32 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-<style>
-</style>
+<script>
+	function listExchanges() {
+		$('#exchanges').empty();
+		$.ajax({
+			method: 'post',
+			url: "<%=request.getContextPath()%>/admin/exchange/getExchange"
+		}).done(exchanges => {
+			if(exchanges.length) {
+				const exchangeArr = []
+				$.each(exchanges, (i, exchange) => {	교환번호, 주문번호, 아이디, 주문상품, ㅅ량/금액, 사유, 주문상태
+					exchangeArr.unshift(
+							`<td><input type='checkbox' name='exchangeNum' id='exchangeNum'
+											value='\${exchange.exchangeNum}'/></td>
+							<td class='align-middle'>\${exchange.exchangeNum}</td>
+							<td class='align-middle'>\${exchange.orderNum}</td>
+							<td class='align-middle'>\${exchange.userId}</td>
+							<td class='align-middle'>\${exchange.}</td>
+							<td class='align-middle'>\${exchange.userId}</td>
+							<td class='align-middle'>\${exchange.userId}</td>
+
+)
+				})
+			}
+		})
+	}
+</script>
 </head>
 <body>
 <%@ include file ='../../include/adminTop1.jsp'%>

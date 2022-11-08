@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.my.mealkit.dao.map.ExchangeMap'>
+	<select id='selectExchanges' resultType='exchange'>
+		select exchanges.*, orders.order_num, 
+		       exchange_status.exchange_status_name,
+		       exchange_reason.exchange_reason_name
+		from exchanges inner join orders
+		on exchanges.order_num = orders.order_num
+		inner join exchange_status
+		on exchange_status.exchange_status_code = exchanges.exchange_status_code
+		inner join exchange_reason
+		on exchange_reason.exchange_reason_code = exchanges.exchange_reason_code
+		where exchanges.order_num = #{orderNum}
+		order by order_num
+	</select>
+	
+	<select id='selectAdminExchanges' resultType='exchange'>
+		select *
+		from exchanges
+		where exchange_num = #{exchangeNum}
+	</select>
+	
+	<insert id='insertExchange'>
+		insert into exchanges(exchange_num, exchange_img_file_name, exchange_content,
+								order_num, exchange_reson_code, exchange_status_code)
+		values(exchange_num_seq.nextval, #{exchangeImgFileName}, #{exchangeContent},
+				#{orderNum}, #{exchangeReasonCode}, #{exchangeStatusCode})	
+	</insert>
+	
+	<delete id='deleteExchange'>
+		delete exchanges
+		where exchange_num = #{exchangeNum}
+	</delete>
+</mapper>

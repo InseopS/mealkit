@@ -14,26 +14,74 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <style>
-        #pagingDiv {
-                background-color: white;
-                justify-content : center;
-            }
-            .pagination_section {
-                position: relative;
-                margin-bottom: 15px;
-                width: 80%;
-            }
-            .pagination_section a {
-                color: black;
-                padding: 10px 18px;
-                text-decoration: none;
-            }
-            .pagination_section a:hover:not(.active) {
-                background-color: #031F3B;
-                color: white;
-            }
-    </style>
+<script>
+function listExchanges() {
+	$('#exchanges').empty()
+	
+	$.ajax({
+		method: 'post',
+		url: "<%=request.getContextPath()%>/admin/exchange/listExchanges"
+	}).done(exchanges => {
+		if(exchanges.length) {
+			const exchangeArr = []
+			
+			$.each(exchanges, (i, exchange) => {
+				exchangeArr.unshift(
+						`<div class='row'>
+					         <div class='col ml-3 mt-2 mb-1'>
+					            <b>주문번호</b>\${order.orderNum}
+					         </div>
+				         </div>
+				    	 <hr class='mt-0 ml-3 mr-3 mb-2'>
+				    	 <div class='row'>
+					         <div class='col-4'>
+								 <div class='ml-3 mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color:
+				            	 	white; justify-content: center; align-items: center; text-align: center;'>
+				                 <br>
+				                 	<small>\${mealkit.mealkitImgfileName}</small>
+			            	 	 </div>
+								 <div class='col mt-2 ml-2 mr-2 p-2'>
+				                 	<small><b>\${exchangeStatusName}</b></small>
+				            	 </div>
+			        		 </div>
+							 <div class='col-4 mt-5'>
+				             	<small>\${order.?}</small>
+				        	 </div>
+				        	 <div class='col3 mt-5 ml-4'>
+					             <button type='button' class='btn btn-black' data-toggle='modal' data-target='#exchangeCancelModal'
+					            	style='text-decoration: underline'>
+				                 	<small>교환취소</small>
+				             	 </button>
+				         	 </div>
+				    	 </div>`         	
+			})
+		}
+	})
+}
+</script>
+<style>
+    #pagingDiv {
+            background-color: white;
+            justify-content : center;
+        }
+
+        .pagination_section {
+            position: relative;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+
+        .pagination_section a {
+            color: black;
+            padding: 10px 18px;
+            text-decoration: none;
+        }
+
+        .pagination_section a:hover:not(.active) {
+            background-color: #031F3B;
+            color: white;
+        }
+</style>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -66,7 +114,8 @@
     <hr class='mt-0 ml-3 mr-3 mb-2'>
     <div class='row'>
         <div class='col-4'>
-            <div class='ml-3 mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
+            <div class='ml-3 mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color:
+            	white; justify-content: center; align-items: center; text-align: center;'>
                 <br>
                 <small>마라샹궈<br>이미지</small>
             </div>
@@ -78,8 +127,9 @@
             <small>마라샹궈<br>3개 / 50000원</small>
         </div>
         <div class='col3 mt-5 ml-4'>
-            <button type='button' class='btn btn-black' data-toggle='modal' data-target='#exchangeCancelModal'>
-                <small><u>교환취소</u></small>
+            <button type='button' class='btn btn-black' data-toggle='modal' data-target='#exchangeCancelModal'
+            	style='text-decoration: underline'>
+                <small>교환취소</small>
             </button>
         </div>
     </div>
