@@ -3,14 +3,20 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.DeclarationMap'>
 	<select id='selectDeclarations' resultType='declarationDto'>
-		select declarations.declaration_num, declarations.declaration_title, declarations.declaration_regdate, declaration_status.declaration_status_name
+		select declarations.*, declaration_status.declaration_status_name
 		from declarations inner join declaration_status
 		on declarations.declaration_status_code = declaration_status.declaration_status_code 
 	</select>
-		<select id='selectUserDeclarations' resultType='declarationDto'>
+	<select id='selectUserDeclarations' resultType='declarationDto'>
 		select declarations.declaration_num, declarations.declaration_title, declarations.declaration_regdate, declaration_status.declaration_status_name
 		from declarations inner join declaration_status
 		on declarations.declaration_status_code = declaration_status.declaration_status_code
 		where user_id = #{userId}
+	</select>
+	<select id='selectSearchDeclarations' resultType='declarationDto'>
+	select declarations.*, declaration_status.declaration_status_name
+		from declarations inner join declaration_status
+		on declarations.declaration_status_code = declaration_status.declaration_status_code
+		where declaration_title LIKE '%'||#{keyword}||'%'
 	</select>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.my.mealkit.dao.map.DeclarationMap;
 import com.my.mealkit.domain.DeclarationDto;
+import com.my.mealkit.domain.User;
 
 @Repository
 public class DeclarationDaoImpl implements DeclarationDao{
@@ -18,5 +19,10 @@ public class DeclarationDaoImpl implements DeclarationDao{
 	
 	public List<DeclarationDto> selectDeclarations(String userId) {
 		return declarationMap.selectUserDeclarations(userId);
+	}
+	
+	@Override
+	public List<DeclarationDto> selectSearchDeclarations(String keyword, String category) {
+		return declarationMap.selectSearchDeclarations(keyword, category);
 	}
 }

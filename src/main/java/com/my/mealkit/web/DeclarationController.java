@@ -2,6 +2,8 @@ package com.my.mealkit.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +23,18 @@ public class DeclarationController {
 	}
 	
 	@GetMapping("listDeclaration")
-	public ModelAndView listDeclaration(ModelAndView mv) {
+	public ModelAndView listDeclaration(HttpSession session, ModelAndView mv) {
+		if(session.getAttribute("userId") != null) {
+		} else {
+		mv.setViewName("redirect:/");
+		}		
 		return mv;
 	}
 	
 	@GetMapping("getDeclarations")
-	public List<DeclarationDto> getDeclarations() {
-		return declarationService.getDeclarations();
+	public List<DeclarationDto> getDeclarations(HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+		return declarationService.getDeclarations(userId);
 	}
 	
 	@RequestMapping("detailDeclaration")
