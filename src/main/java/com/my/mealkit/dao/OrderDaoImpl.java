@@ -11,7 +11,7 @@ import com.my.mealkit.domain.Order;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
-	@Autowired OrderMap orderMap;
+	@Autowired private OrderMap orderMap;
 	
 	@Override
 	public List<Order> selectOrders(String userId) {
