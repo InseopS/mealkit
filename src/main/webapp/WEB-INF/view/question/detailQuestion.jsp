@@ -18,6 +18,10 @@
 <style>
 
 </style>
+<script>
+
+
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -30,58 +34,57 @@
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
-    <div id='mainContainerAddSub' class='container'>
-        <div class='form-row'>
-            <div class='col-2 mt-4 ml-2'>
-                제목 :
-            </div>
-            <div class='col ml-0 mt-4 mr-0'>
-                <form>
-                    마라키트 많이 맵나요?
-                </form>
+<div id='mainContainerAddSub' class='container'>
+	<div class='container'>
+        <div class='row mt-3'>
+        	<label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+            <div class='col mt-2'>
+            	<c:forEach var="question" items="${questionList}">
+               		${question.questionTitle}
+               	</c:forEach>
             </div>
         </div>
         <hr>
-        <div class='form-row' style='height: 15rem;'>
-            <div class='col-2 mt-0 ml-2'>
-                내용 :
-            </div>
-            <div class='col mt-0'>
-                <form>
-                    애기들도 먹을 수 있나요????
-                </form>
-            </div>
-        </div>
-        <hr class='mt-5'>
-        <div class='row mt-4 justify-contet-end mr-3'>
-            <div class='col d-flex justify-content-end pb-0'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="fixQuestion"'>수정</button>
-                &nbsp;
-                <button type='button' class='btn btn-secondary' data-toggle='modal'
-                    data-target='#questionCancelModal'>삭제</button>
-            </div>
-        </div>
-        <div class='modal fade' id='questionCancelModal' tabindex='-1'>
-            <div class='modal-dialog'>
-                <div class='modal-content'>
-                    <div class='modal-header py-2'>
-                        <p class='modal-title float-left' id='myModalLabel'>문의삭제</p>
-                        <button type='button' class='close' data-dismiss='modal'>
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class='modal-body text-center'>
-                        <p>해당 문의를 삭제하시겠습니까?</p>
-                    </div>
-                    <div class='modal-footer py-1'>
-                        <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                        <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                            data-target='#deleteOkModal' onclick='location.href="listQuestion"'>예</button>
-                    </div>
-                </div>
+        <div class='row mt-3'>
+        	<label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            <div class='col mt-2'>
+            	<c:forEach var="question" items="${questionList}">
+               		${question.questionContent}
+               	</c:forEach>
             </div>
         </div>
 	</div>
+<hr class='mt-5'>
+	<div class='row mt-4 justify-contet-end'>
+		<div class='col d-flex justify-content-end pb-0'>
+          	<button type='button' class='btn btn-secondary' onclick='location.href="fixQuestion"'>수정</button>
+          	&nbsp;
+          	<button type='button' class='btn btn-secondary' data-toggle='modal'
+              	data-target='#questionCancelModal'>삭제</button>
+      	</div>
+  	</div>
+</div>
+
+<div class='modal fade' id='questionCancelModal' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header py-2'>
+                <p class='modal-title float-left' id='myModalLabel'>문의삭제</p>
+                <button type='button' class='close' data-dismiss='modal'>
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body text-center'>
+                <p>해당 문의를 삭제하시겠습니까?</p>
+            </div>
+            <div class='modal-footer py-1'>
+                <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
+                    data-target='#deleteOkModal' onclick='location.href="listQuestion"'>예</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <%@ include file ='../include/footer.jsp'%>
