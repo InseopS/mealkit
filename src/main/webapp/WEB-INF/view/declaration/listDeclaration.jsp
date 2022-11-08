@@ -45,7 +45,7 @@ function listDeclarations() {
 				$('#declarations').append(declarationArr.join(''))
 			}
 		}
-	})
+	}).done(function(){if($('#declarations').find('tr').eq(0).length != 1) $('#declarations').append(`<tr><th colspan='3'>신고 내역이 없습니다.</th></tr>`)})
 }
 
 function init() {
@@ -77,9 +77,9 @@ $(init)
               </tr>
             </thead>
             <tbody id='declarations'>
-              <tr><th></th><td></td><td></td></tr>
             </tbody>
           </table>
+		<hr style='margin-top: -1rem'>
     </div>
 </body>
 

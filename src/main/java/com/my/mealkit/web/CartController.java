@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("cart")
+@RequestMapping("/cart")
 public class CartController {
-	@GetMapping("listCart")
-	 public ModelAndView cart(ModelAndView mv) {
-	      mv.setViewName("cart/listCart");
-	      return mv;
-	   }
 	
+	@GetMapping("listCart")
+	public ModelAndView listCart(ModelAndView mv) {
+		mv.setViewName("cart/listCart");
+		return mv;
+	}
 }

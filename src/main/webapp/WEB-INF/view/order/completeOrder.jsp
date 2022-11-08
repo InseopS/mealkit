@@ -37,14 +37,12 @@
                 <div class='row justify-content-center' style='height:30px'>
                     <p>구매완료 되었습니다<br>이용해 주셔서 감사합니다 :)</p>
                 </div>
-                <div class='row justify-content-center'>
+                <div class='row justify-content-center' >
                     <a href='<%=request.getContextPath()%>/mealkit/listMealkit'>
-                        <button type='button' class='btn btn-outline-secondary m-4 justify-content-center'>쇼핑
-                            더하기</button>
+                        <button type='button' class='btn btn-outline-secondary mt-4 col-12 justify-content-center'>쇼핑더하기</button>
                     </a>
                     <a href='<%=request.getContextPath()%>/order/listOrder'>
-                        <button type='button' class='btn btn-outline-secondary m-4 col-9 justify-content-center'>주문
-                            조회</button>
+                        <button type='button' class='btn btn-outline-secondary ml-4 mt-4 col-11 justify-content-center'>주문조회</button>
                     </a>
                 </div>
             </div>

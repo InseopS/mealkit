@@ -57,9 +57,8 @@ function init() {
 			$.ajax({
 				url: 'delUser/' + $('#userId:checked').eq(i).val(),
 				method: 'delete'
-			})
-		}
-		listUsers()
+			}).done(function(){if(i == $('#userId:checked').length) listUsers()})
+		}		
 	})
 	
 	$('#searchBtn').click(() => {
@@ -87,9 +86,8 @@ function init() {
 						})						
 						$('#users').append(userArr.join(''))
 					}
-				},
-				fail: $('#users').append(`<tr><th colspan='5'>검색 결과가 없습니다.</th></tr>`)
-			})
+				}				
+			}).done(function(){if($('#users').find('tr').eq(0).length != 1) $('#users').append(`<tr><th colspan='5'>검색 결과가 없습니다.</th></tr>`)})
 		} else listUsers()
 	})
 }
@@ -115,7 +113,6 @@ $(init)
                                     </a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="next">
                                         <span aria-hidden="true">&gt;</span>

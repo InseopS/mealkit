@@ -13,6 +13,7 @@ public class DeclarationDto {
 	private int declarationNum;
 	private String declarationTitle;
 	private LocalDate declarationRegdate;
+	private String userId;
 	private int declarationStatusCode;
 	private String declarationStatusName;
 }
