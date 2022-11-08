@@ -52,7 +52,7 @@
 				$.each(questions, (i, question) => {
 					questionArr.unshift(
 						`<tr>
-							<td><a href='detailQuestion'>\${question.questionTitle}</td>
+							<td><a href='detailQuestion?questionNum=\${question.questionNum}'>\${question.questionTitle}</td>
 							<td>\${question.questionRegdate}</td>
 						</tr>`
 					);

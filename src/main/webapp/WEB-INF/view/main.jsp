@@ -73,7 +73,7 @@
 <body>
 	<div class='container' id='mainContainer'>
 		<p class='navbar-title flex-fill mr-1 my-0 p-0' style="font-family: 'Black Han Sans', cursive; height: 50px;">
-			신규밀키트<img class='my-0' src='/attach/new.png'>
+			신규밀키트
 		</p>
 		<div class='carousel slide border w-auto' data-ride="carousel" id='mealkit_list' style='height: 300px; display: flex; justify-content: center; align-items: center; text-align: center;' >
 			<div class='carousel-inner'>
@@ -144,7 +144,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>		
 		<div id='footer_text' class='bg-dark text-light'>
 			<nav id='footer_nav'>
 				<ul id='footer_ul'>

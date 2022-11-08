@@ -27,14 +27,14 @@ table {
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto mt-3' id='content'>
                     <div class='mx-4 my-2' style='height: 16.5rem; border: 0.1rem; border-style: solid; position: relative;'>
-                        <p style='position: absolute; top: 50%; left: 45%'>로고이미지</p>
+                        <img style='width: 100%; height: 100%;' src='<c:url value="/attach/logo.png"/>'/>
                     </div>
 
-                    <form action='main.html' class='d-flex justify-content-end'>
+                    <form action='addLogo'  class='d-flex justify-content-end' method='post' encType='multipart/form-data'>
                         <div class='row'>
                             <label for='input' class='col-2 px-0 mr-2 col-form-label' style='font-size: 70%;'>로고이미지:</label>
                             <div class='col-7 px-0 input-group input-group-sm'>
-                                <input type='file' class='form-control' id='logoImg' style='font-size: 70%;'>
+                                <input type='file' class='form-control' id='logo' name='logo' style='font-size: 70%;'>
                             </div>
                             <div class='col pl-1 mr-3'>
                                 <button type='submit' class='btn btn-sm btn-secondary' style='font-size: 70%;'>변경</button>

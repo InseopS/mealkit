@@ -3,26 +3,46 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.ReviewMap'>
 	<select id='selectReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.order_num
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
 		from mealkit.reviews inner join mealkit.orders
 		on mealkit.reviews.order_num = mealkit.orders.order_num 
+        inner join mealkit.orders_mealkits
+        on  mealkit.orders.order_num = mealkit.orders_mealkits.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num
 		order by review_num
 	</select>
 	
 	<select id='selectAdminReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.order_num
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
 		from mealkit.reviews inner join mealkit.orders
 		on mealkit.reviews.order_num = mealkit.orders.order_num 
+        inner join mealkit.orders_mealkits
+        on  mealkit.orders.order_num = mealkit.orders_mealkits.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num
 		order by review_num 
 	</select>
 	
 	<select id='detailReviews' resultType='review'>
-		select * from reviews
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
+        inner join mealkit.orders_mealkits
+        on  mealkit.orders.order_num = mealkit.orders_mealkits.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num 
 		where review_num = #{reviewNum}
 	</select>
 	
 	<select id='detailAdminReviews' resultType='review'>
-		select * from reviews
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
+        inner join mealkit.orders_mealkits
+        on  mealkit.orders.order_num = mealkit.orders_mealkits.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num 
 		where review_num = #{reviewNum}
 	</select>
 	
@@ -35,7 +55,7 @@
 	
 	<update id='updateReview'>
 		update reviews
-		set review_title = #{title}, 
+		set review_title = #{title},
 			review_content = #{content},
 			rate = #{rate},
 			review_img_file_name = #{reviewImgfileName}

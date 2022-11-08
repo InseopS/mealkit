@@ -25,7 +25,11 @@
 let sendedEmail = 0
 let code
 
-function chkValChange(val) {
+function chkIdChange(val) {
+	sendedEmail = 0
+}
+
+function chkEmailChange(val) {
 	sendedEmail = 0
 }
 
@@ -109,13 +113,13 @@ $(init)
         <div class='row inputBox mt-4'>
             <label for='input' class='col-3 col-form-label'>아이디</label>
             <div class='col pl-1'>
-                <input type='text' class='form-control' id='userId' name='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum onchange='chkValChange(this.value)'>
+                <input type='text' class='form-control' id='userId' name='userId' pattern='.{2,15}' required title='2글자 이상 15글자 이하만 됩니다.' oninput='handleOnInput(this, 15)' onlyEngNum onchange='chkIdChange(this.value)'>
             </div>
         </div>
         <div class='row inputBox'>
             <label for='input' class='col-3 col-form-label'>이메일</label>
             <div class='col pl-1'>
-                <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)' onchange='chkValChange(this.value)'>
+                <input type='email' class='form-control' id='email' name='email' required oninput='handleOnInput(this, 30)' onchange='chkEmailChange(this.value)'>
             </div>
         </div>
         <div class='row inputBox'>

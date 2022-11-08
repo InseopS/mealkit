@@ -13,6 +13,11 @@ public class FaqDaoImpl implements FaqDao {
 	@Autowired private FaqMap faqMap;
 	
 	@Override
+	public List<Faq> selectFaq(int faqNum) {
+		return faqMap.selectFaq(faqNum);
+	}
+	
+	@Override
 	public List<Faq> selectFaqs() {
 		return faqMap.selectFaqs();
 	}

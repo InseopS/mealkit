@@ -40,7 +40,6 @@
                 margin:0 auto;
                 margin-top: 20px;
                 justify-content: center;
-                border: solid 1px lightgrey;
                 align-items: center;
             }
             #noticeContent {
@@ -53,6 +52,7 @@
                 line-height: 35px;
                 text-align: center;
             }
+            
         </style>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
@@ -80,8 +80,10 @@
                 </div>
             </div>
             <div class='row' id='contentLogo'>
-                <div class='col'>
-                    <p id='logoImg' class='pt-2'>로고이미지</p>
+                <div class='col' id='noticeLogo'>
+                	<c:forEach var="notice" items="${noticeList}">
+                    	<img style="width:100%; height:100%; object-fit:cover;"src='/attach/${notice.noticeImgFileName}'/>
+                    </c:forEach>
                 </div>
             </div>
             <div class='row' id='noticeContent'>

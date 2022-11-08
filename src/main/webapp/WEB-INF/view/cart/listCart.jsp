@@ -15,12 +15,15 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+</script>
+
 <style>
 tr, td {
    border: 1px solid lightgray;
 }
 
-table.cartList {
+.cartList {
 	width: 100%;
 	text-align: center;
 }
@@ -41,33 +44,27 @@ table.cartList {
 		<form action='<%=request.getContextPath() %>/order/addOrder'>
             <div class='row mt-5'>    
                 <div class='col'>
-                    <table class='cartList'>
-                        <tbody>
+                    <table>
+                        <tbody class='cartList'>
                         	<c:forEach var="cart" items="${cartList}">
                             <tr>
-                                <th width='13%'><input type='checkbox'></th>
-                                <td class='mealkitImage'>
-                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${cart.flowerImgfileName}'/>'/>
+                                <td width='13%' id='cartNum'>
+                                	<input type='checkbox' value='${cart.userId}, ${cart.mealkitNum}' name='cartNum' id='cartNum'>
+                                	<input type='hidden' value='${cart.mealkitNum}' name='mealkitNum' id='mealkitNum'>
+                                </td>
+                                <td class='mealkitImage' id='image'>
+                                	<input type='hidden' value='${cart.userId}, ${cart.mealkitNum}' name='cartNum' id='cartNum'>
+                                    <a href='/mealkit/detailMealkit?mealkitNum=${cart.mealkitNum}'>
+                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${cart.mealkitImgfileName}'/>'/>
                                     </a>
                                 </td>
-                                <td>이젠밀키트<br>미나리 감자탕<br>수량 : 1<br>32,000원</td>
-                            </tr>
-                            <tr>
-                                <th width='13%'><input type='checkbox'></th>
-                                <td class='mealkitImage'>
-                                    <a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-                                    	<img style='width:150px; height:150px;' src='<c:url value='/attach/${cart.flowerImgfileName}'/>'/>
-                                    </a>
+                                <td>
+                                	<b>${cart.mealkitName}</b><br>수량 : ${cart.mealkitCount}<br>가격 : ${cart.price * cart.mealkitCount}원
                                 </td>
-                                <td>이젠밀키트<br>새우 감바스<br>수량 : 1<br>10,000원</td>
                             </tr>
+
                             </c:forEach>
-							<%-- 
-                            <c:if test="${not empty cartList}">
-								<tr><td colspan='4'><button id='orderBtn' type='submit' class="btn btn-secondary">전체 구매</button></td></tr>
-							</c:if>
-							--%>
+							
 							<c:if test="${empty cartList}">
 								<div class='text-center'>
 									<h6 style='text-align:center'><b>장바구니가 비었습니다.<br>상품을 추가해주세요.</b></h6>
@@ -79,26 +76,28 @@ table.cartList {
             </div>
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='deleteBtn' class='btn btn-secondary mr-2'
-                        data-toggle='modal' data-target='#deleteModal'>삭제</button>
+                        data-toggle='modal' data-target='#confirmModal'>삭제</button>
                 <input type='submit' id='orderBtn' value='구매' class='btn btn-secondary'>
             </div>
         </form>
 	</div>
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
+    <div class='modal fade' id='confirmModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <p class='modal-title float-left' id='myModalLabel'>장바구니</p>
-                    <button bype='button' class='close' data-dismiss='modal'>
+                    <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class='modal-body text-center'>
-                    <p>상품을 삭제하시겠습니까?</p>
+                    <p id='modalMsg'>상품을 삭제하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal' data-target='#deleteOkModal'>예</button>
+                    <button type='button' class='btn btn-primary col-3' id='yesBtn' 
+                    		onclick="location.href='<%=request.getContextPath() %>/cart/listCart'">예</button>
+                    <input type='hidden' class='btn btn-outline-secondary' data-dismiss='modal' id='okBtn'>
                 </div>
             </div>
         </div>

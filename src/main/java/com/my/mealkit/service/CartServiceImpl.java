@@ -3,10 +3,12 @@ package com.my.mealkit.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.my.mealkit.dao.CartDao;
 import com.my.mealkit.domain.Cart;
 
+@Service
 public class CartServiceImpl implements CartService {
 @Autowired private CartDao cartDao;
 	

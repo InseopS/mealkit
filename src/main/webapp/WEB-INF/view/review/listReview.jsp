@@ -38,23 +38,23 @@
             }
 
         </style>
-        <script>     
+        <script>         
         function listReviews() {
             $('#reviews').empty();
             $.ajax({
                method: 'post',
-               url: "<%=request.getContextPath()%>/admin/review/getReview"
+               url: "<%=request.getContextPath()%>/review/getReview"
             }).done(reviews => {           	
                  if(reviews.length) {
                     const reviewArr = []
                     $.each(reviews, (i, review) => {
                        reviewArr.unshift(
                            	`<div class='row d-flex justify-content-between'>
-                             <div>\${review.rate}</div>
+                             <div>\${review.rate}</div>                            
                     		 <div>\${review.reviewRegDate}</div>
                     		 </div>
                     		 <div class='row'>
-                    		 	[구매제품] \${review.reviewContent}
+                    		 	[구매제품] \${review.mealkitName}
 	                         </div>
 	                         <div class='row'>
 	                             <div class='col'> <a href='/review/detailReview?reviewNum=\${review.reviewNum}'>
@@ -62,6 +62,7 @@
 	                             </div>
 	                         </div>
 	                         <hr>`
+                    		
                        );
                     })
                     

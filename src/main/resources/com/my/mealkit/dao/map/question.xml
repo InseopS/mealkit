@@ -12,6 +12,18 @@
 		from questions
 	</select>
 	
+	<select id='selectQuestion' resultType='question'>
+		select *
+		from questions
+		where question_num = #{questionNum}
+	</select>
+	
+	<select id='selectAdminQuestion' resultType='question'>
+		select *
+		from questions
+		where question_num = #{questionNum}
+	</select>
+	
 	<insert id='insertQuestion'>
 		insert into questions(question_num, question_title, question_content, question_regdate)
 		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, sysDate)

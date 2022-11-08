@@ -17,7 +17,28 @@
         <style>
  
         </style>
-
+<script>
+		let reviewNumber = <%=request.getParameter("reviewNum") %>
+	function init() {
+		$('#fixBtn').click(() => {
+			let review {
+			     reviewNum: reviewNumber;
+				 rate = $('#rate').val();
+				 reviewTitle = $('#reviewTitle').val();
+				 reviewContent = $('#reviewContent').val();
+				 reviewImgfile = $('#reviewImgfile').val();
+			}
+			
+			$.ajax({
+				type:'put',
+				url: 'fixReview',
+				data: JSON.stringify(review),
+				contentType: 'applicatiopn/json',
+				success: location.href='listReview'
+			})
+		})
+	}
+</script>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -29,44 +50,42 @@
 	<%@ include file ='../include/headerBottom.jsp'%>
 <body>
     <div id='mainContainerAddSub' class="container">
+        <form id='form' method='post' encType='multipart/form-data'>
+         <div class='row mb-2'>
+         	<label for='input' class='col-2 pr-2 col-form-label'>별점:</label>
+         	<div class='col pl-1'>
+         		<select class="form-control" name='rate'>
+         			<option value='5'>★★★★★</option>
+         			<option value='4'>★★★★</option>
+         			<option value='3'>★★★</option>
+         			<option value='2'>★★</option>
+         			<option value='1'>★</option>
+         		</select>
+         	</div> 
+         </div>
         <div class='row'>
-            <div class='col'>
-                <div>
-                    <form class="mb-4">
-                        <input type='radio' name='star' value='5' checked> <span style="font-size:14px">★★★★★</span>
-                        <input type='radio' name='star' value='4'> <span style="font-size:14px">★★★★</span>
-                        <input type='radio' name='star' value='3'> <span style="font-size:14px">★★★</span>
-                        <input type='radio' name='star' value='2'> <span style="font-size:14px">★★</span>
-                        <input type='radio' name='star' value='1' > <span style="font-size:14px">★</span>
-                    </form>
-                </div>
+            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+            	<div class='col pl-1'>
+           			<c:forEach var='review' items='${reviewList}'>
+                    	<input type='text' class='form-control' id='reviewTitle' name='reviewTitle' placeholder='제목을 입력해주세요.' value='${review.reviewTitle}' required>
+                    </c:forEach>
+            	</div>
+       	</div>
+        <div class='row mt-2'>
+            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            <div class='col pl-1'>
+            	<c:forEach var='review' items='${reviewList}'>
+            	<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px' required>
+					${review.reviewContent}</textarea>
+				</c:forEach>
             </div>
-        </div>
-        <div class='form-row'>
-            <div class='col-2' >
-                제목 :
-            </div>
-            <div class='col'>
-                <form>
-                    <textarea style="resize: none;" cols='33' rows='1' maxlength="13" placeholder='맛있습니다.' id='content'></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='form-row'>
-            <div class='col-2' >
-                내용 :
-            </div>
-            <div class='col'>
-                <form>
-                    <textarea style="resize: none;" cols='33' rows='8' maxlength="1333" placeholder='맛이 깔끔한게 아주 좋네요.' id='content'></textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='row'>
-            <div class='col'>
-                <span style="font-size:13px">이미지등록:&nbsp;&nbsp;<input type='file' accept="image/*" style="font-size:13px"></span>
+       	</div>
+        <div class='row mt-3'>
+            <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
+            <div class='col pl-1'>
+            	<c:forEach var='review' items='${reviewList}'>
+                	<img style='height:200px; width: 30%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>'/>
+                </c:forEach>
             </div>
         </div>
         <hr>
@@ -75,27 +94,10 @@
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>취소</button>
                 &nbsp;
-                <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal'>수정</button>
+                <button type='submit' class='btn btn-secondary' id='fixBtn'>수정</button>
             </div>
         </div>
-    </div>
-    <div class='modal fade' id='editModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰수정</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>리뷰를 수정하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>예</button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>

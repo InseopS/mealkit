@@ -3,10 +3,12 @@ package com.my.mealkit.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.my.mealkit.dao.ExchangeDao;
 import com.my.mealkit.domain.Exchange;
 
+@Service
 public class ExchangeServiceImpl implements ExchangeService {
 	@Autowired private ExchangeDao exchangeDao;
 	

@@ -13,6 +13,16 @@ public class QuestionServiceImpl implements QuestionService{
 	@Autowired private QuestionDao questionDao;
 	
 	@Override
+	public List<Question> getQuestion(int questionNum) {
+		return questionDao.selectQuestion(questionNum);
+	}
+	
+	@Override
+	public List<Question> getAdminQuestion(int questionNum) {
+		return questionDao.selectAdminQuestion(questionNum);
+	}
+	
+	@Override
 	public List<Question> getQuestions() {
 		return questionDao.selectQuestions();
 	}

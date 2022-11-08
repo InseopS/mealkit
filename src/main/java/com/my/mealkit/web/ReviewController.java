@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,9 +48,18 @@ public class ReviewController {
 		return "review/addReview";
 	}
 	
-	@RequestMapping("fixReview")
-	public String fixReview() {
+	@RequestMapping(value ="fixReview", method=RequestMethod.GET)
+	public String fixReview(Model model, @RequestParam("reivewNum") int reviewNum) {
+		List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
+		model.addAttribute("reviewList", reviewList);
 		return "review/fixReview";
+	}
+	
+	@PutMapping("fixReview")
+	public ModelAndView fixNotice(@RequestBody Review review, ModelAndView mv) {
+		reviewService.fixReview(review);
+		mv.setViewName("review/listReview");
+		return mv;
 	}
 	
 	@ResponseBody

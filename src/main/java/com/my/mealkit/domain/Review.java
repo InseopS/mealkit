@@ -25,4 +25,6 @@ public class Review {
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate reviewRegDate;
 	private int orderNum;
+	private String userId;
+	private String mealkitName;
 }

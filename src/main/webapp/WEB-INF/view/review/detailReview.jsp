@@ -22,7 +22,33 @@
             }
         </style>
         <script>
+        function init() {
+       	 
+       	 $('#delBtn').click(() => {
+       		$('#modalMsg').empty();
+   			$('#modalMsg').text('리뷰를 삭제하시겠습니까?');
+   			$('#confirmModal').modal();
+   			$('#noBtn').show();
+   			$('#delReviewBtn').show();
+       	 })
+   	
+	   	$('#delReviewBtn').click(() => {
+	   		$('#confirmModal').modal('hide')
+	   		$.ajax({
+	   			url: 'del/' + <%=request.getParameter("reviewNum")%>,
+	   			method: 'delete'
+	   		}).done(() => {
+	   			location.href='listReview'
+	   		})
+	   	})
+	   	
+	   	$('#fixBtn').click(() => {
+			location.href='fixReview?reviewNum='+ $('#reviewNum').val()
+		})
+	   	
+   		}
 
+        $(init)
         </script>
     </head>
      <%@ include file ='../include/headerTop.jsp'%>
@@ -51,7 +77,7 @@
             </div>
             <div class='row'>
                 <c:forEach var='review' items='${reviewList}'>
-                ${review.rate}
+                [구매제품] ${review.mealkitName}
                 </c:forEach>
             </div>
             <div class='row'>
@@ -78,8 +104,8 @@
             <br>
             <div class='row ml-1'>
                 <c:forEach var='review' items='${reviewList}'>
-                        ${review.rate}
-                        </c:forEach>
+                	작성자: ${review.userId}
+                </c:forEach>
             </div>
             <br>
         </div>
@@ -88,12 +114,31 @@
         <div class='col d-flex justify-content-end'>
             <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#declarationModal'>신고</button>
         &nbsp;
-        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal'>수정</button>
+        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal' id='fixBtn'>수정</button>
         &nbsp;
         <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
         </div>
     </div>
-    <div class='modal fade' id='declarationModal' tabindex='-1'>
+	
+	<div class='modal fade' id='editModal' tabindex='-1'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header py-2'>
+                    <p class="modal-title float-left" id='myModalLabel'>리뷰수정</p>
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
+                </div>
+                <div class='modal-body text-center'>
+                    <p>리뷰를 수정하시겠습니까?</p>
+                </div>
+                <div class='modal-footer py-1'>
+                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
+                      onclick='location.href="<%=request.getContextPath()%>/review/fixReview"'>예</button>         
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class='modal fade' id='declarationModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
@@ -115,38 +160,20 @@
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰삭제</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
+                    <p class="modal-title float-left" id='delModalLabel'>리뷰삭제</p>
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
+                <div class='modal-body'>
                     <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/listReview"' id='yesBtn'>예</button>         
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <button type='button' id='delReviewBtn' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class='modal fade' id='editModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰수정</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
-                </div>
-                <div class='modal-body text-center'>
-                    <p>리뷰를 수정하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/fixReview"'>예</button>         
-                </div>
-            </div>
-        </div>
-    </div>
+
 </body>
 <%@ include file ='../include/footer.jsp'%>
 </html>
