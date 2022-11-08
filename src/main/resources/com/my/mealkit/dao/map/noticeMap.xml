@@ -42,7 +42,7 @@
 		update notices
 		set notice_title = #{noticeTitle},
 			notice_content = #{noticeContent}
-			
+			notice_img_file_name = #{noticeImgFileName}
 		where notice_num = #{noticeNum}
 	</update>
 	

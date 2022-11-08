@@ -17,10 +17,19 @@
 let noticeNumber  = <%=request.getParameter("noticeNum")%>
 function init() {
 	$('#fixNoticeBtn').click(() => {
+		let a = ''
+		if($('#noticeImgFile').val() != null) {
+			a = $('#noticeImgFile').val()
+			console.log($('#noticeImgFile').val())
+		} else {
+			a = $('#noticeImgFileName').val()
+		}
+		
 		let notice = {
 			noticeNum: noticeNumber,
 			noticeTitle: $('#noticeTitle').val(),
 			noticeContent: $('#noticeContent').val(),
+			noticeImgFile: a
 		}
 		
 		$.ajax({
@@ -74,6 +83,7 @@ $(init)
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
                                     	<input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
+                                    	<input type="hidden" id="noticeImgFileName" value="${notice.noticeImgFileName}" />
                                 </div>
                             </div>
                             <hr>
