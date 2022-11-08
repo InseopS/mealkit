@@ -16,6 +16,22 @@
 		<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
         <script>
+		function arrow() {
+        	for(let i = 1; i <= 50; i++) {
+                $(function(){
+                    $('#down_arrow'+i).click(function() {
+                        $('#down_arrow'+i).hide();
+                        $('#up_arrow'+i).show();
+                    })
+
+                    $('#up_arrow'+i).click(function() {
+                        $('#up_arrow'+i).hide();
+                        $('#down_arrow'+i).show();
+                    })
+                })
+            }
+		}
+    	
         function listFaqs() {
         	$('#faqs').empty();
         	$.ajax({
@@ -53,28 +69,13 @@
         		} else {
         			$('#faqs').append('<div><p>등록된 Q&A가 없습니다.</p></div>')
         		}
+        		
+        		arrow()
         	}) 
         }
-
-    
-        	for(let i = 1; i <= 10; i++) {
-                $(function(){
-                    $('#down_arrow'+i).click(function() {
-                        $('#down_arrow'+i).hide();
-                        $('#up_arrow'+i).show();
-                    })
-
-                    $('#up_arrow'+i).click(function() {
-                        $('#up_arrow'+i).hide();
-                        $('#down_arrow'+i).show();
-                    })
-                })
-            }
-        
-        
+    	
         function init() {
         	listFaqs()
-        	arrow()
         }
         
         $(init)
