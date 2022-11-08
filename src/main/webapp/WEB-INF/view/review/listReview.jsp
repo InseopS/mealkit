@@ -50,7 +50,7 @@
                     $.each(reviews, (i, review) => {
                        reviewArr.unshift(
                            	`<div class='row d-flex justify-content-between'>
-                             <div>\${review.rate}</div>
+                             <div>\${review.rate}</div>                            
                     		 <div>\${review.reviewRegDate}</div>
                     		 </div>
                     		 <div class='row'>
@@ -62,6 +62,7 @@
 	                             </div>
 	                         </div>
 	                         <hr>`
+                    		
                        );
                     })
                     

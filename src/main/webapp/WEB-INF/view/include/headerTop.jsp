@@ -4,7 +4,7 @@
     <nav class='navbar fixed-top navbar-light bg-light navbar-expand-sm p-0'>
         <div class='container-fluid'>
             <a class='navbar-brand ml-2' href='<%=request.getContextPath()%>/'>
-                <img src='/attach/logo.png'>
+                <img style='width: 121px; height: 48px;' src='<c:url value="/attach/logo.png"/>'/>
             </a>
 
 			<div>

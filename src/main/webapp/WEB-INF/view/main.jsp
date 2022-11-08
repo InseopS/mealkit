@@ -144,7 +144,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>		
 		<div id='footer_text' class='bg-dark text-light'>
 			<nav id='footer_nav'>
 				<ul id='footer_ul'>
