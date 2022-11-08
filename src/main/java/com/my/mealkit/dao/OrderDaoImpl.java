@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.my.mealkit.dao.map.OrderMap;
 import com.my.mealkit.domain.Order;
+import com.my.mealkit.domain.User;
 
 
 @Repository
@@ -34,8 +35,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public void insertOrder(Order order) {
-		orderMap.insertOrder(order);
+	public void insertOrder(Order order, User user) {
+		orderMap.insertOrder(order, user);
 	}
 	
 	@Override

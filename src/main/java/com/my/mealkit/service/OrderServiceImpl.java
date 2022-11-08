@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.my.mealkit.dao.OrderDao;
 import com.my.mealkit.domain.Order;
+import com.my.mealkit.domain.User;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -33,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public void addOrder(Order order) {
-		orderDao.insertOrder(order);
+	public void addOrder(Order order, User user) {
+		orderDao.insertOrder(order, user);
 	}
 	
 	@Override
