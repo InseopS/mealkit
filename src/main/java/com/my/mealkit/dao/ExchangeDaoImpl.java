@@ -3,10 +3,12 @@ package com.my.mealkit.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.my.mealkit.dao.map.ExchangeMap;
 import com.my.mealkit.domain.Exchange;
 
+@Repository
 public class ExchangeDaoImpl implements ExchangeDao {
 	@Autowired private ExchangeMap exchangeMap;
 	
