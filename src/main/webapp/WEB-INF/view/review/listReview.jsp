@@ -38,12 +38,12 @@
             }
 
         </style>
-        <script>     
+        <script>         
         function listReviews() {
             $('#reviews').empty();
             $.ajax({
                method: 'post',
-               url: "<%=request.getContextPath()%>/admin/review/getReview"
+               url: "<%=request.getContextPath()%>/review/getReview"
             }).done(reviews => {           	
                  if(reviews.length) {
                     const reviewArr = []

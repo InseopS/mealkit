@@ -18,6 +18,7 @@
 
         </style>
          <script>
+         
          function init(){
         		$('#regBtn').click(() => {
         			let rate = $('#rate').val();
