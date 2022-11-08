@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.my.mealkit.dao.map.FavoriteMap'>
+	<select id='selectFavorites' resultType='favorite'>
+		SELECT FAVORITES.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE 
+		FROM FAVORITES JOIN MEALKITS
+		ON FAVORITES.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
+		JOIN USERS
+		ON FAVORITES.USER_ID = USERS.USER_ID
+		WHERE USERS.USER_ID = {userID}
+	</select>
+
+	<select id='selectFavorite' resultType='favorite'>
+		SELECT FAVORITES.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE 
+		FROM FAVORITES JOIN MEALKITS
+		ON FAVORITES.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
+		JOIN USERS
+		ON FAVORITES.USER_ID = USERS.USER_ID
+		WHERE USERS.USER_ID = {userID}
+	</select>
+
+	<insert id='insertFavorite'>
+		INSERT INTO FAVORITES(USER_ID, MEALKIT_NUM)
+		values (#{userId}, #{mealkitNum})
+	</insert>
+
+	<delete id='deleteFavorite'>
+		DELETE FAVORITES
+		WHERE USER_ID = #{userId} AND MEALKIT_NUM = #{mealkitNum}
+	</delete>
+
+</mapper>
