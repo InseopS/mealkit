@@ -104,8 +104,8 @@
             <br>
             <div class='row ml-1'>
                 <c:forEach var='review' items='${reviewList}'>
-                        ${review.userId}
-                        </c:forEach>
+                	작성자: ${review.userId}
+                </c:forEach>
             </div>
             <br>
         </div>
