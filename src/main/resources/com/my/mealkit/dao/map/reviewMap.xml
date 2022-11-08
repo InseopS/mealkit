@@ -35,7 +35,7 @@
 	
 	<update id='updateReview'>
 		update reviews
-		set review_title = #{title}, 
+		set review_title = #{title},
 			review_content = #{content},
 			rate = #{rate},
 			review_img_file_name = #{reviewImgfileName}
