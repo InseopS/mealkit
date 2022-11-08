@@ -16,6 +16,67 @@
 <style>
 
 </style>
+<script>
+function listDeclarations() {
+	$('#declarations').empty()
+	
+	$.ajax({
+		url: 'getDeclarations',
+		dataType: 'json',
+		success: declarations => {
+			if(declarations.length) {
+				const declarationArr = []					
+				$.each(declarations, (i, declaration) => {
+				    declarationArr.unshift(
+				        `<tr>
+				        	<td>\${declaration.declarationNum}</td>
+				            <td><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
+                            <td>\${declaration.declarationRegdate}</td>
+                            <td>\${declaration.declarationStatusName}</td>
+				        </tr>`
+				    )
+				})
+				$('#declarations').append(declarationArr.join(''))
+			}
+		}
+	}).done(function(){if($('#declarations').find('tr').eq(0).length != 1) $('#declarations').append(`<tr><th colspan='4'>신고 내역이 없습니다.</th></tr>`)})
+}
+
+function init() {
+	listDeclarations()
+	
+	$('#searchBtn').click(() => {
+		$('#declarations').empty()
+		let keyword = $('#searchDeclarationTitle').val()
+		let category = $('#category').val()
+		
+		if(keyword != "" && category != "none") {
+			$.ajax({
+				url: 'searchDeclarations?keyword=' + keyword + 'category=' + category,
+				dataType: 'json',
+				success: declarations => {
+					if(declarations.length) {
+						const declarationArr = []					
+						$.each(declarations, (i, declaration) => {
+						    declarationArr.unshift(
+						        `<tr>
+						        	<td>\${declaration.declarationNum}</td>
+						            <td><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
+		                            <td>\${declaration.declarationRegdate}</td>
+		                            <td>\${declaration.declarationStatusName}</td>
+						        </tr>`
+						    )
+						})
+						$('#declarations').append(declarationArr.join(''))
+					}
+				}				
+			}).done(function(){if($('#declarations').find('tr').eq(0).length != 1) $('#declarations').append(`<tr><th colspan='4'>검색 결과가 없습니다.</th></tr>`)})
+		} else listDeclarations()
+	})
+}
+
+$(init)
+</script>
 </head>
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
@@ -34,7 +95,6 @@
                                     </a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="next">
                                         <span aria-hidden="true">&gt;</span>
@@ -47,18 +107,18 @@
                         <form>
                             <div class='row'>
                                 <div class='col-2'>
-                                    <select class='form-control' name='category'>
-                                        <option value='none' selected hidden>정렬기준</option>
-                                        <option value='1'>번호</option>
-                                        <option value='2'>제목</option>
-                                        <option value='3'>처리상태</option>
+                                    <select class='form-control' id='category' name='category'>
+                                        <option value='none' selected hidden>검색기준</option>
+                                        <option value='declarationNum'>번호</option>
+                                        <option value='declarationTitle'>제목</option>
+                                        <option value='declarationStatusName'>처리상태</option>
                                     </select>
                                 </div>
                                 <div class='col px-0'>
-                                    <input type='text' class='form-control' id='searchIn' placeholder='내용을 입력해주세요.'>
+                                    <input type='text' class='form-control' id='searchDeclarationTitle' name='searchDeclarationTitle' placeholder='내용을 입력해주세요.'>
                                 </div>
                                 <div class='col-2 d-flex'>
-                                    <button type='button' id='serchUser' class='btn btn-secondary flex-fill'>검색</button>
+                                    <button type='button' id='searchBtn' class='btn btn-secondary flex-fill'>검색</button>
                                 </div>
                             </div>
                         </form>
@@ -79,37 +139,7 @@
                                             <th scope='col'>상태</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>0009</td>
-                                            <td onclick='location.href="02.html"'>대출광고 신고합니다.</td>
-                                            <td>2022.10.18</td>
-                                            <td>처리중</td>
-                                        </tr>
-                                        <tr>
-                                            <td>0008</td>
-                                            <td>애먼 물건 사진인데요.</td>
-                                            <td>2022.10.17</td>
-                                            <td>처리중</td>
-                                        </tr>
-                                        <tr>
-                                            <td>0007</td>
-                                            <td>신고 처리 안해요?</td>
-                                            <td>2022.10.17</td>
-                                            <td>처리중</td>
-                                        </tr>
-                                        <tr>
-                                            <td>0006</td>
-                                            <td>악성 리뷰 신고</td>
-                                            <td>2022.10.16</td>
-                                            <td>처리중</td>
-                                        </tr>
-                                        <tr>
-                                            <td>0005</td>
-                                            <td>욕설 신고 함</td>
-                                            <td>2022.10.16</td>
-                                            <td>처리중</td>
-                                        </tr>
+                                    <tbody id='declarations'>
                                     </tbody>
                                 </table>
                                 <hr class='mt-0'>
