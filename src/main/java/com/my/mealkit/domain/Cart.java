@@ -8,7 +8,6 @@ public class Cart {
 	private int mealkitNum;
 	private int mealkitCount;
 	
-//	private int cartNum;
 	private String mealkitName;
 	private String mealkitImgFileName;
 	private int price;

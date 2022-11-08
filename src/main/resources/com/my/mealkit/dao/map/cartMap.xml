@@ -3,32 +3,30 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.CartMap'>
 	<select id='selectCarts' resultType='cart'>
-		select *
-		from carts join mealkits
-		on carts.mealkit_num = mealkit.mealkit_num
-		where user_id = #{userId}
+		SELECT CARTS.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE 
+		FROM CARTS JOIN MEALKITS
+		ON CARTS.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
+		JOIN USERS
+		ON CARTS.USER_ID = USERS.USER_ID
+		WHERE USERS.USER_ID = #{userId}
 	</select>
 
 	<select id='selectCart' resultType='cart'>
-		select *
-		from carts join mealkits
-		on carts.mealkit_num = mealkits.mealkit_num
-		where user_id = #{userId}
+		SELECT CARTS.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE
+		FROM CARTS JOIN MEALKITS
+		ON CARTS.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
+		JOIN USERS
+		ON CARTS.USER_ID = USERS.USER_ID
+		WHERE USERS.USER_ID = #{userId}
 	</select>
 
 	<insert id='insertCart'>
-		insert into carts(user_id, mealkit_num, mealkitCount)
+		INSERT INTO CARTS(USER_ID, MEALKIT_NUM, MEALKIT_COUNT)
 		values (#{userId}, #{mealkitNum}, #{mealkitCount})
 	</insert>
 
-	<update id='updateCart'>
-		update cart
-		set mealkit_count = #{mealkitCount}
-		where user_id = #{userId} and mealkit_num = #{mealkitNum}
-	</update>
-
 	<delete id='deleteCart'>
-		delete carts
-		where user_id = #{userId} and mealkit_num = #{mealkitNum} 
+		DELETE CARTS
+		WHERE USER_ID = #{userId} AND MEALKIT_NUM = #{mealkitNum}
 	</delete>
 </mapper>
