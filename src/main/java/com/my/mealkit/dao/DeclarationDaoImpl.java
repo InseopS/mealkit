@@ -15,4 +15,8 @@ public class DeclarationDaoImpl implements DeclarationDao{
 	public List<DeclarationDto> selectDeclarations() {
 		return declarationMap.selectDeclarations();
 	}
+	
+	public List<DeclarationDto> selectDeclarations(String userId) {
+		return declarationMap.selectUserDeclarations(userId);
+	}
 }

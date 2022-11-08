@@ -7,4 +7,10 @@
 		from declarations inner join declaration_status
 		on declarations.declaration_status_code = declaration_status.declaration_status_code 
 	</select>
+		<select id='selectUserDeclarations' resultType='declarationDto'>
+		select declarations.declaration_num, declarations.declaration_title, declarations.declaration_regdate, declaration_status.declaration_status_name
+		from declarations inner join declaration_status
+		on declarations.declaration_status_code = declaration_status.declaration_status_code
+		where user_id = #{userId}
+	</select>
 </mapper>

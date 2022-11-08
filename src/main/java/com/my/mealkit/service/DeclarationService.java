@@ -6,4 +6,5 @@ import com.my.mealkit.domain.DeclarationDto;
 
 public interface DeclarationService {
 	List<DeclarationDto> getDeclarations();
+	List<DeclarationDto> getDeclarations(String userId);
 }

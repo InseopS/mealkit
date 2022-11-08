@@ -16,4 +16,9 @@ public class DeclarationServiceImpl implements DeclarationService{
 	public List<DeclarationDto> getDeclarations() {
 		return declarationDao.selectDeclarations();
 	}
+	
+	@Override
+	public List<DeclarationDto> getDeclarations(String userId) {
+		return declarationDao.selectDeclarations(userId);
+	}
 }
