@@ -56,4 +56,5 @@ public class NoticeServiceImpl implements NoticeService {
 	public void delAdminNotice(int noticeNum) {
 		noticeDao.deleteAdminNotice(noticeNum);
 	}
+		
 }

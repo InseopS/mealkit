@@ -85,41 +85,13 @@ public class NoticeAdminController {
 		model.addAttribute("noticeList", noticeList);
 		return "admin/notice/fixNotice";
 	}
-	/*
-	@ResponseBody
+	
 	@PutMapping("fixNotice")
-	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {
-		System.out.println(notice.getNoticeTitle());
-		System.out.println(notice.getNoticeNum()+"123456789");
+	public ModelAndView fixNotice(@RequestBody Notice notice, ModelAndView mv) {
 		noticeService.fixAdminNotice(notice);
 		mv.setViewName("admin/notice/listNotice");
 		return mv;
 	}
-	*/
-	
-	@PutMapping("fixNotice")
-	public void fixNotice(@RequestBody Notice notice) {
-		System.out.println("2222");
-		noticeService.fixAdminNotice(notice);
-	}
-	
-	/*
-	@ResponseBody
-	@PostMapping("/fixNotice")
-	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {
-		System.out.println(notice.getNoticeNum() + "dd");
-		try {
-			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
-			
-			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
-			notice.setNoticeImgFileName(noticeFileName);
-			
-			noticeService.fixAdminNotice(notice);
-		} catch(NullPointerException e) {}
-		mv.setViewName("admin/notice/listNotice");
-		return mv;
-	}
-	*/
 	
 	@ResponseBody
 	@DeleteMapping("del/{noticeNum}")
