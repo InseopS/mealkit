@@ -68,7 +68,7 @@ $(init)
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
+                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile' required>
                                 </div>
                             </div>
                             <hr>
