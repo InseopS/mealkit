@@ -42,6 +42,10 @@
 	   		})
 	   	})
 	   	
+	   	$('#fixBtn').click(() => {
+			location.href='fixReview?reviewNum='+ $('#reviewNum').val()
+		})
+	   	
    		}
 
         $(init)
@@ -110,7 +114,7 @@
         <div class='col d-flex justify-content-end'>
             <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#declarationModal'>신고</button>
         &nbsp;
-        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal'>수정</button>
+        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal' id='fixBtn'>수정</button>
         &nbsp;
         <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
         </div>
