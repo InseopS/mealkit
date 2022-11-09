@@ -54,7 +54,7 @@
          <div class='row mb-2'>
          	<label for='input' class='col-2 pr-2 col-form-label'>별점:</label>
          	<div class='col pl-1'>
-         		<select class="form-control" name='rate'>
+         		<select class="form-control" name='rate' id='rate'>
          			<option value='5'>★★★★★</option>
          			<option value='4'>★★★★</option>
          			<option value='3'>★★★</option>
