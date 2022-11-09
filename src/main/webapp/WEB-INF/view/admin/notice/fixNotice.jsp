@@ -17,19 +17,11 @@
 let noticeNumber  = <%=request.getParameter("noticeNum")%>
 function init() {
 	$('#fixNoticeBtn').click(() => {
-		let a = ''
-		if($('#noticeImgFile').val() != null) {
-			a = $('#noticeImgFile').val()
-			console.log($('#noticeImgFile').val())
-		} else {
-			a = $('#noticeImgFileName').val()
-		}
-		
 		let notice = {
 			noticeNum: noticeNumber,
 			noticeTitle: $('#noticeTitle').val(),
 			noticeContent: $('#noticeContent').val(),
-			noticeImgFile: a
+			noticeImgFile: $('#noticeImgFile').val()
 		}
 		
 		$.ajax({
