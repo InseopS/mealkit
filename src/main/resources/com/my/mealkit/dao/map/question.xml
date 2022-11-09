@@ -5,6 +5,7 @@
 	<select id='selectQuestions' resultType='question'>
 		select * 
 		from questions
+		order by question_num
 	</select>
 	
 	<select id='selectAdminQuestions' resultType='question'>
@@ -26,7 +27,7 @@
 	
 	<insert id='insertQuestion'>
 		insert into questions(question_num, question_title, question_content, question_regdate)
-		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, sysDate)
+		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, sysdate)
 	</insert>
 	
 	<insert id='insertAdminQuestion'>

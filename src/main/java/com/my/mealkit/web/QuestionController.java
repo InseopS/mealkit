@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,18 +28,16 @@ public class QuestionController {
 	
 	@Value("${attachPath}") private String attachPath;
 
-	@GetMapping("listQuestion")
-	public ModelAndView listQuestion(ModelAndView mv) {
-		mv.setViewName("question/listQuestion");
-		return mv;
+	@RequestMapping("listQuestion")
+	public String listQuestion() {
+		return "question/listQuestion";
 	}
 	
 	@ResponseBody
-	@GetMapping("getQuestions")
+	@PostMapping("getQuestions")
 	public List<Question> getQuestions() {
 		return questionService.getQuestions();
 	}
-	
 	
 	@RequestMapping("addQuestion")
 	public String addQuestion() {
