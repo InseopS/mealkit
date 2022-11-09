@@ -37,8 +37,10 @@
                 background-color: #031F3B;
                 color: white;
             }
-            
-            
+         	
+         	#table {
+         		font-size: 15px;
+         	}
     </style>
 </head>
 
@@ -66,7 +68,51 @@
                 <hr style='border:solid 1px'>
             </div>
         </div>
+        <div class='row'>
+        	<div class='col'>
+            	<b>주문번호&ensp;<span id='orderNum'>10000</span></b>
+       	 	</div>
+        	<div class='col'>
+	  			<div class='mr-2' style='float:right'>
+	       	 	<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+	       	 		style='text-decoration: underline;'><small>주문상세</small></a>
+	            <a href='listReturn' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+	                data-target='#returnCancelModal' style='text-decoration: underline;'><small>반품취소</small></a>
+	            </div>
+    		</div>
+    	</div>
+    	<hr class='mt-2 mb-2'>
+    	<div class='row'>
+          	<div class='col'>
+              	<table class='table table-sm table-borderless ml-0' id='table'>
+              		<colgroup>
+	                    <col width='30%'>
+	                    <col width='70%'>
+                     </colgroup>
+                  	<tbody>
+                      	<tr>
+                          <td>밀키트명</td>
+                          <td class='2' id='mealkitName'>밀키트명</td>
+                      	</tr>
+                     	<tr>
+                          	<td>수량</td>
+                          	<td class='2' id='orderMealkitCount'>100개</td>
+                      	</tr>
+                      	<tr>
+                          	<td>가격</td>
+                          	<td class='2' id='price'>10000원</td>
+                      	</tr>
+                      	<tr>
+                          	<td>반품상태</td>
+                          	<td class='2' id='returnStatusName'>반품처리중</td>
+                      	</tr>
+                  	</tbody>
+              	</table><hr class='mt-3 mb-2'>
+        	</div>
+        </div>
     </div>
+    
+ <%--
     <div class='row'>
         <div class='col ml-3 mt-2 mb-1'>
             <b>주문번호</b>&ensp;000001
@@ -75,16 +121,16 @@
     <hr class='mt-0 ml-3 mr-3 mb-2'>
     <div class='row'>
         <div class='col-4'>
-            <div class='ml-3 mt-2 mr-0 rounded border'
-                style='width: 6rem; height: 6rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
+            <div class='ml-2' id='mealkitName' style = 'text-align: center;'>
                 <br>
-                <small>바질파스타<br>이미지</small>
+                바질파스타
             </div>
-            <div class='col mt-2 ml-2 mr-2 p-2'>
+            <div class='col mt-2 ml-2 mr-2 p-2' id='returnStatusName'>
                 <small><b>반품처리상태</b></small>
             </div>
         </div>
-        <div class='col-4 mt-5'>
+        <div class='col-4 mt-5' >
+        	
             <small>바질파스타<br>1개 / 19900원</small>
         </div>
         <div class='col-3 mt-5 ml-4'>
@@ -92,7 +138,8 @@
                 data-target='#returnCancelModal' style='text-decoration: underline;'><small>반품취소</small></a>
         </div>
     </div>
-    <hr class='mt-2 ml-3 mr-3 mb-2'>
+  	<hr class='mt-2 ml-3 mr-3 mb-2'>
+ --%>
     <div class="row d-flex mx-auto fixed-bottom mb-5" id='pagingDiv'>
         <nav aria-label="Page navigation example">
             <ul class="pagination">

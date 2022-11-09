@@ -43,8 +43,8 @@
 		$('#questions').empty();
 		
 		$.ajax({
-			method: 'get',
-			url: '<%=request.getContextPath()%>/question/getQuestions'
+			method: 'post',
+			url: "<%=request.getContextPath()%>/question/getQuestions"
 		}).done(questions => {
 			if(questions.length) {
 				const questionArr = []
@@ -52,7 +52,8 @@
 				$.each(questions, (i, question) => {
 					questionArr.unshift(
 						`<tr>
-							<td><a href='detailQuestion?questionNum=\${question.questionNum}'>\${question.questionTitle}</td>
+							<td><a href='detailQuestion?questionNum=\${question.questionNum}'>
+								\${question.questionTitle}</td>
 							<td>\${question.questionRegdate}</td>
 						</tr>`
 					);
@@ -65,7 +66,6 @@
 			}
 		})
 	}
-	
 	$(listQuestions)
 </script>
 </head>
@@ -88,6 +88,10 @@
                         <tr><th>제목</th><th>작성일</th></tr>
                     </thead>
                     <tbody id='questions'>
+                    	<tr>
+                    		<td id='questionTitle' onclick='location.href="<%=request.getContextPath()%>/quesetion/detailQuestion"'>제목</td>
+                    		<td id='questionRegdate'>2022.12.12</td>
+                    	</tr>
                     </tbody>
                 </table>
             </div>
