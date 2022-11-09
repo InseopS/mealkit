@@ -21,23 +21,24 @@
 		let reviewNumber = <%=request.getParameter("reviewNum") %>
 	function init() {
 		$('#fixBtn').click(() => {
-			let review {
-			     reviewNum: reviewNumber;
-				 rate = $('#rate').val();
-				 reviewTitle = $('#reviewTitle').val();
-				 reviewContent = $('#reviewContent').val();
-				 reviewImgfile = $('#reviewImgfile').val();
+			let review = {
+			     reviewNum: reviewNumber,
+				 rate: $('#rate').val(),
+				 reviewTitle: $('#reviewTitle').val(),
+				 reviewContent: $('#reviewContent').val()
 			}
 			
 			$.ajax({
 				type:'put',
 				url: 'fixReview',
 				data: JSON.stringify(review),
-				contentType: 'applicatiopn/json',
+				contentType: 'application/json',
 				success: location.href='listReview'
 			})
 		})
 	}
+	
+	$(init)
 </script>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
@@ -54,7 +55,7 @@
          <div class='row mb-2'>
          	<label for='input' class='col-2 pr-2 col-form-label'>별점:</label>
          	<div class='col pl-1'>
-         		<select class="form-control" name='rate'>
+         		<select class="form-control" name='rate' id='rate'>
          			<option value='5'>★★★★★</option>
          			<option value='4'>★★★★</option>
          			<option value='3'>★★★</option>
@@ -80,21 +81,14 @@
 				</c:forEach>
             </div>
        	</div>
-        <div class='row mt-3'>
-            <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
-            <div class='col pl-1'>
-            	<c:forEach var='review' items='${reviewList}'>
-                	<img style='height:200px; width: 30%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>'/>
-                </c:forEach>
-            </div>
-        </div>
+        
         <hr>
         <br>
         <div class='row justify-content-end'>
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/review/listReview"'>취소</button>
                 &nbsp;
-                <button type='submit' class='btn btn-secondary' id='fixBtn'>수정</button>
+                <button type='button' class='btn btn-secondary' id='fixBtn'>수정</button>
             </div>
         </div>
         </form>

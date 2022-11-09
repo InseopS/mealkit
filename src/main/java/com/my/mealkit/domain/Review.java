@@ -27,4 +27,5 @@ public class Review {
 	private int orderNum;
 	private String userId;
 	private String mealkitName;
+	private int mealkitNum;
 }

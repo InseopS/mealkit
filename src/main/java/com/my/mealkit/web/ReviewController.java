@@ -48,17 +48,18 @@ public class ReviewController {
 		return "review/addReview";
 	}
 	
-	@RequestMapping(value ="fixReview", method=RequestMethod.GET)
-	public String fixReview(Model model, @RequestParam("reivewNum") int reviewNum) {
+	@RequestMapping(value ="fixReview", method= {RequestMethod.GET, RequestMethod.POST})
+	public String fixReview(Model model, @RequestParam("reviewNum") int reviewNum) {
 		List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
 		model.addAttribute("reviewList", reviewList);
 		return "review/fixReview";
 	}
 	
 	@PutMapping("fixReview")
-	public ModelAndView fixNotice(@RequestBody Review review, ModelAndView mv) {
+	public ModelAndView fixReview(@RequestBody Review review, ModelAndView mv) {
 		reviewService.fixReview(review);
 		mv.setViewName("review/listReview");
+		System.out.println("Asd");
 		return mv;
 	}
 	
