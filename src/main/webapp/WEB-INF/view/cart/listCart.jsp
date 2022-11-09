@@ -31,8 +31,8 @@
 					console.log(cart)
 					cartArr.unshift(
 						`<tr>
-							<td><input type='checkbox' name='cartNum' id='cartNum'
-									value='\${cart.cartNum}'/></td>//체크박스
+							<td><input type='checkbox' name='mealkitNum' id='mealkitNum'
+									value='\${cart.mealkitNum}'/></td>//체크박스
 							<td class='mealkitImage'><a href='http://localhost/mealkit/detailMealkit?mealkitNum=\${cart.mealkitNum}'>
 									\${cart.mealkitImgFileName}</td>//밀키트이미지 + 밀키트상세
 							<td>\${cart.mealkitName}<br><br>\${cart.mealkitCount}개<br>
@@ -51,8 +51,8 @@
 		$(listCart)
 		
 		$('#delBtn').click(() => {
-			if($('#cartNum:checked').val()) {
-            	$('#modalMsg').text('노동자를 삭제하시겠습니까?') 
+			if($('#mealkitNum:checked').val()) {
+            	$('#modalMsg').text('밀키트를 삭제하시겠습니까?') 
             	$('#confirmBtn').hide()
  				$('#noBtn').show()
  				$('#delCartBtn').show()
@@ -66,15 +66,16 @@
         	}
     	})
 
-    	$('#delCartBtn').click(() => {
-    		$('#modal').modal('hide')
-	    	$.ajax({
-	        	url: 'del/' + $('#cartNum:checked').val(),
-				method: 'delete',
-	    	}).done(listCarts)
-		}) 	
+    	$(document).on("click", "button[id='delCartBtn']", function () {
+			for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
+				$.ajax({
+					url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
+					method: 'delete'
+				}).done(function(){if(i == $('#mealkitNum:checked').length) listCart()})
+			}		
+		})
 	}
-
+	
 	$(init)
 </script>
 
@@ -140,6 +141,3 @@ tr, td {
 </body>
 <%@ include file ='../include/footer.jsp'%>
 </html>
-
-
-
