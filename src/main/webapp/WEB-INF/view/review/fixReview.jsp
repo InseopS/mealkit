@@ -25,7 +25,7 @@
 			     reviewNum: reviewNumber,
 				 rate: $('#rate').val(),
 				 reviewTitle: $('#reviewTitle').val(),
-				 reviewContent: $('#reviewContent').val()
+				 reviewContent: $('#reviewContent').val(),
 			}
 			
 			$.ajax({
@@ -76,12 +76,18 @@
             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
             	<c:forEach var='review' items='${reviewList}'>
-            	<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px' required>
-					${review.reviewContent}</textarea>
+            	<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px' required>${review.reviewContent}</textarea>
 				</c:forEach>
             </div>
        	</div>
-        
+        <div class='row mt-3'>
+	        <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
+	        <div class='col pl-1'>
+		        <c:forEach var='review' items='${reviewList}'>
+		        	<img style='height:220px; width: 100%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>' onerror='this.style.display="none"'/>
+		        </c:forEach>
+	        </div>
+        </div>
         <hr>
         <br>
         <div class='row justify-content-end'>
