@@ -11,5 +11,6 @@ public interface CartMap {
 	List<Cart> selectCart(@Param("userId") String userId, 
 						@Param("mealkitNum") int mealkitNum);
 	int insertCart(Cart cart);
-	int deleteCart(String userId, int mealkitNum);
+	int deleteCart(@Param("userId") String userId, 
+				@Param("mealkitNum") int mealkitNum);
 }
