@@ -105,23 +105,6 @@
 <body>
     <div id='mainContainerAddSub' class="container">
         <div class='container mr-1 ml-1' id='reviews'>
-            <div class='row d-flex justify-content-between'>
-                    <div id='star'>
-                        ★★★★★ 아주좋아요
-                    </div>
-                    <div id='date'>
-                        2022.10.13
-                    </div>
-            </div>
-            <div class='row' id='item'>
-                [구매제품] 2인 바싹 불고기 세트
-            </div>
-            <div class='row'>
-                <div class='col' id='title'>
-                    맛있습니다.
-                </div>
-            </div>
-            <hr>
         </div>
 	</div>
     <div class="row d-flex mx-auto fixed-bottom mb-5" id='paging_div'>
