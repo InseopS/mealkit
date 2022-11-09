@@ -27,7 +27,7 @@
 					$.each(notices, (i, notice) => {
 						noticeArr.unshift(
 							`<tr>
-								<td><input type='checkbox' name='noticeNum' id='noticeNum'
+								<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
 								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
@@ -43,6 +43,16 @@
 		})
 	}
 
+	function checkOnly(element) {
+	  	const checkboxes = document.getElementsByName("noticeNum");
+	  	
+	  	checkboxes.forEach((cb) => {
+	  		cb.checked = false;
+	  	})
+	  	
+	  	element.checked = true;
+	}
+	
     function init() {
 		$(listNotices)
         
@@ -79,6 +89,11 @@
         table {
             text-align: center;
         }
+        
+		a { 
+    		color: inherit;
+    		text-decoration:none;
+    	}
     </style>
 </head>
 

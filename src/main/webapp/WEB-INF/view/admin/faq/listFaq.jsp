@@ -26,7 +26,7 @@ function listFaqs() {
 			$.each(faqs, (i, faq) => {
 				faqArr.unshift(
                     `<tr>
-                        <th><input type='checkbox' value='\${faq.faqNum}' name='faqNum' id='faqNum'></th>
+                        <th><input type='checkbox' value='\${faq.faqNum}' name='faqNum' id='faqNum' onclick='checkOnly(this)'></th>
                         <td>\${faq.faqNum}</td>
                         <td><a href='detailFaq?faqNum=\${faq.faqNum}'>
                         	\${faq.faqTitle}</td>
@@ -38,6 +38,16 @@ function listFaqs() {
 			$('#faqs').append('<tr><td colspan=5 class=text-center>Q&A가 없습니다.</td></tr>')
 		}
 	}) 
+}
+
+function checkOnly(element) {
+  	const checkboxes = document.getElementsByName("faqNum");
+  	
+  	checkboxes.forEach((cb) => {
+  		cb.checked = false;
+  	})
+  	
+  	element.checked = true;
 }
 
 function init() {
@@ -75,6 +85,11 @@ $(init)
 <style>
     table {
         text-align: center;
+    }
+    
+    a { 
+    	color: inherit;
+    	text-decoration:none;
     }
 </style>
 </head>

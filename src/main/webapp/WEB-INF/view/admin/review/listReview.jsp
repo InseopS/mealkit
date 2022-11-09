@@ -150,22 +150,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id='reviews'>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0002</td>
-                                            <td>2인 바싹 불고기 세트</td>
-                                            <td onclick='location.href="<%=request.getContextPath()%>/review/detailReview"'>맛있습니다..</td>
-                                            <td>asdf232</td>
-                                            <td>2022.10.13</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0001</td>
-                                            <td>제육볶음</td>
-                                            <td>최고에요!</td>
-                                            <td>zxc321</td>
-                                            <td>2022.10.13</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                                 <hr class='mt-0'>
