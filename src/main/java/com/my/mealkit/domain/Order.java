@@ -16,13 +16,9 @@ public class Order {
 	private LocalDate orderDate;
 	private String requset;
 	private String userId;
-	
 	private int paymentCode;
-	private String paymentName;
 	private int orderStatusCode;
-	private String orderStatusName;
 	
-	private int orderMealkitNum;
-	private int orderMealkitCount;
-	private int mealkitNum;
+	private String paymentName;
+	private String orderStatusName;	
 }
