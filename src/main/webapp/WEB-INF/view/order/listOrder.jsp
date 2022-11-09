@@ -28,8 +28,7 @@
    				
    				$.each(orders, (i, order) => {
    					orderArr.unshift(
-   							`<div class='row'>
-						       <div class='col'>
+   							`<div class='col'>
 						          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>\${order.orderNum}</span>
 						       </div> 
 	                        <tr>
@@ -40,20 +39,16 @@
 	                         </tr>
 	                         <tr>
 	                            <td>결제금액</td>
-	                            <td>\(${orderMealkitCount} * ${mealkit.price})원</td>
+	                            <td>\(${order.orderMealkitCount} * ${mealkit.price})원</td>
 	                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='ruturnApplyBtn'
 	            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
 	                         </tr>
 	                         <tr>
 	                            <td>주문상태</td>
-	                            <td>\${orderStatusName}</td>
+	                            <td>\${order.orderStatusName}</td>
 	                            <td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
 	            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
-	                         </tr>                
-	                     </tbody>
-	                 </table><hr class='mt-3 mb-2'>
-	           </div>
-	        </div>`
+	                         </tr>`
    					);
    				})
    				
@@ -79,7 +74,7 @@
 
    			$('#exchangeApplyBtn')
    			
-   			$('#ruturnApplyBtn')
+   			$('#refundApplyBtn')
    			
    			})
    			
@@ -163,18 +158,18 @@
                         <tr>
                            <td class='col-3'>주문상품</td>
                            <td>${mealkit.mealkitName}</td>
-                            <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='exchangeApplyBtn'
+                            <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
                          </tr>
                          <tr>
                             <td>결제금액</td>
-                            <td>(${orderMealkitCount} * ${mealkit.price})원</td>
-                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='ruturnApplyBtn'
+                            <td>(${order.orderMealkitCount} * ${mealkit.price})원</td>
+                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
                          </tr>
                          <tr>
                             <td>주문상태</td>
-                            <td>${orderStatusName}</td>
+                            <td>${order.orderStatusName}</td>
                             <td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
                          </tr>                
