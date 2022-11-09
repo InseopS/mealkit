@@ -27,7 +27,7 @@
 					$.each(notices, (i, notice) => {
 						noticeArr.unshift(
 							`<tr>
-								<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
+								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
 								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
@@ -41,16 +41,6 @@
 					$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
 				}
 		})
-	}
-
-	function checkOnly(element) {
-	  	const checkboxes = document.getElementsByName("noticeNum");
-	  	
-	  	checkboxes.forEach((cb) => {
-	  		cb.checked = false;
-	  	})
-	  	
-	  	element.checked = true;
 	}
 	
     function init() {
@@ -80,12 +70,16 @@
    
 		$('#delNoticeBtn').click(() => {
 			$('#deleteModal').modal('hide')
-	      	$.ajax({
-	        	url: 'del/' + $('#noticeNum:checked').val(),
-	         	method: 'delete'
-			}).done(listNotices)
-		})
-		
+        	for (var i = 0; i < $('#noticeNum:checked').length; i++) {
+            	$.ajax({
+               		url: 'del/' + $('#noticeNum:checked').eq(i).val(),
+               		method: 'delete'
+            	}).done(function() {
+            		if(i == $('#noticeNum:checked').length) listNotices()
+            	})
+         	}      
+      	})
+
 		$('#searchBtn').click(() => {
 			if($('#searchTitle').val() == '') {
 				$('#delModalLabel').empty();
@@ -110,7 +104,7 @@
 							$.each(notices, (i, notice) => {
 							    userArr.unshift(
 							    	`<tr>
-										<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
+										<td><input type='checkbox' name='noticeNum' id='noticeNum'
 												value='\${notice.noticeNum}'/></td>
 										<td>\${notice.noticeNum}</td>
 										<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
