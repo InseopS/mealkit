@@ -39,6 +39,17 @@
 
         </style>
         <script>         
+        function change() {
+        	switch (`\${review.rate}`) {
+        	case 5: "★★★★★"; break;
+        	case 4: '★★★★'; break;
+        	case 3: '★★★'; break;
+        	case 2: '★★'; break;
+        	case 1: '★';
+        	
+        	}
+        }
+        
         function listReviews() {
             $('#reviews').empty();
             $.ajax({
@@ -47,9 +58,9 @@
             }).done(reviews => {           	
                  if(reviews.length) {
                     const reviewArr = []
-                    $.each(reviews, (i, review) => {
+                    $.each(reviews, (i, review) => { 
                        reviewArr.unshift(
-                           	`<div class='row d-flex justify-content-between'>
+                           	`<div class='row d-flex justify-content-between'> 
                              <div>\${review.rate}</div>                            
                     		 <div>\${review.reviewRegDate}</div>
                     		 </div>
@@ -67,10 +78,13 @@
                     })
                     
                     $('#reviews').append(reviewArr.join(''))
+                    
                  } else { 
                     $('#reviews').append(
                        '<div class=text-center>리뷰가 없습니다.</div>')
                  }
+                 
+                 change()
             })
          }
         function init(){
