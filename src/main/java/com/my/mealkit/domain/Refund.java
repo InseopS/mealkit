@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Return {
-	private int returnNum;
-	private MultipartFile returnImgFile;
-	private String returnImgFileName;
-	private String returnContent;
+public class Refund {
+	private int refundNum;
+	private MultipartFile refundImgFile;
+	private String refundImgFileName;
+	private String refundContent;
 	private int orderNum;
-	private int returnReasonCode;
-	private int returnStatusCode;
+	private int refundReasonCode;
+	private int refundStatusCode;
 }

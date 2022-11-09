@@ -114,7 +114,7 @@
                 <div id='faqs' class="col">
 					<div id='qna'>
                         <div class='d-flex justify-content-between'>
-						    <div><p id='faqTitle'>취소/교환/반품] 주문한 상품을 교환받고 싶어요</p></div>
+						    <div><p id='faqTitle'>취소/교환/환불] 주문한 상품을 교환받고 싶어요</p></div>
                             <div>
                                 <span id='btnSpan' class='navbar-toggler' type='button' data-toggle='collapse'
                                     data-target='#faqNum1'>
@@ -126,7 +126,7 @@
                         <div>
                             <div class='collapse navbar-collapse' id='faqNum1'>
                                 <div id='answer'>
-                                    <p><span class="material-icons">mode_comment</span> 마이페이지 > 주문내역 > 교환/반품 신청
+                                    <p><span class="material-icons">mode_comment</span> 마이페이지 > 주문내역 > 교환/환불 신청
                                     경로로 들어가시면, 교환신청이 가능합니다 !</p>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@
                     <h6><a href='listOrder' role='button'>주문완료리스트</a></h6>
                     <h6><a href='listOrderCancel' class='font-weight-bold' role='button'>취소리스트</a></h6>
                     <h6><a href='../exchange/listExchange' role='button'>교환리스트</a></h6>
-                    <h6><a href='../returnMealkit/listReturn' role='button'>반품리스트</a></h6>
+                    <h6><a href='../refund/listRefund' role='button'>환불리스트</a></h6>
 	<%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>

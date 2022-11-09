@@ -21,7 +21,7 @@
                     <h6><a href='../order/listOrder' role='button'>주문완료리스트</a></h6>
                     <h6><a href='../order/listOrderCancel' role='button'>취소리스트</a></h6>
                     <h6><a href='../exchange/listExchange' role='button'>교환리스트</a></h6>
-                    <h6><a href='listReturn' class='font-weight-bold' role='button'>반품리스트</a></h6>
+                    <h6><a href='listRefund' class='font-weight-bold' role='button'>환불리스트</a></h6>
      <%@ include file ='../../include/adminTop2.jsp'%>
 		<div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
@@ -69,7 +69,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>반품처리중</td>
+                                            <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>환불처리중</td>
                                         </tr>
                                     </tbody>
                                 </table>

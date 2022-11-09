@@ -24,7 +24,7 @@
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
     <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
     <div id="menuName">
-        <h3>반품신청</h3>
+        <h3>환불신청</h3>
     </div>
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -34,7 +34,7 @@
         <form class='refund-request mt-5 ml-2 mb-2'>
             <div class='row'>
                 <div class='col-3 p-2 mt-2 ml-3'>
-                    <br>반품상품<span style='font-size:12px'></span>
+                    <br>환불상품<span style='font-size:12px'></span>
                 </div>
                 <div class='col-3'>
                     <div class='mt-2 rounded border'
@@ -49,7 +49,7 @@
             </div>
             <div class='row'>
                 <div class='col-5 mt-1 ml-3'>
-                    <br>반품사유<span style='font-size:12px'>(필수)</span>
+                    <br>환불사유<span style='font-size:12px'>(필수)</span>
                 </div>
                 <div class='col mt-3'>
                     <select name='reason' style='width:8rem; height:3rem'>
@@ -78,25 +78,25 @@
                     <button type='button' class='btn btn-secondary btn-sm'
                         onclick='location.href="../order/listOrder"'>취소</button>
                     <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
-                        data-target='#returnModal'>신청</button>
+                        data-target='#refundModal'>신청</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class='modal fade' id='returnModal' tabindex='-1'>
+    <div class='modal fade' id='refundModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header'>
-                    <p class='modal-title float-left' id='myModalLabel'>반품신청</p>
+                    <p class='modal-title float-left' id='myModalLabel'>환불신청</p>
                     <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class='modal-body text-center'>
-                    <p>반품을 신청 하시겠습니까?</p>
+                    <p>환불을 신청 하시겠습니까?</p>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                       data-target='#requestOkModal' onclick='location.href="listReturn"'>예</button>
+                       data-target='#requestOkModal' onclick='location.href="listRefund"'>예</button>
                 </div>
             </div>
         </div>

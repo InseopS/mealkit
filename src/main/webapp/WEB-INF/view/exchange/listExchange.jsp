@@ -75,7 +75,7 @@ function listExchanges() {
                 <nav class='d-flex mt-3 justify-content-center'>
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4' onclick='location.href="../order/listOrder"'>주문내역</button>
                     <button type='button' class='btn flex-fill mr-4 bg-dark text-white' onclick='location.href="listExchange"'>교환내역</button>
-                    <button type='button' class='btn flex-fill  ml-0.5 btn-outline-dark' onclick='location.href="../returnMealkit/listReturn"'>반품내역</button>
+                    <button type='button' class='btn flex-fill  ml-0.5 btn-outline-dark' onclick='location.href="../refund/listRefund"'>환불내역</button>
                 </nav>
                 <hr style='border:solid 1px'>
             </div>

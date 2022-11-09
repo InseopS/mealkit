@@ -132,8 +132,8 @@
                         onclick='location.href="listOrder"'>주문내역</button>
                     <button type='button' id='listExchangeBtn' class='btn flex-fill btn-outline-dark mr-4'
                         onclick='location.href="../exchange/listExchange"'>교환내역</button>
-                    <button type='button' id='listReturnBtn' class='btn flex-fill btn-outline-dark'
-                        onclick='location.href="../returnMealkit/listReturn"'>반품내역</button>
+                    <button type='button' id='listRefundBtn' class='btn flex-fill btn-outline-dark'
+                        onclick='location.href="../refund/listRefund"'>환불내역</button>
                 </nav>
                 <hr style='border: solid 1px'>
             </div>
@@ -168,8 +168,8 @@
                          <tr>
                             <td>가격</td>
                             <td>29000원</td>
-                            <td><a href='../returnMealkit/applyReturn' class='link flex-fill text-dark' id='ruturnApplyBtn'
-            					style='text-decoration: underline; float: right;' role='button'><b>반품신청</b></a></td>
+                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='ruturnApplyBtn'
+            					style='text-decoration: underline; float: right;' role='button'><b>환불신청</b></a></td>
                          </tr>
                          <tr>
                             <td>주문상태</td>

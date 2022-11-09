@@ -48,7 +48,7 @@
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
     <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
     <div id="menuName">
-        <h3>반품내역</h3>
+        <h3>환불내역</h3>
     </div>
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -63,7 +63,7 @@
                     <button type='button' class='btn flex-fill btn-outline-dark mr-4'
                         onclick='location.href="../exchange/listExchange"'>교환내역</button>
                     <button type='button' class='btn flex-fill ml-0.5 bg-dark text-white'
-                        onclick='location.href="listReturn"'>반품내역</button>
+                        onclick='location.href="listRefund"'>환불내역</button>
                 </nav>
                 <hr style='border:solid 1px'>
             </div>
@@ -76,8 +76,8 @@
 	  			<div class='mr-2' style='float:right'>
 	       	 	<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
 	       	 		style='text-decoration: underline;'><small>주문상세</small></a>
-	            <a href='listReturn' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-	                data-target='#returnCancelModal' style='text-decoration: underline;'><small>반품취소</small></a>
+	            <a href='listRefund' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+	                data-target='#refundCancelModal' style='text-decoration: underline;'><small>환불취소</small></a>
 	            </div>
     		</div>
     	</div>
@@ -103,8 +103,8 @@
                           	<td class='2' id='price'>10000원</td>
                       	</tr>
                       	<tr>
-                          	<td>반품상태</td>
-                          	<td class='2' id='returnStatusName'>반품처리중</td>
+                          	<td>환불상태</td>
+                          	<td class='2' id='refundStatusName'>환불처리중</td>
                       	</tr>
                   	</tbody>
               	</table><hr class='mt-3 mb-2'>
@@ -125,8 +125,8 @@
                 <br>
                 바질파스타
             </div>
-            <div class='col mt-2 ml-2 mr-2 p-2' id='returnStatusName'>
-                <small><b>반품처리상태</b></small>
+            <div class='col mt-2 ml-2 mr-2 p-2' id='refundStatusName'>
+                <small><b>환불처리상태</b></small>
             </div>
         </div>
         <div class='col-4 mt-5' >
@@ -134,8 +134,8 @@
             <small>바질파스타<br>1개 / 19900원</small>
         </div>
         <div class='col-3 mt-5 ml-4'>
-            <a href='listReturn' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-                data-target='#returnCancelModal' style='text-decoration: underline;'><small>반품취소</small></a>
+            <a href='listRefund' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+                data-target='#refundCancelModal' style='text-decoration: underline;'><small>환불취소</small></a>
         </div>
     </div>
   	<hr class='mt-2 ml-3 mr-3 mb-2'>
@@ -149,17 +149,17 @@
             </ul>
         </nav>
     </div>
-    <div class='modal fade' id='returnCancelModal' tabindex='-1'>
+    <div class='modal fade' id='refundCancelModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class='modal-title float-left' id='myModalLabel'>반품취소</p>
+                    <p class='modal-title float-left' id='myModalLabel'>환불취소</p>
                     <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class='modal-body text-center'>
-                    <p>반품을 취소 하시겠습니까?</p>
+                    <p>환불을 취소 하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
