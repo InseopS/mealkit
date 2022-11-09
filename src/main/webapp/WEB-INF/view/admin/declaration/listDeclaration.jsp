@@ -52,7 +52,7 @@ function init() {
 		
 		if(keyword != "" && category != "none") {
 			$.ajax({
-				url: 'searchDeclarations?keyword=' + keyword + 'category=' + category,
+				url: 'searchDeclarations?keyword=' + keyword + '&&category=' + category,
 				dataType: 'json',
 				success: declarations => {
 					if(declarations.length) {

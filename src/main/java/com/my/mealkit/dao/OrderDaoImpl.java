@@ -41,8 +41,8 @@ public class OrderDaoImpl implements OrderDao {
 	
 	@Override
 	public void insertOrderMealkits(
-			int orderMealkitNum, int orderCount, int orderNum, int mealkitNum) {
-		orderMap.insertOrderMealkits(orderMealkitNum, orderCount, orderNum, mealkitNum);
+			int orderMealkitNum, int orderMealkitCount, int orderNum, int mealkitNum) {
+		orderMap.insertOrderMealkits(orderMealkitNum, orderMealkitCount, orderNum, mealkitNum);
 	}
 	
 	@Override

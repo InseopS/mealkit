@@ -28,30 +28,50 @@
    				
    				$.each(orders, (i, order) => {
    					orderArr.unshift(
-   							`<div class='row' id='orderNum'>
-						        <div class='col ml-3 mt-2 mb-1'>
-						            <b>주문번호</b>&ensp;\${order.orderNum}
-						        </div>
-						    </div>
-						    <hr class='mt-0 ml-3 mr-3 mb-2'>
-						    <div class='row'>
-						        <div class='col-4'>
-						            <div class='ml-3 mt-2 mr-0 rounded border'
-						                style='width: 6rem; height: 6rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
-						                <br>
-						                <span><small>\${mealkit.mealkitName}</small></span>
-						                <p><small>이미지</small></p>
-						            </div>
-						            <div class='col mt-2 ml-4 mr-3'>
-						                <small><b>\${orderStatus}</b></small>
-						            </div>
-						        </div>
-						        <div class='col-4 mt-5'>
-						            <span><small>\${mealkit.mealkitName}</small></span>
-						            <p><small>\${order.mealkitCount}개 / \(${order.mealkitCount} * ${mealkit.Price})원</small></p>
-						        </div>
-						    </div>`
+   						`<div class='row'>
+						 	<div class='col'>
+								<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>\${order.orderNum}</span>
+							</div>
+						    <div class='col'>
+								<div class='mr-2' style='float: right;'>
+								<a href='detailOrder' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
+									style='text-decoration: underline; font-size: small'>주문상세</a>
+								 <a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
+									style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
+									data-target='#orderCancelModal'>주문취소</a>
+								</div>
+						  </div>
+						</div>
+						<hr class='mt-2 mb-2'>
+						<div class='row'>
+							<div class='col'>
+								<table class='table table-sm table-borderless ml-0' id='table'>
+									<tbody> 
+										<tr>
+											<td class='col-3'>주문상품</td>
+											<td>\${mealkit.mealkitName}</td>
+											<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
+											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
+										</tr>
+										<tr>
+											<td>결제금액</td>
+											<td>\${totalPrice}원</td>
+											<td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
+											            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
+										</tr>
+										<tr>
+											<td>주문상태</td>
+											<td>\${order.orderStatusName}</td>
+											<td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
+											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
+										</tr>                
+									</tbody>
+								</table>
+								<hr class='mt-3 mb-2'>
+								</div>
+							</div>`
    					);
+   					
    				})
    				
    				$('#orders').append(orderArr.join(''))
@@ -73,11 +93,18 @@
 				$('#modalMsg').text('주문을 취소하시겠습니까?');
 				$('#modalBtn').show();
 				$('#modal').modal();
-
-   			$('#exchangeApplyBtn')
+   			})
    			
-   			$('#ruturnApplyBtn')
+   			$('#orderCancelOkBtn').click(() => {
+   				if(isVal($('#order')))
+   			})
    			
+   			$('#applyExchangeBtn').click(() => {
+   				
+   			})
+   			
+   			$('#applyRefundBtn').click(() => {
+   				
    			})
    			
    			
@@ -139,53 +166,47 @@
             </div>
         </div>
         <div class='row'>
-        <div class='col'>
-               <b>주문번호</b>&ensp;000005
-              </div>
+	       <div class='col'>
+	          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>${order.orderNum}</span>
+	       </div>
            <div class='col'>
-            <a href='detailOrder' class='link flex-fill text-dark' id='detailOrderBtn' role='button'
-                style='text-decoration: underline; float: right; float: bottom;'><small>주문상세</small></a>
+	           <div class='mr-2' style='float: right;'>
+		            <a href='detailOrder' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
+		                style='text-decoration: underline; font-size: small'>주문상세</a>
+		            <a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
+						style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
+						data-target='#orderCancelModal'>주문취소</a>
+			   </div>
           </div>
        </div>
        <hr class='mt-2 mb-2'>
        <div class='row'>
-             <div class='col'>
-                 <table class='table table-sm table-borderless ml-0' id='table'>
-                     <tbody>
-                         <tr>
-                           <td>밀키트명</td>
-                           <td>감바스</td>
-                           <td><a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
-				            	style='text-decoration: underline; float: right;' role='button' data-toggle='modal'
-				                data-target='#orderCancelModal'><b>주문취소</b></a></td>
-                         </tr>
+           <div class='col'>
+				<table class='table table-sm table-borderless ml-0' id='table'>
+                     <tbody> 
                         <tr>
-                            <td>수량</td>
-                            <td>3개</td>
-                            <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='exchangeApplyBtn'
-            					style='text-decoration: underline; float: right;' role='button'><b>교환신청</b></a></td>
+                           <td class='col-3'>주문상품</td>
+                           <td>${mealkit.mealkitName}</td>
+                            <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
                          </tr>
                          <tr>
-                            <td>가격</td>
-                            <td>29000원</td>
-                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='ruturnApplyBtn'
-            					style='text-decoration: underline; float: right;' role='button'><b>환불신청</b></a></td>
+                            <td>결제금액</td>
+                            <td>${totalPrice}원</td>
+                            <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
                          </tr>
                          <tr>
                             <td>주문상태</td>
-                            <td>주문완료</td>
+                            <td>${order.orderStatusName}</td>
                             <td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
-            					style='text-decoration: underline; float: right;' role='button'><b>리뷰작성</b></a></td>
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
                          </tr>                
                      </tbody>
                  </table><hr class='mt-3 mb-2'>
            </div>
         </div>
     </div>
-    
-    
-
-        
     </div>
    
     <div class='row d-flex mx-auto fixed-bottom mb-5' id='paging_div'>

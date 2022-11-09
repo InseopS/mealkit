@@ -33,6 +33,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
+	public List<Review> getSearchReviews(String keyword){
+		return reviewDao.searchReviews(keyword);
+	}
+	
+	@Override
 	public void addReview(Review review) {
 		reviewDao.insertReview(review);
 	}
