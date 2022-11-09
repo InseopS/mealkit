@@ -46,6 +46,18 @@
 		where review_num = #{reviewNum}
 	</select>
 	
+	<select id='searchReviews' resultType='review'>
+		select mealkit.reviews.review_num, mealkit.mealkits.mealkit_name, mealkit.reviews.review_title,
+    		mealkit.orders.user_id, mealkit.reviews.review_regdate
+		from mealkit.reviews inner join mealkit.orders
+		on mealkit.reviews.order_num = mealkit.orders.order_num 
+        inner join mealkit.orders_mealkits
+        on  mealkit.orders.order_num = mealkit.orders_mealkits.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num
+        where mealkit_name LIKE '%'||#{keyword}||'%'
+	</select>
+	
 	<insert id='insertReview'>
 		insert into reviews(review_num, review_title, review_content, rate, 
 			review_img_file_name, review_regdate)

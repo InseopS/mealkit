@@ -86,6 +86,47 @@
 			method: 'delete'
 		}).done(listReviews)
 	})
+	
+	$('#searchBtn').click(() => {
+         if($('#searchTitle').val() == '') {
+           		$('#delModalLabel').empty();
+           		$('#delModalLabel').text('공지검색');
+                $('#modalMsg').empty();
+                $('#modalMsg').text('상품명을 입력해주세요.');
+                $('#confirmModal').modal();
+                $('#okBtn').show();
+                $('#noBtn').hide();
+                $('#yesBtn').hide();
+                $(listNotices)
+         } else if($('#searchTitle').val() != '') {
+            $('#reviews').empty();
+            let keyword = $('#searchTitle').val();
+            
+            $.ajax({
+               url: 'searchReviews/' + keyword,
+               dataType: 'json',
+               success: reviews => {
+                  if(reviews.length) {
+                     const reviewArr = []               
+                     $.each(reviews, (i, review) => {
+                         reviewArr.unshift(
+                            `<tr>
+                              <td><input type='checkbox' name='reviewNum' id='reviewNum'
+				                    value='\${review.reviewNum}' onclick='NoMultiChk(this)'/></td>
+				              <td class='align-middle'>\${review.reviewNum}</td>
+			                  <td class='align-middle'>\${review.mealkitName}</td>
+			                  <td class='align-middle'><a href='/review/detailReview?reviewNum=\${review.reviewNum}'>\${review.reviewTitle}</td>
+			                  <td class='align-middle'>\${review.userId}</td>
+			                  <td class='align-middle'>\${review.reviewRegDate}</td>
+                            </tr>`
+                         )
+                     })                  
+                     $('#reviews').append(reviewArr.join(''))
+                  }
+               }            
+            }).done(function(){if($('#reviews').find('tr').eq(0).length != 1) $('#reviews').append('<tr><td colspan=6 class=text-center>리뷰가 없습니다.</td></tr>')})
+         }
+      })
      }
      
      $(init)
@@ -122,10 +163,10 @@
                             <label class='col-2 col-form-label' style='text-align: right; font-weight: 600;'>검색:
                             </label>
                             <div class='col px-0'>
-                                <input type='text' class='form-control' id='serchBox' placeholder='상품명을 입력해주세요.'>
+                                <input type='text' id='searchTitle' name='searchTitle' class='form-control' id='serchBox' placeholder='상품명을 입력해주세요.'>
                             </div>
                             <div class='col-2 d-flex'>
-                                <button type='button' id='serchBtn' class='btn btn-secondary'>검색</button>
+                                <button type='button' id='searchBtn' class='btn btn-secondary'>검색</button>
                             </div>
                         </div>
                         <div class='row mt-5'>
