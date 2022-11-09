@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Mealkit;
 import com.my.mealkit.domain.Notice;
 import com.my.mealkit.service.NoticeService;
 
@@ -98,10 +98,10 @@ public class NoticeAdminController {
 		noticeService.delAdminNotice(noticeNum);
 	}
 	
-	@RequestMapping(value ="searchNotice", method=RequestMethod.GET )
-	public String searchMealkit(Model model, @RequestParam("search") String search) {		
-		List<Notice> noticeList = noticeService.getSearchNotice(search);
-		model.addAttribute("noticeList", noticeList);
-		return "admin/notice/searchNotice";
+	@ResponseBody
+	@GetMapping("searchNotices/{keyword}")
+	public List<Notice> searchNotices(@PathVariable String keyword) {		
+		List<Notice> noticeList = noticeService.getSearchNotices(keyword);
+		return noticeList;
 	}
 }

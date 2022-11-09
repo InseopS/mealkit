@@ -90,13 +90,39 @@
 			if($('#searchTitle').val() == '') {
 				$('#delModalLabel').empty();
 				$('#delModalLabel').text('공지검색');
-				$('#modalMsg').text('검색할 공지제목을 입력하세요.');
-				$('#deleteModal').modal();
-				$('#noBtn').hide();
-				$('#delNoticeBtn').hide();
-				$('#okBtn').show();
-			} else if($('#searchTitle').val() != '' ) {
+         		$('#modalMsg').empty();
+         		$('#modalMsg').text('검색할 공지제목을 입력해주세요.');
+         		$('#deleteModal').modal();
+         		$('#okBtn').show();
+         		$('#noBtn').hide();
+         		$('#delNoticeBtn').hide();
+         		$(listNotices)
+			} else if($('#searchTitle').val() != '') {
+				$('#notices').empty();
+				let keyword = $('#searchTitle').val();
 				
+				$.ajax({
+					url: 'searchNotices/' + keyword,
+					dataType: 'json',
+					success: notices => {
+						if(notices.length) {
+							const userArr = []					
+							$.each(notices, (i, notice) => {
+							    userArr.unshift(
+							    	`<tr>
+										<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
+												value='\${notice.noticeNum}'/></td>
+										<td>\${notice.noticeNum}</td>
+										<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
+												\${notice.noticeTitle}</td>
+										<td>\${notice.noticeRegdate}</td>
+									 </tr>`
+							    )
+							})						
+							$('#notices').append(userArr.join(''))
+						}
+					}				
+				}).done(function(){if($('#notices').find('tr').eq(0).length != 1) $('#notices').append(`<tr><th colspan='5'>검색 결과가 없습니다.</th></tr>`)})
 			}
 		})
 	}

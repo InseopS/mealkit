@@ -18,8 +18,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 	
 	@Override
-	public List<Notice> searchNotice(String keyword) {
-		return noticeMap.searchNotice(keyword);
+	public List<Notice> selectSearchNotices(String keyword) {
+		return noticeMap.selectSearchNotices(keyword);
 	}
 	
 	@Override

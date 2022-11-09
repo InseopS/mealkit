@@ -23,8 +23,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public List<Notice> getSearchNotice(String keyword) {
-		return noticeDao.searchNotice(keyword);
+	public List<Notice> getSearchNotices(String keyword) {
+		return noticeDao.selectSearchNotices(keyword);
 	}
 	
 	@Override
