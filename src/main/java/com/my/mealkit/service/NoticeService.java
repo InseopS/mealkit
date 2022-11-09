@@ -7,7 +7,7 @@ import com.my.mealkit.domain.Notice;
 public interface NoticeService {
 	List<Notice> getNotice(int noticeNum);
 	List<Notice> getNotices();
-	List<Notice> getSearchNotice(String keyword);
+	List<Notice> getSearchNotices(String keyword);
 	List<Notice> getDetailNotices(int noticeNum);
 	List<Notice> getAdminNotices();
 	List<Notice> getAdminDetailNotices(int noticeNum);

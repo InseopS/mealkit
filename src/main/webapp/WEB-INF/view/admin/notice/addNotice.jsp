@@ -38,7 +38,10 @@ function init() {
         height: 1px;
         background-color: lightgray;
     }
-
+    
+    .select_img img {
+    	margin:10px 0;
+    }
 </style>
 </head>
 <body>
@@ -69,6 +72,18 @@ function init() {
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
                                     <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile' required>
+                                    <div class="select_img"><img src="" /></div>
+                                    <script>
+    	    	             	     	$("#noticeImgFile").change(function(){
+        	                               if(this.files && this.files[0]) {
+                                    	   	  var reader = new FileReader;
+	                                    	  reader.onload = function(data) {
+                                    	     	$(".select_img img").attr("src", data.target.result).width(500);        
+                                    	      }
+                                    	    reader.readAsDataURL(this.files[0]);
+                                    	   }
+	            	         	        });
+                                    </script>
                                 </div>
                             </div>
                             <hr>

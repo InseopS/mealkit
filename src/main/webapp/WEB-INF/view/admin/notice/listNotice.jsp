@@ -27,7 +27,7 @@
 					$.each(notices, (i, notice) => {
 						noticeArr.unshift(
 							`<tr>
-								<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
+								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
 								<td>\${notice.noticeNum}</td>
 								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
@@ -41,16 +41,6 @@
 					$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
 				}
 		})
-	}
-
-	function checkOnly(element) {
-	  	const checkboxes = document.getElementsByName("noticeNum");
-	  	
-	  	checkboxes.forEach((cb) => {
-	  		cb.checked = false;
-	  	})
-	  	
-	  	element.checked = true;
 	}
 	
     function init() {
@@ -80,23 +70,53 @@
    
 		$('#delNoticeBtn').click(() => {
 			$('#deleteModal').modal('hide')
-	      	$.ajax({
-	        	url: 'del/' + $('#noticeNum:checked').val(),
-	         	method: 'delete'
-			}).done(listNotices)
-		})
-		
+        	for (var i = 0; i < $('#noticeNum:checked').length; i++) {
+            	$.ajax({
+               		url: 'del/' + $('#noticeNum:checked').eq(i).val(),
+               		method: 'delete'
+            	}).done(function() {
+            		if(i == $('#noticeNum:checked').length) listNotices()
+            	})
+         	}      
+      	})
+
 		$('#searchBtn').click(() => {
 			if($('#searchTitle').val() == '') {
 				$('#delModalLabel').empty();
 				$('#delModalLabel').text('공지검색');
-				$('#modalMsg').text('검색할 공지제목을 입력하세요.');
-				$('#deleteModal').modal();
-				$('#noBtn').hide();
-				$('#delNoticeBtn').hide();
-				$('#okBtn').show();
-			} else if($('#searchTitle').val() != '' ) {
+         		$('#modalMsg').empty();
+         		$('#modalMsg').text('검색할 공지제목을 입력해주세요.');
+         		$('#deleteModal').modal();
+         		$('#okBtn').show();
+         		$('#noBtn').hide();
+         		$('#delNoticeBtn').hide();
+         		$(listNotices)
+			} else if($('#searchTitle').val() != '') {
+				$('#notices').empty();
+				let keyword = $('#searchTitle').val();
 				
+				$.ajax({
+					url: 'searchNotices/' + keyword,
+					dataType: 'json',
+					success: notices => {
+						if(notices.length) {
+							const userArr = []					
+							$.each(notices, (i, notice) => {
+							    userArr.unshift(
+							    	`<tr>
+										<td><input type='checkbox' name='noticeNum' id='noticeNum'
+												value='\${notice.noticeNum}'/></td>
+										<td>\${notice.noticeNum}</td>
+										<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
+												\${notice.noticeTitle}</td>
+										<td>\${notice.noticeRegdate}</td>
+									 </tr>`
+							    )
+							})						
+							$('#notices').append(userArr.join(''))
+						}
+					}				
+				}).done(function(){if($('#notices').find('tr').eq(0).length != 1) $('#notices').append(`<tr><th colspan='5'>검색 결과가 없습니다.</th></tr>`)})
 			}
 		})
 	}

@@ -14,7 +14,7 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-let noticeNumber  = <%=request.getParameter("noticeNum")%>
+let noticeNumber = <%=request.getParameter("noticeNum")%>
 function init() {
 	$('#fixNoticeBtn').click(() => {
 		let notice = {
@@ -74,8 +74,7 @@ $(init)
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    	<input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
-                                    	<input type="hidden" id="noticeImgFileName" value="${notice.noticeImgFileName}" />
+                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile' required>
                                 </div>
                             </div>
                             <hr>

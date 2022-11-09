@@ -12,7 +12,7 @@
 		where notice_num = #{noticeNum}
 	</select>
 	
-	<select id='searchNotice' resultType='notice'>
+	<select id='selectSearchNotices' resultType='notice'>
 		select *
 		from notices
 		where notice_title LIKE '%'||#{keyword}||'%'

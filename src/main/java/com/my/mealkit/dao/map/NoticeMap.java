@@ -8,7 +8,7 @@ import com.my.mealkit.domain.Notice;
 
 public interface NoticeMap {
 	List<Notice> selectNotice(@Param("noticeNum") int noticeNum);
-	List<Notice> searchNotice(@Param("keyword") String keyword);
+	List<Notice> selectSearchNotices(@Param("keyword") String keyword);
 	List<Notice> selectNotices();
 	List<Notice> selectDetailNotices(@Param("noticeNum") int noticeNum);
 	List<Notice> selectAdminNotices();

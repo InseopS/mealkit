@@ -6,7 +6,7 @@ import com.my.mealkit.domain.Notice;
 
 public interface NoticeDao {
 	List<Notice> selectNotice(int noticeNum);
-	List<Notice> searchNotice(String keyword);
+	List<Notice> selectSearchNotices(String keyword);
 	List<Notice> selectNotices();
 	List<Notice> selectDetailNotices(int noticeNum);
 	List<Notice> selectAdminNotices();
