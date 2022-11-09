@@ -45,34 +45,26 @@
 
 <body>
    <div id='mainContainerAddSub' class='container'>
-       <div class='row'>
-           <div class='col mt-3 mb-1'>
-               <b>주문번호</b>&ensp;000005
-           </div>
-       </div>
-       <hr class='mt-0 mb-2'>
       <div class='row'>
              <div class='col'>
-                 <table class='table table-sm table-borderless ml-0' style='font-size: 13px;' id='table'>
+                 <table class='table table-sm table-borderless ml-0'>
+                     <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>000005</th></tr>
                      <tbody>
-                         <tr>
-                           <td>밀키트명</td>
-                           <td>감바스</td>
-                         </tr>
                         <tr>
-                            <td>수량</td>
-                            <td>3개</td>
+                           <td class='orderInfoTitle2'>밀키트명</td>
+                           <td class='orderInfoContent'>감바스</td>
+                        </tr>
+                        <tr>
+                            <td class='orderInfoTitle2'>수량</td>
+                            <td class='orderInfoContent'>3개</td>
                          </tr>
                          <tr>
-                            <td>가격</td>
-                            <td>29000원</td>
+                            <td class='orderInfoTitle2'>가격</td>
+                            <td class='orderInfoContent'>29000원</td>
                          </tr>                
                      </tbody>
                  </table><hr class='mt-3 mb-2'>
-           </div>
-        </div>
-      <div class='row'>
-          <div class='col'>
+
               <table class='table table-sm table-borderless ml-0'>
                   <tr><th class='orderInfoTitle1'>주문상세</th><th></th></tr>
                   <tbody>
