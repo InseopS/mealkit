@@ -43,7 +43,7 @@
 	   	})
 	   	
 	   	$('#fixBtn').click(() => {
-			location.href='fixReview?reviewNum='+ $('#reviewNum').val()
+			location.href='fixReview?reviewNum='+ <%=request.getParameter("reviewNum") %>
 		})
 	   	
    		}
@@ -112,32 +112,14 @@
     </div>
     <div class='row justify-content-end mr-1'>
         <div class='col d-flex justify-content-end'>
-            <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#declarationModal'>신고</button>
-        &nbsp;
-        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editModal' id='fixBtn'>수정</button>
-        &nbsp;
-        <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
+            <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#declarationModal' id='declareBtn'>신고</button>
+        	&nbsp;
+        	<button type='button' class='btn btn-secondary' id='fixBtn'>수정</button>
+        	&nbsp;
+        	<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
         </div>
     </div>
 	
-	<div class='modal fade' id='editModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='myModalLabel'>리뷰수정</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
-                </div>
-                <div class='modal-body text-center'>
-                    <p>리뷰를 수정하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick='location.href="<%=request.getContextPath()%>/review/fixReview"'>예</button>         
-                </div>
-            </div>
-        </div>
-    </div>
 	<div class='modal fade' id='declarationModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
