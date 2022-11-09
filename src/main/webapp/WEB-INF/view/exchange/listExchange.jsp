@@ -25,36 +25,7 @@ function listExchanges() {
 		if(exchanges.length) {
 			const exchangeArr = []
 			
-			$.each(exchanges, (i, exchange) => {
-				exchangeArr.unshift(
-						`<div class='row'>
-					         <div class='col ml-3 mt-2 mb-1'>
-					            <b>주문번호</b>\${order.orderNum}
-					         </div>
-				         </div>
-				    	 <hr class='mt-0 ml-3 mr-3 mb-2'>
-				    	 <div class='row'>
-					         <div class='col-4'>
-								 <div class='ml-3 mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color:
-				            	 	white; justify-content: center; align-items: center; text-align: center;'>
-				                 <br>
-				                 	<small>\${mealkit.mealkitImgfileName}</small>
-			            	 	 </div>
-								 <div class='col mt-2 ml-2 mr-2 p-2'>
-				                 	<small><b>\${exchangeStatusName}</b></small>
-				            	 </div>
-			        		 </div>
-							 <div class='col-4 mt-5'>
-				             	<small>\${order.?}</small>
-				        	 </div>
-				        	 <div class='col3 mt-5 ml-4'>
-					             <button type='button' class='btn btn-black' data-toggle='modal' data-target='#exchangeCancelModal'
-					            	style='text-decoration: underline'>
-				                 	<small>교환취소</small>
-				             	 </button>
-				         	 </div>
-				    	 </div>`         	
-			})
+			
 		}
 	})
 }
@@ -81,6 +52,10 @@ function listExchanges() {
             background-color: #031F3B;
             color: white;
         }
+        
+	#table {
+		font-size: 15px;
+		}
 </style>
 </head>
 
@@ -105,35 +80,49 @@ function listExchanges() {
                 <hr style='border:solid 1px'>
             </div>
         </div>
-    </div>
-    <div class='row'>
-        <div class='col ml-3 mt-2 mb-1'>
-            <b>주문번호</b>&ensp;000002
+		<div class='row'>
+			<div class='col'>
+			    <b>주문번호</b>&ensp;<span id='orderNum'>000002</span>
+			</div>
+			<div class='col'>
+				<div class='mr-2' style='float:right'>
+					<a href='../../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+								style='text-decoration: underline;'><small>주문상세</small></a>
+					<a href='listExchange' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+			     			data-target='#exchangeCancelModal' style='text-decoration: underline;'><small>교환취소</small></a>
+				</div>
+			</div>
+		</div>
+		<hr class='mt-2 mb-2'>
+		<div class='row'>
+			<div class='col'>
+			    <table class='table table-sm table-borderless ml-0' id='table'>
+			        <colgroup>
+			<col width='30%'>
+			<col width='70%'>
+			</colgroup>
+				<tbody>
+				    <tr>
+				     <td>밀키트명</td>
+				     <td id='mealkitName'>밀키트명</td>
+				    </tr>
+				   <tr>
+				        <td>수량</td>
+				        <td id='orderMealkitCount'>100개</td>
+				    </tr>
+				    <tr>
+				        <td>가격</td>
+				        <td id='price'>10000원</td>
+				    </tr>
+				    <tr>
+				        <td>교환상태</td>
+				        <td id='exchangeStatusName'>교환처리중</td>
+				    </tr>
+				</tbody>
+			    </table><hr class='mt-3 mb-2'>
+			</div>
         </div>
     </div>
-    <hr class='mt-0 ml-3 mr-3 mb-2'>
-    <div class='row'>
-        <div class='col-4'>
-            <div class='ml-3 mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color:
-            	white; justify-content: center; align-items: center; text-align: center;'>
-                <br>
-                <small>마라샹궈<br>이미지</small>
-            </div>
-            <div class='col mt-2 ml-2 mr-2 p-2'>
-                <small><b>교환처리상태</b></small>
-            </div>
-        </div>
-        <div class='col-4 mt-5'>
-            <small>마라샹궈<br>3개 / 50000원</small>
-        </div>
-        <div class='col3 mt-5 ml-4'>
-            <button type='button' class='btn btn-black' data-toggle='modal' data-target='#exchangeCancelModal'
-            	style='text-decoration: underline'>
-                <small>교환취소</small>
-            </button>
-        </div>
-    </div>
-    <hr class='mt-2 ml-3 mr-3 mb-2'>
     <div class='row d-flex mx-auto fixed-bottom mb-5' id='pagingDiv'>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
