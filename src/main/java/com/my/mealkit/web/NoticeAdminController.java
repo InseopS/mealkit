@@ -98,10 +98,10 @@ public class NoticeAdminController {
 		noticeService.delAdminNotice(noticeNum);
 	}
 	
-	@ResponseBody
-	@PostMapping("searchNotice")
-	public void searchNotice(Model model, @RequestParam("search") String search) {		
-		noticeService.getSearchNotice(search);
-		System.out.println("try");
+	@RequestMapping(value ="searchNotice", method=RequestMethod.GET )
+	public String searchMealkit(Model model, @RequestParam("search") String search) {		
+		List<Notice> noticeList = noticeService.getSearchNotice(search);
+		model.addAttribute("noticeList", noticeList);
+		return "admin/notice/searchNotice";
 	}
 }

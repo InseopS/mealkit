@@ -96,34 +96,7 @@
 				$('#delNoticeBtn').hide();
 				$('#okBtn').show();
 			} else if($('#searchTitle').val() != '' ) {
-				$('#notices').empty();
 				
-				$.ajax({
-					method:'post',
-					url:"<%=request.getContextPath() %>/admin/notice/getNotices"
-				}).done(notices => {
-						if(notices.length) {
-							const noticeArr = []
-							
-							$.each(notices, (i, notice) => {
-								noticeArr.unshift(
-									`<c:forEach var='notice' items='${noticeList}'>
-									<tr>
-										<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
-												value='\${notice.noticeNum}'/></td>
-										<td>\${notice.noticeNum}</td>
-										<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
-												\${notice.noticeTitle}</td>
-										<td>\${notice.noticeRegdate}</td>
-									 </tr>
-									 </c:forEach>`
-								);
-							})
-							$('#notices').append(noticeArr.join(''))
-						} else {
-							$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
-						}
-				})
 			}
 		})
 	}
