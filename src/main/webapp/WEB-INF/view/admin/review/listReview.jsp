@@ -97,7 +97,7 @@
                 $('#okBtn').show();
                 $('#noBtn').hide();
                 $('#yesBtn').hide();
-                $(listNotices)
+                $(listReviews)
          } else if($('#searchTitle').val() != '') {
             $('#reviews').empty();
             let keyword = $('#searchTitle').val();
