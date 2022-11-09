@@ -51,23 +51,26 @@
            </div>
        </div>
        <hr class='mt-0 mb-2'>
-        <div class='row'>
-            <div class='col-4'>
-                <div class='mt-2 mr-0 rounded border' style='width: 6rem; height: 6rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
-                    <br>
-                    <span><small>감바스</small></span>
-                    <p><small>이미지</small></p>
-                </div>
-                <div class='col mt-2 ml-2 mr-3'>
-                    <small><b>주문완료</b></small>
-                </div>
-            </div>
-            <div class='col-4 mt-5'>
-                <span><small>감바스</small></span>
-                <p><small>3개 / 29000원</small></p>
-            </div>
+      <div class='row'>
+             <div class='col'>
+                 <table class='table table-sm table-borderless ml-0' style='font-size: 13px;' id='table'>
+                     <tbody>
+                         <tr>
+                           <td>밀키트명</td>
+                           <td>감바스</td>
+                         </tr>
+                        <tr>
+                            <td>수량</td>
+                            <td>3개</td>
+                         </tr>
+                         <tr>
+                            <td>가격</td>
+                            <td>29000원</td>
+                         </tr>                
+                     </tbody>
+                 </table><hr class='mt-3 mb-2'>
+           </div>
         </div>
-       <hr class='mt-2 mr-2 mb-2'>
       <div class='row'>
           <div class='col'>
               <table class='table table-sm table-borderless ml-0'>
