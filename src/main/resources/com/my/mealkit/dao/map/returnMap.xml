@@ -3,9 +3,17 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.ReturnMap'>
 	<select id='selectReturns' resultType='return'>
-		select * from returns
-		where order_num = #{orderNum}
-		order by return_num
+		select returns.*, orders.order_num, 
+			return_status.return_status_name,
+			return_reason.return_reason_name
+		from returns inner join orders
+		on returns.order_num = orders.order_num
+		inner join return_status
+		on return_status.return_status_code = returns.return_status_code
+		inner join return_reason
+		on return_reason.return_reason_code = returns.return_reason_code
+		where returns.order_num = #{orderNum}
+		order by order_num
 	</select>
 	
 	<select id='selectAdminReturns' resultType='return'>

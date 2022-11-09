@@ -43,24 +43,10 @@
                         </nav>
                     </div>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
-                        <div class='row mb-3'>
-                            <div class='col text-right align-self-end'>
-                                <label for='orderStatus'>선택한 주문:</label>
-                            </div>
-                            <div class='col-2'>
-                                <select class='form-control' name='orderStatus'>
-                                    <option value='none' selected hidden>선택</option>
-                                    <option value='exchangeIng'>반품처리중</option>
-                                    <option value='exchangeDone'>반품완료</option>
-                                    <option value='exchangeCancel'>반품취소</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class='row'>
                             <div class='col'>
                                 <table class='table table-hover my-0'>
                                     <colgroup>
-                                        <col width='5%'>
                                         <col width='10%'>
                                         <col width='17%'>
                                         <col width='14%'>
@@ -71,19 +57,18 @@
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
-                                            <th></th>
                                             <th>번호</th>
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>수량 / 금액</th>
+                                            <th>수량</th>
+                                            <th>가격</th>
                                             <th>사유</th>
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type='checkbox'/></td>
                                             <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>반품처리중</td>
                                         </tr>
                                     </tbody>

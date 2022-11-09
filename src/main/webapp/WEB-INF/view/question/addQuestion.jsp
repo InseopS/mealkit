@@ -20,17 +20,21 @@
 </style>
 <script>
 function addQuestion() {
-	$('writeQuestionBtn').click(() => {
+	$('#addQuestionBtn').click(() => {
+		let questionTitle = $('#questionTitle').val();
+		let questionContent = $('#questionContent').val();
+		
 		$.ajax({
-			method:'post',
-			url:'${pageContext.request.contextPath}/question/addQuestion',
+			url:"$<%=request.getContextPath() %>/question/addQuestion",
+			type:'post',
 			data: {
-				questionTitle: $('#questionTitle').val(),
-				questionContent: $('#questionContent').val()
+				questionTitle: questionTitle,
+				questionContent: questionContent
 			}
 		})
 	})
 }
+$(addQuestion)
 </script>
 </head>
 
@@ -63,7 +67,7 @@ function addQuestion() {
 	            <div class='col d-flex justify-content-end'>
 	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
 	                &nbsp;
-	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"' id='writeQuestionBtn'>작성</button>
+	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"' id='addQuestionBtn'>작성</button>
 	            </div>
 	        </div>
         </form>
