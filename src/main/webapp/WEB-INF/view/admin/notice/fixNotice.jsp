@@ -21,6 +21,7 @@ function init() {
 			noticeNum: noticeNumber,
 			noticeTitle: $('#noticeTitle').val(),
 			noticeContent: $('#noticeContent').val(),
+			noticeImgFile: $('#noticeImgFile').val()
 		}
 		
 		$.ajax({
@@ -74,6 +75,7 @@ $(init)
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
                                     	<input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
+                                    	<input type="hidden" id="noticeImgFileName" value="${notice.noticeImgFileName}" />
                                 </div>
                             </div>
                             <hr>

@@ -14,6 +14,7 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+
 function init() {
 	$('#addNoticeBtn').click(( => {
 		let noticeTitle = $('#noticeTitle').val();

@@ -58,6 +58,8 @@
         
         $('#delBtn').click(() => {
 			if($('#noticeNum:checked').val()) {
+				$('#delModalLabel').empty();
+				$('#delModalLabel').text('공지삭제');
         		$('#modalMsg').empty();
          		$('#modalMsg').text('선택한 공지를 삭제하시겠습니까?');
          		$('#deleteModal').modal();
@@ -65,6 +67,8 @@
          		$('#noBtn').show();
          		$('#delNoticeBtn').show();
       		} else {
+				$('#delModalLabel').empty();
+				$('#delModalLabel').text('공지삭제');
          		$('#modalMsg').empty();
          		$('#modalMsg').text('삭제할 공지를 선택해주세요.');
          		$('#deleteModal').modal();
@@ -80,6 +84,47 @@
 	        	url: 'del/' + $('#noticeNum:checked').val(),
 	         	method: 'delete'
 			}).done(listNotices)
+		})
+		
+		$('#searchBtn').click(() => {
+			if($('#searchTitle').val() == '') {
+				$('#delModalLabel').empty();
+				$('#delModalLabel').text('공지검색');
+				$('#modalMsg').text('검색할 공지제목을 입력하세요.');
+				$('#deleteModal').modal();
+				$('#noBtn').hide();
+				$('#delNoticeBtn').hide();
+				$('#okBtn').show();
+			} else if($('#searchTitle').val() != '' ) {
+				$('#notices').empty();
+				
+				$.ajax({
+					method:'post',
+					url:"<%=request.getContextPath() %>/admin/notice/getNotices"
+				}).done(notices => {
+						if(notices.length) {
+							const noticeArr = []
+							
+							$.each(notices, (i, notice) => {
+								noticeArr.unshift(
+									`<c:forEach var='notice' items='${noticeList}'>
+									<tr>
+										<td><input type='checkbox' name='noticeNum' id='noticeNum' onclick='checkOnly(this)'
+												value='\${notice.noticeNum}'/></td>
+										<td>\${notice.noticeNum}</td>
+										<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
+												\${notice.noticeTitle}</td>
+										<td>\${notice.noticeRegdate}</td>
+									 </tr>
+									 </c:forEach>`
+								);
+							})
+							$('#notices').append(noticeArr.join(''))
+						} else {
+							$('#notices').append('<tr><td colspan=6 class=text-center>공지사항이 없습니다.</td></tr>')	
+						}
+				})
+			}
 		})
 	}
 	$(init)
@@ -123,15 +168,17 @@
                         </nav>
                     </div>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
+                    	<form>
                         <div class='row mt-3'>
                             <label class='col-2 col-form-label' style='text-align: right; font-weight: 600;'>검색:</label>
                             <div class='col px-0'>
-                                <input type='text' class='form-control' id='serchBox' placeholder='제목을 입력해주세요.'>
+                                <input type='text' id='searchTitle' name='searchTitle' class='form-control' id='serchBox' placeholder='제목을 입력해주세요.'>
                             </div>
                             <div class='col-2 d-flex'>
-                                <button type='button' id='serchBtn' class='btn btn-secondary'>검색</button>
+                                <button type='button' id='searchBtn' class='btn btn-secondary'>검색</button>
                             </div>
                         </div>
+                        </form>
                         <div class='row mt-5'>
                             <div class='col'>
                                 <table class='table table-hover my-0'>

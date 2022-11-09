@@ -15,6 +15,11 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <script>
+function change() {
+	replaceAll("<","&lt;");
+	replaceAll("<","&gt;");
+}
+
 function init() {	
     $('#delBtn').click(() => {
     		$('#modalMsg').empty();

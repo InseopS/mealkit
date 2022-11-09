@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.mealkit.domain.Mealkit;
 import com.my.mealkit.domain.Notice;
 import com.my.mealkit.service.NoticeService;
 
@@ -95,5 +96,12 @@ public class NoticeAdminController {
 	@DeleteMapping("del/{noticeNum}")
 	public void delNotice(@PathVariable int noticeNum) {
 		noticeService.delAdminNotice(noticeNum);
+	}
+	
+	@ResponseBody
+	@PostMapping("searchNotice")
+	public void searchNotice(Model model, @RequestParam("search") String search) {		
+		noticeService.getSearchNotice(search);
+		System.out.println("try");
 	}
 }
