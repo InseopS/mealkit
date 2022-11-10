@@ -5,7 +5,8 @@ import java.util.List;
 import com.my.mealkit.domain.Question;
 
 public interface QuestionService {
-	List<Question> getQuestion(int questionNum);
+	List<Question> getDetailQuestion(int questionNum);
+	List<Question> getQuestion(String userId); //임시
 	List<Question> getAdminQuestion(int questionNum);
 	List<Question> getQuestions();
 	List<Question> getAdminQuestions();

@@ -18,6 +18,27 @@
 <style>
 
 </style>
+<script>
+function init() {
+	$('#applyRefundBtn').click(() =< {
+		let mealkitName = $('#mealkitName').val();
+		let returnReason = $('returnReason').val();
+		let returnDetailReason = $('returnDetailReason').val();
+		let returnImgFile = $('returnImgFile').val();
+		
+		$.ajax({
+			type:'post',
+			url: '${pageContext.request.contextPath}/refund/applyRefund',
+			data: {
+				mealkitName = mealkitName,
+				returnReason = returnReason,
+				returnDetailReason = returnDetailReason,
+				returnImgFile = returnImgFile
+			}
+		})
+	})
+}
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -33,48 +54,41 @@
     <div id='mainContainerAddSub' class="container">
         <form class='refund-request mt-5 ml-2 mb-2'>
             <div class='row'>
-                <div class='col-3 p-2 mt-2 ml-3'>
-                    <br>환불상품<span style='font-size:12px'></span>
+                <div class='col-5 mt-3 ml-3'>
+                   	환불상품
                 </div>
-                <div class='col-3'>
-                    <div class='mt-2 rounded border'
-                        style='width: 6rem; height: 5rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
-                        <p></p>
-                        <small>바질파스타<br>이미지</small>
-                    </div>
-                </div>
-                <div class='col-4 mt-4 ml-4'>
-                    <small>바질파스타<br>1개 / 19900원</small>
+                <div class='col mt-3' id='mealkitName'>
+                	바질파스타<span style='font-size:12px'>&ensp;외</span>
                 </div>
             </div>
             <div class='row'>
-                <div class='col-5 mt-1 ml-3'>
+                <div class='col-5 mt-3 ml-3'>
                     <br>환불사유<span style='font-size:12px'>(필수)</span>
                 </div>
-                <div class='col mt-3'>
+                <div class='col mt-4' id='refundReason'> 
                     <select name='reason' style='width:8rem; height:3rem'>
                         <option value='none' selected hidden>선택</option>
-                        <option value='poor'>품질 이상</option>
-                        <option value='misdelivery'>오배송</option>
-                        <option value='etc'>기타</option>
+                        <option value='1'>품질 이상</option>
+                        <option value='2'>오배송</option>
+                        <option value='3'>기타</option>
                     </select>
                 </div>
             </div>
             <div class='row'>
                 <div class='col ml-3'>
-                    <br>상세사유<span style='font-size:12px'>(선택)</span><br>
+                    <br>상세사유<span style='font-size:12px' id='refundDetailReason'>(선택)</span><br>
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
                         id='content'></textarea>
                 </div>
             </div>
             <div class='row'>
-                <div class='col mt-2 ml-3 mb-3'>
+                <div class='col mt-3 ml-3 mb-3' id='refundImgFile'>
                     이미지등록<span style='font-size:12px'>(필수)&emsp;&ensp;<input type='file' accept='image/*'
                             style='font-size:11px'></span>
                 </div>
             </div>
             <div class='row justify-content-end mr-1'>
-                <div class='col-5 mt-4 '>
+                <div class='col-5 mt-2 '>
                     <button type='button' class='btn btn-secondary btn-sm'
                         onclick='location.href="../order/listOrder"'>취소</button>
                     <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
@@ -95,8 +109,8 @@
                 <div class='modal-body text-center'>
                     <p>환불을 신청 하시겠습니까?</p>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-               <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                       data-target='#requestOkModal' onclick='location.href="listRefund"'>예</button>
+               <button type='submit' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
+                       data-target='#requestOkModal' id='applyRefundBtn'>예</button>
                 </div>
             </div>
         </div>

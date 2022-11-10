@@ -16,5 +16,9 @@ public class Refund {
 	private String refundContent;
 	private int orderNum;
 	private int refundReasonCode;
+	private String refundReasonName;
 	private int refundStatusCode;
+	private String refundStatusName;
+	private String userId;
+	private String mealkitName;
 }

@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import com.my.mealkit.domain.Question;
 
 public interface QuestionMap {
-	List<Question> selectQuestion(@Param("questionNum") int questionNum);
+	List<Question> selectDetailQuestion(@Param("questionNum") int questionNum);
+	List<Question> selectQuestion(@Param("userId") String userId);
 	List<Question> selectAdminQuestion(@Param("questionNum") int questionNum);
 	List<Question> selectQuestions();
 	List<Question> selectAdminQuestions();

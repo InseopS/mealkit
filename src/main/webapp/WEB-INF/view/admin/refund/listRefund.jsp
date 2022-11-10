@@ -14,6 +14,39 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function listRefunds() {
+	$('#refunds').empty();
+	
+	$.ajax({
+		method: 'post',
+		url: "<%=request.getContextPath()%>/admin/refund/getAdminRefunds"
+	}).done(refunds => {
+		if(refunds.length) {
+			const refundArr = []
+			
+			$.each(refunds, (i,refund) => {
+				refundArr.unshift(
+					`<tr>
+						<td class='align-middle'>\${refund.refundNum}</td>
+						<td class='align-middle'>\${refund.orderNum}</td>
+						<td class='align-middle'>\${refund.userId}</td>
+						<td class='align-middle'>\${refund.mealkitName}</td>
+						<td class='align-middle'>\${refund.refundReasonName}</td>
+						<td class='align-middle'>\${refund.refundStatusName}</td>
+					</tr>`
+				);
+			})
+			$('#refunds').append(refundArr.join(''))
+		} else {
+			$('#refunds').append(
+				'<tr><td colspan=6 class=text-center> 환불리스트가 없습니다.</td></tr>'
+			)
+		}
+	})
+}
+$(listRefunds)
+</script>
 </head>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
@@ -52,8 +85,7 @@
                                         <col width='14%'>
                                         <col width='17%'>
                                         <col width='17%'>
-                                        <col width='10%'>
-                                        <col width='10%'>
+                                        <col width='17%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
@@ -61,15 +93,18 @@
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>수량</th>
-                                            <th>가격</th>
                                             <th>사유</th>
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='refunds'>
                                         <tr>
-                                            <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>환불처리중</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
                                         </tr>
                                     </tbody>
                                 </table>

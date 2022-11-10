@@ -23,8 +23,8 @@ public class RefundServiceImpl implements RefundService{
 	}
 	
 	@Override
-	public void addRefund(Refund banpum) {
-		refundDao.insertRefund(banpum);
+	public void addRefund(Refund refund) {
+		refundDao.insertRefund(refund);
 	}
 	
 	@Override

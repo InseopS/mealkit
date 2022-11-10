@@ -7,6 +7,6 @@ import com.my.mealkit.domain.Refund;
 public interface RefundService {
 	List<Refund> getRefunds();
 	List<Refund> getAdminRefunds();
-	void addRefund(Refund banpum);
+	void addRefund(Refund refund);
 	void delRefund(int orderNum);
 }

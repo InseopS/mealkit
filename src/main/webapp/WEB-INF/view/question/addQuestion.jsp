@@ -19,7 +19,8 @@
 
 </style>
 <script>
-function addQuestion() {
+let userId2 = <%=request.getParameter("userId")%>
+function init() {
 	$('#addQuestionBtn').click(() => {
 		let questionTitle = $('#questionTitle').val();
 		let questionContent = $('#questionContent').val();
@@ -28,13 +29,13 @@ function addQuestion() {
 			url:"$<%=request.getContextPath() %>/question/addQuestion",
 			type:'post',
 			data: {
+				userId: userId2,
 				questionTitle: questionTitle,
 				questionContent: questionContent
 			}
 		})
 	})
 }
-$(addQuestion)
 </script>
 </head>
 
@@ -49,7 +50,7 @@ $(addQuestion)
 
 <body>
     <div id='mainContainerAddSub' class='container'>
-	    <form  id='form' method='post' encType='multipart/form-data'>
+	    <form  id='form' method='post'>
 	        <div class='row mt-3'>
 	        	<label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
 	        	<div class='col pl-1'>
@@ -67,7 +68,7 @@ $(addQuestion)
 	            <div class='col d-flex justify-content-end'>
 	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
 	                &nbsp;
-	                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"' id='addQuestionBtn'>작성</button>
+	                <button type='submit' class='btn btn-secondary' id='addQuestionBtn'>작성</button>
 	            </div>
 	        </div>
         </form>
