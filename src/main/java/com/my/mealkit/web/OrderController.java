@@ -50,6 +50,12 @@ public class OrderController {
 		return orders;
 	}
 	
+	@GetMapping("selectMealkitNames/{orderNum}")
+	public List<Order> getMealkitNames(@PathVariable int orderNum) {		
+		List<Order> mealkitNameList = orderSerivce.getMealkitNames(orderNum);
+		return mealkitNameList;
+	}	
+
 	@RequestMapping("detailOrder")
 	 public ModelAndView detailOrder(ModelAndView mv) {
 	      mv.setViewName("order/detailOrder");

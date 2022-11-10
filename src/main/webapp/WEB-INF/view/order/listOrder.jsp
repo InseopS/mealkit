@@ -15,6 +15,37 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
     <script>
+    let refundsTmp
+    let mealkitNamesTmp = []
+    function listRefunds() {
+    		$('#orders').empty();
+    		
+    		$.ajax({
+    			url: "<%=request.getContextPath()%>/order/listOrder",
+    			dataType: 'json',
+    			success: refunds => {
+    				if(refunds.length) {
+    					refundsTmp = refunds
+    				}
+    			}
+    		}).done(refunds => {
+    			$.each(refunds, (i, refund) => {
+    				$.ajax({
+    					url: 'selectMealkitNames/' + order.orderNum,
+    					dataType: 'json',
+    					async : false,
+    					success: mealkitNames => {
+    						if(mealkitNames.length > 1) {
+    							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+    						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+    					}
+    				})
+    			})
+    			listOrders()
+    		}) 
+    	}
+    
+    
    	function listOrders() {
    		$('#orders').empty()
    		

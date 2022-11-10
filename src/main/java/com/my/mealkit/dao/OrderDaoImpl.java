@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.my.mealkit.dao.map.OrderMap;
 import com.my.mealkit.domain.Order;
-import com.my.mealkit.domain.User;
 
 
 @Repository
