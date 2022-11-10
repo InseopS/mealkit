@@ -18,11 +18,6 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public List<Question> getQuestion(String userId) {
-		return questionDao.selectQuestion(userId);
-	}
-	
-	@Override
 	public List<Question> getAdminQuestion(int questionNum) {
 		return questionDao.selectAdminQuestion(questionNum);
 	}
