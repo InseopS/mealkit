@@ -3,21 +3,19 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.FavoriteMap'>
 	<select id='selectFavorites' resultType='favorite'>
-		SELECT FAVORITES.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE 
-		FROM FAVORITES JOIN MEALKITS
-		ON FAVORITES.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
-		JOIN USERS
-		ON FAVORITES.USER_ID = USERS.USER_ID
-		WHERE USERS.USER_ID = {userID}
+		SELECT mealkit.favorites.*, mealkit.mealkits.mealkit_name, mealkit.mealkits.mealkit_img_file_name, mealkit.mealkits.price 
+		FROM mealkit.FAVORITES JOIN mealkit.MEALKITS
+		ON mealkit.favorites.MEALKIT_NUM = mealkit.MEALKITS.MEALKIT_NUM
+		JOIN mealkit.users 
+		ON mealkit.favorites.user_id = mealkit.users.user_id
+		WHERE mealkit.favorites.user_id = #{userId}
 	</select>
 
 	<select id='selectFavorite' resultType='favorite'>
-		SELECT FAVORITES.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE 
-		FROM FAVORITES JOIN MEALKITS
-		ON FAVORITES.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
-		JOIN USERS
-		ON FAVORITES.USER_ID = USERS.USER_ID
-		WHERE USERS.USER_ID = {userID}
+		SELECT mealkit.FAVORITES.*, mealkit.MEALKITS.MEALKIT_NAME, mealkit.MEALKITS.MEALKIT_IMG_FILE_NAME, mealkit.MEALKITS.PRICE 
+		FROM mealkit.FAVORITES JOIN mealkit.MEALKITS
+		ON mealkit.favorites.MEALKIT_NUM = mealkit.MEALKITS.MEALKIT_NUM
+		WHERE mealkit.favorites.USER_ID = #{userId}
 	</select>
 
 	<insert id='insertFavorite'>
@@ -29,5 +27,4 @@
 		DELETE FAVORITES
 		WHERE USER_ID = #{userId} AND MEALKIT_NUM = #{mealkitNum}
 	</delete>
-
 </mapper>
