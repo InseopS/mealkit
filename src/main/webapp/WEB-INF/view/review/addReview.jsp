@@ -18,10 +18,10 @@
 
         </style>
          <script>
-         let orderNumber = <%=request.getParameter("orderNum") %>
+         let orderMealkitNumber = <%=request.getParameter("orderMealkitNum") %>
          function init(){
         		$('#regBtn').click(() => {
-        			orderNum = orderNumber,
+        			orderMealkitNum = orderMealkitNumbers,
         			let rate = $('#rate').val();
         			let reviewTitle = $('#reviewTitle').val();
         			let reviewContent = $('#reviewContent').val();

@@ -104,19 +104,15 @@ function listExchanges() {
 				<tbody>
 				    <tr>
 				     <td>밀키트명</td>
-				     <td id='mealkitName'>밀키트명</td>
-				    </tr>
-				   <tr>
-				        <td>수량</td>
-				        <td id='orderMealkitCount'>100개</td>
+				     <td id='mealkitName'>${mealkitName}</td>
 				    </tr>
 				    <tr>
 				        <td>가격</td>
-				        <td id='price'>10000원</td>
+				        <td id='price'>${price}</td>
 				    </tr>
 				    <tr>
 				        <td>교환상태</td>
-				        <td id='exchangeStatusName'>교환처리중</td>
+				        <td id='exchangeStatusName'>${exchangeStatusName}</td>
 				    </tr>
 				</tbody>
 			    </table><hr class='mt-3 mb-2'>

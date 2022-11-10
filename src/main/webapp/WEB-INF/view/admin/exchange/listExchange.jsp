@@ -14,30 +14,35 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-	function listExchanges() {
-		$('#exchanges').empty();
-		$.ajax({
-			method: 'post',
-			url: "<%=request.getContextPath()%>/admin/exchange/getExchange"
-		}).done(exchanges => {
-			if(exchanges.length) {
-				const exchangeArr = []
-				$.each(exchanges, (i, exchange) => {	교환번호, 주문번호, 아이디, 주문상품, ㅅ량/금액, 사유, 주문상태
-					exchangeArr.unshift(
-							`<td><input type='checkbox' name='exchangeNum' id='exchangeNum'
-											value='\${exchange.exchangeNum}'/></td>
+function init() {
+	$('#exchanges').empty();
+	
+	$.ajax({
+		type: 'post',
+		url: "<%=request.getContextPath() %>/admin/exchange/getExchanges"
+	}).done(exchanges => {
+		if(exchanges.length) {
+			const exchangeArr = []
+			$.each(exchanges, (i, exchange) => {
+				exchangeArr.unshift(
+						`<tr>
 							<td class='align-middle'>\${exchange.exchangeNum}</td>
 							<td class='align-middle'>\${exchange.orderNum}</td>
 							<td class='align-middle'>\${exchange.userId}</td>
-							<td class='align-middle'>\${exchange.}</td>
-							<td class='align-middle'>\${exchange.userId}</td>
-							<td class='align-middle'>\${exchange.userId}</td>
+							<td class='align-middle'>\${exchange.mealkitName}</td>
+							<td class='align-middle'>\${exchange.exchangeReasonName}</td>
+							<td class='align-middle'>\${exchange.exchangeStatusName}</td>
+						<tr>`
+				);
+			})
+			$('#exchanges').append(exchangeArr.join(''))
+		} else {
+			$('#exchanges').append('<tr><td colspan=6 class=text-center>교환리스트가 비었습니다.</td></tr>')
+		}
+	})
+}
 
-)
-				})
-			}
-		})
-	}
+$(init)
 </script>
 </head>
 <body>
@@ -69,48 +74,31 @@
                         </nav>
                     </div>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
-                        <div class='row mb-3'>
-                            <div class='col text-right align-self-end'>
-                                <label for='orderStatus'>선택한 주문:</label>
-                            </div>
-                            <div class='col-2'>
-                                <select class='form-control' name='orderStatus'>
-                                    <option value='none' selected hidden>선택</option>
-                                    <option value='exchangeIng'>교환처리중</option>
-                                    <option value='exchangeDone'>교환완료</option>
-                                    <option value='exchangeCancel'>교환취소</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class='row'>
                             <div class='col'>
                                 <table class='table table-hover my-0'>
                                     <colgroup>
-                                        <col width='5%'>
                                         <col width='10%'>
-                                        <col width='17%'>
+                                        <col width='20%'>
                                         <col width='14%'>
-                                        <col width='17%'>
-                                        <col width='17%'>
-                                        <col width='10%'>
-                                        <col width='10%'>
+                                        <col width='27%'>
+                                        <col width='15%'>
+                                        <col width='14%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
-                                            <th></th>
                                             <th>번호</th>
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>수량 / 금액</th>
                                             <th>사유</th>
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='exchanges'>
                                         <tr>
-                                            <td><input type='checkbox'/></td>
-                                            <td>1</td><td>000002</td><td>rightarm</td><td>마라샹궈</td><td>3개 / 50000원</td><td>오배송</td><td>교환완료</td>
+                                            <td>${exchanges.exchangeNum}</td><td>${orderNum}</td><td>${userId}</td><td>${mealkitName}</td>
+                                            <td>${exchangeReasonName}</td><td>${exchangeStatusName}</td>
                                         </tr>
                                     </tbody>
                                 </table>

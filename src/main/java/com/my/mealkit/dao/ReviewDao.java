@@ -10,6 +10,7 @@ public interface ReviewDao {
 	List<Review> selectAdminReviews();
 	List<Review> detailAdminReviews(int reviewNum);
 	List<Review> searchReviews(String keyword);
+	Review selectReview(int reviewNum);
 	void insertReview(Review review);
 	void updateReview(Review review);
 	void deleteReview(int reviewNum);

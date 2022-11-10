@@ -22,32 +22,31 @@
             }
         </style>
         <script>
-
         function init() {
-       	 
-       	 $('#delBtn').click(() => {
-       		$('#modalMsg').empty();
-   			$('#modalMsg').text('리뷰를 삭제하시겠습니까?');
-   			$('#confirmModal').modal();
-   			$('#noBtn').show();
-   			$('#delReviewBtn').show();
-       	 })
-   	
-	   	$('#delReviewBtn').click(() => {
-	   		$('#confirmModal').modal('hide')
-	   		$.ajax({
-	   			url: 'del/' + <%=request.getParameter("reviewNum")%>,
-	   			method: 'delete'
-	   		}).done(() => {
-	   			location.href='listReview'
-	   		})
-	   	})
-	   	
-	   	$('#fixBtn').click(() => {
-			location.href='fixReview?reviewNum='+ <%=request.getParameter("reviewNum") %>
-		})
-		
-   	}
+           
+           $('#delBtn').click(() => {
+             $('#modalMsg').empty();
+            $('#modalMsg').text('리뷰를 삭제하시겠습니까?');
+            $('#confirmModal').modal();
+            $('#noBtn').show();
+            $('#delReviewBtn').show();
+           })
+      
+         $('#delReviewBtn').click(() => {
+            $('#confirmModal').modal('hide')
+            $.ajax({
+               url: 'del/' + <%=request.getParameter("reviewNum")%>,
+               method: 'delete'
+            }).done(() => {
+               location.href='listReview'
+            })
+         })
+         
+         $('#fixBtn').click(() => {
+         location.href='fixReview?reviewNum='+ <%=request.getParameter("reviewNum") %>
+      })
+         
+         }
 
         $(init)
         </script>
@@ -62,50 +61,50 @@
             </div>
     <%@ include file ='../include/headerBottom.jsp'%>
 <body>
-	<div id='mainContainerAddSub' class="container">
+   <div id='mainContainerAddSub' class="container">
         <div class='container mr-1 ml-1'>
             <div class='row d-flex justify-content-between'>
-	            <div>
-	            	<c:forEach var='review' items='${reviewList}'>
-	            		${review.rate}
-	            	</c:forEach>
-	            </div>
-	            <div>
-		            <c:forEach var='review' items='${reviewList}'>
-		            	${review.reviewRegDate}
-		            </c:forEach>
-	            </div>
+                    <div>
+                       <c:forEach var='review' items='${reviewList}'>
+                        ${review.rate}
+                        </c:forEach>
+                    </div>
+                    <div>
+                        <c:forEach var='review' items='${reviewList}'>
+                        ${review.reviewRegDate}
+                        </c:forEach>
+                    </div>
             </div>
             <div class='row'>
                 <c:forEach var='review' items='${reviewList}'>
-                	[구매제품] ${review.mealkitName}
+                [구매제품] ${review.mealkitName}
                 </c:forEach>
             </div>
             <div class='row'>
                 <div class='col'>
                     <c:forEach var='review' items='${reviewList}'>
                         ${review.reviewTitle}
-                    </c:forEach>
+                        </c:forEach>
                 </div>
             </div>
         </div> 
         <hr>
         <div class='container'>
             <div class='col-14'>
-	            <c:forEach var='review' items='${reviewList}'>
-	            	<img style="height:220px; width: 100%;" src='<c:url value="/attach/${review.reviewImgfileName}"/>' onerror='this.style.display="none"'/>
-	            </c:forEach>
+                    <c:forEach var='review' items='${reviewList}'>
+                       	<img style='height:220px; width: 100%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>' onerror='this.style.display="none"'/>
+                    </c:forEach>
             </div>
             <br>
             <div class='row ml-1'>
-            	<c:forEach var='review' items='${reviewList}'>
-                	${review.reviewContent}
-                </c:forEach>
+            <c:forEach var='review' items='${reviewList}'>
+                        ${review.reviewContent}
+                        </c:forEach>
             </div>
             <br>
             <div class='row ml-1'>
                 <c:forEach var='review' items='${reviewList}'>
-                	작성자: ${review.userId}
+                   작성자: ${review.userId}
                 </c:forEach>
             </div>
             <br>
@@ -114,27 +113,27 @@
     <div class='row justify-content-end mr-1'>
         <div class='col d-flex justify-content-end'>
             <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#declarationModal' id='declareBtn'>신고</button>
-        	&nbsp;
-        	<button type='button' class='btn btn-secondary' id='fixBtn'>수정</button>
-        	&nbsp;
-        	<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
+           &nbsp;
+           <button type='button' class='btn btn-secondary' id='fixBtn'>수정</button>
+           &nbsp;
+           <button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteModal' id='delBtn'>삭제</button>
         </div>
     </div>
-	
-	<div class='modal fade' id='declarationModal' tabindex='-1'>
+   
+   <div class='modal fade' id='declarationModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
                     <p class="modal-title float-left" id='myModalLabel'>리뷰신고</p>
-                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>					
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>               
                 </div>
                 <div class='modal-body text-center'>
                     <p>해당 리뷰를 신고하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;       	
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                      onclick="location.href='<%=request.getContextPath()%>/declaration/declareReview'">예</button>         
+                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&nbsp;&nbsp;          
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal'
+                      onclick='location.href="<%=request.getContextPath()%>/declaration/declareReview"'>예</button>         
                 </div>
             </div>
         </div>
