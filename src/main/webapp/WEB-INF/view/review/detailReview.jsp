@@ -66,7 +66,7 @@
             <div class='row d-flex justify-content-between'>
                     <div>
                        <c:forEach var='review' items='${reviewList}'>
-                        ${review.rate}
+                        ${review.star}
                         </c:forEach>
                     </div>
                     <div>

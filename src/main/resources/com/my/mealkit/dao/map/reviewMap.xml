@@ -3,66 +3,70 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='com.my.mealkit.dao.map.ReviewMap'>
 	<select id='selectReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
 		from mealkit.reviews inner join mealkit.orders_mealkits
 		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
         inner join mealkit.orders
         on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
         inner join mealkit.mealkits
         on orders_mealkits.mealkit_num = mealkits.mealkit_num
+        inner join mealkit.rate_to_star
+        on reviews.rate = rate_to_star.rate
 		order by review_num
 	</select>
 	
 	<select id='selectAdminReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
 		from mealkit.reviews inner join mealkit.orders_mealkits
 		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
         inner join mealkit.orders
         on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
         inner join mealkit.mealkits
         on orders_mealkits.mealkit_num = mealkits.mealkit_num
+        inner join mealkit.rate_to_star
+        on reviews.rate = rate_to_star.rate
 		order by review_num
 	</select>
 	
 	<select id='detailReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
-		from mealkit.reviews inner join mealkit.orders_mealkits
-		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
-        inner join mealkit.orders
-        on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
-        inner join mealkit.mealkits
-        on orders_mealkits.mealkit_num = mealkits.mealkit_num 
-		where review_num = #{reviewNum}
-	</select>
-	
-	<select id='detailAdminReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
-		from mealkit.reviews inner join mealkit.orders_mealkits
-		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
-        inner join mealkit.orders
-        on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
-        inner join mealkit.mealkits
-        on orders_mealkits.mealkit_num = mealkits.mealkit_num 
-		where review_num = #{reviewNum}
-	</select>
-	
-	<select id='searchReviews' resultType='review'>
-		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
 		from mealkit.reviews inner join mealkit.orders_mealkits
 		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
         inner join mealkit.orders
         on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
         inner join mealkit.mealkits
         on orders_mealkits.mealkit_num = mealkits.mealkit_num
-        where mealkit_name LIKE '%'||#{keyword}||'%'
-	</select>
-	
-	<select id='selectReview' resultType='review'>
-		select reviews.*
-		from reviews
+        inner join mealkit.rate_to_star
+        on reviews.rate = rate_to_star.rate
 		where review_num = #{reviewNum}
 	</select>
 	
+	<select id='detailAdminReviews' resultType='review'>
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
+		from mealkit.reviews inner join mealkit.orders_mealkits
+		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
+        inner join mealkit.orders
+        on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num
+        inner join mealkit.rate_to_star
+        on reviews.rate = rate_to_star.rate
+		where review_num = #{reviewNum}
+	</select>
+	
+	<select id='searchReviews' resultType='review'>
+		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
+		from mealkit.reviews inner join mealkit.orders_mealkits
+		on mealkit.reviews.order_mealkit_num = mealkit.orders_mealkits.order_mealkit_num
+        inner join mealkit.orders
+        on  mealkit.orders_mealkits.order_num = mealkit.orders.order_num
+        inner join mealkit.mealkits
+        on orders_mealkits.mealkit_num = mealkits.mealkit_num
+        inner join mealkit.rate_to_star
+        on reviews.rate = rate_to_star.rate
+        where mealkit_name LIKE '%'||#{keyword}||'%'
+	</select>
+
 	<insert id='insertReview'>
 		insert into reviews(review_num, review_title, review_content, rate, 
 			review_img_file_name, review_regdate)

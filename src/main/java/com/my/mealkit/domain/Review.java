@@ -28,4 +28,5 @@ public class Review {
 	private String userId;
 	private String mealkitName;
 	private int mealkitNum;
+	private String star;
 }
