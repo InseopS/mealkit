@@ -20,11 +20,11 @@ function listExchanges() {
 	$('#exchanges').empty();
 	
 	$.ajax({
-		url: "<%=request.getContextPath()%>/admin/refund/getAdminExchanges",
+		url: "<%=request.getContextPath()%>/admin/exchange/getAdminExchanges",
 		dataType: 'json',
-		success: refunds => {
-			if(refunds.length) {
-				refundsTmp = refunds
+		success: exchanges => {
+			if(exchanges.length) {
+				exchangesTmp = exchanges
 			}
 		}
 	}).done(exchanges => {

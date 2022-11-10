@@ -15,7 +15,7 @@ import com.my.mealkit.domain.Exchange;
 import com.my.mealkit.service.ExchangeService;
 
 @RestController
-@RequestMapping("/admin/exchange")
+@RequestMapping("admin/exchange")
 public class ExchangeAdminController {
 	@Autowired private ExchangeService exchangeService;
 	
