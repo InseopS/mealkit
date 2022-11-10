@@ -18,7 +18,10 @@ public class Order {
 	private String userId;
 	private int paymentCode;
 	private int orderStatusCode;
-	
 	private String paymentName;
-	private String orderStatusName;	
+	private String orderStatusName;
+	private int mealkitNum;
+	private String mealkitName;
+	private int orderMealkitNum;
+	private int orderMealkitCount; 
 }

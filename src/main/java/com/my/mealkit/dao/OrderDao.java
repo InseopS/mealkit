@@ -9,7 +9,6 @@ public interface OrderDao {
 	List<Order> selectOrders(String userId);
 	List<Order> detailOrders(int orderNum);
 	List<Order> selectAdminOrders();
-	List<Order> selectAdminOrderCancel();
 	void insertOrder(Order order, User user);
 	void insertOrderMealkits(int orderMealkitNum, int orderMealkitCount, 
 							int orderNum, int mealkitNum);

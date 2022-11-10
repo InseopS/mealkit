@@ -18,8 +18,7 @@
 <body>
     <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>주문</h2>
-                    <h6><a href='listOrder' class='font-weight-bold' role='button'>주문완료리스트</a></h6>
-                    <h6><a href='listOrderCancel' role='button'>취소리스트</a></h6>
+                    <h6><a href='listOrder' class='font-weight-bold' role='button'>주문리스트</a></h6>
                     <h6><a href='../exchange/listExchange' role='button'>교환리스트</a></h6>
                     <h6><a href='../refund/listRefund' role='button'>환불리스트</a></h6>
 	<%@ include file ='../../include/adminTop2.jsp'%>
@@ -47,26 +46,27 @@
                             <div class='col'>
                                 <table class='table table-hover my-0'>
                                     <colgroup>
+                                        <col width='15%'>
+                                        <col width='15%'>
                                         <col width='20%'>
-                                        <col width='16%'>
                                         <col width='20%'>
-                                        <col width='20%'>
-                                        <col width='12%'>
-                                        <col width='12%'>
+                                        <col width='15%'>
+                                        <col width='15%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>수량 / 금액</th>
+                                            <th>금액</th>
                                             <th>결제방법</th>
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-	                                     <tr><td>000005</td><td>yeon2</td><td>감바스</td><td>3개 / 29000원</td><td>카드</td><td>주문완료</td></tr>
-	                                     <tr><td>000004</td><td>ina1</td><td>미나리 감자탕</td><td>1개 / 10000원</td><td>카드</td><td>주문완료</td></tr>
+	                                     <tr><td>000005</td><td>yeon2</td><td>감바스</td><td>29000원</td><td>카드 결제</td><td>주문완료</td></tr>
+	                                     <tr><td>000004</td><td>ina1</td><td>미나리 감자탕</td><td>10000원</td><td>카드 결제</td><td>주문완료</td></tr>
+	                                     <tr><td>000003</td><td>binny7</td><td>리얼치즈핫도그</td><td>20000원</td><td>카드 결제</td><td>주문취소</td></tr>
                                     </tbody>
                                 </table>
                                 <hr class='my-0'>

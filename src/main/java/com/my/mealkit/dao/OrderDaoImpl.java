@@ -30,11 +30,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<Order> selectAdminOrderCancel() {
-		return orderMap.selectAdminOrderCancel();
-	}
-	
-	@Override
 	public void insertOrder(Order order, User user) {
 		orderMap.insertOrder(order, user);
 	}

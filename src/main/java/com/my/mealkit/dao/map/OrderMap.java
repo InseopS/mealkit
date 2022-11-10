@@ -8,15 +8,14 @@ import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.User;
 
 public interface OrderMap {
-	List<Order> selectOrders(@Param("userId") String userId); // 주문내역
-	List<Order> detailOrders(@Param("orderNum") int orderNum); // 주문상세
-	List<Order> selectAdminOrders(); // 어드민
-	List<Order> selectAdminOrderCancel(); // 어드민
-	void insertOrder(Order order, User user); // 주문
+	List<Order> selectOrders(@Param("userId") String userId);
+	List<Order> detailOrders(@Param("orderNum") int orderNum);
+	List<Order> selectAdminOrders();
+	void insertOrder(Order order, User user);
 	void insertOrderMealkits(
 			@Param("orderMealkitNum") int orderMealkitNum, 
 			@Param("orderMealkitCount") int orderMealkitCount, 
 			@Param("orderNum") int orderNum, 
-			@Param("mealkitNum") int mealkitNum); // 주문밀키트
-	void deleteOrder(int orderNum); // 주문취소
+			@Param("mealkitNum") int mealkitNum);
+	void deleteOrder(int orderNum);
 }

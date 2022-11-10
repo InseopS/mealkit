@@ -38,28 +38,18 @@
    <select id='selectAdminOrders' resultType='order'>
       select orders.order_num, users.user_id,
 		    mealkits.mealkit_name, mealkits.price,
-		    orders_mealkits.order_mealkit_count,
-		    orders.order_status_code
+		    orders_mealkits.order_mealkit_num,
+		    payments.payment_name, order_status.order_status_name
 	  from orders inner join users
 	  on orders.user_id = users.user_id
 	  inner join orders_mealkits
 	  on orders_mealkits.order_num = orders.order_num
 	  inner join mealkits
 	  on orders_mealkits.mealkit_num = mealkits.mealkit_num
-	  order by order_num
-   </select>
-   
-   <select id='selectAdminOrderCancel' resultType='order'>
-      select orders.order_num, users.user_id,
-		    mealkits.mealkit_name, mealkits.price,
-		    orders_mealkits.order_mealkit_count,
-		    orders.order_status_code
-	  from orders inner join users
-	  on orders.user_id = users.user_id
-	  inner join orders_mealkits
-	  on orders_mealkits.order_num = orders.order_num
-	  inner join mealkits
-	  on orders_mealkits.mealkit_num = mealkits.mealkit_num
+      inner join payments
+      on payments.payment_code = orders.payment_code
+      inner join order_status
+      on orders.order_status_code = order_status.order_status_code
 	  order by order_num
    </select>
    
