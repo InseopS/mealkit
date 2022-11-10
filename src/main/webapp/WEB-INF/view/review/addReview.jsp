@@ -18,10 +18,8 @@
 
         </style>
          <script>
-         let orderMealkitNumber = <%=request.getParameter("orderMealkitNum") %>
          function init(){
         		$('#regBtn').click(() => {
-        			orderMealkitNum = orderMealkitNumbers,
         			let rate = $('#rate').val();
         			let reviewTitle = $('#reviewTitle').val();
         			let reviewContent = $('#reviewContent').val();
@@ -78,10 +76,22 @@
          	</div>
        	</div>
         <div class='row mt-3'>
-            <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
-            <div class='col pl-1'>
-            	<input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile' maxlength='45'>
-            </div>
+        <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
+	        <div class='col pl-1'>
+		        <input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile'>
+		        <div class="select_img"><img src="" /></div>
+			        <script>
+				    	$("#reviewImgfile").change(function(){
+				        	if(this.files && this.files[0]) {
+				        		var reader = new FileReader;
+					    		reader.onload = function(data) {
+				        			$(".select_img img").attr("src", data.target.result).width(100);        
+				        		}
+				        			reader.readAsDataURL(this.files[0]);
+				        		}
+					    });
+			        </script>
+	        </div>
         </div>
         <hr>
         <br>
