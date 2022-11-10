@@ -79,7 +79,8 @@
 		set review_title = #{reviewTitle},
 			review_content = #{reviewContent},
 			rate = #{rate},
-			review_regdate = sysDate
+			review_regdate = sysDate,
+			review_img_file_name = #{reviewImgfileName}
 		where review_num = #{reviewNum}
 	</update>
 	
