@@ -50,7 +50,6 @@ public class QuestionController {
             return null;
         }
         question.setUserId(userId);
-        System.out.println(question);
 		questionService.addQuestion(question);
 		
 		mv.setViewName("question/listQuestion");
