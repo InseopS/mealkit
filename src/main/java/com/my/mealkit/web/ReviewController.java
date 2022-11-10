@@ -59,7 +59,6 @@ public class ReviewController {
    public ModelAndView fixReview(@RequestBody Review review, ModelAndView mv) {
       reviewService.fixReview(review);
       mv.setViewName("review/listReview");
-      System.out.println("Asd");
       return mv;
    }
 
