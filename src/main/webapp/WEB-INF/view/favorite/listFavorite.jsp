@@ -15,12 +15,82 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+	function listFavorite() {
+		$('.favoriteList').empty();
+		
+		$.ajax({
+			method:'get',
+			url:"<%=request.getContextPath() %>/favorite/getFavorites/"
+		}).done(favoriteList => {
+			console.log(favoriteList)
+			if(favoriteList.length) {
+				const favoriteArr = []
+				
+				$.each(favoriteList, (i, favorite) => {
+					console.log(favorite)
+					favoriteArr.unshift(
+						`<tr>
+							<td>
+								<input type='checkbox' name='mealkitNum' id='mealkitNum'
+									value='\${favorite.mealkitNum}'/>
+							</td>//체크박스
+							<td class='mealkitImage'>
+								<a href='http://localhost/mealkit/detailMealkit?mealkitNum=\${favorite.mealkitNum}'>
+									<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+								</a>
+							</td>//밀키트이미지 + 밀키트상세페이지링크
+							<td>
+								\${favorite.mealkitName}<br><br>\${favorite.mealkitCount}개<br>\${favorite.mealkitCount * favorite.price}원
+							</td>//밀키트이름 + 밀키트수량 + 밀키트수량 * 가격
+						<tr>`
+					);
+				})
+				$('.favoriteList').append(favoriteArr.join(''))
+			} else {
+				$('.favoriteList').append('<tr><td colspan=6 class=text-center>찜한 목록에 상품이 없습니다.</td></tr>')
+			}
+		})
+	}
+	
+	function init() {
+		$(listFavorite)
+		
+		$('#delBtn').click(() => {
+			if($('#mealkitNum:checked').val()) {
+            	$('#modalMsg').text('밀키트를 삭제하시겠습니까?') 
+            	$('#confirmBtn').hide()
+ 				$('#noBtn').show()
+ 				$('#delFavoriteBtn').show()
+            	$('#modal').modal()
+        	} else {
+        		$('#modalMsg').text('삭제할 밀키트를 선택해주세요.')
+        		$('#confirmBtn').show()
+ 				$('#noBtn').hide()
+ 				$('#delFavoriteBtn').hide()
+            	$('#modal').modal()
+        	}
+    	})
+
+    	$(document).on("click", "button[id='delFavoriteBtn']", function () {
+			for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
+				$.ajax({
+					url: 'delFavorite/' + $('#mealkitNum:checked').eq(i).val(),
+					method: 'delete'
+				}).done(function(){if(i == $('#mealkitNum:checked').length) listFavorite()})
+			}		
+		})
+	}
+	
+	$(init)
+</script>
+
 <style>
 tr, td {
    border: 1px solid lightgray;
 }
 
-table.favoriteList {
+#fav1 {
 	width: 100%;
 	text-align: center;
 }
@@ -31,63 +101,49 @@ table.favoriteList {
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
 	<a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
 	<div id='menuName'>
-	    <h3>찜한 상품</h3>
+	    <h3>찜한 목록</h3>
 	</div>            
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
 	<div class='container' id='mainContainerAddSub'>
-		<div class='row mt-5'>
-			<div class='col'>
-				<table class='favoriteList'>
-					<tbody>
-						<tr>
-							<th width='13%'><input type='checkbox'></th>
-							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${favorite.flowerImgfileName}'/>'/>
-								</a>
-							</td>
-							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
-						</tr>
-						<tr>
-							<th width='13%'><input type='checkbox'></th>
-							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${favorite.flowerImgfileName}'/>'/>
-								</a>
-							</td>
-							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class='row justify-content-end mt-3 mr-2'>
-			<button type='button' id='deleteBtn' class='btn btn-secondary mr-2'
-					data-toggle='modal' data-target='#deleteModal'>삭제</button>
-		</div>
-	</div>
-    <div class='modal fade' id='deleteModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <p class='modal-title float-left' id='myModalLabel'>찜한 상품</p>
-                    <button bype='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>상품을 삭제하시겠습니까?</p>
-                </div>
-                <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal' data-target='#deleteOkModal'>예</button>
+		<form action='<%=request.getContextPath() %>/order/addOrder'>
+            <div class='row mt-5'>    
+                <div class='col'>
+                    <table id='fav1'>
+                        <tbody class='favoriteList'>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class='row justify-content-end mt-3 mr-2'>
+                <button type='button' id='delBtn' class='btn btn-secondary mr-2'>삭제</button>
+                <input type='submit' id='orderBtn' value='구매' class='btn btn-secondary'>
+            </div>
+        </form>
+	</div>
+    <div class='modal fade' id='modal' tabindex='-1'>
+	    <div class='modal-dialog'>
+	        <div class='modal-content'>
+	            <div class='modal-header py-2'>
+	                <p class='modal-title float-left' id='modalLabel'></p>
+	                <button type='button' class='close' data-dismiss='modal'>
+	                    <span>&times;</span>
+	                </button>
+	            </div>
+	            <div class='modal-body text-center'>
+	                <p id='modalMsg'></p>
+	            </div>
+	            <div class='modal-footer py-1'>
+	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
+	                <button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
+	                <button type='button' class='btn btn-primary col-3' id='delFavoriteBtn' 
+                    		onclick="location.href='<%=request.getContextPath() %>/favorite/listFavorite'">예</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </body>
 <%@ include file ='../include/footer.jsp'%>
 </html>

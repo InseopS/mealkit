@@ -16,7 +16,7 @@
 		order by exchanges.order_num
 	</select>
 	
-	<select id='selectAdminexchanges' resultType='exchange'>
+	<select id='selectAdminExchanges' resultType='exchange'>
 		 select exchanges.*, orders.user_id,
           exchange_reasons.exchange_reason_name, exchange_status.exchange_status_name
       from exchanges inner join orders
@@ -40,14 +40,14 @@
 	</select>
 	
 	
-	<insert id='insertexchange'>
+	<insert id='insertExchange'>
 		insert into exchanges(exchange_num, exchange_img_file_name, exchange_content,
 			exchange_reason_name, exchange_status_name, order_num)
 		values(exchange_num_seq.nextval, #{exchangeImgFileName}, #{exchangeContent},
 			#{exchangeReasonName}, #{exchangeStatusName}, #{orderNum})
 	</insert>
 	
-	<delete id='deleteexchange'>
+	<delete id='deleteExchange'>
 		delete exchanges
 		where exchange_num = #{exchangeNum}
 	</delete>
