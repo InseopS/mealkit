@@ -12,6 +12,7 @@ public interface ReviewMap {
 	List<Review> selectAdminReviews();
 	List<Review> detailAdminReviews(@Param("reviewNum") int reviewNum);
 	List<Review> searchReviews(@Param("keyword") String keyword);
+	Review selectReview(@Param("reviewNum") int reviewNum);
 	void insertReview(Review review);
 	void updateReview(Review review);
 	void deleteReview(int reviewNum);
