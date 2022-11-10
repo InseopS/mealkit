@@ -6,8 +6,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Order {
 	private int orderNum;
@@ -23,5 +27,5 @@ public class Order {
 	private int mealkitNum;
 	private String mealkitName;
 	private int orderMealkitNum;
-	private int orderMealkitCount; 
+	private int orderMealkitCount;
 }

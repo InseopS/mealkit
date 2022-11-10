@@ -14,7 +14,6 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    
     <script>
    	function listOrders() {
    		$('#orders').empty()
@@ -49,13 +48,13 @@
 									<tbody> 
 										<tr>
 											<td class='col-3'>주문상품</td>
-											<td>\${mealkit.mealkitName}</td>
+											<td>\${order.mealkitName}</td>
 											<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
 											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
 										</tr>
 										<tr>
 											<td>결제금액</td>
-											<td>\${totalPrice}원</td>
+											<td>2000원</td>
 											<td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
 											            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
 										</tr>
@@ -176,13 +175,13 @@
                      <tbody> 
                         <tr>
                            <td class='col-3'>주문상품</td>
-                           <td>${mealkit.mealkitName}</td>
+                           <td>${order.mealkitName}</td>
                             <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
                          </tr>
                          <tr>
                             <td>결제금액</td>
-                            <td>${totalPrice}원</td>
+                            <td>2000원</td>
                             <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
                          </tr>

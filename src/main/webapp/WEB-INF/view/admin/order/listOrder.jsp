@@ -14,6 +14,54 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+let ordersTmp
+let orderCounts
+let mealkits
+   function listOrders() {         
+      $('#orders').empty()
+      
+      $.ajax({
+	      url: 'getOrders',
+	      dataType: 'json',
+	      success: orders => {
+	         if(orders.length) {         
+	            ordersTmp = orders
+	         }
+	      }
+	   })         
+	 }
+
+function init() {
+	$('#orders').empty();
+	
+	$.ajax({
+		type: 'post',
+		url: "<%=request.getContextPath() %>/admin/order/getOrders"
+	}).done(orders => {
+		if(orders.length) {
+			const orderArr = []
+			$.each(orders, (i, order) => {
+				orderArr.unshift(
+						`<tr>
+							<td class='align-middle'>\${order.orderNum}</td>
+							<td class='align-middle'>\${order.userId}</td>
+							<td class='align-middle'>\${order.mealkitName}</td>
+							<td class='align-middle'>2000원</td>
+							<td class='align-middle'>\${order.paymentName}</td>
+							<td class='align-middle'>\${order.orderStatusName}</td>
+						<tr>`
+				);
+			})
+			$('#orders').append(orderArr.join(''))
+		} else {
+			$('#orders').append('<tr><td colspan=6 class=text-center>주문리스트가 비었습니다.</td></tr>')
+		}
+	})
+}
+
+$(init)
+</script>
 </head>
 <body>
     <%@ include file ='../../include/adminTop1.jsp'%>
@@ -63,10 +111,8 @@
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-	                                     <tr><td>000005</td><td>yeon2</td><td>감바스</td><td>29000원</td><td>카드 결제</td><td>주문완료</td></tr>
-	                                     <tr><td>000004</td><td>ina1</td><td>미나리 감자탕</td><td>10000원</td><td>카드 결제</td><td>주문완료</td></tr>
-	                                     <tr><td>000003</td><td>binny7</td><td>리얼치즈핫도그</td><td>20000원</td><td>카드 결제</td><td>주문취소</td></tr>
+                                    <tbody id='orders'>
+	                                     <tr><td>${order.orderNum}</td><td>${userId}</td><td>${mealkitName}</td><td>2000원</td><td>${paymentName}</td><td>${orderStatusName}</td></tr>                 
                                     </tbody>
                                 </table>
                                 <hr class='my-0'>
