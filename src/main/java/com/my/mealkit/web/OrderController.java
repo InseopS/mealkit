@@ -1,13 +1,20 @@
 package com.my.mealkit.web;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.mealkit.domain.Order;
 import com.my.mealkit.service.OrderService;
 
 @RestController
@@ -32,6 +39,16 @@ public class OrderController {
 	      mv.setViewName("order/listOrder");
 	      return mv;
 	   }
+	
+	@ResponseBody
+	@PostMapping("listOrder")
+	public List<Order> getOrder(HttpSession session, Order order) {
+		String userId = session.getAttribute("userId").toString();
+		order.setUserId(userId);
+		List<Order> orders = orderSerivce.getOrders(userId);
+		System.out.println(order.getUserId());
+		return orders;
+	}
 	
 	@RequestMapping("detailOrder")
 	 public ModelAndView detailOrder(ModelAndView mv) {
