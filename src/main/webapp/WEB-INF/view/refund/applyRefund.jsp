@@ -22,18 +22,18 @@
 function init() {
 	$('#applyRefundBtn').click(() =< {
 		let mealkitName = $('#mealkitName').val();
-		let returnReason = $('returnReason').val();
-		let returnDetailReason = $('returnDetailReason').val();
-		let returnImgFile = $('returnImgFile').val();
+		let refundReason = $('refundReason').val();
+		let refundDetailReason = $('refundDetailReason').val();
+		let refundImgFile = $('refundImgFile').val();
 		
 		$.ajax({
 			type:'post',
 			url: '${pageContext.request.contextPath}/refund/applyRefund',
 			data: {
 				mealkitName = mealkitName,
-				returnReason = returnReason,
-				returnDetailReason = returnDetailReason,
-				returnImgFile = returnImgFile
+				refundReason = refundReason,
+				refundDetailReason = refundDetailReason,
+				refundImgFile = refundImgFile
 			}
 		})
 	})
@@ -67,7 +67,6 @@ function init() {
                 </div>
                 <div class='col mt-4' id='refundReason'> 
                     <select name='reason' style='width:8rem; height:3rem'>
-                        <option value='none' selected hidden>선택</option>
                         <option value='1'>품질 이상</option>
                         <option value='2'>오배송</option>
                         <option value='3'>기타</option>
@@ -80,12 +79,27 @@ function init() {
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
                         id='content'></textarea>
                 </div>
-            </div>
+            </div> 
             <div class='row'>
-                <div class='col mt-3 ml-3 mb-3' id='refundImgFile'>
+                <div class='col mt-3 ml-3 mb-3' id='refundImgfile' name='refundImgfile'>
                     이미지등록<span style='font-size:12px'>(필수)&emsp;&ensp;<input type='file' accept='image/*'
                             style='font-size:11px'></span>
                 </div>
+                <div class='col pl-1'>
+		        <div class="select_img"><img src="" /></div>
+			        <script>
+				    	$("#refundImgfile").change(function(){
+				        	if(this.files && this.files[0]) {
+				        		var reader = new FileReader;
+					    		reader.onload = function(data) {
+				        			$(".select_img img").attr("src", data.target.result).width(100);        
+				        		}
+				        			reader.readAsDataURL(this.files[0]);
+				        		}
+					    });
+			        </script>
+	        </div>
+                
             </div>
             <div class='row justify-content-end mr-1'>
                 <div class='col-5 mt-2 '>

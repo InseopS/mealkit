@@ -25,7 +25,7 @@ public class RefundAdminController {
 	}
 
 	@GetMapping("listRefund")
-	public ModelAndView listRefund(HttpSession session, ModelAndView mv) {	
+	public ModelAndView listRefund(ModelAndView mv) {	
 		return mv;
 	}
 	

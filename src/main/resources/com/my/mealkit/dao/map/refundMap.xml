@@ -5,13 +5,14 @@
 	<select id='selectRefunds' resultType='refund'>
 		select refunds.*, orders.order_num, 
 			refund_status.refund_status_name,
-			refund_reason.refund_reason_name
-		from refunds inner join orders
-		on refunds.order_num = orders.order_num
-		inner join refund_status
-		on refund_status.refund_status_code = refunds.refund_status_code
-		inner join refund_reason
-		on refund_reason.refund_reason_code = refunds.refund_reason_code
+			refund_reasons.refund_reason_name
+		from refunds 
+			inner join orders
+				on refunds.order_num = orders.order_num
+			inner join refund_status
+				on refund_status.refund_status_code = refunds.refund_status_code
+			inner join refund_reasons
+				on refund_reasons.refund_reason_code = refunds.refund_reason_code
 		where refunds.order_num = #{orderNum}
 		order by refunds.order_num
 	</select>
