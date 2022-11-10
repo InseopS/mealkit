@@ -47,7 +47,7 @@ public class ReviewController {
    }
    
    @RequestMapping(value ="fixReview", method= RequestMethod.GET)
-   public String fixReview(Model model, @RequestParam("reviewNum") int reviewNum) {
+   public String fixReview(Model model, Review review,  @RequestParam("reviewNum") int reviewNum) {
       List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
       model.addAttribute("reviewList", reviewList);
       return "review/fixReview";
