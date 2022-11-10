@@ -33,7 +33,7 @@
 							</div>
 						    <div class='col'>
 								<div class='mr-2' style='float: right;'>
-								<a href='detailOrder' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
+								<a href='detailOrder?orderNum=\${orders.orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
 									style='text-decoration: underline; font-size: small'>주문상세</a>
 								 <a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
 									style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
@@ -70,15 +70,12 @@
 								</div>
 							</div>`
    					);
-   					
    				})
-   				
    				$('#orders').append(orderArr.join(''))
    			} else {
    				$('#orders').append('<div class=text-center>주문내역이 없습니다.</div>')
    			}
    		})
-   		
    	}
    	
    	$(listOrders)
@@ -93,10 +90,6 @@
 				$('#modalBtn').show();
 				$('#modal').modal();
    			})
-   			
-   			
-   			
-   			
    	}
    	
    	$(init);
@@ -154,6 +147,7 @@
                 <hr style='border: solid 1px'>
             </div>
         </div>
+        <div id='orders'>
         <div class='row'>
 	       <div class='col'>
 	          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>${order.orderNum}</span>
@@ -194,6 +188,7 @@
                      </tbody>
                  </table><hr class='mt-3 mb-2'>
            </div>
+        </div>
         </div>
     </div>
     </div>
