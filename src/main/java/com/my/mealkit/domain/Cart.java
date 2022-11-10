@@ -11,7 +11,4 @@ public class Cart {
 	private String userId;
 	private int mealkitNum;
 	private int mealkitCount;
-	private String mealkitName;
-	private String mealkitImgFileName;
-	private int price;
 }
