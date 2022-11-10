@@ -95,17 +95,7 @@
 				$('#modal').modal();
    			})
    			
-   			$('#orderCancelOkBtn').click(() => {
-   				if(isVal($('#order')))
-   			})
    			
-   			$('#applyExchangeBtn').click(() => {
-   				
-   			})
-   			
-   			$('#applyRefundBtn').click(() => {
-   				
-   			})
    			
    			
    	}
