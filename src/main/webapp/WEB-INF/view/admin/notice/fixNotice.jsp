@@ -14,23 +14,24 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-let noticeNumber = <%=request.getParameter("noticeNum")%>
 function init() {
 	$('#fixNoticeBtn').click(() => {
-		let notice = {
-			noticeNum: noticeNumber,
-			noticeTitle: $('#noticeTitle').val(),
-			noticeContent: $('#noticeContent').val(),
-			noticeImgFile: $('#noticeImgFile').val()
+			let noticeNum = <%=request.getParameter("noticeNum")%>
+			let noticeTitle = $('#noticeTitle').val()
+			let noticeContent = $('#noticeContent').val()
+			let noticeImgFile = $('#noticeImgFile').val()
+			
+			$.ajax({
+				type:"post",
+				url:"<%=request.getContextPath() %>/admin/notice/fixNotice",
+				data: {
+					noticeNum: noticeNum,
+					noticeTitle: noticeTitle,
+					noticeContent: noticeContent,
+					noticeImgFile: noticeImgFile
+				}
+			})
 		}
-		
-		$.ajax({
-			type: 'put',
-			url: 'fixNotice',
-			data: JSON.stringify(notice),
-			contentType: 'application/json',
-			success: location.href='listNotice'
-		})
 	})
 }
 $(init)
@@ -47,34 +48,31 @@ $(init)
 <body>
 	<%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>공지</h2>&ensp;
-                    <h6>공지수정</h6>
+                    <h6>공지수정</h6>                 
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form id='form' encType='multipart/form-data'>
+                <c:forEach var='notice' items='${noticeList}'>
+                    <form id='form' method='post' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                	<c:forEach var='notice' items='${noticeList}'>
                                     	<input type='text' class='form-control' id='noticeTitle' name='noticeTitle' minlength='1' maxlength='100' 
                                         	required placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}'>
-                                    </c:forEach>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-           	                    	<c:forEach var='notice' items='${noticeList}'>
                                     	<textarea class="form-control" placeholder="내용을 입력해주세요." id='noticeContent' name='noticeContent' style="height: 410px; resize:none" 
                                         	minlength='1' maxlength='1300' required>${notice.noticeContent}</textarea>
-									</c:forEach>          
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
                                 <div class='col pl-1'>
-                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile' required>
+                                    <input type='file' class='form-control' id='noticeImgFile' name='noticeImgFile'>
                                 </div>
                             </div>
                             <hr>
@@ -82,12 +80,13 @@ $(init)
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='history.back()'>취소</button>
-                                        <button type='button' class='btn btn-secondary' id='fixNoticeBtn'>수정</button>
+                                        <button type='submit' class='btn btn-secondary' id='fixNoticeBtn' name='fixNoticeBtn'>수정</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
+                    </c:forEach>
                 </div>
             </div>
         </div>
