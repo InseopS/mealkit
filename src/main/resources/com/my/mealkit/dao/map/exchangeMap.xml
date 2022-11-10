@@ -1,46 +1,53 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-<mapper namespace='com.my.mealkit.dao.map.ExchangeMap'>
-	<select id='selectExchanges' resultType='exchange'>
+<mapper namespace='com.my.mealkit.dao.map.exchangeMap'>
+	<select id='selectexchanges' resultType='exchange'>
 		select exchanges.*, orders.order_num, 
-		       exchange_status.exchange_status_name,
-		       exchange_reasons.exchange_reason_name
+			exchange_status.exchange_status_name,
+			exchange_reason.exchange_reason_name
 		from exchanges inner join orders
 		on exchanges.order_num = orders.order_num
 		inner join exchange_status
 		on exchange_status.exchange_status_code = exchanges.exchange_status_code
-		inner join exchange_reasons
-		on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
+		inner join exchange_reason
+		on exchange_reason.exchange_reason_code = exchanges.exchange_reason_code
 		where exchanges.order_num = #{orderNum}
 		order by exchanges.order_num
 	</select>
 	
-	<select id='selectAdminExchanges' resultType='exchange'>
-		select exchanges.*, orders.order_num, orders.user_id, mealkits.mealkit_name,
-		    exchange_reasons.exchange_reason_name, exchange_status.exchange_status_name
-		from exchanges inner join orders
-		on exchanges.order_num = orders.order_num
-		inner join orders_mealkits
-		on orders_mealkits.order_num = orders.order_num
-		inner join mealkits
-		on mealkits.mealkit_num = orders_mealkits.mealkit_num
-		inner join exchange_reasons
-		on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
-		inner join exchange_status
-		on exchange_status.exchange_status_code = exchanges.exchange_status_code
-		order by exchange_num
-		 
+	<select id='selectAdminexchanges' resultType='exchange'>
+		 select exchanges.*, orders.user_id,
+          exchange_reasons.exchange_reason_name, exchange_status.exchange_status_name
+      from exchanges inner join orders
+            on exchanges.order_num = orders.order_num
+         inner join exchange_reasons
+            on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
+         inner join exchange_status
+            on exchange_status.exchange_status_code = exchanges.exchange_status_code
+      order by exchange_num
 	</select>
 	
-	<insert id='insertExchange'>
+	<select id='selectMealkitNames' resultType='exchange'>
+		select mealkits.mealkit_name
+		from exchanges inner join orders
+	    on exchanges.order_num = orders.order_num
+	        inner join orders_mealkits
+	    on orders_mealkits.order_num = orders.order_num
+	        inner join mealkits
+	    on mealkits.mealkit_num = orders_mealkits.mealkit_num
+		where exchanges.exchange_num = #{exchangeNum}
+	</select>
+	
+	
+	<insert id='insertexchange'>
 		insert into exchanges(exchange_num, exchange_img_file_name, exchange_content,
-								order_num, exchange_reason_code, exchange_status_code)
+			exchange_reason_name, exchange_status_name, order_num)
 		values(exchange_num_seq.nextval, #{exchangeImgFileName}, #{exchangeContent},
-				#{orderNum}, #{exchangereasonCode}, #{exchangeStatusCode})	
+			#{exchangeReasonName}, #{exchangeStatusName}, #{orderNum})
 	</insert>
 	
-	<delete id='deleteExchange'>
+	<delete id='deleteexchange'>
 		delete exchanges
 		where exchange_num = #{exchangeNum}
 	</delete>

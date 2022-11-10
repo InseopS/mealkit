@@ -7,6 +7,7 @@ import com.my.mealkit.domain.Exchange;
 public interface ExchangeDao {
 	List<Exchange> selectExchanges();
 	List<Exchange> selectAdminExchanges();
+	List<Exchange> selectMealkitNames(int exchangeNum);
 	void insertExchange(Exchange exchange);
 	void deleteExchange(int orderNum);
 }

@@ -1,5 +1,7 @@
 package com.my.mealkit.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Exchange {
 	private int exchangeNum;
 	private String exchangeImgFileName;
+	private MultipartFile exchangeImgfile;
 	private String exchangeContent;
 	private int orderNum;
 	private int exchangeReasonCode;
