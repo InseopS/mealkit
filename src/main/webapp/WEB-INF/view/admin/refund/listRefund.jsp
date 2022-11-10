@@ -15,35 +15,52 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+let refundsTmp
+let mealkitNamesTmp = []
 function listRefunds() {
-	$('#refunds').empty();
-	
-	$.ajax({
-		method: 'post',
-		url: "<%=request.getContextPath()%>/admin/refund/getAdminRefunds"
-	}).done(refunds => {
-		if(refunds.length) {
-			const refundArr = []
-			
-			$.each(refunds, (i,refund) => {
-				refundArr.unshift(
-					`<tr>
-						<td class='align-middle'>\${refund.refundNum}</td>
-						<td class='align-middle'>\${refund.orderNum}</td>
-						<td class='align-middle'>\${refund.userId}</td>
-						<td class='align-middle'>\${refund.mealkitName}</td>
-						<td class='align-middle'>\${refund.refundReasonName}</td>
-						<td class='align-middle'>\${refund.refundStatusName}</td>
-					</tr>`
-				);
+		$('#refunds').empty();
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/refund/getAdminRefunds",
+			dataType: 'json',
+			success: refunds => {
+				if(refunds.length) {
+					refundsTmp = refunds
+				}
+			}
+		}).done(refunds => {
+			$.each(refunds, (i, refund) => {
+				$.ajax({
+					url: 'selectMealkitNames/' + refund.refundNum,
+					dataType: 'json',
+					async : false,
+					success: mealkitNames => {
+						if(mealkitNames.length > 1) {
+							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+					}
+				})
 			})
-			$('#refunds').append(refundArr.join(''))
-		} else {
-			$('#refunds').append(
-				'<tr><td colspan=6 class=text-center> 환불리스트가 없습니다.</td></tr>'
-			)
-		}
-	})
+			listTest()
+		}) 
+	}
+
+function listTest() {
+	const refundArr = []
+	for(i=0; i <= refundsTmp.length-1; i++) {
+		
+		refundArr.unshift(
+			`<tr>
+				<td class='align-middle'>\${refundsTmp[i].refundNum}</td>
+				<td class='align-middle'>\${refundsTmp[i].orderNum}</td>
+				<td class='align-middle'>\${refundsTmp[i].userId}</td>
+				<td class='align-middle'>\${mealkitNamesTmp[i]}</td>
+				<td class='align-middle'>\${refundsTmp[i].refundReasonName}</td>
+				<td class='align-middle'>\${refundsTmp[i].refundStatusName}</td>
+			<tr>`
+		)
+	}
+	$('#refunds').append(refundArr.join(''))
 }
 $(listRefunds)
 </script>

@@ -23,6 +23,11 @@ public class RefundServiceImpl implements RefundService{
 	}
 	
 	@Override
+	public List<Refund> getMealkitNames(int refundNum) {
+		return refundDao.selectMealkitNames(refundNum);
+	}
+	
+	@Override
 	public void addRefund(Refund refund) {
 		refundDao.insertRefund(refund);
 	}
