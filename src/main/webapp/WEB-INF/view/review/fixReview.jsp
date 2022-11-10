@@ -17,29 +17,31 @@
         <style>
  
         </style>
-<script>
-		let reviewNumber = <%=request.getParameter("reviewNum") %>
-	function init() {
-		$('#fixBtn').click(() => {
-			let review = {
-			     reviewNum: reviewNumber,
-				 rate: $('#rate').val(),
-				 reviewTitle: $('#reviewTitle').val(),
-				 reviewContent: $('#reviewContent').val(),
-			}
-			
-			$.ajax({
-				type:'put',
-				url: 'fixReview',
-				data: JSON.stringify(review),
-				contentType: 'application/json',
-				success: location.href='listReview'
-			})
-		})
-	}
-	
-	$(init)
-</script>
+	<script>
+         let reviewNumber = <%=request.getParameter("reviewNum") %>
+         function init(){
+        		$('#regBtn').click(() => {
+        			reviewNum = reviewNumber;
+        			let rate = $('#rate').val();
+        			let reviewTitle = $('#reviewTitle').val();
+        			let reviewContent = $('#reviewContent').val();
+        			let reviewImgfile = $('#reviewImgfile').val();
+        			
+        			$.ajax({
+        				type:'post',
+        				url: '${pageContext.request.contextPath}/review/fixReview',
+        				data: {
+        					rate: rate,
+        					reviewTitle: reviewTitle,
+        					reviewContent: reviewContent,
+        					reviewImgfile: reviewImgfile
+        				}
+        			})
+        		})
+        	}
+         
+         $(init)
+        </script>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -81,12 +83,10 @@
             </div>
        	</div>
         <div class='row mt-3'>
-	        <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
-	        <div class='col pl-1'>
-		        <c:forEach var='review' items='${reviewList}'>
-		        	<img style='height:220px; width: 100%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>' onerror='this.style.display="none"'/>
-		        </c:forEach>
-	        </div>
+            <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
+            <div class='col pl-1'>
+            	<input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile' maxlength='45'>
+            </div>
         </div>
         <hr>
         <br>
