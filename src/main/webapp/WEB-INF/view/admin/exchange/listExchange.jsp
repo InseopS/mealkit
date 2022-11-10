@@ -14,35 +14,54 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-function init() {
+let exchangesTmp
+let mealkitNamesTmp = []
+function listExchanges() {
 	$('#exchanges').empty();
 	
 	$.ajax({
-		type: 'post',
-		url: "<%=request.getContextPath() %>/admin/exchange/getExchanges"
-	}).done(exchanges => {
-		if(exchanges.length) {
-			const exchangeArr = []
-			$.each(exchanges, (i, exchange) => {
-				exchangeArr.unshift(
-						`<tr>
-							<td class='align-middle'>\${exchange.exchangeNum}</td>
-							<td class='align-middle'>\${exchange.orderNum}</td>
-							<td class='align-middle'>\${exchange.userId}</td>
-							<td class='align-middle'>\${exchange.mealkitName}</td>
-							<td class='align-middle'>\${exchange.exchangeReasonName}</td>
-							<td class='align-middle'>\${exchange.exchangeStatusName}</td>
-						<tr>`
-				);
-			})
-			$('#exchanges').append(exchangeArr.join(''))
-		} else {
-			$('#exchanges').append('<tr><td colspan=6 class=text-center>교환리스트가 비었습니다.</td></tr>')
+		url: "<%=request.getContextPath()%>/admin/refund/getAdminExchanges",
+		dataType: 'json',
+		success: refunds => {
+			if(refunds.length) {
+				refundsTmp = refunds
+			}
 		}
-	})
+	}).done(exchanges => {
+		$.each(exchanges, (i, exchange) => {
+			$.ajax({
+				url: 'selectMealkitNames/' + exchange.exchangeNum,
+				dataType: 'json',
+				async : false,
+				success: mealkitNames => {
+					if(mealkitNames.length > 1) {
+						mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+					} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+				}
+			})
+		})
+		listTest()
+	}) 
 }
 
-$(init)
+function listTest() {
+const exchangeArr = []
+for(i=0; i <= exchangesTmp.length-1; i++) {
+	
+	exchangeArr.unshift(
+		`<tr>
+			<td class='align-middle'>\${exchangesTmp[i].exchangeNum}</td>
+			<td class='align-middle'>\${exchangesTmp[i].orderNum}</td>
+			<td class='align-middle'>\${exchangesTmp[i].userId}</td>
+			<td class='align-middle'>\${mealkitNamesTmp[i]}</td>
+			<td class='align-middle'>\${exchangesTmp[i].exchangeReasonName}</td>
+			<td class='align-middle'>\${exchangesTmp[i].exchangeStatusName}</td>
+		<tr>`
+	)
+}
+$('#exchanges').append(exchangeArr.join(''))
+}
+$(listExchanges)
 </script>
 </head>
 <body>
@@ -79,11 +98,11 @@ $(init)
                                 <table class='table table-hover my-0'>
                                     <colgroup>
                                         <col width='10%'>
-                                        <col width='20%'>
+                                        <col width='17%'>
                                         <col width='14%'>
-                                        <col width='27%'>
-                                        <col width='15%'>
-                                        <col width='14%'>
+                                        <col width='17%'>
+                                        <col width='17%'>
+                                        <col width='17%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
@@ -97,8 +116,8 @@ $(init)
                                     </thead>
                                     <tbody id='exchanges'>
                                         <tr>
-                                            <td>${exchanges.exchangeNum}</td><td>${orderNum}</td><td>${userId}</td><td>${mealkitName}</td>
-                                            <td>${exchangeReasonName}</td><td>${exchangeStatusName}</td>
+                                            <td>${exchanges.exchangeNum}</td><td>${exchanges.orderNum}</td><td>${exchanges.userId}</td>
+                                            <td>${exchanges.mealkitName}</td><td>${exchanges.exchangeReasonName}</td><td>${exchanges.exchangeStatusName}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -21,6 +21,11 @@ public class ExchangeDaoImpl implements ExchangeDao {
 	public List<Exchange> selectAdminExchanges() {
 		return exchangeMap.selectAdminExchanges();
 	}
+	@Override
+	public List<Exchange> selectMealkitNames(int exchangeNum) {
+		return exchangeMap.selectMealkitNames(exchangeNum);
+	}
+
 	
 	@Override
 	public void insertExchange(Exchange exchange) {

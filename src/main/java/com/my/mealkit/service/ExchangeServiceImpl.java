@@ -21,6 +21,12 @@ public class ExchangeServiceImpl implements ExchangeService {
 	public List<Exchange> getAdminExchanges() {
 		return exchangeDao.selectAdminExchanges();
 	}
+
+	@Override
+	public List<Exchange> getMealkitNames(int exchangeNum) {
+		return exchangeDao.selectMealkitNames(exchangeNum);
+	}
+
 	
 	@Override
 	public void addExchange(Exchange exchange) {
