@@ -92,7 +92,7 @@
         <div class='container'>
             <div class='col-14'>
                     <c:forEach var='review' items='${reviewList}'>
-                        <img style="height:220px; width: 100%;" src='<c:url value="/attach/${review.reviewImgfileName}"/>'/>
+                       	<img style='height:220px; width: 100%;' src='<c:url value="/attach/${review.reviewImgfileName}"/>' onerror='this.style.display="none"'/>
                     </c:forEach>
             </div>
             <br>
