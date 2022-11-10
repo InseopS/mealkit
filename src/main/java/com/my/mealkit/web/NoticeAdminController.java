@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -84,9 +82,16 @@ public class NoticeAdminController {
 		return "admin/notice/fixNotice";
 	}
 	
-	@PutMapping("fixNotice")
-	public ModelAndView fixNotice(@RequestBody Notice notice, ModelAndView mv) {
-		noticeService.fixAdminNotice(notice);
+	@ResponseBody
+	@PostMapping("fixNotice")
+	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {		
+		try {
+			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
+			
+			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
+			notice.setNoticeImgFileName(noticeFileName);	
+			noticeService.fixAdminNotice(notice);
+		} catch(NullPointerException e) {}
 		mv.setViewName("admin/notice/listNotice");
 		return mv;
 	}
@@ -103,4 +108,5 @@ public class NoticeAdminController {
 		List<Notice> noticeList = noticeService.getSearchNotices(keyword);
 		return noticeList;
 	}
+
 }
