@@ -30,19 +30,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<Order> selectAdminOrderCancel() {
-		return orderMap.selectAdminOrderCancel();
+	public List<Order> selectMealkitNames(int orderNum) {
+		return orderMap.selectMealkitNames(orderNum);
 	}
 	
 	@Override
-	public void insertOrder(Order order, User user) {
-		orderMap.insertOrder(order, user);
-	}
-	
-	@Override
-	public void insertOrderMealkits(
-			int orderMealkitNum, int orderMealkitCount, int orderNum, int mealkitNum) {
-		orderMap.insertOrderMealkits(orderMealkitNum, orderMealkitCount, orderNum, mealkitNum);
+	public void insertOrder(Order order) {
+		orderMap.insertOrder(order);
 	}
 	
 	@Override
