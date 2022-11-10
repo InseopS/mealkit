@@ -7,18 +7,15 @@
 		from mealkit.carts 
 		join mealkit.mealkits
 		on mealkit.carts.mealkit_num = mealkit.mealkits.mealkit_num
-		join mealkit.users
-		on mealkit.carts.user_id = mealkit.users.user_id
-		where mealkit.users.user_id = #{userId}
+		where mealkit.carts.user_id = #{userId}
 	</select>
 
 	<select id='selectCart' resultType='cart'>
-		SELECT CARTS.*, MEALKITS.MEALKIT_NAME, MEALKITS.MEALKIT_IMG_FILE_NAME, MEALKITS.PRICE
-		FROM CARTS JOIN MEALKITS
-		ON CARTS.MEALKIT_NUM = MEALKITS.MEALKIT_NUM
-		JOIN USERS
-		ON CARTS.USER_ID = USERS.USER_ID
-		WHERE USERS.USER_ID = #{userId}
+		select mealkit.carts.*, mealkit.mealkits.mealkit_name, mealkit.mealkits.mealkit_img_file_name, mealkit.mealkits.price
+		from mealkit.carts 
+		join mealkit.mealkits
+		on mealkit.carts.mealkit_num = mealkit.mealkits.mealkit_num
+		where mealkit.carts.user_id = #{userId}
 	</select>
 
 	<insert id='insertCart'>
