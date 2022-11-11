@@ -41,8 +41,8 @@ public class OrderController {
 	   }
 	
 	@ResponseBody
-	@PostMapping("listOrder")
-	public List<Order> getOrder(HttpSession session, Order order) {
+	@GetMapping("getOrders")
+	public List<Order> getOrders(HttpSession session, Order order) {
 		String userId = session.getAttribute("userId").toString();
 		order.setUserId(userId);
 		List<Order> orders = orderSerivce.getOrders(userId);
