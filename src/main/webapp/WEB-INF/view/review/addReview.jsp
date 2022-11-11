@@ -17,26 +17,42 @@
         <style>
 
         </style>
-         <script>
+        
+		<script>         
+		function test() {
+			$.ajax({
+				url: 'selectMealkits/' + ${order.orderNum},
+				dataType: 'json',
+				async : false,
+				success: mealkits => {
+					$.each(mealkits, (i, mealkit) => {
+						$('#item').append("<option value='"+ mealkit.orderMealkitNum +"'>" + mealkit.mealkitName + "</option>")
+					})
+				}
+			})
+			
+			
+		}
+         
          function init(){
         		$('#regBtn').click(() => {
-        			let rate = $('#rate').val();
-        			let reviewTitle = $('#reviewTitle').val();
-        			let reviewContent = $('#reviewContent').val();
-        			let reviewImgfile = $('#reviewImgfile').val();
-        			
+        			let review = {
+        				orderMealkitNum: $('#item').val(),
+        				rate: $('#rate').val(),
+        				reviewTitle: $('#reviewTitle').val(),
+        				reviewContent: $('#reviewContent').val(),
+        				reviewImgfile: $('#reviewImgfile').val()
+        			}
+        			console.log(review)
         			$.ajax({
         				type:'post',
         				url: '${pageContext.request.contextPath}/review/addReview',
-        				data: {
-        					rate: rate,
-        					reviewTitle: reviewTitle,
-        					reviewContent: reviewContent,
-        					reviewImgfile: reviewImgfile
-        				}
+        				data: JSON.stringify(review),
+        				contentType: 'application/json'
         			})
         		})
         	}
+         $(test)
         </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
@@ -48,10 +64,18 @@
             </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
+
     <div id='mainContainerAddSub' class="container">
     <form id='form' method='post' encType='multipart/form-data'>
          <div class='row mb-2'>
-         	<label for='input' class='col-2 pr-2 col-form-label'>별점:</label>
+         	<label for='input' class='col-3 pr-2 col-form-label'>상품명:</label>
+         	<div class='col pl-1'>
+         		<select class="form-control" name='item' id='item'>         		
+         		</select>
+         	</div> 
+         </div>
+         <div class='row mb-2'>
+         	<label for='input' class='col-3 pr-2 col-form-label'>별점:</label>
          	<div class='col pl-1'>
          		<select class="form-control" name='rate' id='rate'>
          			<option value='5'>★★★★★</option>
@@ -63,20 +87,20 @@
          	</div> 
          </div>
         <div class='row'>
-            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+            <label for='input' class='col-3 pr-2 col-form-label'>제목:</label>
             	<div class='col pl-1'>
            			<input type='text' class='form-control' id='reviewTitle' name='reviewTitle' placeholder='제목을 입력해주세요.' maxlength='15' required>
             	</div>
        	</div>
         <div class='row mt-2'>
-            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            <label for='input' class='col-3 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
             	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent'
             		style='height: 220px' maxlength='1300' required></textarea>
          	</div>
        	</div>
         <div class='row mt-3'>
-        <label for='input' class='col-2 pr-2 col-form-label'>이미지:</label>
+        <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
 	        <div class='col pl-1'>
 		        <input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile'>
 		        <div class="select_img"><img src="" /></div>

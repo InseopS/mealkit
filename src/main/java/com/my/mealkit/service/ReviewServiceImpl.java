@@ -38,6 +38,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
+	public List<Review> getMealkits(int orderNum) {
+		return reviewDao.selectMealkits(orderNum);
+	}
+
+	@Override
 	public Review getReview(int reviewNum) {
 		return reviewDao.selectReview(reviewNum);
 	}
