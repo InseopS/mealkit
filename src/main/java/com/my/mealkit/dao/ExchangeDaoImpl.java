@@ -13,8 +13,8 @@ public class ExchangeDaoImpl implements ExchangeDao {
 	@Autowired private ExchangeMap exchangeMap;
 	
 	@Override
-	public List<Exchange> selectExchanges() {
-		return exchangeMap.selectExchanges();
+	public List<Exchange> selectExchanges(String userId) {
+		return exchangeMap.selectExchanges(userId);
 	}
 	
 	@Override

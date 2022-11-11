@@ -20,24 +20,22 @@
 <script>
 function applyExchange() {
 	$('#addBtn').click(() => {
-		if(isVal($('#exchangeReasonCode')) && isVal($('#exchangeImgFileName'))) {
-			let mealkitName = $('#mealkitName');
-			let exchangeReasonCode = $('#exchangeReasonCode');
-			let exchangeContent = $('#exchangeContent');
-			let exchangeImgFileName = $('#exchangeImgFileName');
-			
-			$.ajax({
-				type:'post',
-				url: '${pageContext.request.contextPath}/exchange/applyExchange',
-				data: {
-					mealkitName: mealkitName,
-					exchangeReasonCode: exchangeReasonCode,
-					exchangeContent: exchangeContent,
-					exchangeImgFileName: exchangeImgFileName
-				}
-			})
-		})
-	})
+		let mealkitName = $('#mealkitName');
+		let exchangeReasonName = $('#exchangeReasonName').val();
+		let exchangeContent = $('#exchangeContent');
+		let exchangeImgFileName = $('#exchangeImgFileName').val();
+		
+		$.ajax({
+			type:'post',
+			url: '${pageContext.request.contextPath}/exchange/applyExchange',
+			data: {
+				mealkitName: mealkitName,
+				exchangeReasonName: exchangeReasonName,
+				exchangeContent: exchangeContent,
+				exchangeImgFileName: exchangeImgFileName
+			}
+		})		
+	}
 }
 
 $(applyExchange)
@@ -61,16 +59,16 @@ $(applyExchange)
                     <br>교환상품<span style='font-size:12px'></span>
                 </div>
                 <div class='col mt-3' id='mealkitName'>
-                    <br>${mealkitName}<span style='font-size:12px'></span>
+                    <br>${exchange.mealkitName}<span style='font-size:12px'></span>
                 </div>
             </div>
             <div class='row'>
-                <div class='col-5 mt-1 ml-3' id='exchangeReason'>
+                <div class='col-5 mt-1 ml-3'>
                     <br>교환사유<span style='font-size:12px'>(필수)</span>
                 </div>
-                <div class='col mt-3' required title='교환사유를 선택하세요.'>
-                    <select name='exchangeReasonCode' style='width:8rem; height:3rem'>
-                        <option value='none' selected hidden>선택</option>
+                <div class='col mt-3' name='exchangeReasonName'  id='exchangeReasonName' required title='교환사유를 선택하세요.'>
+                    <select style='width:8rem; height:3rem'>
+                        <option value='none' selected hidden>선택</option>                
                         <option value='1'>품질이상</option>
                         <option value='2'>오배송</option>
                         <option value='3'>기타</option>
@@ -78,23 +76,35 @@ $(applyExchange)
                 </div>
             </div>
             <div class='row'>
-                <div class='col ml-3' id='exchangeDetailReason'>
+                <div class='col ml-3'>
                     <br>상세사유<span style='font-size:12px'>(선택)</span><br>
                     <textarea maxlength='2000' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
-                        id='content'></textarea>
+                        name='exchangeContent' id='exchangeContent'></textarea>
                 </div>
             </div>
             <div class='row'>
-                <div class='col mt-2 ml-3 mb-3' id='exchangeImgFile'>
-                    이미지등록<span style='font-size:12px'>(필수)&emsp;&ensp;<input type='file' accept='image/*'
-                            style='font-size:11px' required title='이미지를 등록하세요.'></span>                    
+                <div class='col mt-2 ml-3 mb-3'>
+                    이미지등록<span style='font-size:12px'>(필수)&emsp;&ensp;</span>
+                    <input type='file' class='form-control' id='exchangeImgFileName' name='exchangeImgFileName' required>
+                    <div class="select_img"><img src="" /></div>
+                    <script>
+       	     			$("#noticeImgFile").change(function(){
+                        	if(this.files && this.files[0]) {
+								var reader = new FileReader;
+                     	  		reader.onload = function(data) {
+                    	    		$(".select_img img").attr("src", data.target.result).width(500);        
+                    	    	}
+                    	    	reader.readAsDataURL(this.files[0]);
+                    	   }
+       	        		});
+                    </script>
                 </div>
             </div>
             <div class='row justify-content-end mr-1'>
                 <div class='col-5 mt-4 '>
                     <button type='button' class='btn btn-secondary btn-sm'
                         onclick='location.href="../order/listOrder"' id='cancelBtn'>취소</button>
-                    <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
+                    <button type='submit' class='btn btn-secondary btn-sm' data-toggle='modal'
                         data-target='#exchangeModal' id='addBtn'>신청</button>
                 </div>
             </div>
@@ -112,7 +122,7 @@ $(applyExchange)
                 <div class='modal-body text-center'>
                     <p>교환을 신청 하시겠습니까?</p>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
+                    <button type='submit' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
                         data-target='#requestOkModal' onclick='location.href="listExchange"'>예</button>
                 </div>
             </div>

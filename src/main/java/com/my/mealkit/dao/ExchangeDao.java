@@ -5,7 +5,7 @@ import java.util.List;
 import com.my.mealkit.domain.Exchange;
 
 public interface ExchangeDao {
-	List<Exchange> selectExchanges();
+	List<Exchange> selectExchanges(String userId);
 	List<Exchange> selectAdminExchanges();
 	List<Exchange> selectMealkitNames(int exchangeNum);
 	void insertExchange(Exchange exchange);

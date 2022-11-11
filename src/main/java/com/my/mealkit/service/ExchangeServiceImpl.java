@@ -13,8 +13,8 @@ public class ExchangeServiceImpl implements ExchangeService {
 	@Autowired private ExchangeDao exchangeDao;
 	
 	@Override
-	public List<Exchange> getExchanges() {
-		return exchangeDao.selectExchanges();
+	public List<Exchange> getExchanges(String userId) {
+		return exchangeDao.selectExchanges(userId);
 	}
 	
 	@Override
