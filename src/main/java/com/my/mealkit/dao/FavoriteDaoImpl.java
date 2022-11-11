@@ -24,13 +24,13 @@ public class FavoriteDaoImpl implements FavoriteDao {
 	}
 	
 	@Override
-	public int insertFavorite(Favorite favorite) {
-		return favoriteMap.insertFavorite(favorite);
+	public void insertFavorite(Favorite favorite) {
+		favoriteMap.insertFavorite(favorite);
 	}
 	
 	@Override
-	public int deleteFavorite(String userId, int mealkitNum) {
-		return favoriteMap.deleteFavorite(userId, mealkitNum);
+	public void deleteFavorite(String userId, int mealkitNum) {
+		favoriteMap.deleteFavorite(userId, mealkitNum);
 	}
 	
 }

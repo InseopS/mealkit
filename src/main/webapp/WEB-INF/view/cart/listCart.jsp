@@ -38,7 +38,7 @@
 				$.ajax({
 					url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function(){location.reload()})
+				}).done(function() {location.reload()})
 			}		
 		})
 	}

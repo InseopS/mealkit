@@ -41,6 +41,17 @@ function init() {
 	});
 	
     $('.favorite').click(function () {
+    	let favorite = {
+    		mealkitNum: $('#mealkitNum').val()
+    	}
+    	
+    	$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath}/favorite/addFavorite',
+			data: JSON.stringify(favorite),
+			contentType: 'application/json'
+		})
+		
         let check = $('.favorite').find('#favoriteIcon');
         if (check.hasClass('on')) {
             check.css('color', 'black');

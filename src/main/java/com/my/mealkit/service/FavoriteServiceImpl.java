@@ -23,12 +23,12 @@ public class FavoriteServiceImpl implements FavoriteService {
 	}
 	
 	@Override
-	public int addFavorite(Favorite favorite) {
-		return favoriteDao.insertFavorite(favorite);
+	public void addFavorite(Favorite favorite) {
+		favoriteDao.insertFavorite(favorite);
 	}
 	
 	@Override
-	public int delFavorite(String userId, int mealkitNum) {
-		return favoriteDao.deleteFavorite(userId, mealkitNum);
+	public void delFavorite(String userId, int mealkitNum) {
+		favoriteDao.deleteFavorite(userId, mealkitNum);
 	}
 }

@@ -10,7 +10,7 @@ public interface FavoriteMap {
 	List<Favorite> selectFavorites(String userId);
 	List<Favorite> selectFavorite(@Param("userId") String userId, 
 						@Param("mealkitNum") int mealkitNum);
-	int insertFavorite(Favorite favorite);
-	int deleteFavorite(@Param("userId") String userId, 
+	void insertFavorite(Favorite favorite);
+	void deleteFavorite(@Param("userId") String userId, 
 				@Param("mealkitNum") int mealkitNum);
 }

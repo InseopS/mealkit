@@ -38,7 +38,7 @@
 				$.ajax({
 					url: 'delFavorite/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function(){location.reload()})
+				}).done(function() {location.reload()})
 			}		
 		})
 	}
@@ -69,7 +69,7 @@ tr, td {
 
 <body>
 	<div class='container' id='mainContainerAddSub'>
-		<form action='<%=request.getContextPath() %>/order/addOrder'>
+		<form>
             <div class='row mt-5'>    
                 <div class='col'>
                     <table id='favorite1'>
@@ -88,7 +88,7 @@ tr, td {
 												</a>
 											</td>
 											<td>
-												${mealkit.mealkitName}<br><br>${favorite.mealkitCount}개<br>${mealkit.price}원
+												${mealkit.mealkitName}<br><br><br>${mealkit.price}원
 											</td>
 										<tr>
 									</c:if>
@@ -100,7 +100,6 @@ tr, td {
             </div>
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='delBtn' class='btn btn-secondary mr-2'>삭제</button>
-                <input type='submit' id='orderBtn' value='구매' class='btn btn-secondary'>
             </div>
         </form>
 	</div>
