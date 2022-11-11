@@ -1,5 +1,6 @@
 package com.my.mealkit.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -7,8 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,14 +21,26 @@ import com.my.mealkit.domain.Question;
 import com.my.mealkit.service.QuestionService;
 
 @Controller
-@RequestMapping("/admin/question")
+@RequestMapping("admin/question")
 public class QuestionAdminController {
 	@Autowired QuestionService questionService;
+	
+	@RequestMapping("listQuestion")
+	public String listQuestion() {
+		return "admin/question/listQuestion";
+	}
 	
 	@ResponseBody
 	@PostMapping("getAdminQuestions")
 	public List<Question> getAdminQuestions() {
 		return questionService.getAdminQuestions();
+	}
+	
+	@RequestMapping(value ="detailQuestion", method=RequestMethod.GET)
+	public String detailQuestion(Model model, @RequestParam("questionNum") int questionNum) {
+		List<Question> questionList = questionService.getDetailQuestion(questionNum);
+		model.addAttribute("questionList", questionList);
+		return "admin/question/detailQuestion";
 	}
 	
 	@RequestMapping("addQuestion")
@@ -51,20 +65,25 @@ public class QuestionAdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="detailQuestion", method=RequestMethod.GET)
-	public String detailQuestion(Model model, @RequestParam("questionNum") int questionNum) {
-		List<Question> questionList = questionService.getDetailQuestion(questionNum);
-		model.addAttribute("questionList", questionList);
-		return "admin/question/detailQuestion";
+	@RequestMapping(value ="fixQuestion", method= RequestMethod.GET)
+	   public String fixQuestion(Model model, @RequestParam("questionNum") int questionNum) {
+	      List<Question> questionList = questionService.getDetailQuestion(questionNum);
+	      model.addAttribute("questionList", questionList);
+	      System.out.println(questionList);
+	      return "admin/question/fixQuestion";
+	 }
+	 
+	@ResponseBody
+	@PostMapping("fixQuestion")
+	public ModelAndView fixQuestion(Question question, ModelAndView mv) {
+		questionService.fixAdminQuestion(question);
+		mv.setViewName("admin/question/listQuestion");
+		return mv;
 	}
 	
-	@RequestMapping("fixQuestion")
-	public String fixQuestion() {
-		return "admin/question/fixQuestion";
-	}
-	
-	@RequestMapping("listQuestion")
-	public String listQuestion() {
-		return "admin/question/listQuestion";
+	@ResponseBody
+	@DeleteMapping("del/{questionNum}")
+	public void delQuestion(@PathVariable int questionNum) {
+		questionService.delAdminQuestion(questionNum);
 	}
 }

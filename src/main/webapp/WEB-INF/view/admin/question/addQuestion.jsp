@@ -65,7 +65,7 @@ $(init)
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>답변:</label>
                                 <div class='col pl-1'>
-                                    <textarea class='form-control  bg-light' maxlength='1300' placeholder='내용을 입력해주세요.' id='answerContent' style='height: 230px'></textarea>
+                                    <textarea class='form-control  bg-light' maxlength='1300' placeholder='내용을 입력해주세요.' id='answerContent' style='height: 230px'>${question.answerContent}</textarea>
                                 </div>
                             </div>
                             <hr>

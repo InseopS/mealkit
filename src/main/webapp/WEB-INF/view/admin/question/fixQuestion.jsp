@@ -15,6 +15,28 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 </head>
+<script>
+function init() {
+	$('#fixBtn').click(() => {
+		let questionNum = <%=request.getParameter("questionNum")%>
+		let questionTitle = $('#questionTitle').val()
+		let questionContent = $('#questionContent').val()
+		let answerContent = $('#answerContent').val()
+		
+		$.ajax({
+			method:'post',
+			url:'<%=request.getContextPath() %>/admin/question/fixQuestion',
+			data: {
+				questionNum: questionNum,
+				questionTitle: questionTitle,
+				questionContent: questionContent,
+				answerContent: answerContent
+			}
+		})
+	})
+}
+$(init)
+</script>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>1:1문의</h2>&ensp;
@@ -22,20 +44,25 @@
      <%@ include file ='../../include/adminTop2.jsp'%>
 <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='listQuestion'>
+                    <form id='form' method='post'>
+                    <c:forEach var="question" items="${questionList}">
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    <input type='text' class='form-control' id='questionTitle' placeholder='제목을 입력해주세요.' value='ㄴ답변:배송문의ㅠㅜ' disabled>
+                                    <input type='text' class='form-control bg-light' id='questionTitle' placeholder='제목을 입력해주세요.' value='${question.questionTitle}' disabled>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" maxlength='1300' placeholder="내용을 입력해주세요." id="questionContent" style="height: 464px">
-안녕하세요. 고객님, EZEN MEALKIT입니다~
-고객님 죄송하지만, 택배 파업으로 인해 배송이 지연되고 있습니다..</textarea>
+                                    <textarea class="form-control bg-light" maxlength='1300' placeholder="내용을 입력해주세요." id="questionContent" style="height: 230px" disabled>${question.questionContent}</textarea>
+                                </div>
+                            </div>
+                            <div class='row mt-3'>
+                                <label for='input' class='col-2 pr-2 col-form-label'>답변:</label>
+                                <div class='col pl-1'>
+                                    <textarea class='form-control bg-light' maxlength='1300' placeholder='내용을 입력해주세요.' id='answerContent' name='answerContent' style='height: 230px'>${question.answerContent}</textarea>
                                 </div>
                             </div>
                             <hr>
@@ -43,11 +70,12 @@
                                 <div class='row mt-2 d-flex justify-content-end'>
                                     <div class='col'>
                                         <button type='button' class='btn btn-secondary' onClick='location.href="listQuestion"'>취소</button>
-                                        <button type='submit' class='btn btn-secondary'>수정</button>
+                                        <button type='submit' class='btn btn-secondary' id='fixBtn' name='fixBtn'>수정</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </c:forEach>
                     </form>
                 </div>
             </div>

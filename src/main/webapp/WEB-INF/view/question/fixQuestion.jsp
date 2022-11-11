@@ -18,6 +18,28 @@
 <style>
 
 </style>
+<script>
+function init() {
+	$('#fixBtn').click(() => {
+		let questionNum = <%=request.getParameter("questionNum")%>
+		let questionTitle = $('#questionTitle').val()
+		let questionContent = $('#questionContent').val()
+		
+		$.ajax({
+			type:'post',
+			url:'<%=request.getContextPath() %>/question/fixQuestion',
+			data: {
+				questionNum: questionNum,
+				questionTitle: questionTitle,
+				questionContent: questionContent
+			}
+		}).done(() => {
+			location.href='listQuestion'
+		})
+	})
+}
+$(init)
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -31,35 +53,32 @@
 
 <body>
     <div id='mainContainerAddSub' class='container'>
-        <div class='form-row'>
-            <div class='col-2 mt-3 ml-2' > 
-                제목 :
-            </div>
-            <div class='col ml-0 mt-3 mr-0'> 
-                <form>
-                    <textarea maxlength='50' style='resize: none;' cols='30' rows='1' id='title'>마라키트 많이 맵나요?</textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='form-row'>
-            <div class='col-2 mt-0 ml-2'> 
-                내용 : 
-            </div>
-            <div class='col mt-0'> 
-                <form>
-                    <textarea maxlength='1300' style='resize: none;' cols='30' rows='5' id='content'>애기들도 먹을 수 있나요?????</textarea>
-                </form>
-            </div>
-        </div>
-        <br>
-        <div class='row justify-content-end mr-3'>
-            <div class='col d-flex justify-content-end'>
-                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>취소</button>
-                &nbsp;
-                <button type='button' class='btn btn-secondary' onclick='location.href="listQuestion"'>수정</button>
-            </div>
-        </div>
+    	
+    	<form id='form'method='post'>
+    	<c:forEach var='question' items='${questionList}'>
+	       	 <div class='row mt-3'>
+	            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+	            <div class='col pl-1'>
+	           			<input type='text' class='form-control' id='questionTitle' name='questionTitle' placeholder='제목을 입력해주세요.' maxlength='15' required value='${question.questionTitle}'>
+	            </div>
+        	</div>
+        	<div class='row mt-3'>
+            	<label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+            	<div class='col pl-1'>
+            	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='questionContent' name='questionContent'
+            		style='height: 210px' maxlength='1300' required>${question.questionContent}</textarea>
+         		</div>
+        	</div>
+	        <div class='row mt-2 justify-content-end '>
+	            <div class='col d-flex justify-content-end'>
+	                <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/question/listQuestion"'>취소</button>
+	                &nbsp;
+	                <button type='button' class='btn btn-secondary' id='fixBtn' name='fixBtn' onclick='location.href="listQuestion"'>수정</button>
+	            </div>
+	        </div>
+	         </c:forEach>
+        </form>
+       
     </div>
 </body>
 

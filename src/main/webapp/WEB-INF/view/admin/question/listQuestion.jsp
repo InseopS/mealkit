@@ -47,7 +47,45 @@
 			}
 		})
 	}
-$(listQuestions)
+
+function init() {
+	$(listQuestions)
+	
+	$('#delBtn').click(() => {
+		if($('#questionNum:checked').val()) {
+			$('#delModalLabel').empty();
+			$('#delModalLabel').text('문의삭제');
+    		$('#modalMsg').empty();
+     		$('#modalMsg').text('선택한 문의를 삭제하시겠습니까?');
+     		$('#deleteModal').modal();
+     		$('#okBtn').hide();
+     		$('#noBtn').show();
+     		$('#delQuestionBtn').show();
+		} else {
+			$('#delModalLabel').empty();
+			$('#delModalLabel').text('문의삭제');
+     		$('#modalMsg').empty();
+     		$('#modalMsg').text('삭제할 문의를 선택해주세요.');
+     		$('#deleteModal').modal();
+     		$('#okBtn').show();
+     		$('#noBtn').hide();
+     		$('#delNoticeBtn').hide();
+  		}
+	})
+	
+	$('#delQuestionBtn').click(() => {
+		$('#deleteModal').modal('hide')
+		for (var i = 0; i < $('#questionNum:checked').length; i++) {
+        	$.ajax({
+           		url: 'del/' + $('#questionNum:checked').eq(i).val(),
+           		method: 'delete'
+        	}).done(function() {
+        		if(i == $('#questionNum:checked').length) listQuestions()
+        	})
+     	} 
+	})
+}
+$(init)
 </script>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
@@ -110,28 +148,28 @@ $(listQuestions)
                 </div>
                 <hr style='position: relative; bottom: 13%;'>
                 <div id='bottomBtn'>
-                    <button type='button' id='delQuestion' class='btn btn-secondary' data-toggle='modal'
-                        data-target='#questionDelModal'>삭제</button>
+                    <button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal'
+                        data-target='#deleteModal'>삭제</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class='modal fade' id='questionDelModal' tabindex='-1'>
+	
+	<div class='modal fade' id='deleteModal' tabindex='-1'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class='modal-title float-left' id='ModalLabel'>문의삭제</p>
-                    <button type='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
+                    <p class="modal-title float-left" id='delModalLabel'>문의삭제</p>
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
-                <div class='modal-body text-center'>
-                    <p>선택한 문의를 삭제하시겠습니까?</p>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1'>
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <a class='btn btn-danger col-3' id='delQuestionBtn' role='button'>예</a>
+                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='okBtn'>확인</button>
                 </div>
             </div>
         </div>

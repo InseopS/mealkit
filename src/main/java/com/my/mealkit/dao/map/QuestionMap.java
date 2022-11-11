@@ -9,7 +9,7 @@ import com.my.mealkit.domain.Question;
 public interface QuestionMap {
 	List<Question> selectDetailQuestion(@Param("questionNum") int questionNum); //문의상세
 	List<Question> selectAdminQuestion(@Param("questionNum") int questionNum); //답변상세
-	List<Question> selectQuestions(); //유저문의목록
+	List<Question> selectQuestions(@Param("userId") String userId); //유저문의목록
 	List<Question> selectAdminQuestions(); //어드민문의목록
 	void insertQuestion(Question question); //유저문의추가
 	void insertAdminQuestion(Question question); //어드민답변추가
