@@ -17,9 +17,9 @@
 		on mealkit.carts.mealkit_num = mealkit.mealkits.mealkit_num
 		where mealkit.carts.user_id = #{userId}
 	</select>
-
+	
 	<insert id='insertCart'>
-		INSERT INTO CARTS(USER_ID, MEALKIT_NUM, MEALKIT_COUNT)
+		insert into carts
 		values (#{userId}, #{mealkitNum}, #{mealkitCount})
 	</insert>
 

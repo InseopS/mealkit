@@ -23,12 +23,12 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public int addCart(Cart cart) {
-		return cartDao.insertCart(cart);
+	public void addCart(Cart cart) {
+		cartDao.insertCart(cart);
 	}
 
 	@Override
-	public int delCart(String userId, int mealkitNum) {
-		return cartDao.deleteCart(userId, mealkitNum);
+	public void delCart(String userId, int mealkitNum) {
+		cartDao.deleteCart(userId, mealkitNum);
 	}
 }
