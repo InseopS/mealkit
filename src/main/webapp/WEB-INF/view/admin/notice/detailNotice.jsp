@@ -75,39 +75,35 @@ $(init)
             <div class='col' style='border: 1px solid;'>
                 <div class='border w-auto my-3' id='content'>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
-                        <div class='row mt-3'>
-                            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
-                            <div class='col pl-1'>
-                            <c:forEach var="notice" items="${noticeList}">
-                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
-                            </c:forEach>
-                            </div>
-                        </div>
-                        <div class='row mt-3'>
-                            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
-                            <div class='col pl-1'>
-                                <div class='form-control bg-light' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
-                                    <div class='row my-5' id='contentLogo'>
-                                        <div class='col'>
-                                        	<c:forEach var="notice" items="${noticeList}">
-                                            	<img style="width:150px; height:100px;"src='/attach/${notice.noticeImgFileName}'/>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                    <c:forEach var="notice" items="${noticeList}">
-						                <pre>
-${notice.noticeContent}
-						                </pre>
-						            </c:forEach>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class='row mt-4 d-flex justify-content-end'>
-                            <button type='button' class='btn btn-secondary mr-1' onClick="location.href='<%=request.getContextPath()%>/admin/notice/listNotice'">목록</button>
-                            <button type='button' id='fixNoticeBtn' class='btn btn-secondary mr-1'>수정</button>
-                            <button type='button' class='btn btn-secondary mr-3' data-toggle='modal' data-target='#deleteModal'>삭제</button>
-                        </div>
+                    	<c:forEach var="notice" items="${noticeList}">
+	                        <div class='row mt-3'>
+	                            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+	                            <div class='col pl-1'>
+	                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
+	                            </div>
+	                        </div>
+	                        <div class='row mt-3'>
+	                            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+	                            <div class='col pl-1'>
+	                                <div class='form-control bg-light' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
+	                                    <div class='row my-5' id='contentLogo'>
+	                                        <div class='col'>
+	                                           	<img style="width:150px; height:100px;"src='/attach/${notice.noticeImgFileName}'/>
+	                                        </div>
+	                                    </div>
+	                                    <div class='col pl-1'>
+			                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none;' disabled>${notice.noticeContent}</textarea>
+			                            </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <hr>
+	                        <div class='row mt-4 d-flex justify-content-end'>
+	                            <button type='button' class='btn btn-secondary mr-1' onClick="location.href='<%=request.getContextPath()%>/admin/notice/listNotice'">목록</button>
+	                            <button type='button' id='fixNoticeBtn' class='btn btn-secondary mr-1'>수정</button>
+	                            <button type='button' class='btn btn-secondary mr-3' data-toggle='modal' data-target='#deleteModal'>삭제</button>
+	                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
