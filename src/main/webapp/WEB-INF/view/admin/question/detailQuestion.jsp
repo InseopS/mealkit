@@ -15,6 +15,25 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 </head>
+<script>
+function answerVal() {
+	if($('#answerContent').val()) {
+		$('#writeBtn').hide()
+	} else  {
+		$('#writeBtn').show()
+		$('#answerContent').append('답변이 없습니다.')
+	}
+}
+
+function init() {
+	answerVal()
+	
+	$('#writeBtn').click(() => {
+		location.href='addQuestion?questionNum=' + <%=request.getParameter("questionNum")%>
+	})
+}
+$(init)
+</script>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>1:1문의</h2>&ensp;
@@ -26,27 +45,40 @@
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='title' value='마라키트 많이 맵나요?' disabled>
+                            <c:forEach var="question" items="${questionList}">
+                                <input type='text' class='form-control bg-light' id='title' value='${question.questionTitle}' disabled>
+                             </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>작성자:</label>
                             <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='writerId' value='tanaka' disabled>
+                            <c:forEach var="question" items="${questionList}">
+                                <input type='text' class='form-control bg-light' id='writerId' value='${question.userId}' disabled>
+                             </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                                <textarea class='form-control bg-light' id="qustionContent" style="height: 410px" disabled>
-애기들도 먹을 수 있나요????</textarea>
+                            <c:forEach var="question" items="${questionList}">
+                                <textarea class='form-control bg-light' id="qustionContent" style="height: 200px" disabled>${question.questionContent}</textarea>
+                            </c:forEach>
+                            </div>
+                        </div>
+                        <div class='row mt-3'>
+                            <label for='input' class='col-2 pr-2 col-form-label'>답변:</label>
+                            <div class='col pl-1'>
+                            <c:forEach var="question" items="${questionList}">
+                                <textarea class='form-control bg-light' id="answerContent" style="height: 200px" disabled>${question.answerContent}</textarea>
+                            </c:forEach>
                             </div>
                         </div>
                         <hr>
                         <div class='row mx-auto justify-content-end'>
                             <div class='row mt-2 d-flex justify-content-end'>
                                 <div class='col'>
-                                    <button type='button' class='btn btn-secondary' onclick='location.href="addQuestion"'>답변작성</button>
+                                	<button type='button' id='writeBtn' class='btn btn-secondary'>답변작성</button>
                                 </div>
                             </div>
                         </div>

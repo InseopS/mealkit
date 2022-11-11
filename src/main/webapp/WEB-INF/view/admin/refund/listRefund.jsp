@@ -26,7 +26,7 @@ function listRefunds() {
 			success: refunds => {
 				if(refunds.length) {
 					refundsTmp = refunds
-				}
+				} else $('#refunds').append('<tr><td colspan=6 class=text-center>환불리스트가 없습니다.</td></tr>')
 			}
 		}).done(refunds => {
 			$.each(refunds, (i, refund) => {

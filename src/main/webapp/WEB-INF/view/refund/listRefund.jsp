@@ -42,6 +42,60 @@
          		font-size: 15px;
          	}
     </style>
+<script>
+let refundsTmp
+let mealkitNamesTmp = []
+function listRefunds() {
+		$('#refunds').empty();
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/refund/getRefunds",
+			dataType: 'json',
+			success: refunds => {
+				if(refunds.length) {
+					refundsTmp = refunds
+				} else $('#refunds').append('<tr><td colspan=2 class=text-center>환불리스트가 없습니다.</td></tr>')
+			}
+		}).done(refunds => {
+			$.each(refunds, (i, refund) => {
+				$.ajax({
+					url: 'selectMealkitNames/' + refund.refundNum,
+					dataType: 'json',
+					async : false,
+					success: mealkitNames => {
+						if(mealkitNames.length > 1) {
+							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+					}
+				})
+			})
+			listTest()
+		}) 
+	}
+
+function listTest() {
+	const refundArr = []
+	for(i=0; i <= refundsTmp.length-1; i++) {
+		
+		refundArr.unshift(
+			`<tr>
+				<td>주문상품</td>
+                <td>\${mealkitNamesTmp[i]}</td>
+			</tr>
+			<tr>
+				<td>결제금액</td>
+				<td>임시가격이다안닥ㄴ</td>
+			</tr>
+			<tr>
+				<td>주문상태</td>
+				<td>\${refundsTmp[i].refundStatusName}</td>
+			</tr>`
+		)
+	}
+	$('#refunds').append(refundArr.join(''))
+}
+$(listRefunds)
+</script>  
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -89,22 +143,18 @@
 	                    <col width='30%'>
 	                    <col width='70%'>
                      </colgroup>
-                  	<tbody>
+                  	<tbody id='refunds'>
                       	<tr>
-                          <td>밀키트명</td>
-                          <td class='2' id='mealkitName'>밀키트명</td>
-                      	</tr>
-                     	<tr>
-                          	<td>수량</td>
-                          	<td class='2' id='orderMealkitCount'>100개</td>
+                          <td></td>
+                          <td></td>
                       	</tr>
                       	<tr>
-                          	<td>가격</td>
-                          	<td class='2' id='price'>10000원</td>
+                          	<td></td>
+                          	<td class='2' id='Totalprice'></td>
                       	</tr>
                       	<tr>
-                          	<td>환불상태</td>
-                          	<td class='2' id='refundStatusName'>환불처리중</td>
+                          	<td></td>
+                          	<td></td>
                       	</tr>
                   	</tbody>
               	</table><hr class='mt-3 mb-2'>

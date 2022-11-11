@@ -15,6 +15,40 @@
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 </head>
+<script>
+	function listQuestions() {
+		$('#questions').empty();
+		
+		$.ajax({
+			method: 'post',
+			url: "<%=request.getContextPath()%>/admin/question/getAdminQuestions"
+		}).done(questions => {
+			if(questions.length) {
+				const questionArr = []
+				
+				$.each(questions, (i, question) => {
+					questionArr.unshift(
+						`<tr>
+                         	<th><input type='checkbox' id='questionNum' name='questionNum'
+                         		value='\${question.questionNum}'></th>
+                            <td>\${question.questionNum}</td>
+                            <td><a href='detailQuestion?questionNum=\${question.questionNum}'>
+                            		\${question.questionTitle}</td>
+                            <td>\${question.userId}</td>
+                            <td>\${question.questionRegdate}</td>
+                        </tr>`
+					);
+				})
+				
+				$('#questions').append(questionArr.join(''))
+			} else {
+				$('#questions').append(
+					'<tr><td colspan=4 class=text-center>문의가 없습니다.</td></tr>')
+			}
+		})
+	}
+$(listQuestions)
+</script>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
                     <h2 style='display: inline'>1:1문의</h2>
@@ -59,41 +93,13 @@
                                             <th scope='col'>작성일</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0003</td>
-                                            <td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td>
-                                            <td>tanaka</td>
-                                            <td>2022.10.14</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0002</td>
-                                            <td>배송문의ㅠㅜ</td>
-                                            <td>tanaka</td>
-                                            <td>2022.10.13</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td></td>
-                                            <td onclick='location.href="fixQuestion"'>ㄴ 답변:배송문의ㅠㅜ</td>
-                                            <td>관리자</td>
-                                            <td>2022.10.13</td>
-                                        </tr>
+                                    <tbody id='questions'>
                                         <tr>
                                             <th><input type='checkbox'></th>
                                             <td>0001</td>
-                                            <td>재입고 문의드려용~</td>
-                                            <td>rightarm</td>
-                                            <td>2022.10.12</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td></td>
-                                            <td>ㄴ 답변:재입고 문의드려용~</td>
-                                            <td>관리자</td>
-                                            <td>2022.10.12</td>
+                                            <td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td>
+                                            <td>tanaka</td>
+                                            <td>2022.10.14</td>
                                         </tr>
                                     </tbody>
                                 </table>

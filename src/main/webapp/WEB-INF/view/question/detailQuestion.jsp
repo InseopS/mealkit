@@ -43,12 +43,21 @@
                	</c:forEach>
             </div>
         </div>
-        <hr>
+        <hr class='mt-5'>
         <div class='row mt-4'>
         	<label for='input' class='col-3 pr-2 col-form-label'>내용:</label>
             <div class='col mt-2'>
             	<c:forEach var="question" items="${questionList}">
                		${question.questionContent}
+               	</c:forEach>
+            </div>
+        </div>
+        <hr class='mt-5'>
+        <div class='row mt-4'>
+        	<label for='input' class='col-3 pr-2 col-form-label'>답변:</label>
+            <div class='col mt-2'>
+            	<c:forEach var="question" items="${questionList}">
+               		${question.answerContent}
                	</c:forEach>
             </div>
         </div>
