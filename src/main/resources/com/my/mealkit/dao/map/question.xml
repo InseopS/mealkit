@@ -14,13 +14,6 @@
 		from questions
 	</select>
 	
-	<select id='selectQuestion' resultType='question'>
-		select questions.*, users.user_id
-		from questions inner join users
-		on users.user_id = questions.user_id
-		where users.user_id = #{userId}
-	</select>
-	
 	<select id='selectDetailQuestion' resultType='question'>
 		select *
 		from questions
@@ -34,14 +27,15 @@
 	</select>
 	
 	<insert id='insertQuestion'>
-		insert into questions(question_num, question_title, question_content, question_regdate, user_id)
-		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, sysDate, #{userId})
+		insert into questions(question_num, question_title, question_content, answer_content, question_regdate, user_id)
+		values(question_num_seq.nextval, #{questionTitle}, #{questionContent}, #{answerContent}, sysDate, #{userId})
 	</insert>
 	
-	<insert id='insertAdminQuestion'>
-		insert into questions(question_num, question_title, answer_content, question_regdate)
-		values(#{questionNum}, #{questionTitle}, #{answerContent}, sysDate)
-	</insert>
+	<update id='insertAdminQuestion'>
+		update questions
+		set answer_content = #{answerContent}
+		where question_num = #{questionNum}
+	</update>
 	
 	<update id='updateQuestion'>
 		update questions
