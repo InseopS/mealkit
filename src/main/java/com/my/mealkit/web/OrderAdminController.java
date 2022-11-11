@@ -5,16 +5,17 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.my.mealkit.domain.Order;
 import com.my.mealkit.service.OrderService;
 
-@Controller
-@RequestMapping("/admin/order")
+@RestController
+@RequestMapping("admin/order")
 public class OrderAdminController {
 	@Autowired OrderService orderService;
 	
@@ -23,17 +24,19 @@ public class OrderAdminController {
 		return "admin/order/listOrder";
 	}
 	
-	@ResponseBody
-	@PostMapping("getOrders")
+	@GetMapping("listOrder")
+	public ModelAndView listOrder(HttpSession session, ModelAndView mv) {	
+		return mv;
+	}
+	
+	@GetMapping("getAdminOrders")
 	public List<Order> getAdminOrders() {
 		return orderService.getAdminOrders();
 	}
 	
-	@ResponseBody
-	@PostMapping("getOrder")
-	public List<Order> getOrder(HttpSession session, Order order) {
-		String userId = session.getAttribute("userId").toString();
-		order.setUserId(userId);
-		return orderService.getAdminOrders();
-	}	
+	@GetMapping("selectMealkitNames/{orderNum}")
+	public List<Order> getMealkitNames(@PathVariable int orderNum) {		
+		List<Order> mealkitNameList = orderService.getMealkitNames(orderNum);
+		return mealkitNameList;
+	}
 }

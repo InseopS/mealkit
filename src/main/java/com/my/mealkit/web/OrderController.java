@@ -41,8 +41,8 @@ public class OrderController {
 	   }
 	
 	@ResponseBody
-	@PostMapping("listOrder")
-	public List<Order> getOrder(HttpSession session, Order order) {
+	@GetMapping("getOrders")
+	public List<Order> getOrders(HttpSession session, Order order) {
 		String userId = session.getAttribute("userId").toString();
 		order.setUserId(userId);
 		List<Order> orders = orderSerivce.getOrders(userId);
@@ -50,6 +50,12 @@ public class OrderController {
 		return orders;
 	}
 	
+	@GetMapping("selectMealkitNames/{orderNum}")
+	public List<Order> getMealkitNames(@PathVariable int orderNum) {		
+		List<Order> mealkitNameList = orderSerivce.getMealkitNames(orderNum);
+		return mealkitNameList;
+	}	
+
 	@RequestMapping("detailOrder")
 	 public ModelAndView detailOrder(ModelAndView mv) {
 	      mv.setViewName("order/detailOrder");

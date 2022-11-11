@@ -24,6 +24,7 @@ public class Order {
 	private int orderStatusCode;
 	private String paymentName;
 	private String orderStatusName;
+	private int price;
 	private int mealkitNum;
 	private String mealkitName;
 	private int orderMealkitNum;

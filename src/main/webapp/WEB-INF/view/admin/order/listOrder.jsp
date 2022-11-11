@@ -16,51 +16,54 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 let ordersTmp
-let orderCounts
-let mealkits
-   function listOrders() {         
-      $('#orders').empty()
-      
-      $.ajax({
-	      url: 'getOrders',
-	      dataType: 'json',
-	      success: orders => {
-	         if(orders.length) {         
-	            ordersTmp = orders
-	         }
-	      }
-	   })         
-	 }
-
-function init() {
-	$('#orders').empty();
-	
-	$.ajax({
-		type: 'post',
-		url: "<%=request.getContextPath() %>/admin/order/getOrders"
-	}).done(orders => {
-		if(orders.length) {
-			const orderArr = []
+let mealkitNamesTmp = []
+function listOrders() {
+		$('#orders').empty();
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/order/getAdminOrders",
+			dataType: 'json',
+			success: orders => {
+				if(orders.length) {
+					ordersTmp = orders
+				}
+			}
+		}).done(orders => {
 			$.each(orders, (i, order) => {
-				orderArr.unshift(
-						`<tr>
-							<td class='align-middle'>\${order.orderNum}</td>
-							<td class='align-middle'>\${order.userId}</td>
-							<td class='align-middle'>\${order.mealkitName}</td>
-							<td class='align-middle'>2000원</td>
-							<td class='align-middle'>\${order.paymentName}</td>
-							<td class='align-middle'>\${order.orderStatusName}</td>
-						<tr>`
-				);
+				$.ajax({
+					url: 'selectMealkitNames/' + order.orderNum,
+					dataType: 'json',
+					async : false,
+					success: mealkitNames => {
+						if(mealkitNames.length > 1) {
+							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+					}
+				})
 			})
-			$('#orders').append(orderArr.join(''))
-		} else {
-			$('#orders').append('<tr><td colspan=6 class=text-center>주문리스트가 비었습니다.</td></tr>')
-		}
-	})
+			listTest()
+		}) 
+	}
+
+function listTest() {
+	const orderArr = []
+	for(i=0; i <= ordersTmp.length-1; i++) {
+		
+		orderArr.unshift(
+			`<tr>
+				<td class='align-middle'>\${ordersTmp[i].orderNum}</td>
+				<td class='align-middle'>\${ordersTmp[i].userId}</td>
+				<td class='align-middle'>\${mealkitNamesTmp[i]}</td>
+				<td class='align-middle'>\${ordersTmp[i].userId}</td>
+				<td class='align-middle'>\${ordersTmp[i].paymentName}</td>
+				<td class='align-middle'>\${ordersTmp[i].orderStatusName}</td>
+			<tr>`
+		)
+	}
+	$('#orders').append(orderArr.join(''))
 }
 
-$(init)
+$(listOrders)
 </script>
 </head>
 <body>
@@ -112,7 +115,14 @@ $(init)
                                         </tr>
                                     </thead>
                                     <tbody id='orders'>
-	                                     <tr><td>${order.orderNum}</td><td>${userId}</td><td>${mealkitName}</td><td>2000원</td><td>${paymentName}</td><td>${orderStatusName}</td></tr>                 
+	                                   <tr>
+	                                     <td></td>
+	                                     <td></td>
+	                                     <td></td>
+	                                     <td></td>
+	                                     <td></td>
+	                                     <td></td>
+	                                   </tr>
                                     </tbody>
                                 </table>
                                 <hr class='my-0'>

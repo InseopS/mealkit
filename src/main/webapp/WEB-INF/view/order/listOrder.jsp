@@ -15,21 +15,46 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
     <script>
-   	function listOrders() {
-   		$('#orders').empty()
+    let ordersTmp
+    let mealkitNamesTmp = []
+    function listOrders() {
+    		$('#orders').empty();
+    		
+    		$.ajax({
+    			
+    			url: "<%=request.getContextPath()%>/order/getOrders",
+    			dataType: 'json',
+    			success: orders => {
+    				if(orders.length) {
+    					ordersTmp = orders
+    				} else $('#orders').append('<div class=text-center>주문내역이 없습니다.</div>')
+    			}
+    		}).done(orders => {
+    			$.each(orders, (i, order) => {
+    				$.ajax({
+    					url: 'selectMealkitNames/' + order.orderNum,
+    					dataType: 'json',
+    					async : false,
+    					success: mealkitNames => {
+    						if(mealkitNames.length > 1) {
+    							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+    						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+    					}
+    				})
+    			})
+    			listTest()
+    		}) 
+    	}
+    
+    
+   	function listTest() {
    		
-   		$.ajax({
-   			method: 'post',
-   			url: "<%=request.getContextPath()%>/order/listOrder"
-   		}).done(orders => {
-   			if(orders.length) {
-   				const orderArr = []
-   				
-   				$.each(orders, (i, order) => {
+   		const orderArr = []
+   		for(i=0; i <= ordersTmp.length-1; i++) {
    					orderArr.unshift(
    						`<div class='row'>
 						 	<div class='col'>
-								<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>\${order.orderNum}</span>
+								<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${ordersTmp[i].orderNum}</span>
 							</div>
 						    <div class='col'>
 								<div class='mr-2' style='float: right;'>
@@ -48,7 +73,7 @@
 									<tbody> 
 										<tr>
 											<td class='col-3'>주문상품</td>
-											<td>\${order.mealkitName}</td>
+											<td>\${mealkitNamesTmp[i]}</td>
 											<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
 											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
 										</tr>
@@ -60,7 +85,7 @@
 										</tr>
 										<tr>
 											<td>주문상태</td>
-											<td>\${order.orderStatusName}</td>
+											<td>\${ordersTmp[i].orderStatusName}</td>
 											<td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
 											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
 										</tr>                
@@ -70,29 +95,15 @@
 								</div>
 							</div>`
    					);
-   				})
+   				}
    				$('#orders').append(orderArr.join(''))
-   			} else {
-   				$('#orders').append('<div class=text-center>주문내역이 없습니다.</div>')
-   			}
-   		})
-   	}
+   			} 
+   			
+ 
    	
    	$(listOrders)
    	
-   	function init() {
-   		$(listOrders)
-   		
-   			$('#orderCancelBtn').click(() => {
-	            $('#orderCancelModal').modal()
-	            $('#modalMsg').empty();
-				$('#modalMsg').text('주문을 취소하시겠습니까?');
-				$('#modalBtn').show();
-				$('#modal').modal();
-   			})
-   	}
    	
-   	$(init);
     </script>
     <style>
         #paging_div {
@@ -150,7 +161,7 @@
         <div id='orders'>
         <div class='row'>
 	       <div class='col'>
-	          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span id='orderNum'>${order.orderNum}</span>
+	          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span></span>
 	       </div>
            <div class='col'>
 	           <div class='mr-2' style='float: right;'>
@@ -169,7 +180,7 @@
                      <tbody> 
                         <tr>
                            <td class='col-3'>주문상품</td>
-                           <td>${order.mealkitName}</td>
+                           <td></td>
                             <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
                          </tr>
@@ -181,7 +192,7 @@
                          </tr>
                          <tr>
                             <td>주문상태</td>
-                            <td>${order.orderStatusName}</td>
+                            <td></td>
                             <td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
             					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
                          </tr>                
