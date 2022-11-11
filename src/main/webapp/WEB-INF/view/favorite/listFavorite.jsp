@@ -16,46 +16,7 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
-	function listFavorite() {
-		$('.favoriteList').empty();
-		
-		$.ajax({
-			method:'get',
-			url:"<%=request.getContextPath() %>/favorite/getFavorites/"
-		}).done(favoriteList => {
-			console.log(favoriteList)
-			if(favoriteList.length) {
-				const favoriteArr = []
-				
-				$.each(favoriteList, (i, favorite) => {
-					console.log(favorite)
-					favoriteArr.unshift(
-						`<tr>
-							<td>
-								<input type='checkbox' name='mealkitNum' id='mealkitNum'
-									value='\${favorite.mealkitNum}'/>
-							</td>//체크박스
-							<td class='mealkitImage'>
-								<a href='http://localhost/mealkit/detailMealkit?mealkitNum=\${favorite.mealkitNum}'>
-									<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
-								</a>
-							</td>//밀키트이미지 + 밀키트상세페이지링크
-							<td>
-								\${favorite.mealkitName}<br><br>\${favorite.mealkitCount}개<br>\${favorite.mealkitCount * favorite.price}원
-							</td>//밀키트이름 + 밀키트수량 + 밀키트수량 * 가격
-						<tr>`
-					);
-				})
-				$('.favoriteList').append(favoriteArr.join(''))
-			} else {
-				$('.favoriteList').append('<tr><td colspan=6 class=text-center>찜한 목록에 상품이 없습니다.</td></tr>')
-			}
-		})
-	}
-	
 	function init() {
-		$(listFavorite)
-		
 		$('#delBtn').click(() => {
 			if($('#mealkitNum:checked').val()) {
             	$('#modalMsg').text('밀키트를 삭제하시겠습니까?') 
@@ -77,7 +38,7 @@
 				$.ajax({
 					url: 'delFavorite/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function(){if(i == $('#mealkitNum:checked').length) listFavorite()})
+				}).done(function(){location.reload()})
 			}		
 		})
 	}
@@ -90,7 +51,7 @@ tr, td {
    border: 1px solid lightgray;
 }
 
-#fav1 {
+#favorite1 {
 	width: 100%;
 	text-align: center;
 }
@@ -101,7 +62,7 @@ tr, td {
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
 	<a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
 	<div id='menuName'>
-	    <h3>찜한 목록</h3>
+	    <h3>찜한상품</h3>
 	</div>            
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -111,8 +72,28 @@ tr, td {
 		<form action='<%=request.getContextPath() %>/order/addOrder'>
             <div class='row mt-5'>    
                 <div class='col'>
-                    <table id='fav1'>
+                    <table id='favorite1'>
                         <tbody class='favoriteList'>
+                        <c:forEach var='favorite' items='${favorites}'>
+	                        <c:forEach var='mealkit' items='${mealkits}'>
+	                        	<c:if test="${mealkit.mealkitNum == favorite.mealkitNum}">
+				                        <tr>
+											<td>
+												<input type='checkbox' name='mealkitNum' id='mealkitNum'
+													value='${mealkit.mealkitNum}'/>
+											</td>
+											<td class='mealkitImage'>
+												<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
+													<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+												</a>
+											</td>
+											<td>
+												${mealkit.mealkitName}<br><br>${favorite.mealkitCount}개<br>${mealkit.price}원
+											</td>
+										<tr>
+									</c:if>
+								</c:forEach>
+							</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -139,7 +120,7 @@ tr, td {
 	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
 	                <button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
 	                <button type='button' class='btn btn-primary col-3' id='delFavoriteBtn' 
-                    		onclick="location.href='<%=request.getContextPath() %>/favorite/listFavorite'">예</button>
+                    		onclick="location.href='<%=request.getContextPath() %>/favorite/listfavorite'">예</button>
 	            </div>
 	        </div>
 	    </div>

@@ -57,6 +57,18 @@ function init() {
     });
     
     $('#cartBtn').click(() => {
+    	let cart = {
+    		mealkitNum: $('#mealkitNum').val(),
+    		mealkitCount: $('#amount').val()
+    	}
+		
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath}/cart/addCart',
+			data: JSON.stringify(cart),
+			contentType: 'application/json'
+		})
+    	
         $('#mealkitModal').modal()
         $('#modalMsg').empty();
 		$('#modalMsg').text('장바구니에 담았습니다.');
@@ -83,8 +95,9 @@ $(init);
     <div id='mainContainerAddSub' class='container'>
         <div class='row mt'>
             <div class='col'>
-            	<c:forEach var='mealkit' items='${mealkitList}'>
+            	<c:forEach var='mealkit' items='${mealkitList}'>          		
                     <img style="height:220px; width: 100%;" src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+                    <p><input type='hidden' id='mealkitNum' name='mealkitNum' value='${mealkit.mealkitNum}' readonly/></p>
                 </c:forEach>
             </div>
         </div>
@@ -145,7 +158,9 @@ ${mealkit.ingredient}
             </div>
             <div class='modal-footer py-1'>
                 <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='favriteOkBtn'>확인</button>
-                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='cartOkBtn' onclick="location.href='listMealkit'">확인</button>
+                <c:forEach var='mealkit' items='${mealkitList}'>
+                   <button type='button' class='btn btn-primary col-3' data-dismiss='modal' id='cartOkBtn' onclick="location.href='listMealkit'">확인</button>
+               </c:forEach>
             </div>
         </div>
     </div>

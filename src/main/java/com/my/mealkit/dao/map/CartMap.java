@@ -10,7 +10,7 @@ public interface CartMap {
 	List<Cart> selectCarts(String userId);
 	List<Cart> selectCart(@Param("userId") String userId, 
 						@Param("mealkitNum") int mealkitNum);
-	int insertCart(Cart cart);
-	int deleteCart(@Param("userId") String userId, 
+	void insertCart(Cart cart);
+	void deleteCart(@Param("userId") String userId, 
 				@Param("mealkitNum") int mealkitNum);
 }

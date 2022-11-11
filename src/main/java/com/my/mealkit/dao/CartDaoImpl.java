@@ -23,12 +23,12 @@ public class CartDaoImpl implements CartDao {
 	}
 	
 	@Override
-	public int insertCart(Cart cart) {
-		return cartMap.insertCart(cart);
+	public void insertCart(Cart cart) {
+		cartMap.insertCart(cart);
 	}
 
 	@Override
-	public int deleteCart(String userId, int mealkitNum) {
-		return cartMap.deleteCart(userId, mealkitNum);
+	public void deleteCart(String userId, int mealkitNum) {
+		cartMap.deleteCart(userId, mealkitNum);
 	}
 }
