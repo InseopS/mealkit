@@ -5,14 +5,14 @@
 	<select id='selectExchanges' resultType='exchange'>
 		select exchanges.*, orders.order_num, 
 			exchange_status.exchange_status_name,
-			exchange_reason.exchange_reason_name
+			exchange_reasons.exchange_reason_name
 		from exchanges inner join orders
 		on exchanges.order_num = orders.order_num
 		inner join exchange_status
 		on exchange_status.exchange_status_code = exchanges.exchange_status_code
-		inner join exchange_reason
-		on exchange_reason.exchange_reason_code = exchanges.exchange_reason_code
-		where exchanges.order_num = #{orderNum}
+		inner join exchange_reasons
+		on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
+		where orders.user_id= #{userId}
 		order by exchanges.order_num
 	</select>
 	
@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id='selectMealkitNames' resultType='exchange'>
-		select mealkits.mealkit_name
+		select mealkits.mealkit_name, mealkits.price
 		from exchanges inner join orders
 	    on exchanges.order_num = orders.order_num
 	        inner join orders_mealkits
@@ -38,8 +38,7 @@
 	    on mealkits.mealkit_num = orders_mealkits.mealkit_num
 		where exchanges.exchange_num = #{exchangeNum}
 	</select>
-	
-	
+
 	<insert id='insertExchange'>
 		insert into exchanges(exchange_num, exchange_img_file_name, exchange_content,
 			exchange_reason_name, exchange_status_name, order_num)

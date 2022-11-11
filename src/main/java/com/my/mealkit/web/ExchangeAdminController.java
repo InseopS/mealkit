@@ -25,7 +25,7 @@ public class ExchangeAdminController {
 	}
 
 	@GetMapping("listExchange")
-	public ModelAndView listExchange(HttpSession session, ModelAndView mv) {	
+	public ModelAndView listExchange(ModelAndView mv) {	
 		return mv;
 	}
 	

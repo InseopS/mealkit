@@ -15,20 +15,88 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+let exchangesTmp
+let mealkitNamesTmp = []
+let priceTmp = []
 function listExchanges() {
-	$('#exchanges').empty()
+	$('#exchanges').empty();
 	
 	$.ajax({
-		method: 'post',
-		url: "<%=request.getContextPath()%>/admin/exchange/listExchanges"
-	}).done(exchanges => {
-		if(exchanges.length) {
-			const exchangeArr = []
-			
-			
+		url: "<%=request.getContextPath()%>/exchange/listExchanges",
+		dataType: 'json',
+		success: exchanges => {
+			if(exchanges.length) {
+				exchangesTmp = exchanges
+			} else $('#exchanges').append('<tr><td colspan=6 class=text-center>교환리스트가 없습니다.</td></tr>')
 		}
-	})
+	}).done(exchanges => {
+		$.each(exchanges, (i, exchange) => {
+			$.ajax({
+				url: 'selectMealkitNames/' + exchange.exchangeNum,
+				dataType: 'json',
+				async : false,
+				success: mealkitNames => {
+					if(mealkitNames.length > 1) {
+						mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+					} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+				}
+			})
+		})
+		
+		listTest()
+	}) 
 }
+
+function listTest() {
+	const exchangeArr = []
+	for(i=0; i <= exchangesTmp.length-1; i++) {
+		exchangeArr.unshift(
+			`<div class='row'>
+				<div class='col'>
+				<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${exchangesTmp[i].orderNum}</span>
+		 		</div>
+				<div class='col'>
+					<div class='mr-2' style='float:right'>
+						<a href='../../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+							style='text-decoration: underline;'><small>주문상세</small></a>
+						<a href='listExchange' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+		     				data-target='#exchangeCancelModal' style='text-decoration: underline;'><small>교환취소</small></a>
+					</div>
+				</div>
+			</div>
+			<hr class='mt-2 mb-2'>
+			<div class='row'>
+				<div class='col'>
+		    		<table class='table table-sm table-borderless ml-0'>
+		        		<colgroup>
+							<col width='30%'>
+							<col width='70%'>
+						</colgroup>
+						<tbody>
+			    			<tr>
+			     				<td>밀키트명</td>
+			     				<td>\${mealkitNamesTmp[i]}</td>
+			    			</tr>
+			    			<tr>
+						        <td>가격</td>
+						        <td>어케끌어옴</td>
+			    			</tr>
+			    			<tr>
+						        <td>교환상태</td>
+						        <td>\${exchangesTmp[i].exchangeStatusName}</td>
+			    			</tr>
+						</tbody>
+		    		</table>
+		    		<hr class='mt-3 mb-2'>
+				</div>
+			</div>`
+		);
+	}
+	
+	$('#exchanges').append(exchangeArr.join(''))
+}
+
+$(listExchanges)
 </script>
 <style>
     #pagingDiv {
@@ -80,44 +148,32 @@ function listExchanges() {
                 <hr style='border:solid 1px'>
             </div>
         </div>
-		<div class='row'>
-			<div class='col'>
-			    <b>주문번호</b>&ensp;<span id='orderNum'>000002</span>
-			</div>
-			<div class='col'>
-				<div class='mr-2' style='float:right'>
-					<a href='../../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
-								style='text-decoration: underline;'><small>주문상세</small></a>
-					<a href='listExchange' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-			     			data-target='#exchangeCancelModal' style='text-decoration: underline;'><small>교환취소</small></a>
+		<div id='exchanges'>
+			<div class='row'>
+				<div class='col'>
+				    <table class='table table-sm table-borderless ml-0'>
+				        <colgroup>
+							<col width='30%'>
+							<col width='70%'>
+						</colgroup>
+					<tbody>
+					    <tr>
+					     <td>밀키트명</td>
+					     <td></td>
+					    </tr>
+					    <tr>
+					        <td>가격</td>
+					        <td></td>
+					    </tr>
+					    <tr>
+					        <td>교환상태</td>
+					        <td id='exchangeStatus'>${exchange.exchangeStatusName}</td>
+					    </tr>
+					</tbody>
+				    </table><hr class='mt-3 mb-2'>
 				</div>
-			</div>
+	        </div>
 		</div>
-		<hr class='mt-2 mb-2'>
-		<div class='row'>
-			<div class='col'>
-			    <table class='table table-sm table-borderless ml-0' id='table'>
-			        <colgroup>
-			<col width='30%'>
-			<col width='70%'>
-			</colgroup>
-				<tbody>
-				    <tr>
-				     <td>밀키트명</td>
-				     <td id='mealkitName'>${mealkitName}</td>
-				    </tr>
-				    <tr>
-				        <td>가격</td>
-				        <td id='price'>${price}</td>
-				    </tr>
-				    <tr>
-				        <td>교환상태</td>
-				        <td id='exchangeStatusName'>${exchangeStatusName}</td>
-				    </tr>
-				</tbody>
-			    </table><hr class='mt-3 mb-2'>
-			</div>
-        </div>
     </div>
     <div class='row d-flex mx-auto fixed-bottom mb-5' id='pagingDiv'>
         <nav aria-label="Page navigation example">
@@ -133,7 +189,7 @@ function listExchanges() {
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>교환취소</p>
+                <p class='modal-title float-left' id='exchangeCancelBtn' name='exchangeCancelBtn'>교환취소</p>
                 <button type='button' class='close' data-dismiss='modal'>
                     <span>&times;</span>
                 </button>
@@ -143,7 +199,7 @@ function listExchanges() {
             </div>
             <div class='modal-footer py-1'>
                 <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal' data-target='#cancelOkModal'>예</button>
+                <button type='button' class='btn btn-primary col-3' id='cancelOk' data-dismiss='modal' data-toggle='modal' data-target='#cancelOkModal'>예</button>
             </div>
         </div>
     </div>
