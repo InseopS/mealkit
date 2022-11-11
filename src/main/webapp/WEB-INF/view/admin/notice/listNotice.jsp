@@ -29,7 +29,7 @@
 							`<tr>
 								<td><input type='checkbox' name='noticeNum' id='noticeNum'
 										value='\${notice.noticeNum}'/></td>
-								<td>\${notice.noticeNum}</td>
+								<td>\${notice.noticeNum}\${notice.rownum}</td>
 								<td><a href='detailNotice?noticeNum=\${notice.noticeNum}'>
 										\${notice.noticeTitle}</td>
 								<td>\${notice.noticeRegdate}</td>
