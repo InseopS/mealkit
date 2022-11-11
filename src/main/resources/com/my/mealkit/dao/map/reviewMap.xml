@@ -66,12 +66,21 @@
         on reviews.rate = rate_to_star.rate
         where mealkit_name LIKE '%'||#{keyword}||'%'
 	</select>
+	
+	<select id='selectMealkits' resultType='review'>
+	  select mealkits.mealkit_name, mealkits.mealkit_num, orders_mealkits.order_mealkit_num
+	  from orders inner join orders_mealkits
+	  on orders_mealkits.order_num = orders.order_num
+	  inner join mealkit.mealkits
+	  on mealkits.mealkit_num = orders_mealkits.mealkit_num
+	  where orders.order_num = #{orderNum}
+   </select>
 
 	<insert id='insertReview'>
-		insert into reviews(review_num, review_title, review_content, rate, 
-			review_img_file_name, review_regdate)
+		insert into reviews(review_num, review_title, review_content, rate,
+			review_img_file_name, review_regdate, order_mealkit_num)
 		values(review_num_seq.nextval, #{reviewTitle}, #{reviewContent}, #{rate},
-			#{reviewImgfileName}, sysDate)
+			#{reviewImgfileName}, sysDate, #{orderMealkitNum,jdbcType=VARCHAR})
 	</insert>
 	
 	<update id='updateReview'>

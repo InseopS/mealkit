@@ -10,6 +10,7 @@ public interface ReviewService {
 	List<Review> getAdminReviews();
 	List<Review> getdetailAdminReviews(int reviewNum);
 	List<Review> getSearchReviews(String keyword);
+	List<Review> getMealkits(int orderNum);
 	Review getReview(int reviewNum);
 	void addReview(Review review);
 	void fixReview(Review review);

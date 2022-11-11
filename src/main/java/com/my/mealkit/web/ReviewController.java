@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.Review;
 import com.my.mealkit.service.ReviewService;
 
-@Controller 
+@RestController 
 @RequestMapping("review")
 public class ReviewController {
    @Autowired private ReviewService reviewService;
@@ -39,11 +40,21 @@ public class ReviewController {
    @PostMapping("getReview")
    public List<Review> getReviews(){
       return reviewService.getReviews();
-   }   
+   }
+   
+   @GetMapping("selectMealkits/{orderNum}")
+	public List<Review> getMealkits(@PathVariable int orderNum) {
+		List<Review> mealkitList = reviewService.getMealkits(orderNum);
+		return mealkitList;
+   }
    
    @RequestMapping("addReview")
-   public String addReview() {
-      return "review/addReview";
+   public ModelAndView addReview(ModelAndView mv) {
+	   Order order = new Order();
+	   order.setOrderNum(1);
+	   mv.addObject("order", order);
+	   mv.setViewName("review/addReview");
+      return mv;
    }
    
    @RequestMapping(value ="fixReview", method= RequestMethod.GET)
@@ -71,10 +82,9 @@ public class ReviewController {
    public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
       try {
          String reviewFileName = review.getReviewImgfile().getOriginalFilename();
-         
+         System.out.println(review);
          saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
          review.setReviewImgfileName(reviewFileName);
-         
          reviewService.addReview(review);
       } catch(NullPointerException e) {}
       
@@ -95,9 +105,10 @@ public class ReviewController {
    }
    
    @RequestMapping(value ="detailReview", method=RequestMethod.GET)
-      public String detailReview(Model model, @RequestParam("reviewNum") int reviewNum) {
+      public ModelAndView detailReview(ModelAndView mv, Model model, @RequestParam("reviewNum") int reviewNum) {
          List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
          model.addAttribute("reviewList", reviewList);
-         return "review/detailReview";
+         mv.setViewName("review/detailReview");
+         return mv;
       }
 }

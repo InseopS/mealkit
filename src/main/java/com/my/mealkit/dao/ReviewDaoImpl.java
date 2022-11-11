@@ -38,6 +38,11 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 	
 	@Override
+	public List<Review> selectMealkits(int orderNum) {
+		return reviewMap.selectMealkits(orderNum);
+	}
+
+	@Override
 	public Review selectReview(int reviewNum) {
 		return reviewMap.selectReview(reviewNum);
 	}
