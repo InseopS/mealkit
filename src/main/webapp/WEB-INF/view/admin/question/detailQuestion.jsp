@@ -19,6 +19,7 @@
 function answerVal() {
 	if($('#answerContent').val()) {
 		$('#writeBtn').hide()
+		$('#fixBtn').show()
 	} else  {
 		$('#writeBtn').show()
 		$('#answerContent').append('답변이 없습니다.')
@@ -30,6 +31,10 @@ function init() {
 	
 	$('#writeBtn').click(() => {
 		location.href='addQuestion?questionNum=' + <%=request.getParameter("questionNum")%>
+	})
+	
+	$('#fixBtn').click(() => {
+		location.href='fixQuestion?questionNum=' + <%=request.getParameter("questionNum")%>
 	})
 }
 $(init)
@@ -79,6 +84,7 @@ $(init)
                             <div class='row mt-2 d-flex justify-content-end'>
                                 <div class='col'>
                                 	<button type='button' id='writeBtn' class='btn btn-secondary'>답변작성</button>
+                                	<button type='button' id='fixBtn' class='btn btn-secondary'>답변수정</button>
                                 </div>
                             </div>
                         </div>
