@@ -14,7 +14,30 @@
 <link rel='preconnect' href='https://fonts.googleapis.com'>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {
+	
+	$('#orderBtn').click(() => {
+		
+		let order = {
+				request: $('#request').val(),
+				paymentCode: $('#paymentCode').val()
+				orderMealkitCount: $('#orderMealkitCount').val()
+				mealkitNum: $('#mealkitNum').val()
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath}/order/listOrder',
+			data: JSON.stringfy(order),
+			contentType: 'application/json'
+		})
+		
+	})
+}
 
+$(init)
+</script>
 <style>
 table {
     width: 100%;
@@ -77,15 +100,10 @@ h5 {
                    	</thead>
                    	<tbody>
                        	<tr>
-                           	<td>미나리 감자탕</td>
-                           	<td>1개</td>
-                           	<td>32,000원</td>
-                       	</tr>
-                       	<tr>
-                           	<td>새우 감바스</td>
-                           	<td>1개</td>
-                           	<td>10,000원</td>
-                       	</tr>
+						<td>${mealkit.mealkitName}</td>
+						<td>${cart.mealkitCount}개</td>
+						<td>${cart.mealkitCount * mealkit.price}원</td>
+						<tr>
                    	</tbody>
                	</table>
        		</div>
@@ -113,13 +131,13 @@ h5 {
                 <div class="row inputBox">
                     <label for="input" class="col-3 col-form-label">주소</label>
                     <div class="col pl-1">
-                        <input type="text" class="form-control" id="basicAddress" value='${user.basicAddress}' maxlength='17'>
+                        <input type="text" class="form-control" id="basicAddr" value='${user.basicAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
                     <label for="input" class="col-3 col-form-label" style='font-size: 80%'>상세주소</label>
                     <div class="col pl-1">
-                        <input type="text" class="form-control" id="detailAddress" value='${user.detailAddress}' maxlength='17'>
+                        <input type="text" class="form-control" id="detailAddr" value='${user.detailAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
@@ -153,25 +171,46 @@ h5 {
                     <h5><b>결제 방법</b></h5>
                     <table class='way' name='paymentCode'>
                         <tr>
-                            <th><input type='radio' name='payment' value='1'></th>
+                            <th><input type='radio' id='payment' name='payment' value='카드 결제'></th>
                             <td>카드 결제</td>
                         </tr>
                         <tr>
-                            <th><input type='radio' name='payment' value='2'></th>
+                            <th><input type='radio' id='payment' name='payment' value='무통장 입금'></th>
                             <td>무통장 입금</td>
                         </tr>
                         <tr>
-                            <th><input type='radio' name='payment' value='3'></th>
+                            <th><input type='radio' id='payment' name='payment' value='휴대폰 결제'></th>
                             <td>휴대폰 결제</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class='row d-flex justify-content-center mt-1'>
-                <input type='submit' class='btn btn-outline-secondary m-5 d-flex justify-content-center' value='구매'>
+                <button type='submit' id='orderBtn' name='orderBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'>구매</button>
             </div>
         </form>  
     </div>
+        <div class='modal fade' id='modal' tabindex='-1'>
+	    <div class='modal-dialog'>
+	        <div class='modal-content'>
+	            <div class='modal-header py-2'>
+	                <p class='modal-title float-left' id='modalLabel'></p>
+	                <button type='button' class='close' data-dismiss='modal'>
+	                    <span>&times;</span>
+	                </button>
+	            </div>
+	            <div class='modal-body text-center'>
+	                <p id='modalMsg'></p>
+	            </div>
+	            <div class='modal-footer py-1'>
+	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
+	                <button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
+	                <button type='button' class='btn btn-primary col-3' id='delCartBtn' 
+                    		onclick="location.href='<%=request.getContextPath() %>/cart/listCart'">예</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>
