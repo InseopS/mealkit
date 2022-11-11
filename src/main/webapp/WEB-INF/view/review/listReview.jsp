@@ -38,18 +38,7 @@
             }
 
         </style>
-        <script>         
-        function change() {
-        	switch (`\${review.rate}`) {
-        	case 5: "★★★★★"; break;
-        	case 4: '★★★★'; break;
-        	case 3: '★★★'; break;
-        	case 2: '★★'; break;
-        	case 1: '★';
-        	
-        	}
-        }
-        
+        <script>            
         function listReviews() {
             $('#reviews').empty();
             $.ajax({
@@ -61,7 +50,7 @@
                     $.each(reviews, (i, review) => { 
                        reviewArr.unshift(
                            	`<div class='row d-flex justify-content-between'> 
-                             <div>\${review.rate}</div>                            
+                             <div>\${review.star}</div>                            
                     		 <div>\${review.reviewRegDate}</div>
                     		 </div>
                     		 <div class='row'>
@@ -83,8 +72,6 @@
                     $('#reviews').append(
                        '<div class=text-center>리뷰가 없습니다.</div>')
                  }
-                 
-                 change()
             })
          }
         function init(){
@@ -105,23 +92,6 @@
 <body>
     <div id='mainContainerAddSub' class="container">
         <div class='container mr-1 ml-1' id='reviews'>
-            <div class='row d-flex justify-content-between'>
-                    <div id='star'>
-                        ★★★★★ 아주좋아요
-                    </div>
-                    <div id='date'>
-                        2022.10.13
-                    </div>
-            </div>
-            <div class='row' id='item'>
-                [구매제품] 2인 바싹 불고기 세트
-            </div>
-            <div class='row'>
-                <div class='col' id='title'>
-                    맛있습니다.
-                </div>
-            </div>
-            <hr>
         </div>
 	</div>
     <div class="row d-flex mx-auto fixed-bottom mb-5" id='paging_div'>

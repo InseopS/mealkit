@@ -9,6 +9,8 @@ public interface ReviewService {
 	List<Review> getdetailReviews(int reviewNum);
 	List<Review> getAdminReviews();
 	List<Review> getdetailAdminReviews(int reviewNum);
+	List<Review> getSearchReviews(String keyword);
+	Review getReview(int reviewNum);
 	void addReview(Review review);
 	void fixReview(Review review);
 	void delReview(int reviewNum);

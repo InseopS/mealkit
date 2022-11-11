@@ -1,13 +1,42 @@
 package com.my.mealkit.web;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 
-@Controller
-@RequestMapping("/admin/exchange")
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.mealkit.domain.Exchange;
+import com.my.mealkit.service.ExchangeService;
+
+@RestController
+@RequestMapping("admin/exchange")
 public class ExchangeAdminController {
+	@Autowired private ExchangeService exchangeService;
+	
 	@RequestMapping("listExchange")
 	public String listExchange() {
 		return "admin/exchange/listExchange";
+	}
+
+	@GetMapping("listExchange")
+	public ModelAndView listExchange(HttpSession session, ModelAndView mv) {	
+		return mv;
+	}
+	
+	@GetMapping("getAdminExchanges")
+	public List<Exchange> getAdminExchanges() {
+		return exchangeService.getAdminExchanges();
+	}
+	
+	@GetMapping("selectMealkitNames/{exchangeNum}")
+	public List<Exchange> getMealkitNames(@PathVariable int exchangeNum) {		
+		List<Exchange> mealkitNameList = exchangeService.getMealkitNames(exchangeNum);
+		return mealkitNameList;
 	}
 }

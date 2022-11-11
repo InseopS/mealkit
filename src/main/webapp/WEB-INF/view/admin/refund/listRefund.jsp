@@ -14,6 +14,56 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+let refundsTmp
+let mealkitNamesTmp = []
+function listRefunds() {
+		$('#refunds').empty();
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/refund/getAdminRefunds",
+			dataType: 'json',
+			success: refunds => {
+				if(refunds.length) {
+					refundsTmp = refunds
+				}
+			}
+		}).done(refunds => {
+			$.each(refunds, (i, refund) => {
+				$.ajax({
+					url: 'selectMealkitNames/' + refund.refundNum,
+					dataType: 'json',
+					async : false,
+					success: mealkitNames => {
+						if(mealkitNames.length > 1) {
+							mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
+						} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
+					}
+				})
+			})
+			listTest()
+		}) 
+	}
+
+function listTest() {
+	const refundArr = []
+	for(i=0; i <= refundsTmp.length-1; i++) {
+		
+		refundArr.unshift(
+			`<tr>
+				<td class='align-middle'>\${refundsTmp[i].refundNum}</td>
+				<td class='align-middle'>\${refundsTmp[i].orderNum}</td>
+				<td class='align-middle'>\${refundsTmp[i].userId}</td>
+				<td class='align-middle'>\${mealkitNamesTmp[i]}</td>
+				<td class='align-middle'>\${refundsTmp[i].refundReasonName}</td>
+				<td class='align-middle'>\${refundsTmp[i].refundStatusName}</td>
+			<tr>`
+		)
+	}
+	$('#refunds').append(refundArr.join(''))
+}
+$(listRefunds)
+</script>
 </head>
 <body>
      <%@ include file ='../../include/adminTop1.jsp'%>
@@ -52,8 +102,7 @@
                                         <col width='14%'>
                                         <col width='17%'>
                                         <col width='17%'>
-                                        <col width='10%'>
-                                        <col width='10%'>
+                                        <col width='17%'>
                                     </colgroup>
                                     <thead class='table-info'>
                                         <tr>
@@ -61,15 +110,18 @@
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>수량</th>
-                                            <th>가격</th>
                                             <th>사유</th>
                                             <th>주문상태</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='refunds'>
                                         <tr>
-                                            <td>1</td><td>000001</td><td>seop2</td><td>바질파스타</td><td>1개 / 19900원</td><td>품질이상</td><td>환불처리중</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
                                         </tr>
                                     </tbody>
                                 </table>

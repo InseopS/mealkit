@@ -23,6 +23,11 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
+	public List<Refund> selectMealkitNames(int refundNum) {
+		return refundMap.selectMealkitNames(refundNum);
+	}
+	
+	@Override
 	public void insertRefund(Refund refund) {
 		refundMap.insertRefund(refund);
 	}

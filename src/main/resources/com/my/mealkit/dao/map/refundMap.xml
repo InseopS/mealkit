@@ -13,19 +13,38 @@
 		inner join refund_reason
 		on refund_reason.refund_reason_code = refunds.refund_reason_code
 		where refunds.order_num = #{orderNum}
-		order by order_num
+		order by refunds.order_num
 	</select>
 	
 	<select id='selectAdminRefunds' resultType='refund'>
-		select * from refunds
-		order by refund_num
+		 select refunds.*, orders.user_id,
+          refund_reasons.refund_reason_name, refund_status.refund_status_name
+      from refunds inner join orders
+            on refunds.order_num = orders.order_num
+         inner join refund_reasons
+            on refund_reasons.refund_reason_code = refunds.refund_reason_code
+         inner join refund_status
+            on refund_status.refund_status_code = refunds.refund_status_code
+      order by refund_num
 	</select>
+	
+	<select id='selectMealkitNames' resultType='refund'>
+		select mealkits.mealkit_name
+		from refunds inner join orders
+	    on refunds.order_num = orders.order_num
+	        inner join orders_mealkits
+	    on orders_mealkits.order_num = orders.order_num
+	        inner join mealkits
+	    on mealkits.mealkit_num = orders_mealkits.mealkit_num
+		where refunds.refund_num = #{refundNum}
+	</select>
+	
 	
 	<insert id='insertRefund'>
 		insert into refunds(refund_num, refund_img_file_name, refund_content,
-			refund_reason_code, refund_status_code, order_num)
+			refund_reason_name, refund_status_name, order_num)
 		values(refund_num_seq.nextval, #{refundImgFileName}, #{refundContent},
-			#{refundReasonCode}, #{refundStatusCode}, #{orderNum})
+			#{refundReasonName}, #{refundStatusName}, #{orderNum})
 	</insert>
 	
 	<delete id='deleteRefund'>

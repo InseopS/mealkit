@@ -18,10 +18,10 @@
 <style>
 </style>
 <script>
-function init() {
+function applyExchange() {
 	$('#addBtn').click(() => {
 		if(isVal($('#exchangeReasonCode')) && isVal($('#exchangeImgFileName'))) {
-			let orderNum = $('#orderNum');
+			let mealkitName = $('#mealkitName');
 			let exchangeReasonCode = $('#exchangeReasonCode');
 			let exchangeContent = $('#exchangeContent');
 			let exchangeImgFileName = $('#exchangeImgFileName');
@@ -30,7 +30,7 @@ function init() {
 				type:'post',
 				url: '${pageContext.request.contextPath}/exchange/applyExchange',
 				data: {
-					orderNum: orderNum,
+					mealkitName: mealkitName,
 					exchangeReasonCode: exchangeReasonCode,
 					exchangeContent: exchangeContent,
 					exchangeImgFileName: exchangeImgFileName
@@ -39,6 +39,8 @@ function init() {
 		})
 	})
 }
+
+$(applyExchange)
 </script>
 </head>
 
@@ -53,20 +55,13 @@ function init() {
 
 <body>
     <div id='mainContainerAddSub' class="container">
-        <form class='refund-request mt-5 ml-2 mb-2'>
+        <form class='exchange-request mt-5 ml-2 mb-2'>
             <div class='row'>
-                <div class='col-3 p-2 mt-2 ml-4'>
+                <div class='col-5 mt-3 ml-3'>
                     <br>교환상품<span style='font-size:12px'></span>
                 </div>
-                <div class='col-3' id='orderNum'>
-                    <div class='mt-2 rounded border'
-                        style='width: 6rem; height: 5rem; background-color: white; justify-content: center; align-items: center; text-align: center;'>
-                        <p></p>
-                        ${order.mealkitImg}
-                    </div>
-                </div>
-                <div class='col-4 mt-4 ml-4' id='orderNum'>
-                   		<small>${order.mealkitName}<br>${order.ordermealkitCount} / ${order.price}</small>
+                <div class='col mt-3' id='mealkitName'>
+                    <br>${mealkitName}<span style='font-size:12px'></span>
                 </div>
             </div>
             <div class='row'>
@@ -76,9 +71,9 @@ function init() {
                 <div class='col mt-3' required title='교환사유를 선택하세요.'>
                     <select name='exchangeReasonCode' style='width:8rem; height:3rem'>
                         <option value='none' selected hidden>선택</option>
-                        <option value='poor'>품질 이상</option>
-                        <option value='misdelivery'>오배송</option>
-                        <option value='etc'>기타</option>
+                        <option value='1'>품질이상</option>
+                        <option value='2'>오배송</option>
+                        <option value='3'>기타</option>
                     </select>
                 </div>
             </div>

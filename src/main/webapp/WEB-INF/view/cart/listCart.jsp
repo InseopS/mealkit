@@ -16,6 +16,7 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+<%--
 	function listCart() {
 		$('.cartList').empty();
 		
@@ -31,12 +32,18 @@
 					console.log(cart)
 					cartArr.unshift(
 						`<tr>
-							<td><input type='checkbox' name='cartNum' id='cartNum'
-									value='\${cart.cartNum}'/></td>//체크박스
-							<td class='mealkitImage'><a href='http://localhost/mealkit/detailMealkit?mealkitNum=\${cart.mealkitNum}'>
-									\${cart.mealkitImgFileName}</td>//밀키트이미지 + 밀키트상세
-							<td>\${cart.mealkitName}<br><br>\${cart.mealkitCount}개<br>
-									\${cart.mealkitCount * cart.price}원</td>//밀키트이름 + 밀키트수량 + 밀키트수량 * 가격
+							<td>
+								<input type='checkbox' name='mealkitNum' id='mealkitNum'
+									value='\${cart.mealkitNum}'/>
+							</td>
+							<td class='mealkitImage'>
+								<a href='http://localhost/mealkit/detailMealkit?mealkitNum=\${cart.mealkitNum}'>
+									<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+								</a>
+							</td>
+							<td>
+								\${cart.mealkitName}<br><br>\${cart.mealkitCount}개<br>\${cart.mealkitCount * cart.price}원
+							</td>
 						<tr>`
 					);
 				})
@@ -46,13 +53,13 @@
 			}
 		})
 	}
-	
+--%>
 	function init() {
-		$(listCart)
+
 		
 		$('#delBtn').click(() => {
-			if($('#cartNum:checked').val()) {
-            	$('#modalMsg').text('노동자를 삭제하시겠습니까?') 
+			if($('#mealkitNum:checked').val()) {
+            	$('#modalMsg').text('밀키트를 삭제하시겠습니까?') 
             	$('#confirmBtn').hide()
  				$('#noBtn').show()
  				$('#delCartBtn').show()
@@ -66,15 +73,16 @@
         	}
     	})
 
-    	$('#delCartBtn').click(() => {
-    		$('#modal').modal('hide')
-	    	$.ajax({
-	        	url: 'del/' + $('#cartNum:checked').val(),
-				method: 'delete',
-	    	}).done(listCarts)
-		}) 	
+    	$(document).on("click", "button[id='delCartBtn']", function () {
+			for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
+				$.ajax({
+					url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
+					method: 'delete'
+				}).done(function(){if(i == $('#mealkitNum:checked').length) listCart()})
+			}		
+		})
 	}
-
+	
 	$(init)
 </script>
 
@@ -106,6 +114,22 @@ tr, td {
                 <div class='col'>
                     <table id='cart1'>
                         <tbody class='cartList'>
+	                        <c:forEach var='mealkit' items='${mealkitList}'>
+		                        <tr>
+									<td>
+										<input type='checkbox' name='mealkitNum' id='mealkitNum'
+											value='${cart.mealkitNum}'/>
+									</td>
+									<td class='mealkitImage'>
+										<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${cart.mealkitNum}'>
+											<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+										</a>
+									</td>
+									<td>
+										{cart.mealkitName}<br><br>{cart.mealkitCount}개<br>{cart.mealkitCount * cart.price}원
+									</td>
+								<tr>
+							</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -140,6 +164,3 @@ tr, td {
 </body>
 <%@ include file ='../include/footer.jsp'%>
 </html>
-
-
-

@@ -66,7 +66,7 @@
 			}
 		})
 	}
-	$(listQuestions)
+$(listQuestions)
 </script>
 </head>
 
@@ -89,8 +89,8 @@
                     </thead>
                     <tbody id='questions'>
                     	<tr>
-                    		<td id='questionTitle' onclick='location.href="<%=request.getContextPath()%>/quesetion/detailQuestion"'>제목</td>
-                    		<td id='questionRegdate'>2022.12.12</td>
+                    		<td id='questionTitle' onclick='location.href="<%=request.getContextPath()%>/quesetion/detailQuestion"'></td>
+                    		<td id='questionRegdate'></td>
                     	</tr>
                     </tbody>
                 </table>

@@ -1,10 +1,10 @@
 package com.my.mealkit.web;
 
-import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +26,6 @@ import com.my.mealkit.service.QuestionService;
 public class QuestionController {
 	@Autowired private QuestionService questionService;
 	
-	@Value("${attachPath}") private String attachPath;
-
 	@RequestMapping("listQuestion")
 	public String listQuestion() {
 		return "question/listQuestion";
@@ -46,10 +44,13 @@ public class QuestionController {
 	
 	@ResponseBody
 	@PostMapping("addQuestion")
-	public ModelAndView addQuestion(Question question, ModelAndView mv) throws IOException {
-		try {
-			questionService.addQuestion(question);
-		} catch(NullPointerException e) {}
+	public ModelAndView addQuestion(Question question, ModelAndView mv, HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+        if(session == null || session.getAttribute("userId") == null) {
+            return null;
+        }
+        question.setUserId(userId);
+		questionService.addQuestion(question);
 		
 		mv.setViewName("question/listQuestion");
 		return mv;
@@ -57,11 +58,10 @@ public class QuestionController {
 	
 	@RequestMapping(value ="detailQuestion", method=RequestMethod.GET)
 	public String detailQuestion(Model model, @RequestParam("questionNum") int questionNum) {
-		List<Question> questionList = questionService.getQuestion(questionNum);
+		List<Question> questionList = questionService.getDetailQuestion(questionNum);
 		model.addAttribute("questionList", questionList);
 		return "question/detailQuestion";
 	}
-	
 	
 	@PutMapping("fixQuestion")
 	public void fixQuestion(@RequestBody Question question) {

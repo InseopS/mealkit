@@ -33,6 +33,16 @@ public class ReviewDaoImpl implements ReviewDao{
 	} 
 	
 	@Override
+	public List<Review> searchReviews(String keyword){
+		return reviewMap.searchReviews(keyword);
+	}
+	
+	@Override
+	public Review selectReview(int reviewNum) {
+		return reviewMap.selectReview(reviewNum);
+	}
+
+	@Override
 	public void insertReview(Review review) {
 		reviewMap.insertReview(review);
 	}

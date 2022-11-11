@@ -74,10 +74,10 @@
        	 	</div>
         	<div class='col'>
 	  			<div class='mr-2' style='float:right'>
-	       	 	<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
-	       	 		style='text-decoration: underline;'><small>주문상세</small></a>
-	            <a href='listRefund' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-	                data-target='#refundCancelModal' style='text-decoration: underline;'><small>환불취소</small></a>
+		       	 	<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+		       	 		style='text-decoration: underline;'><small>주문상세</small></a>
+		            <a href='listRefund' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
+		                data-target='#refundCancelModal' style='text-decoration: underline;'><small>환불취소</small></a>
 	            </div>
     		</div>
     	</div>

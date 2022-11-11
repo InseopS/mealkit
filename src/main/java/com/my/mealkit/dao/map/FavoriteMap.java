@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.my.mealkit.domain.Favorite;
 
 public interface FavoriteMap {
-	List<Favorite> selectFavorites(@Param("userId") String userId);
+	List<Favorite> selectFavorites(String userId);
 	List<Favorite> selectFavorite(@Param("userId") String userId, 
 						@Param("mealkitNum") int mealkitNum);
 	int insertFavorite(Favorite favorite);

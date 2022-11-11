@@ -5,18 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.my.mealkit.domain.Order;
-import com.my.mealkit.domain.User;
 
 public interface OrderMap {
-	List<Order> selectOrders(@Param("userId") String userId); // 주문내역
-	List<Order> detailOrders(@Param("orderNum") int orderNum); // 주문상세
-	List<Order> selectAdminOrders(); // 어드민
-	List<Order> selectAdminOrderCancel(); // 어드민
-	void insertOrder(Order order, User user); // 주문
-	void insertOrderMealkits(
-			@Param("orderMealkitNum") int orderMealkitNum, 
-			@Param("orderCount") int orderCount, 
-			@Param("orderNum") int orderNum, 
-			@Param("mealkitNum") int mealkitNum); // 주문밀키트
-	void deleteOrder(int orderNum); // 주문취소
+	List<Order> selectOrders(@Param("userId") String userId);
+	List<Order> detailOrders(@Param("orderNum") int orderNum);
+	List<Order> selectAdminOrders();
+	List<Order> selectMealkitNames(int orderNum);
+	void insertOrder(Order order);
+	void deleteOrder(int orderNum);
 }

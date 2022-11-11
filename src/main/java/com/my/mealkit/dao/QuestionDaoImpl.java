@@ -13,8 +13,8 @@ public class QuestionDaoImpl implements QuestionDao{
 	@Autowired private QuestionMap questionMap;
 	
 	@Override
-	public List<Question> selectQuestion(int questionNum) {
-		return questionMap.selectQuestion(questionNum);
+	public List<Question> selectDetailQuestion(int questionNum) {
+		return questionMap.selectDetailQuestion(questionNum);
 	}
 	
 	@Override

@@ -20,7 +20,6 @@
 </style>
 <script>
 
-
 </script>
 </head>
 
@@ -36,8 +35,8 @@
 <body>
 <div id='mainContainerAddSub' class='container'>
 	<div class='container'>
-        <div class='row mt-3'>
-        	<label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
+        <div class='row pt-4'>
+        	<label for='input' class='col-3 pr-2 col-form-label'>제목:</label>
             <div class='col mt-2'>
             	<c:forEach var="question" items="${questionList}">
                		${question.questionTitle}
@@ -45,8 +44,8 @@
             </div>
         </div>
         <hr>
-        <div class='row mt-3'>
-        	<label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
+        <div class='row mt-4'>
+        	<label for='input' class='col-3 pr-2 col-form-label'>내용:</label>
             <div class='col mt-2'>
             	<c:forEach var="question" items="${questionList}">
                		${question.questionContent}

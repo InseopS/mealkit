@@ -24,8 +24,9 @@ public class Review {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate reviewRegDate;
-	private int orderNum;
+	private int orderMealkitNum;
 	private String userId;
 	private String mealkitName;
 	private int mealkitNum;
+	private String star;
 }
