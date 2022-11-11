@@ -19,7 +19,41 @@
 
 </style>
 <script>
+function answerVal() {
+	if($('#answerContent').val()) {
+		$('#fixBtn').hide()
+	} else {
+		$('#fixBtn').show()
+		$('#answerContent').append('답변이 없습니다.')
+	}
+}
+function btn() {
+	answerVal()
+	
+	$('#delBtn').click(() => {
+		 $('#modalMsg').empty();
+         $('#modalMsg').text('문의를 삭제하시겠습니까?');
+         $('#confirmModal').modal();
+         $('#noBtn').show();
+         $('#delQuestionBtn').show();
+	})
+	
+	$('#delQuestionBtn').click(() => {
+		$('#deleteModal').modal('hide')
+       	$.ajax({
+        	url: 'del/' + <%=request.getParameter("questionNum")%>,
+        	method: 'delete'
+       	}).done(function() {
+            location.href='listQuestion'
+       	})
+	})
+	
 
+	$('#fixBtn').click(() => {
+		location.href='fixQuestion?questionNum=' + <%=request.getParameter("questionNum")%>
+	})
+}
+$(btn)
 </script>
 </head>
 
@@ -34,65 +68,61 @@
 
 <body>
 <div id='mainContainerAddSub' class='container'>
-	<div class='container'>
+	<form id='form'method='post'>
+	<c:forEach var='question' items='${questionList}'>
+	<div class='container'>	
         <div class='row pt-4'>
         	<label for='input' class='col-3 pr-2 col-form-label'>제목:</label>
-            <div class='col mt-2'>
-            	<c:forEach var="question" items="${questionList}">
-               		${question.questionTitle}
-               	</c:forEach>
-            </div>
+            <div class='col pl-1'>
+	           	<input type='text' class='form-control bg-light' id='questionTitle' name='questionTitle' maxlength='15' disabled value='${question.questionTitle}'>
+	        </div>
         </div>
-        <hr class='mt-5'>
         <div class='row mt-4'>
         	<label for='input' class='col-3 pr-2 col-form-label'>내용:</label>
-            <div class='col mt-2'>
-            	<c:forEach var="question" items="${questionList}">
-               		${question.questionContent}
-               	</c:forEach>
-            </div>
+            <div class='col pl-1'>
+            	<textarea class='form-control bg-light' id='questionContent' name='questionContent'
+            		style='height: 100px' maxlength='1300' disabled>${question.questionContent}</textarea>
+         		</div>
         </div>
-        <hr class='mt-5'>
         <div class='row mt-4'>
         	<label for='input' class='col-3 pr-2 col-form-label'>답변:</label>
-            <div class='col mt-2'>
-            	<c:forEach var="question" items="${questionList}">
-               		${question.answerContent}
-               	</c:forEach>
-            </div>
+           	<div class='col pl-1'>
+           	<textarea class='form-control bg-light' id='answerContent' name='answerContent'
+           		style='height: 100px' maxlength='1300' disabled>${question.answerContent}</textarea>
+        	</div>
         </div>
+        
 	</div>
 <hr class='mt-5'>
 	<div class='row mt-4 justify-contet-end'>
 		<div class='col d-flex justify-content-end pb-0'>
-          	<button type='button' class='btn btn-secondary' onclick='location.href="fixQuestion"'>수정</button>
+          	<button type='button' class='btn btn-secondary' id='fixBtn'>수정</button>
           	&nbsp;
-          	<button type='button' class='btn btn-secondary' data-toggle='modal'
-              	data-target='#questionCancelModal'>삭제</button>
+          	<button type='button' id='delBtn' class='btn btn-secondary' data-toggle='modal'
+              	data-target='#deleteModal'>삭제</button>
       	</div>
   	</div>
+  	</c:forEach>
+    </form>
 </div>
 
-<div class='modal fade' id='questionCancelModal' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header py-2'>
-                <p class='modal-title float-left' id='myModalLabel'>문의삭제</p>
-                <button type='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body text-center'>
-                <p>해당 문의를 삭제하시겠습니까?</p>
-            </div>
-            <div class='modal-footer py-1'>
-                <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                    data-target='#deleteOkModal' onclick='location.href="listQuestion"'>예</button>
+<div class='modal fade' id='deleteModal' tabindex='-1'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header py-2'>
+                    <p class="modal-title float-left" id='delModalLabel'>문의삭제</p>
+                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
+                </div>
+                <div class='modal-body'>
+                    <p id='modalMsg' style='text-align: center'></p>
+                </div>
+                <div class='modal-footer py-1'>
+                    <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
+                    <button type='button' id='delQuestionBtn' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

@@ -7,7 +7,7 @@ import com.my.mealkit.domain.Question;
 public interface QuestionDao {
 	List<Question> selectDetailQuestion(int questionNum);
 	List<Question> selectAdminQuestion(int questionNum);
-	List<Question> selectQuestions();
+	List<Question> selectQuestions(String userId);
 	List<Question> selectAdminQuestions();
 	void insertQuestion(Question question);
 	void insertAdminQuestion(Question question);

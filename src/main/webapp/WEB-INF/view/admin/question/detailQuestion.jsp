@@ -22,6 +22,7 @@ function answerVal() {
 		$('#fixBtn').show()
 	} else  {
 		$('#writeBtn').show()
+		$('#fixBtn').hide()
 		$('#answerContent').append('답변이 없습니다.')
 	}
 }

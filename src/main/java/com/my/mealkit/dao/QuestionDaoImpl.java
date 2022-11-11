@@ -23,8 +23,8 @@ public class QuestionDaoImpl implements QuestionDao{
 	}
 	
 	@Override
-	public List<Question> selectQuestions() {
-		return questionMap.selectQuestions();
+	public List<Question> selectQuestions(String userId) {
+		return questionMap.selectQuestions(userId);
 	}
 	
 	@Override

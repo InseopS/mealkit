@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +31,13 @@ public class QuestionController {
 	
 	@ResponseBody
 	@PostMapping("getQuestions")
-	public List<Question> getQuestions() {
-		return questionService.getQuestions();
+	public List<Question> getQuestions(Question question, HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+        if(session == null || session.getAttribute("userId") == null) {
+            return null;
+        }
+        question.setUserId(userId);
+		return questionService.getQuestions((String)session.getAttribute("userId"));
 	}
 	
 	@RequestMapping("addQuestion")
@@ -53,6 +56,7 @@ public class QuestionController {
 		questionService.addQuestion(question);
 		
 		mv.setViewName("question/listQuestion");
+		System.out.println(mv);
 		return mv;
 	}
 	
@@ -63,12 +67,29 @@ public class QuestionController {
 		return "question/detailQuestion";
 	}
 	
-	@PutMapping("fixQuestion")
-	public void fixQuestion(@RequestBody Question question) {
+	 @RequestMapping(value ="fixQuestion", method= RequestMethod.GET)
+	   public String fixQuestion(Model model, Question question,  @RequestParam("questionNum") int questionNum) {
+	      List<Question> questionList = questionService.getDetailQuestion(questionNum);
+	      model.addAttribute("questionList", questionList);
+	      return "question/fixQuestion";
+	 }
+	 
+	 @ResponseBody
+	 @PostMapping("fixQuestion")
+	 public ModelAndView fixQuestion(Question question, ModelAndView mv, HttpSession session) {
+		 System.out.println("12345");
+		 String userId = session.getAttribute("userId").toString();
+	        if(session == null || session.getAttribute("userId") == null) {
+	            return null;
+	        }
+        question.setUserId(userId);
 		questionService.fixQuestion(question);
+		mv.setViewName("question/listQuestion");
+		System.out.println(mv);
+		return mv;
 	}
 	
-	@DeleteMapping("delQuestion/{questionNum}")
+	@DeleteMapping("del/{questionNum}")
 	public void delQuestion(@PathVariable int questionNum) {
 		questionService.delQuestion(questionNum);
 	}
