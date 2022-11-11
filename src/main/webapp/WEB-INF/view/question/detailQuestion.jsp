@@ -43,7 +43,7 @@ function btn() {
        	$.ajax({
         	url: 'del/' + <%=request.getParameter("questionNum")%>,
         	method: 'delete'
-       	}).done(()  => {
+       	}).done(function() {
             location.href='listQuestion'
        	})
 	})

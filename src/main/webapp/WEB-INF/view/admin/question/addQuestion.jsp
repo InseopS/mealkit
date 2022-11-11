@@ -34,7 +34,7 @@ function init() {
 				questionContent: questionContent,
 				answerContent: answerContent
 			}
-		})
+		}).done(() => {location.href='listQuestion'})
 	})
 }
 $(init)
