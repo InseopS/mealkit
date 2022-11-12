@@ -118,7 +118,7 @@ $(btn)
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' id='noBtn' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                    <button type='button' id='delQuestionBtn' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
+                    <button type='button' id='delQuestionBtn' class='btn btn-danger col-3' data-dismiss='modal' onClick='location.href="listQuestion"'>예</button>
                 </div>
             </div>
         </div>

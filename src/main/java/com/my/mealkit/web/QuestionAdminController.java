@@ -53,13 +53,11 @@ public class QuestionAdminController {
 	@ResponseBody
 	@PostMapping("addAdminQuestion")
 	public ModelAndView addAdminQuestion(Question question, ModelAndView mv, HttpSession session) {
-		System.out.println("시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		String userId = session.getAttribute("userId").toString();
         if(session == null || session.getAttribute("userId") == null) {
             return null;
         }
 		question.setUserId(userId);
-		System.out.println("asdasasdasd");
 		questionService.addAdminQuestion(question);
 		mv.setViewName("admin/question/listQuestion");
 		return mv;
@@ -69,7 +67,6 @@ public class QuestionAdminController {
 	   public String fixQuestion(Model model, @RequestParam("questionNum") int questionNum) {
 	      List<Question> questionList = questionService.getDetailQuestion(questionNum);
 	      model.addAttribute("questionList", questionList);
-	      System.out.println(questionList);
 	      return "admin/question/fixQuestion";
 	 }
 	 

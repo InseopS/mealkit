@@ -56,7 +56,6 @@ public class QuestionController {
 		questionService.addQuestion(question);
 		
 		mv.setViewName("question/listQuestion");
-		System.out.println(mv);
 		return mv;
 	}
 	
@@ -77,7 +76,6 @@ public class QuestionController {
 	 @ResponseBody
 	 @PostMapping("fixQuestion")
 	 public ModelAndView fixQuestion(Question question, ModelAndView mv, HttpSession session) {
-		 System.out.println("12345");
 		 String userId = session.getAttribute("userId").toString();
 	        if(session == null || session.getAttribute("userId") == null) {
 	            return null;
@@ -85,7 +83,6 @@ public class QuestionController {
         question.setUserId(userId);
 		questionService.fixQuestion(question);
 		mv.setViewName("question/listQuestion");
-		System.out.println(mv);
 		return mv;
 	}
 	
