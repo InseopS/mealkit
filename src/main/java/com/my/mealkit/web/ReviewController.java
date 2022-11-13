@@ -49,10 +49,12 @@ public class ReviewController {
    }
    
    @RequestMapping("addReview")
-   public ModelAndView addReview(ModelAndView mv) {
+   public ModelAndView addReview(ModelAndView mv) {	   
 	   Order order = new Order();
 	   order.setOrderNum(1);
+	   List<Review> mealkitList = reviewService.getMealkits(order.getOrderNum());
 	   mv.addObject("order", order);
+	   mv.addObject("mealkitList", mealkitList);
 	   mv.setViewName("review/addReview");
       return mv;
    }
@@ -82,7 +84,6 @@ public class ReviewController {
    public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
       try {
          String reviewFileName = review.getReviewImgfile().getOriginalFilename();
-         System.out.println(review);
          saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
          review.setReviewImgfileName(reviewFileName);
          reviewService.addReview(review);
