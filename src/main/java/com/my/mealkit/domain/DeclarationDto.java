@@ -12,8 +12,11 @@ import lombok.NoArgsConstructor;
 public class DeclarationDto {
 	private int declarationNum;
 	private String declarationTitle;
+	private String declarationContent;
 	private LocalDate declarationRegdate;
 	private String userId;
+	private int reviewNum;
+	private String reviewTitle;
 	private int declarationStatusCode;
 	private String declarationStatusName;
 }

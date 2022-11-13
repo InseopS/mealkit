@@ -35,7 +35,7 @@ function listDeclarations() {
 				$.each(declarations, (i, declaration) => {
 				    declarationArr.unshift(
 				        `<tr>
-				            <th><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></th>
+				            <th><a href='/declaration/detailDeclaration?declarationNum=\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></th>
                             <td>\${declaration.declarationRegdate}</td>
                             <td>\${declaration.declarationStatusName}</td>
 				        </tr>`
@@ -47,7 +47,6 @@ function listDeclarations() {
 		}
 	}).done(function(){if($('#declarations').find('tr').eq(0).length != 1) $('#declarations').append(`<tr><th colspan='3'>신고 내역이 없습니다.</th></tr>`)})
 }
-
 function init() {
 	listDeclarations()	
 }

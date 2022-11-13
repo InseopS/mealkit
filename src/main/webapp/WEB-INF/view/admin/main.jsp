@@ -19,6 +19,72 @@ table {
     font-size: smaller;
 }
 </style>
+<script>
+function listDeclarations() {
+	$('#declarationList').empty();
+	$.ajax({
+		url:'<%=request.getContextPath() %>/admin/declaration/getDeclarations',
+		dataType: 'json',
+		success: declarations => {
+			if(declarations.length) {
+				const declarationArr = []
+				for(i = declarations.length; i > 0; i--) {
+					if(i > declarations.length - 3) {
+						declarationArr.push(
+							`<tr>
+							<td>\${declarations[i-1].declarationNum}</td>
+							<td><a href='/admin/declaration/detailDeclaration?declarationNum=\${declarations[i-1].declarationNum}'>\${declarations[i-1].declarationTitle}</a></td>
+							<td>\${declarations[i-1].userId}</td>
+							<td>\${declarations[i-1].declarationStatusName}</td>
+							</tr>`
+						)
+					}
+				}
+				$('#declarationList').append(declarationArr.join(''))
+			} else {
+				$('#declarationList').append(`<tr><td col='4'>등록된 신고가 없습니다.</td></tr>`)	
+			}
+		}
+	})
+}
+
+function listQuestions() {
+	$('#questionList').empty();
+	$.ajax({
+		url:'<%=request.getContextPath() %>/admin/question/getAdminQuestions',
+		type:'post',
+		success: questions => {
+			if(questions.length) {
+				const questionArr = []
+				for(i = questions.length; i > 0; i--) {
+					if(i > questions.length - 3) {
+						let status
+						if(questions[i-1].answerContent) {
+							status = '답변완료'
+						} else {
+							status = '답변대기'
+						}
+						questionArr.push(
+							`<tr>
+							<td>\${questions[i-1].questionNum}</td>
+							<td><a href='/admin/question/detailQuestion?questionNum=\${questions[i-1].questionNum}'>\${questions[i-1].questionTitle}</a></td>
+							<td>\${questions[i-1].userId}</td>
+							<td>\${status}</td>
+							</tr>`
+						)
+					}
+				}
+				$('#questionList').append(questionArr.join(''))
+			} else {
+				$('#questionList').append(`<tr><td col='4'>등록된 문의가 없습니다.</td></tr>`)	
+			}
+		}
+	})
+}
+
+$(listDeclarations)
+$(listQuestions) 
+</script>
 </head>
 <body>
 	<%@ include file ='../include/adminTop1.jsp'%>
@@ -59,7 +125,7 @@ table {
                                     <th scope='col'>상태</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id='questionList'>
                                 <tr>
                                     <td>3</td>
                                     <td><a href='question/03.html'>마라키트 많이 맵나요?</a></td>
@@ -100,26 +166,7 @@ table {
                                     <th scope='col'>상태</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>4</td>
-                                    <td><a href='declaration/02.html'>대출광고 신고합니다.</a></td>
-                                    <td>ezen01</td>
-                                    <td>처리중</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>욕설 신고합니다.</td>
-                                    <td>ezen01</td>
-                                    <td>삭제</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>비방 신고합니다.</td>
-                                    <td>ezen01</td>
-                                    <td>기각</td>
-                                </tr>
-                                <tr><td></td><td></td><td></td><td></td></tr>
+                            <tbody id='declarationList'>
                             </tbody>
                         </table>
                     </div>

@@ -19,7 +19,6 @@
 <script>
 function listDeclarations() {
 	$('#declarations').empty()
-	
 	$.ajax({
 		url: 'getDeclarations',
 		dataType: 'json',
@@ -30,7 +29,7 @@ function listDeclarations() {
 				    declarationArr.unshift(
 				        `<tr>
 				        	<td>\${declaration.declarationNum}</td>
-				            <td><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
+				            <td><a href='/admin/declaration/detailDeclaration?declarationNum=\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
                             <td>\${declaration.declarationRegdate}</td>
                             <td>\${declaration.declarationStatusName}</td>
 				        </tr>`
@@ -109,9 +108,9 @@ $(init)
                                 <div class='col-2'>
                                     <select class='form-control' id='category' name='category'>
                                         <option value='none' selected hidden>검색기준</option>
-                                        <option value='declarationNum'>번호</option>
-                                        <option value='declarationTitle'>제목</option>
-                                        <option value='declarationStatusName'>처리상태</option>
+                                        <option value='declaration_num'>번호</option>
+                                        <option value='declaration_title'>제목</option>
+                                        <option value='declaration_status_name'>처리상태</option>
                                     </select>
                                 </div>
                                 <div class='col px-0'>

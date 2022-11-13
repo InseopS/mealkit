@@ -19,7 +19,6 @@ public class MailSendService {
 	public void makeRandomNumber() {
 		Random r = new Random();
 		int checkNum = r.nextInt(899999) + 100000;
-		System.out.println("인증번호 : " + checkNum);
 		authNumber = checkNum;
 	}
 
@@ -47,8 +46,6 @@ public class MailSendService {
 			helper.setSubject(title);
 			helper.setText(content,true);
 			mailSender.send(message);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+		} catch (MessagingException e) {}
 	}	
 }

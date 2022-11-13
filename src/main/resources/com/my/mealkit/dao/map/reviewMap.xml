@@ -54,6 +54,12 @@
 		where review_num = #{reviewNum}
 	</select>
 	
+	<select id='selectReview' resultType='review'>
+		select reviews.*
+		from reviews
+		where review_num = #{reviewNum}
+	</select>
+	
 	<select id='searchReviews' resultType='review'>
 		select mealkit.reviews.* , mealkit.orders.user_id, mealkit.mealkits.mealkit_name, mealkit.rate_to_star.star
 		from mealkit.reviews inner join mealkit.orders_mealkits

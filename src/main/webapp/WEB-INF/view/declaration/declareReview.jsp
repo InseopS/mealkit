@@ -15,9 +15,29 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <style>
+<style>
 
-    </style>
+</style>
+<script>
+function init() {
+	$('#regBtn').click(() => {
+		let declaration = {
+				declarationTitle: $('#declarationTitle').val(),
+				declarationContent: $('#declarationContent').val(),
+				reviewNum: ${declaration.reviewNum}
+			}
+		$.ajax({
+			type:'post',
+			url:'addDeclaration',
+			data: JSON.stringify(declaration),
+			contentType: 'application/json'
+		}).done(function tmp() {
+			location.href='listDeclaration'
+		})
+	})
+}
+$(init)
+</script>
 </head>
 <%@ include file ='../include/headerTop.jsp'%>
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
@@ -34,24 +54,24 @@
         <div class='row inputBox mt-3'>
             <label for='input' class='col-2 pr-2 col-form-label'>대상:</label>
             <div class='col pl-1'>
-                <input type='text' class='form-control' id='targetReview' value='[대출] 최대 5000만원까지 대출드립니다.'>
+                <input type='text' class='form-control' id='targetReview' value='${reviewTitle}' disabled required>
             </div>
         </div>
         <div class='row inputBox mt-3'>
             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
             <div class='col pl-1'>
-                <input type='text' class='form-control' id='declarationTitle' placeholder='내용을 입력해주세요'>
+                <input type='text' class='form-control' id='declarationTitle' name='declarationTitle' placeholder='내용을 입력해주세요' required>
             </div>
         </div>
         <div class='row inputBox mt-3'>
             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
-                <textarea class='form-control' rows='10' placeholder='내용을 입력해주세요'></textarea>
+                <textarea class='form-control' id='declarationContent' name='declarationContent' rows='10' placeholder='내용을 입력해주세요' required></textarea>
             </div>
         </div>
         <div class='row mt-4 d-flex justify-content-end'>
-            <a class='btn btn-danger mr-2 col-2' href='../review/03.html' role='button'>취소</a>
-            <a class='btn btn-primary mr-3 col-2' href='02.html' role='button'>등록</a>
+			<button type='button' class='btn btn-danger mr-2 col-2' onClick='history.back()'>취소</button>
+			<button type='button' class='btn btn-primary mr-3 col-2' id='regBtn'>등록</button>
         </div>
     </div>
 </body>

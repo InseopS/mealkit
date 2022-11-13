@@ -76,7 +76,6 @@ function listNotices() {
 				const noticeArr = []
 				for(i = notices.length; i > 0; i--) {
 					if(i == notices.length) {
-						console.log("noticeNum = ", notices[i-1].noticeNum)
 						noticeArr.push(
 								`<div class='carousel-item active'>
 									<a href='/notice/detailNotice?noticeNum=\${notices[i-1].noticeNum}'><strong>공지]</strong>
@@ -84,7 +83,6 @@ function listNotices() {
 							);
 					}
 					if(notices.length != i && i > notices.length-4) {
-						console.log("noticeNum = ", notices[i-1].noticeNum)
 						noticeArr.push(
 							`<div class='carousel-item'>
 									<a href='/notice/detailNotice?noticeNum=\${notices[i-1].noticeNum}'><strong>공지]</strong>

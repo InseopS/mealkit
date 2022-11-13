@@ -42,7 +42,7 @@
             <div class='my-3 row'>
                 <label for='inputPassword' class='col-3 col-form-label' style='font-size: 93%'>비밀번호</label>
                 <div class='col'>
-                    <input type='password' class='form-control' name='password' id='password'>
+                    <input type='password' class='form-control' name='password' id='password' autoComplete='on'>
                 </div>
             </div>
         <div class='row d-flex mx-auto'>

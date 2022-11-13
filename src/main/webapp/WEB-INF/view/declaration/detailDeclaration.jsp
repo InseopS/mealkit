@@ -16,8 +16,21 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
     <style>
-
     </style>
+    
+<script>
+function init() {
+$('#delDeclarationOkBtn').click(() => {
+	$.ajax({
+			url: 'delDeclaration/' + ${declaration.declarationNum},
+			method: 'delete'
+		}).done(function(){
+			location.href='listDeclaration'
+		})
+	})
+}
+$(init)
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -35,21 +48,24 @@
         <div class='row inputBox mt-3'>
             <p class='col-2 pr-2'>대상:</p>
             <div class='col pl-1'>
-                <p>[대출] 최대 5000만원까지 대출해드립니다.</p>
+            <c:choose>
+                <c:when test="${declaration.reviewNum == null || declaration.reviewNum == 0}"><p>리뷰가 삭제됐습니다.</p></c:when>
+                <c:when test="${declaration.reviewNum != null}"><p><a href='/review/detailReview?reviewNum=${declaration.reviewNum}'>${declaration.reviewTitle}</a></p></c:when>
+            </c:choose>
             </div>
         </div>
         <hr class='mt-0'>
         <div class='row inputBox'>
             <p class='col-2 pr-2'>제목:</p>
             <div class='col pl-1'>
-                <p>대출광고 신고합니다.</p>
+                <p>${declaration.declarationTitle}</p>
             </div>
         </div>
         <hr class='mt-0'>
         <div class='row inputBox'>
             <p class='col-2 pr-2'>내용:</p>
             <div class='col pl-1'>
-                <p>대출광고라 신고합니다.</p>
+                <p>${declaration.declarationContent}</p>
             </div>
         </div>
         <hr class='mt-5'>
@@ -72,7 +88,7 @@
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'>아니오</button>
-                    <a class='btn btn-danger col-3' href='02.html' role='button'>예</a>
+                    <button type='button' id='delDeclarationOkBtn' class='btn btn-danger col-3' data-dismiss='modal'>예</button>
                 </div>
             </div>
         </div>

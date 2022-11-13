@@ -45,8 +45,7 @@
 		update users
 		set password = #{password}, user_name = #{userName}, email = #{email}, phone_num = #{phoneNum},
 			zip_code = #{zipCode}, basic_address = #{basicAddress}, detail_address = #{detailAddress}
-		where user_id = #{userId}
-		
+		where user_id = #{userId}		
 	</update>
 	<delete id='deleteUser'>
 		delete users
