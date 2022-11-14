@@ -77,7 +77,6 @@ public class OrderController {
 		
 	@PutMapping("fixOrder")
 	public ModelAndView fixOrder(@RequestBody Order order, ModelAndView mv) {
-		System.out.println("123");
 		orderService.fixOrder(order);
 		mv.setViewName("order/listOrder");
 		return mv;
