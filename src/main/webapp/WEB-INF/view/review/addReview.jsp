@@ -18,8 +18,40 @@
 
         </style>
         
-		<script> 
-
+		<script>         
+		function test() {
+			$.ajax({
+				url: 'selectMealkits/' + ${order.orderNum},
+				dataType: 'json',
+				async : false,
+				success: mealkits => {
+					$.each(mealkits, (i, mealkit) => {
+						$('#item').append("<option value='"+ mealkit.orderMealkitNum +"'>" + mealkit.mealkitName + "</option>")
+					})
+				}
+			})
+			
+			
+		}
+         
+         function init(){
+        		$('#regBtn').click(() => {
+        			let review = {
+        				orderMealkitNum: $('#item').val(),
+        				rate: $('#rate').val(),
+        				reviewTitle: $('#reviewTitle').val(),
+        				reviewContent: $('#reviewContent').val(),
+        				reviewImgfile: $('#reviewImgfile').val()
+        			}
+        			$.ajax({
+        				type:'post',
+        				url: '${pageContext.request.contextPath}/review/addReview',
+        				data: JSON.stringify(review),
+        				contentType: 'application/json'
+        			})
+        		})
+        	}
+         $(test)
         </script>
     </head>
    <%@ include file ='../include/headerTop.jsp'%>
@@ -31,15 +63,13 @@
             </div>
 <%@ include file ='../include/headerBottom.jsp'%>
 <body>
+
     <div id='mainContainerAddSub' class="container">
     <form id='form' method='post' encType='multipart/form-data'>
          <div class='row mb-2'>
          	<label for='input' class='col-3 pr-2 col-form-label'>상품명:</label>
          	<div class='col pl-1'>
-         		<select class="form-control" name='orderMealkitNum' id='orderMealkitNum'>    
-	         		<c:forEach var='mealkit' items='${mealkitList}' varStatus='status'>
-	         			<option value='${mealkit.orderMealkitNum}'>${mealkit.mealkitName}</option>
-	         		</c:forEach>
+         		<select class="form-control" name='item' id='item'>         		
          		</select>
          	</div> 
          </div>
@@ -92,7 +122,7 @@
             <div class='col d-flex justify-content-end'>
                 <button type='button' class='btn btn-secondary' onclick='location.href="<%=request.getContextPath()%>/order/listOrder"'>취소</button>
                 &nbsp;
-                <button type='submit' class='btn btn-secondary' id = 'regBtn'>작성</button>
+                <button type='submit' class='btn btn-secondary' data-toggle='modal' data-target='#writeModal'>작성</button>
             </div>
         </div>
         </form>
