@@ -18,7 +18,7 @@
 
 	<insert id='insertFavorite'>
 		insert into favorites
-		values (#{userId}, #{mealkitNum}
+		values (#{userId}, #{mealkitNum})
 	</insert>
 
 	<delete id='deleteFavorite'>
