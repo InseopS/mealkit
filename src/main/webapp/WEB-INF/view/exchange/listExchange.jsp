@@ -17,7 +17,6 @@
 <script>
 let exchangesTmp
 let mealkitNamesTmp = []
-let priceTmp = []
 function listExchanges() {
 	$('#exchanges').empty();
 	
@@ -74,15 +73,11 @@ function listTest() {
 						</colgroup>
 						<tbody>
 			    			<tr>
-			     				<td>밀키트명</td>
+			     				<td>주문상품</td>
 			     				<td>\${mealkitNamesTmp[i]}</td>
 			    			</tr>
 			    			<tr>
-						        <td>가격</td>
-						        <td>어케끌어옴</td>
-			    			</tr>
-			    			<tr>
-						        <td>교환상태</td>
+						        <td>주문상태</td>
 						        <td>\${exchangesTmp[i].exchangeStatusName}</td>
 			    			</tr>
 						</tbody>
@@ -97,6 +92,21 @@ function listTest() {
 }
 
 $(listExchanges)
+
+function init() {
+	$('#exchangeCancelBtn').click(() => {
+		$('#cancelOk').click(() => {
+			$.ajax({
+				url: 'exchange/delExchange/',
+				method: 'delete',
+				success: listExchanges
+			})
+			listExchanges()
+		})
+	})	
+}
+
+$(init)
 </script>
 <style>
     #pagingDiv {
@@ -158,16 +168,12 @@ $(listExchanges)
 						</colgroup>
 					<tbody>
 					    <tr>
-					     <td>밀키트명</td>
-					     <td></td>
+					    	<td></td>
+					    	<td></td>
 					    </tr>
 					    <tr>
-					        <td>가격</td>
 					        <td></td>
-					    </tr>
-					    <tr>
-					        <td>교환상태</td>
-					        <td id='exchangeStatus'>${exchange.exchangeStatusName}</td>
+					        <td></td>
 					    </tr>
 					</tbody>
 				    </table><hr class='mt-3 mb-2'>
@@ -194,12 +200,12 @@ $(listExchanges)
                     <span>&times;</span>
                 </button>
             </div>
-            <div class='modal-body text-center'>
+            <div class='modal-body text-center' id='exchangeCancel' name='exchangeCancel'>
                 <p>교환을 취소 하시겠습니까?</p>
             </div>
             <div class='modal-footer py-1'>
                 <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                <button type='button' class='btn btn-primary col-3' id='cancelOk' data-dismiss='modal' data-toggle='modal' data-target='#cancelOkModal'>예</button>
+                <button type='button' class='btn btn-primary col-3' id='cancelOk' name='cancelOk' data-dismiss='modal' data-toggle='modal' data-target='#cancelOkModal'>예</button>
             </div>
         </div>
     </div>
