@@ -77,7 +77,6 @@ public class NoticeAdminController {
 	public String fixNotice(Notice notice, Model model, @RequestParam("noticeNum") int noticeNum) {
 		notice = noticeService.getNotice(noticeNum);
 		model.addAttribute("notice", notice);
-		System.out.println(notice);
 		return "admin/notice/fixNotice";
 	}
 	
