@@ -61,14 +61,12 @@ public class FaqAdminController {
 	@RequestMapping(value ="fixFaq", method=RequestMethod.GET)
 	public String fixFaq(Faq faq, Model model, @RequestParam("faqNum") int faqNum) {
 		faq = faqService.getFaq(faqNum);
-		System.out.println(faq);
 		model.addAttribute("faq", faq);
 		return "admin/faq/fixFaq";
 	}
 	
 	@PutMapping("fixFaq")
 	public ModelAndView fixFaq(@RequestBody Faq faq, ModelAndView mv) {
-		System.out.println("??");
 		faqService.fixAdminFaq(faq);
 		mv.setViewName("admin/faq/listFaq");
 		return mv;
