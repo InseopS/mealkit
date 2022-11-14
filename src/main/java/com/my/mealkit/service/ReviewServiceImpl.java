@@ -21,17 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> getdetailReviews(int reviewNum) {
 		return reviewDao.detailReviews(reviewNum);
 	}
-	
-	@Override
-	public List<Review> getAdminReviews() {
-		return reviewDao.selectAdminReviews();
-	}
-	
-	@Override
-	public List<Review> getdetailAdminReviews(int reviewNum) {
-		return reviewDao.detailAdminReviews(reviewNum);
-	}
-	
+
 	@Override
 	public List<Review> getSearchReviews(String keyword){
 		return reviewDao.searchReviews(keyword);
@@ -60,10 +50,5 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void delReview(int reviewNum) {
 		reviewDao.deleteReview(reviewNum);
-	}
-	
-	@Override
-	public void delAdminReview(int reviewNum) {
-		reviewDao.deleteAdminReview(reviewNum);
 	}
 }
