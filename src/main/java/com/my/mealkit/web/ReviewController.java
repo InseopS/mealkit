@@ -3,6 +3,7 @@ package com.my.mealkit.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,17 +61,19 @@ public class ReviewController {
    }
    
    @RequestMapping(value ="fixReview", method= RequestMethod.GET)
-   public String fixReview(Model model, Review review,  @RequestParam("reviewNum") int reviewNum) {
+   public ModelAndView fixReview(ModelAndView mv, Model model,  @RequestParam("reviewNum") int reviewNum) {
       List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
       model.addAttribute("reviewList", reviewList);
-      return "review/fixReview";
+      mv.setViewName("review/fixReview");
+      return mv;
    }
    
    @ResponseBody
    @PostMapping("fixReview")
    public ModelAndView fixReview(Review review, ModelAndView mv) throws IOException {
 	   try {
-	         String reviewFileName = review.getReviewImgfile().getOriginalFilename();
+		   	 UUID uuid = UUID.randomUUID();
+	         String reviewFileName = "REVIEW_" + uuid.toString() + review.getReviewImgfile().getOriginalFilename();
 	         saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
 	         review.setReviewImgfileName(reviewFileName);
 	         reviewService.fixReview(review);
@@ -83,10 +86,11 @@ public class ReviewController {
    @PostMapping("addReview")
    public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
       try {
-         String reviewFileName = review.getReviewImgfile().getOriginalFilename();
-         saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
-         review.setReviewImgfileName(reviewFileName);
-         reviewService.addReview(review);
+	    	 UUID uuid = UUID.randomUUID();
+	         String reviewFileName = "REVIEW_" + uuid.toString() + review.getReviewImgfile().getOriginalFilename();
+	         saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
+	         review.setReviewImgfileName(reviewFileName);
+	         reviewService.addReview(review);
       } catch(NullPointerException e) {}
       
       mv.setViewName("review/listReview");

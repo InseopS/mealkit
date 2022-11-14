@@ -14,7 +14,27 @@
 <link rel='preconnect' href='https://fonts.googleapis.com'>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<script>
+function init() {
+	$('#orderBtn').click(() => {
+		let request = $('#request').val();
+		let paymentCode = $('#paymentCode').val();
+		let orderMealkitCount = $('#orderMealkitCount').val();
+		let mealkitNum = $('#mealkitNum').val();
+		
+		
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath}/order/addOrder',
+			data: JSON.stringfy(order),
+			contentType: 'application/json'
+		})
+		
+	})
+}
 
+$(init)
+</script>
 <style>
 table {
     width: 100%;
@@ -68,7 +88,7 @@ h5 {
     <div class='container' id='mainContainerAddSub'>
         <div class='row d-flex justify-content-center mt-5'>
             <div class='col'>
-                <h5><b>주문 상품</b></h5>
+                <h5><b>&nbsp;&nbsp;주문 상품</b></h5>
                 <table class='list'>
    	                <thead>
        	                <tr>
@@ -77,53 +97,48 @@ h5 {
                    	</thead>
                    	<tbody>
                        	<tr>
-                           	<td>미나리 감자탕</td>
-                           	<td>1개</td>
-                           	<td>32,000원</td>
-                       	</tr>
-                       	<tr>
-                           	<td>새우 감바스</td>
-                           	<td>1개</td>
-                           	<td>10,000원</td>
-                       	</tr>
+						<td>${mealkit.mealkitName}</td>
+						<td>${mealkit.mealkitCount}개</td>
+						<td>${mealkit.mealkitCount * mealkit.price}원</td>
+						<tr>
                    	</tbody>
                	</table>
        		</div>
        		<form action='<%=request.getContextPath() %>/order/completeOrder'>
-            <h5 class='mt-5'><b>배송지</b></h5>
+            <h5 class='mt-3'><b>배송지</b></h5>
             <div class="container">
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">수령인</label>
+                    <label for="input" class="col-4 col-form-label">수령인</label>
                     <div class="col pl-1">
                         <input type='text' class='form-control' id='userName' pattern='.{2,30}' value='${session.getAttribute("userId")}' required title='2글자 이상 30글자 이하를 입력해주세요.'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">연락처</label>
+                    <label for="input" class="col-4 col-form-label">연락처</label>
                     <div class="col pl-1">
                         <input type='text' class='form-control' id='phoneNum' pattern='.{11,13}' value='${user.phoneNum}' required title='-를 포함한 연락처를 입력해주세요.'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label class="col-3 col-form-label" style='font-size: 80%'>우편주소</label>
+                    <label class="col-4 col-form-label" style='font-size: 80%'>우편주소</label>
                     <div class="col pl-1">
                         <input type='number' class='form-control' id='zipCode' value='${user.zipCode}' min='0' max='99999' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">주소</label>
+                    <label for="input" class="col-4 col-form-label">주소</label>
                     <div class="col pl-1">
-                        <input type="text" class="form-control" id="basicAddress" value='${user.basicAddress}' maxlength='17'>
+                        <input type="text" class="form-control" id="basicAddr" value='${user.basicAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label" style='font-size: 80%'>상세주소</label>
+                    <label for="input" class="col-4 col-form-label" style='font-size: 80%'>상세주소</label>
                     <div class="col pl-1">
-                        <input type="text" class="form-control" id="detailAddress" value='${user.detailAddress}' maxlength='17'>
+                        <input type="text" class="form-control" id="detailAddr" value='${user.detailAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label" style='font-size: 80%'>요청사항</label>
+                    <label for="input" class="col-4 col-form-label" style='font-size: 80%'>요청사항</label>
                     <div class="col pl-1">
                         <input type="text" class="form-control" id="request" maxlength='1300'>
                     </div>
@@ -151,27 +166,48 @@ h5 {
             <div class='row d-flex justify-content-center mt-5'>
                 <div class='col'>
                     <h5><b>결제 방법</b></h5>
-                    <table class='way' name='paymentCode'>
+                    <table class='way' name='paymentCode' id='paymentCode'>
                         <tr>
-                            <th><input type='radio' name='payment' value='1'></th>
+                            <th><input type='radio' id='payment' name='payment' value='카드 결제'></th>
                             <td>카드 결제</td>
                         </tr>
                         <tr>
-                            <th><input type='radio' name='payment' value='2'></th>
+                            <th><input type='radio' id='payment' name='payment' value='무통장 입금'></th>
                             <td>무통장 입금</td>
                         </tr>
                         <tr>
-                            <th><input type='radio' name='payment' value='3'></th>
+                            <th><input type='radio' id='payment' name='payment' value='휴대폰 결제'></th>
                             <td>휴대폰 결제</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class='row d-flex justify-content-center mt-1'>
-                <input type='submit' class='btn btn-outline-secondary m-5 d-flex justify-content-center' value='구매'>
+                <button type='submit' id='orderBtn' name='orderBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'>구매</button>
             </div>
         </form>  
     </div>
+        <div class='modal fade' id='modal' tabindex='-1'>
+	    <div class='modal-dialog'>
+	        <div class='modal-content'>
+	            <div class='modal-header py-2'>
+	                <p class='modal-title float-left' id='modalLabel'></p>
+	                <button type='button' class='close' data-dismiss='modal'>
+	                    <span>&times;</span>
+	                </button>
+	            </div>
+	            <div class='modal-body text-center'>
+	                <p id='modalMsg'></p>
+	            </div>
+	            <div class='modal-footer py-1'>
+	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
+	                <button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
+	                <button type='button' class='btn btn-primary col-3' id='delCartBtn' 
+                    		onclick="location.href='<%=request.getContextPath() %>/cart/listCart'">예</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
 </body>
 <%@ include file ='../include/footer.jsp'%>

@@ -40,9 +40,7 @@ public class FavoriteController {
         	 mealkits.add(mealkitService.getMealkit(mealkitNum).get(0));
 		}
         model.addAttribute("mealkits", mealkits);
-        System.out.println(mealkits);
-        model.addAttribute("Favorites", favorites);
-        System.out.println(favorites);
+        model.addAttribute("favorites", favorites);
         return "favorite/listFavorite";
 	} 
 	

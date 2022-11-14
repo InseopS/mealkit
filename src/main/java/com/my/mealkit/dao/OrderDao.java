@@ -9,6 +9,7 @@ public interface OrderDao {
 	List<Order> detailOrders(int orderNum);
 	List<Order> selectAdminOrders();
 	List<Order> selectMealkitNames(int orderNum);
+	Order selectOrder(int orderNum);
 	void insertOrder(Order order);
-	void deleteOrder(int orderNum);
+	void updateOrder(Order order);
 }

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>EAZEN MEALKIT</title>
+<title>EZEN MEALKIT</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -38,7 +38,7 @@
 				$.ajax({
 					url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function() {location.reload()})
+				}).done(function() {location.reload();})
 			}		
 		})
 	}
@@ -79,8 +79,7 @@ tr, td {
 	                        	<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
 				                        <tr>
 											<td>
-												<input type='checkbox' name='mealkitNum' id='mealkitNum'
-													value='${mealkit.mealkitNum}'/>
+												<input type='checkbox' name='mealkitNum' id='mealkitNum' value='${mealkit.mealkitNum}'/>
 											</td>
 											<td class='mealkitImage'>
 												<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>

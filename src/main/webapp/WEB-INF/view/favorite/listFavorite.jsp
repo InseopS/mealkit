@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>EAZEN MEALKIT</title>
+<title>EZEN MEALKIT</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -62,7 +62,7 @@ tr, td {
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
 	<a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
 	<div id='menuName'>
-	    <h3>찜한상품</h3>
+	    <h3>찜한 상품</h3>
 	</div>            
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>
@@ -74,13 +74,12 @@ tr, td {
                 <div class='col'>
                     <table id='favorite1'>
                         <tbody class='favoriteList'>
-                        <c:forEach var='favorite' items='${favorites}'>
-	                        <c:forEach var='mealkit' items='${mealkits}'>
+                       	<c:forEach var='favorite' items='${favorites}'> 
+	                    	<c:forEach var='mealkit' items='${mealkits}'>
 	                        	<c:if test="${mealkit.mealkitNum == favorite.mealkitNum}">
 				                        <tr>
-											<td>
-												<input type='checkbox' name='mealkitNum' id='mealkitNum'
-													value='${mealkit.mealkitNum}'/>
+				                        	<td>
+												<input type='checkbox' name='mealkitNum' id='mealkitNum' value='${mealkit.mealkitNum}'/>
 											</td>
 											<td class='mealkitImage'>
 												<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
@@ -119,7 +118,7 @@ tr, td {
 	                <button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
 	                <button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
 	                <button type='button' class='btn btn-primary col-3' id='delFavoriteBtn' 
-                    		onclick="location.href='<%=request.getContextPath() %>/favorite/listfavorite'">예</button>
+                    		onclick="location.href='<%=request.getContextPath() %>/favorite/listFavorite'">예</button>
 	            </div>
 	        </div>
 	    </div>

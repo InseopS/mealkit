@@ -9,6 +9,7 @@ public interface OrderService {
 	List<Order> getDetailOrders(int orderNum);
 	List<Order> getAdminOrders();
 	List<Order> getMealkitNames(int orderNum);
+	Order getOrder(int orderNum);
 	void addOrder(Order order);
-	void delOrder(int orderNum);
+	void fixOrder(Order order);
 }

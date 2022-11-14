@@ -34,12 +34,17 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
+	public Order selectOrder(int orderNum) {
+		return orderMap.selectOrder(orderNum);
+	}
+
+	@Override
 	public void insertOrder(Order order) {
 		orderMap.insertOrder(order);
 	}
 	
 	@Override
-	public void deleteOrder(int orderNum) {
-		orderMap.deleteOrder(orderNum);
+	public void updateOrder(Order order) {
+		orderMap.updateOrder(order);
 	}
 }

@@ -13,8 +13,8 @@ public class RefundDaoImpl implements RefundDao{
 	@Autowired private RefundMap refundMap;
 	
 	@Override
-	public List<Refund> selectRefunds(){
-		return refundMap.selectRefunds();
+	public List<Refund> selectRefunds(String userId){
+		return refundMap.selectRefunds(userId);
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
-	public void deleteRefund(int orderNum) {
-		refundMap.deleteRefund(orderNum);
+	public void updateRefundStatus(int orderNum) {
+		refundMap.updateRefundStatus(orderNum);
 	}
 }

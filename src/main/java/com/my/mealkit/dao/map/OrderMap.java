@@ -11,6 +11,7 @@ public interface OrderMap {
 	List<Order> detailOrders(@Param("orderNum") int orderNum);
 	List<Order> selectAdminOrders();
 	List<Order> selectMealkitNames(@Param("orderNum") int orderNum);
+	Order selectOrder(@Param("orderNum") int orderNum);	
 	void insertOrder(Order order);
-	void deleteOrder(int orderNum);
+	void updateOrder(Order order);
 }
