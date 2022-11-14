@@ -55,6 +55,17 @@
 	  on mealkits.mealkit_num = orders_mealkits.mealkit_num
 	  where orders.order_num = #{orderNum}
    </select>
+   
+   <select id='selectMealkitPrices' resultType='order'>
+   	  select sum(total_price) total_price
+      from
+      (select mealkits.price * orders_mealkits.order_mealkit_count total_price
+      from orders inner join orders_mealkits
+      on orders_mealkits.order_num = orders.order_num
+   	  inner join mealkits
+   	  on orders_mealkits.mealkit_num = mealkits.mealkit_num
+      where orders.order_num = #{orderNum})
+   </select>
       
    <insert id='insertOrder'>
       insert into orders(order_num, order_date, request, user_id,

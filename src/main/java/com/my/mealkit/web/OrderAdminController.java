@@ -39,4 +39,10 @@ public class OrderAdminController {
 		List<Order> mealkitNameList = orderService.getMealkitNames(orderNum);
 		return mealkitNameList;
 	}
+	
+	@GetMapping("selectMealkitPrices/{orderNum}")
+	public List<Order> getMealkitPrices(@PathVariable int orderNum) {
+		List<Order> mealkitPriceList = orderService.getMealkitPrices(orderNum);
+		return mealkitPriceList;
+	}
 }

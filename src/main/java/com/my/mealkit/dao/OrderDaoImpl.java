@@ -33,6 +33,12 @@ public class OrderDaoImpl implements OrderDao {
 		return orderMap.selectMealkitNames(orderNum);
 	}
 	
+	
+	@Override
+	public List<Order> selectMealkitPrices(int orderNum) {
+		return orderMap.selectMealkitPrices(orderNum);
+	}
+
 	@Override
 	public Order selectOrder(int orderNum) {
 		return orderMap.selectOrder(orderNum);
