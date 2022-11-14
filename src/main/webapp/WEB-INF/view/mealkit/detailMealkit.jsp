@@ -188,7 +188,7 @@ ${mealkit.ingredient}
 			</div>
 			<div class='modal-footer py-1'>
 				<button type='button' class='btn btn-primary col-3'
-					data-dismiss='modal' id='favoriteOkBtn'>확인</button>
+						data-dismiss='modal' id='favoriteOkBtn'>확인</button>
 				<c:forEach var='mealkit' items='${mealkitList}'>
 					<button type='button' class='btn btn-primary col-3'
 						data-dismiss='modal' id='cartOkBtn'

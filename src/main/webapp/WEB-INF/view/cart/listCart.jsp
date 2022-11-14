@@ -79,8 +79,7 @@ tr, td {
 	                        	<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
 				                        <tr>
 											<td>
-												<input type='checkbox' name='mealkitNum' id='mealkitNum'
-													value='${mealkit.mealkitNum}'/>
+												<input type='checkbox' name='mealkitNum' id='mealkitNum' value='${mealkit.mealkitNum}'/>
 											</td>
 											<td class='mealkitImage'>
 												<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
