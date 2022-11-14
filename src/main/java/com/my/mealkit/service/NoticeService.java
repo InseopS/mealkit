@@ -5,13 +5,12 @@ import java.util.List;
 import com.my.mealkit.domain.Notice;
 
 public interface NoticeService {
-	List<Notice> getNotice(int noticeNum);
+	Notice getNotice(int noticeNum);
 	List<Notice> getNotices();
 	List<Notice> getSearchNotices(String keyword);
-	List<Notice> getDetailNotices(int noticeNum);
-	List<Notice> getAdminNotices();
-	List<Notice> getAdminDetailNotices(int noticeNum);
+	Notice getDetailNotice(int noticeNum);
 	void addAdminNotice(Notice notice);
 	void fixAdminNotice(Notice notice);
 	void delAdminNotice(int noticeNum);
+	Object getMaxNum();
 }

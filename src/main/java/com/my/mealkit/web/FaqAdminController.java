@@ -35,13 +35,13 @@ public class FaqAdminController {
 	@ResponseBody
 	@PostMapping("getFaqs")
 	public List<Faq> getFaqs() {
-		return faqService.getAdminFaqs();
+		return faqService.getFaqs();
 	}
 	
 	@RequestMapping(value ="detailFaq", method=RequestMethod.GET)
 	public String detailFaq(Model model, @RequestParam("faqNum") int faqNum) {
-		List<Faq> faqList = faqService.getAdminDetailFaq(faqNum);
-		model.addAttribute("faqList", faqList);
+		Faq faq = faqService.getAdminDetailFaq(faqNum);
+		model.addAttribute("faq", faq);
 		return "admin/faq/detailFaq";
 	}
 	
@@ -59,10 +59,10 @@ public class FaqAdminController {
 	}
 	
 	@RequestMapping(value ="fixFaq", method=RequestMethod.GET)
-	public String fixFaq(Model model, @RequestParam("faqNum") int faqNum) {
-		List<Faq> faqList = faqService.getFaq(faqNum);
-		System.out.println(faqList);
-		model.addAttribute("faqList", faqList);
+	public String fixFaq(Faq faq, Model model, @RequestParam("faqNum") int faqNum) {
+		faq = faqService.getFaq(faqNum);
+		System.out.println(faq);
+		model.addAttribute("faq", faq);
 		return "admin/faq/fixFaq";
 	}
 	

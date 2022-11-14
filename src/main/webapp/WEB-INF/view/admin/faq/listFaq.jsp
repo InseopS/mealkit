@@ -134,21 +134,6 @@ $(init)
                                         </tr>
                                     </thead>
                                     <tbody id='faqs'>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td id='faqNum'>0003</td>
-                                            <td id='faqTitle' onclick='location.href="<%=request.getContextPath()%>/admin/faq/detailFaq"'>취소/교환/환불] 주문한 상품을 교환받고 싶어요</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0002</td>
-                                            <td>회원] 비밀번호를 찾으려면 어떻게 하나요 ?</td>
-                                        </tr>
-                                        <tr>
-                                            <th><input type='checkbox'></th>
-                                            <td>0001</td>
-                                            <td>배송] 송장이 조회되지 않아요</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                                 <hr class='mt-0'>

@@ -13,7 +13,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Autowired private NoticeMap noticeMap;
 	
 	@Override
-	public List<Notice> selectNotice(int noticeNum) {
+	public Notice selectNotice(int noticeNum) {
 		return noticeMap.selectNotice(noticeNum);
 	}
 	
@@ -28,18 +28,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 	
 	@Override
-	public List<Notice> selectDetailNotices(int noticeNum) {
-		return noticeMap.selectDetailNotices(noticeNum);
-	}
-	
-	@Override
-	public List<Notice> selectAdminNotices() {
-		return noticeMap.selectAdminNotices();
-	}
-	
-	@Override
-	public List<Notice> selectAdminDetailNotices(int noticeNum) {
-		return noticeMap.selectAdminDetailNotices(noticeNum);
+	public Notice selectDetailNotice(int noticeNum) {
+		return noticeMap.selectDetailNotice(noticeNum);
 	}
 	
 	@Override
@@ -55,5 +45,10 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public void deleteAdminNotice(int noticeNum) {
 		noticeMap.deleteAdminNotice(noticeNum);
+	}
+	
+	@Override
+	public Object selectMaxNum() {
+		return noticeMap.selectMaxNum();
 	}
 }

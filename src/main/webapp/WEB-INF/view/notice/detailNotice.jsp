@@ -1,5 +1,4 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <html>
 
     <head>
@@ -15,7 +14,6 @@
         <link rel='preconnect' href='https://fonts.googleapis.com'>
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
-        <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
         
         <script>
         
@@ -70,28 +68,20 @@
             <div class='row'>
                 <div class='col'>
 					<div id='noticeTop'>
-						<c:forEach var="notice" items="${noticeList}">
 						<p id='noticeTitle'>${notice.noticeTitle}</p>
 						<p id='noticeInfo'>관리자<br/>
 						${notice.noticeRegdate}</p>
-						</c:forEach>
 					</div>
 					<hr>
                 </div>
             </div>
             <div class='row' id='contentLogo'>
                 <div class='col' id='noticeLogo'>
-                	<c:forEach var="notice" items="${noticeList}">
                     	<img style="width:100%; height:100%; object-fit:cover;"src='/attach/${notice.noticeImgFileName}'/>
-                    </c:forEach>
                 </div>
             </div>
             <div class='row' id='noticeContent'>
-            <c:forEach var="notice" items="${noticeList}">
-                <pre>
-${notice.noticeContent}
-                </pre>
-            </c:forEach>
+            <textarea class='form-control bg-light ml-0' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none;' disabled>${notice.noticeContent}</textarea>
             </div>
             <div class='row'>
                 <div class='col'>
