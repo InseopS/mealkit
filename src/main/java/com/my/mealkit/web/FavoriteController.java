@@ -50,6 +50,7 @@ public class FavoriteController {
 	public void addFavorite(HttpSession session, @RequestBody Favorite favorite) {
 		favorite.setUserId(session.getAttribute("userId").toString());
 		favoriteService.addFavorite(favorite);
+		System.out.println("하이");
 	}
 	
 	@DeleteMapping("delFavorite/{mealkitNum}")
