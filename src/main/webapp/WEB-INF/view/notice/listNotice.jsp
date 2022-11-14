@@ -61,20 +61,11 @@
                 background-color: white;
                 justify-content : center;
             }
-            .paginationSection {
-                position: relative;
-                margin-bottom: 15px;
-                width: 80%;
-            }
-            .paginationSection a {
-                color: black;
-                padding: 10px 18px;
-                text-decoration: none;
-            }
-            .pageLink {
-                border-color: white;
-                color: black;
-            }
+                    
+			a { 
+    			color: inherit;
+    			text-decoration:none;
+	    	}
         </style>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
