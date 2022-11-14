@@ -33,9 +33,6 @@ public class QuestionController {
 	@PostMapping("getQuestions")
 	public List<Question> getQuestions(Question question, HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
-        if(session == null || session.getAttribute("userId") == null) {
-            return null;
-        }
         question.setUserId(userId);
 		return questionService.getQuestions((String)session.getAttribute("userId"));
 	}
@@ -49,9 +46,6 @@ public class QuestionController {
 	@PostMapping("addQuestion")
 	public ModelAndView addQuestion(Question question, ModelAndView mv, HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
-        if(session == null || session.getAttribute("userId") == null) {
-            return null;
-        }
         question.setUserId(userId);
 		questionService.addQuestion(question);
 		
@@ -67,7 +61,7 @@ public class QuestionController {
 	}
 	
 	 @RequestMapping(value ="fixQuestion", method= RequestMethod.GET)
-	   public String fixQuestion(Model model, Question question,  @RequestParam("questionNum") int questionNum) {
+	   public String fixQuestion(Model model, @RequestParam("questionNum") int questionNum) {
 	      List<Question> questionList = questionService.getDetailQuestion(questionNum);
 	      model.addAttribute("questionList", questionList);
 	      return "question/fixQuestion";
@@ -76,10 +70,7 @@ public class QuestionController {
 	 @ResponseBody
 	 @PostMapping("fixQuestion")
 	 public ModelAndView fixQuestion(Question question, ModelAndView mv, HttpSession session) {
-		 String userId = session.getAttribute("userId").toString();
-	        if(session == null || session.getAttribute("userId") == null) {
-	            return null;
-	        }
+		String userId = session.getAttribute("userId").toString();
         question.setUserId(userId);
 		questionService.fixQuestion(question);
 		mv.setViewName("question/listQuestion");
