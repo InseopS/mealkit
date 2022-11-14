@@ -13,7 +13,7 @@ public class FaqDaoImpl implements FaqDao {
 	@Autowired private FaqMap faqMap;
 	
 	@Override
-	public List<Faq> selectFaq(int faqNum) {
+	public Faq selectFaq(int faqNum) {
 		return faqMap.selectFaq(faqNum);
 	}
 	
@@ -23,12 +23,7 @@ public class FaqDaoImpl implements FaqDao {
 	}
 	
 	@Override
-	public List<Faq> selectAdminFaqs() {
-		return faqMap.selectAdminFaqs();
-	}
-	
-	@Override
-	public List<Faq> selectAdminDetailFaq(int faqNum) {
+	public Faq selectAdminDetailFaq(int faqNum) {
 		return faqMap.selectAdminDetailFaq(faqNum);
 	}
 	

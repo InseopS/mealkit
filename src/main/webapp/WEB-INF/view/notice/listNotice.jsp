@@ -91,30 +91,6 @@
         <div id='mainContainerAddSub' class="container">
             <div class='row'>
                 <div class='col' id='notices'>
-					<div id='noticeList' class='mt-2'>
-						<p id='noticeTitle'>[공지] 10월 13일(목) EZEN MEALKIT 페이지 구현 일정 안내</p>
-						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 12</p>
-					</div>
-					<hr>
-					<div id='noticeList'>
-						<h6 id='noticeTitle'>[공지] 추석 이벤트 안내</h6>
-						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 11</p>
-					</div>
-					<hr>
-					<div id='noticeList'>
-						<h6 id='noticeTitle'>[당첨자발표] 오픈이벤트 당첨자 발표안내</h6>
-						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 10</p>
-					</div>
-					<hr>
-					<div id='noticeList'>
-						<h6 id='noticeTitle'>[배송] 명절 배송지연 안내</h6>
-						<p id='noticeInfo'>관리자<br/>
-						2022. 10. 09</p>
-					</div>
-					<hr>
                 </div>
             </div>
 			<div class='row d-flex mx-auto fixed-bottom mb-5' id='pagingDiv'>
@@ -122,7 +98,6 @@
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
                     </ul>
                 </nav>
