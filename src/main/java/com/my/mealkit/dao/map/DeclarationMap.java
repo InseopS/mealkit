@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.my.mealkit.domain.Declaration;
 import com.my.mealkit.domain.DeclarationDto;
-import com.my.mealkit.domain.User;
 
 public interface DeclarationMap {
 	List<DeclarationDto> selectDeclarations();

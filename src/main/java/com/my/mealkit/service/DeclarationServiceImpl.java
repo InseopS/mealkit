@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.my.mealkit.dao.DeclarationDao;
 import com.my.mealkit.domain.Declaration;
 import com.my.mealkit.domain.DeclarationDto;
-import com.my.mealkit.domain.User;
 
 @Service
 public class DeclarationServiceImpl implements DeclarationService{
