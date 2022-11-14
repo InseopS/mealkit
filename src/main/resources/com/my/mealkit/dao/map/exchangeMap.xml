@@ -6,13 +6,14 @@
 		select exchanges.*, orders.order_num, 
 			exchange_status.exchange_status_name,
 			exchange_reasons.exchange_reason_name
-		from exchanges inner join orders
-		on exchanges.order_num = orders.order_num
-		inner join exchange_status
-		on exchange_status.exchange_status_code = exchanges.exchange_status_code
-		inner join exchange_reasons
-		on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
-		where orders.user_id= #{userId}
+		from exchanges 
+			inner join orders
+				on exchanges.order_num = orders.order_num
+			inner join exchange_status
+				on exchange_status.exchange_status_code = exchanges.exchange_status_code
+			inner join exchange_reasons
+				on exchange_reasons.exchange_reason_code = exchanges.exchange_reason_code
+		where orders.user_id = #{userId}
 		order by exchanges.order_num
 	</select>
 	
@@ -29,7 +30,7 @@
 	</select>
 	
 	<select id='selectMealkitNames' resultType='exchange'>
-		select mealkits.mealkit_name, mealkits.price
+		select mealkits.mealkit_name
 		from exchanges inner join orders
 	    on exchanges.order_num = orders.order_num
 	        inner join orders_mealkits
@@ -38,16 +39,18 @@
 	    on mealkits.mealkit_num = orders_mealkits.mealkit_num
 		where exchanges.exchange_num = #{exchangeNum}
 	</select>
-
+	
+	
 	<insert id='insertExchange'>
-		insert into exchanges(exchange_num, exchange_img_file_name, exchange_content,
-			exchange_reason_name, exchange_status_name, order_num)
-		values(exchange_num_seq.nextval, #{exchangeImgFileName}, #{exchangeContent},
-			#{exchangeReasonName}, #{exchangeStatusName}, #{orderNum})
+		insert into exchanges(exchange_num, exchange_content,
+			exchange_reason_code, exchange_status_code, order_num)
+		values(exchange_num_seq.nextval, #{exchangeContent},
+			#{exchangeReasonCode}, 1, #{orderNum})
 	</insert>
 	
 	<delete id='deleteExchange'>
-		delete exchanges
-		where exchange_num = #{exchangeNum}
+		delete mealkit.exchanges e
+		from mealkit.orders o
+		where o.order_num = e.order_num
 	</delete>
 </mapper>

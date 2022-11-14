@@ -27,7 +27,6 @@ public class ExchangeServiceImpl implements ExchangeService {
 		return exchangeDao.selectMealkitNames(exchangeNum);
 	}
 
-	
 	@Override
 	public void addExchange(Exchange exchange) {
 		exchangeDao.insertExchange(exchange);
