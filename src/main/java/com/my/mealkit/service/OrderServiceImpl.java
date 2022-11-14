@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public void delOrder(int orderNum) {
-		orderDao.deleteOrder(orderNum);
+	public void fixOrder(Order order) {
+		orderDao.updateOrder(order);
 	}
 }

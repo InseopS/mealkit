@@ -15,30 +15,31 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 	<script>
+	
 	function listOrders() {
 		$('#orders').empty()
 		
 		$.ajax({
 			metod:'post',
-			url: "<%=request.getContextPath()%>/order/listOrders"
+			url: "<%=request.getContextPath()%>/order/detailOrder"
 		}).done(orders => {
 			if(orders.length) {
 				const orderArr = []
 				
 				$.each(orders, (i, order) => {
 					orderArr.unshift(
-	                	`<div class='row'>
+	                	`<div class='row' id='orders'>
              <div class='col'>
                  <table class='table table-sm table-borderless ml-0'>
-                     <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>000005</th></tr>
+                     <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>\${order.orderNum}</th></tr>
                      <tbody>
                         <tr>
-                           <td class='orderInfoTitle2'>밀키트명</td>
-                           <td class='orderInfoContent'>감바스</td>
+                           <td class='orderInfoTitle2'>주문상품</td>
+                           <td class='orderInfoContent'>\${mealkit.mealkitName}</td>
                         </tr>
                         <tr>
                             <td class='orderInfoTitle2'>수량</td>
-                            <td class='orderInfoContent'>3개</td>
+                            <td class='orderInfoContent'>\${order.orderMealkitCount}개</td>
                          </tr>
                          <tr>
                             <td class='orderInfoTitle2'>가격</td>
@@ -52,11 +53,11 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>주문일자</td>
-                          <td class='orderInfoContent'>2022-10-13</td>
+                          <td class='orderInfoContent'>\${order.orderDate}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문자</td>
-                          <td class='orderInfoContent'>김연이</td>
+                          <td class='orderInfoContent'>\${user.userName}</td>
                       </tr>
                   </tbody>
               </table><hr class='mt-3 mb-2'>
@@ -66,7 +67,7 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>결제수단</td>
-                          <td class='orderInfoContent'>카드결제</td>
+                          <td class='orderInfoContent'>\${order.orderStatusName}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문금액</td>
@@ -88,31 +89,29 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>수령인</td>
-                          <td class='orderInfoContent'>김연이</td>
+                          <td class='orderInfoContent'>\${user.userName}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>연락처</td>
-                          <td class='orderInfoContent'>010-1234-1212</td>
+                          <td class='orderInfoContent'>\${user.phoneNum}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>우편번호</td>
-                          <td class='orderInfoContent'>08754</td>
+                          <td class='orderInfoContent'>\${user.zipCode}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주소</td>
                           <td class='orderInfoContent'>
-                          서울특별시 관악구 신림로340(신림동)<br>
-                          <p class='orderInfoContent'>르네상스쇼핑몰 603호</p></td>
+                          \${user.basicAddress}<br>
+                          <p class='orderInfoContent'>\${user.detailAddress}</p></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>요청사항</td>
-                          <td class='orderInfoContent'>없음</td>
+                          <td class='orderInfoContent'>\${order.request}</td>
                       </tr>
                   </tbody>
               </table><hr class='mt-5 mb-2'>
-          </div>
-      </div>
-	                	`		
+          </div>`		
 					);
 				})
 				
@@ -153,18 +152,18 @@
 
 <body>
    <div id='mainContainerAddSub' class='container'>
-      <div class='row'>
+      <div class='row' id='orders'>
              <div class='col'>
                  <table class='table table-sm table-borderless ml-0'>
                      <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>${order.orderNum}</th></tr>
                      <tbody>
                         <tr>
-                           <td class='orderInfoTitle2'>밀키트명</td>
-                           <td class='orderInfoContent'>${order.mealkitName}</td>
+                           <td class='orderInfoTitle2'>주문상품</td>
+                           <td class='orderInfoContent'></td>
                         </tr>
                         <tr>
                             <td class='orderInfoTitle2'>수량</td>
-                            <td class='orderInfoContent'>3개</td>
+                            <td class='orderInfoContent'></td>
                          </tr>
                          <tr>
                             <td class='orderInfoTitle2'>가격</td>
@@ -178,11 +177,11 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>주문일자</td>
-                          <td class='orderInfoContent'>2022-10-13</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문자</td>
-                          <td class='orderInfoContent'>김연이</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                   </tbody>
               </table><hr class='mt-3 mb-2'>
@@ -192,7 +191,7 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>결제수단</td>
-                          <td class='orderInfoContent'>카드결제</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문금액</td>
@@ -214,25 +213,25 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>수령인</td>
-                          <td class='orderInfoContent'>김연이</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>연락처</td>
-                          <td class='orderInfoContent'>010-1234-1212</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>우편번호</td>
-                          <td class='orderInfoContent'>08754</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주소</td>
                           <td class='orderInfoContent'>
-                          서울특별시 관악구 신림로340(신림동)<br>
-                          <p class='orderInfoContent'>르네상스쇼핑몰 603호</p></td>
+                          <br>
+                          <p class='orderInfoContent'></p></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>요청사항</td>
-                          <td class='orderInfoContent'>없음</td>
+                          <td class='orderInfoContent'></td>
                       </tr>
                   </tbody>
               </table><hr class='mt-5 mb-2'>

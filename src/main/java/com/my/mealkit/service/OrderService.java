@@ -10,5 +10,5 @@ public interface OrderService {
 	List<Order> getAdminOrders();
 	List<Order> getMealkitNames(int orderNum);
 	void addOrder(Order order);
-	void delOrder(int orderNum);
+	void fixOrder(Order order);
 }
