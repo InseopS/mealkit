@@ -60,6 +60,21 @@ public class ReviewController {
       return mv;
    }
    
+   @ResponseBody
+   @PostMapping("addReview")
+   public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
+      try {
+	    	 UUID uuid = UUID.randomUUID();
+	         String reviewFileName = "REVIEW_" + uuid.toString() + review.getReviewImgfile().getOriginalFilename();
+	         saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
+	         review.setReviewImgfileName(reviewFileName);
+	         reviewService.addReview(review);
+      } catch(NullPointerException e) {}
+      
+      mv.setViewName("review/listReview");
+      return mv;
+   }
+   
    @RequestMapping(value ="fixReview", method= RequestMethod.GET)
    public ModelAndView fixReview(ModelAndView mv, Model model,  @RequestParam("reviewNum") int reviewNum) {
       List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
@@ -80,21 +95,6 @@ public class ReviewController {
 	      } catch(NullPointerException e) {}
 	      mv.setViewName("review/listReview");
 	      return mv;
-   }
-
-   @ResponseBody
-   @PostMapping("addReview")
-   public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
-      try {
-	    	 UUID uuid = UUID.randomUUID();
-	         String reviewFileName = "REVIEW_" + uuid.toString() + review.getReviewImgfile().getOriginalFilename();
-	         saveReviewFile(attachPath + "/" + reviewFileName, review.getReviewImgfile());
-	         review.setReviewImgfileName(reviewFileName);
-	         reviewService.addReview(review);
-      } catch(NullPointerException e) {}
-      
-      mv.setViewName("review/listReview");
-      return mv;
    }
    
    private void saveReviewFile(String reviewFileName, MultipartFile reviewFile) {
