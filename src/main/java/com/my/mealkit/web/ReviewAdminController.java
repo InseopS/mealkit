@@ -28,7 +28,7 @@ public class ReviewAdminController {
 	@ResponseBody
 	@PostMapping("getReview")
 	public List<Review> getReviews() {
-		return reviewService.getAdminReviews();
+		return reviewService.getReviews();
 	}
 
 	@ResponseBody
