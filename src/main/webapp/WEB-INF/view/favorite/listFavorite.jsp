@@ -87,7 +87,7 @@ tr, td {
 												</a>
 											</td>
 											<td>
-												${mealkit.mealkitName}<br><br><br>${mealkit.price}원
+												${mealkit.mealkitName}<br><br><br>가격 : ${mealkit.price}원
 											</td>
 										<tr>
 									</c:if>
