@@ -12,7 +12,6 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-    <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
     <script>
 	let faqNumber  = <%=request.getParameter("faqNum")%>
 	function init() {
@@ -53,24 +52,20 @@
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                    <form action='01.html'>
+                    <form>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                	<c:forEach var='faq' items='${faqList}'>
-                                    	<input type='text' class='form-control' id='faqTitle' required minlength='1' maxlength='100' 
+                                    	<input type='text' class='form-control' id='faqTitle' required maxlength='100' 
                                     	placeholder='제목을 입력해주세요.' value='${faq.faqTitle}'>
-                                    </c:forEach>
                                 </div>
                             </div>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                	<c:forEach var='faq' items='${faqList}'>
                                    	 	<textarea class="form-control" placeholder="내용을 입력해주세요." id="faqContent" 
-                                     	   style="height: 29rem; resize:none" minlength='1' maxlength='1300' required>${faq.faqContent}</textarea>
-									</c:forEach>
+                                     	   style="height: 29rem; resize:none" maxlength='1300' required>${faq.faqContent}</textarea>
                                 </div>
                             </div>
                             <hr>

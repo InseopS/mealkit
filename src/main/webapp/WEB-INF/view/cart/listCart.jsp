@@ -87,7 +87,7 @@ tr, td {
 												</a>
 											</td>
 											<td>
-												${mealkit.mealkitName}<br><br>${cart.mealkitCount}개<br>${cart.mealkitCount * mealkit.price}원
+												${mealkit.mealkitName}<br><br>수량 : ${cart.mealkitCount}개<br>가격 : ${cart.mealkitCount * mealkit.price}원
 											</td>
 										<tr>
 									</c:if>
@@ -99,7 +99,7 @@ tr, td {
             </div>
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='delBtn' class='btn btn-secondary mr-2'>삭제</button>
-                <input type='submit' id='orderBtn' value='구매' class='btn btn-secondary'>
+                <input type='submit' id='orderBtn' name='orderBtn' value='구매' class='btn btn-secondary'>
             </div>
         </form>
 	</div>

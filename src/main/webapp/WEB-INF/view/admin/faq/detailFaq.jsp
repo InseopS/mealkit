@@ -12,7 +12,6 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 function init() {	
     $('#delBtn').click(() => {
@@ -58,18 +57,13 @@ $(init)
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="faq" items="${faqList}">
                                 <input type='text' class='form-control bg-light' id='faqTitle' placeholder='제목을 입력해주세요.' value='${faq.faqTitle}' disabled>
-                            </c:forEach>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="faq" items="${faqList}">
-                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>
-${faq.faqContent}</textarea>
-							</c:forEach>
+                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>${faq.faqContent}</textarea>
                             </div>
                         </div>
                         <hr>

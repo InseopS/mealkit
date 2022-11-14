@@ -13,7 +13,7 @@ public class FaqServiceImpl implements FaqService {
 	@Autowired private FaqDao faqDao;
 	
 	@Override
-	public List<Faq> getFaq(int faqNum) {
+	public Faq getFaq(int faqNum) {
 		return faqDao.selectFaq(faqNum);
 	}
 	
@@ -23,12 +23,7 @@ public class FaqServiceImpl implements FaqService {
 	}
 	
 	@Override
-	public List<Faq> getAdminFaqs() {
-		return faqDao.selectAdminFaqs();
-	}
-	
-	@Override
-	public List<Faq> getAdminDetailFaq(int faqNum) {
+	public Faq getAdminDetailFaq(int faqNum) {
 		return faqDao.selectAdminDetailFaq(faqNum);
 	}
 	

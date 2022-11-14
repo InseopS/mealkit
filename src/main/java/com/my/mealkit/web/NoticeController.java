@@ -33,9 +33,9 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value ="detailNotice", method=RequestMethod.GET)
-	public String detailNotice(Model model, @RequestParam("noticeNum") int noticeNum) {
-		List<Notice> noticeList = noticeService.getDetailNotices(noticeNum);
-		model.addAttribute("noticeList", noticeList);
+	public String detailNotice(Notice notice, Model model, @RequestParam("noticeNum") int noticeNum) {
+		notice = noticeService.getDetailNotice(noticeNum);
+		model.addAttribute("notice", notice);
 		return "notice/detailNotice";
 	}
 	
