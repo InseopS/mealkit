@@ -4,43 +4,48 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Exchange;
 import com.my.mealkit.domain.Refund;
+import com.my.mealkit.service.OrderService;
 import com.my.mealkit.service.RefundService;
 
 @RestController
 @RequestMapping("refund")
 public class RefundController {
 	@Autowired private RefundService refundService;
+	@Autowired private OrderService orderService;
 	
 	@Value("${attachPath}") private String attachPath;
 	
-	@RequestMapping("applyRefund")
-	public String applyRefund() {
-		return "refund/applyRefund";
+	@RequestMapping("listRefund")
+	public ModelAndView listRefund(ModelAndView mv) {
+		mv.setViewName("refund/listRefund");
+		return mv;
 	}
 	
-	@ResponseBody
-	@GetMapping("applyRefund")
-	public ModelAndView addRefund( ModelAndView mv) {
+	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
+	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
 		mv.setViewName("refund/applyRefund");
 		return mv;
 	}
 	
 	@ResponseBody
-	@PostMapping("addRefund")
-	public ModelAndView addRefund(Refund refund, ModelAndView mv) throws IOException {
+	@PostMapping("applyRefund")
+	public ModelAndView applyRefund(Refund refund, ModelAndView mv) throws IOException {
 		try {
 			String refundFileName = refund.getRefundImgFile().getOriginalFilename();
 			saveRefundFile(attachPath + "/" + refundFileName, refund.getRefundImgFile());
@@ -49,9 +54,9 @@ public class RefundController {
 			refundService.addRefund(refund);
 		} catch(NullPointerException e) {}
   
-		mv.setViewName("exchange/listExchange");
+		mv.setViewName("refund/listRefund");
 		return mv;
-	}	
+	}
 	      
 	private void saveRefundFile(String refundFileName, MultipartFile refundFile) {
 		try {
@@ -59,19 +64,12 @@ public class RefundController {
 		} catch(IOException e) {}
 	}
 	
-	@RequestMapping("listRefund")
-	public String listRefund() {
-		return "refund/listRefund";
-	}
-	
-	@GetMapping("listRefund")
-	public ModelAndView listRefund(ModelAndView mv) {
-		return mv;
-	}
-	
+	@ResponseBody
 	@GetMapping("getRefunds")
-	public List<Refund> getRefunds() {
-		return refundService.getRefunds();
+	public List<Refund> getRefunds(HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+		List<Refund> refunds = refundService.getRefunds(userId);
+		return refunds;
 	}
 	
 	@GetMapping("selectMealkitNames/{refundNum}")

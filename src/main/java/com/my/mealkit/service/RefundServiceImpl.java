@@ -13,8 +13,8 @@ public class RefundServiceImpl implements RefundService{
 	@Autowired private RefundDao refundDao;
 	
 	@Override
-	public List<Refund> getRefunds() {
-		return refundDao.selectRefunds();
+	public List<Refund> getRefunds(String userId) {
+		return refundDao.selectRefunds(userId);
 	}
 	
 	@Override
@@ -32,8 +32,8 @@ public class RefundServiceImpl implements RefundService{
 		refundDao.insertRefund(refund);
 	}
 	
-	@Override
-	public void delRefund(int orderNum) {
-		refundDao.deleteRefund(orderNum);
-	}
+//	@Override
+//	public void delRefund(int orderNum) {
+//		refundDao.deleteRefund(orderNum);
+//	}
 }
