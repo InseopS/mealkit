@@ -35,6 +35,7 @@ function init() {
 		$('input[name="amount"]').val(parseInt(amount) + 1);
 		
 		$('input[name="price"]').val(parseInt(price) * (parseInt(amount)+1));
+		$('input[name=mealkitsStr]').attr('value',"${mealkitList[0].mealkitNum}_" + $('input[name="amount"]').val() + "_${mealkitList[0].mealkitName}_" + ($('input[name="amount"]').val() * ${mealkitList[0].price}));
 	})
 	
 	$('#minusBtn').click(() => {
@@ -42,6 +43,7 @@ function init() {
 		if(parseInt(amount) > 1) {
 			$('input[name="amount"]').val(parseInt(amount) - 1);
 			$('input[name="price"]').val(parseInt(price) * (parseInt(amount)-1));
+			$('input[name=mealkitsStr]').attr('value',"${mealkitList[0].mealkitNum}_" + $('input[name="amount"]').val() + "_${mealkitList[0].mealkitName}_" + ($('input[name="amount"]').val() * ${mealkitList[0].price}));
 		} else {
 			$('input[name="amount"]').val(1);
 		}	
@@ -157,6 +159,9 @@ ${mealkit.ingredient}
 </pre>
 					</c:forEach>
 				</div>
+				<form action='<%=request.getContextPath() %>/order/addOrder' method="post">
+							<input type='hidden' name='mealkitsStr' id='mealkitsStr' value=''>
+							
 				<div>
 					<div class='favorite' style='display: inline'>
 						<span id='favoriteIcon' class="material-icons"
@@ -164,11 +169,11 @@ ${mealkit.ingredient}
 					</div>
 					<div style='display: inline;'>
 						<a type='button' class='btn btn-secondary ml-5 mb-4' id='cartBtn'
-							data-toggle='modal' data-target='#mealkitModal'>담기</a> <a
-							type='button' class='btn btn-secondary ml-2 mb-4' id='buyBtn'
-							href='../order/addOrder'>구매</a>
+							data-toggle='modal' data-target='#mealkitModal'>담기</a>
+						<button type='submit' id='buyBtn' class='btn btn-secondary ml-2 mb-4'>구매</button>					
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

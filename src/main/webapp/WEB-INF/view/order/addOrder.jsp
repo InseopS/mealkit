@@ -15,6 +15,7 @@
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
+let totalPrice
 function init() {
 	$('#orderBtn').click(() => {
 		let request = $('#request').val();
@@ -28,8 +29,7 @@ function init() {
 			url:'${pageContext.request.contextPath}/order/addOrder',
 			data: JSON.stringfy(order),
 			contentType: 'application/json'
-		})
-		
+		})		
 	})
 }
 
@@ -72,6 +72,13 @@ h5 {
 	color: #0f56ba;
 }
 
+input.inVal {
+	font-size: 75%
+}
+
+.col-form-label {
+	font-size: 75%
+}
 </style>
 </head>
 
@@ -98,51 +105,58 @@ h5 {
 		               	        </tr>
 		                   	</thead>
 		                   	<tbody>
-		                       	<tr>
-								<td>${mealkit.mealkitName}</td>
-								<td>${mealkit.mealkitCount}개</td>
-								<td>${mealkit.mealkitCount * mealkit.price}원</td>
-								<tr>
+		                   		<c:forEach var='cart' items='${carts}'>
+		                   			<c:forEach var='mealkit' items='${mealkits}'>
+		                   				<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
+			                   				<tr>
+												<td>${mealkit.mealkitName}</td>
+												<td>${cart.mealkitCount}</td>
+												<td>${mealkit.price}원</td>
+												<c:set var='result' value="${result + mealkit.price}"/>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
 		                   	</tbody>
 		               	</table>
 		       		</div>
 		       		<div>
-		            	<h5 class='mt-5'><b>배송지</b></h5>
+		            	<h5 class='mt-5'><b>배송지</b>${mealkitNum}</h5>
 			           	<div class="container">
 			                <div class="row inputBox">
 			                    <label for="input" class="col-3 col-form-label">수령인</label>
 			                    <div class="col pl-1">
-			                        <input type='text' class='form-control' id='userName' pattern='.{2,30}' value='${session.getAttribute("userId")}' required title='2글자 이상 30글자 이하를 입력해주세요.'>
+			                        <input type='text' class='form-control inVal' id='userName' value='${user.userName}' readonly>
 			                    </div>
 			                </div>
 			                <div class="row inputBox">
 			                    <label for="input" class="col-3 col-form-label">연락처</label>
 			                    <div class="col pl-1">
-			                        <input type='text' class='form-control' id='phoneNum' pattern='.{11,13}' value='${user.phoneNum}' required title='-를 포함한 연락처를 입력해주세요.'>
+			                        <input type='text' class='form-control inVal' id='phoneNum' value='${user.phoneNum}' required readonly>
 			                    </div>
 			                </div>
 			                <div class="row inputBox">
-			                    <label class="col-3 col-form-label" style='font-size: 75%'>우편주소</label>
+			                    <label class="col-3 col-form-label">우편주소</label>
 			                    <div class="col pl-1">
-			                        <input type='number' class='form-control' id='zipCode' value='${user.zipCode}' min='0' max='99999' maxlength='17'>
+			                        <input type='number' class='form-control inVal' id='zipCode' value='${user.zipCode}' readonly>
 			                    </div>
 			                </div>
 			                <div class="row inputBox">
 			                    <label for="input" class="col-3 col-form-label">주소</label>
 			                    <div class="col pl-1">
-			                        <input type="text" class="form-control" id="basicAddr" value='${user.basicAddress}' maxlength='17'>
+			                        <input type="text" class="form-control inVal" id="basicAddr" value='${user.basicAddress}' readonly>
 			                    </div>
 			                </div>
 			                <div class="row inputBox">
-			                    <label for="input" class="col-3 col-form-label" style='font-size: 75%'>상세주소</label>
+			                    <label for="input" class="col-3 col-form-label">상세주소</label>
 			                    <div class="col pl-1">
-			                        <input type="text" class="form-control" id="detailAddr" value='${user.detailAddress}' maxlength='17'>
+			                        <input type="text" class="form-control inVal" id="detailAddr" value='${user.detailAddress}' readonly>
 			                    </div>
 			                </div>
 			                <div class="row inputBox">
-			                    <label for="input" class="col-3 col-form-label" style='font-size: 75%'>요청사항</label>
+			                    <label for="input" class="col-3 col-form-label">요청사항</label>
 			                    <div class="col pl-1">
-			                        <input type="text" class="form-control" id="request" maxlength='1300'>
+			                        <input type="text" class="form-control inVal" id="request" maxlength='1300'>
 			                    </div>
 			                </div>
 			            </div>
@@ -152,7 +166,7 @@ h5 {
 			                    <table class='total'>
 			                        <tr>
 			                            <th>상품 합계</th>
-			                            <td>${mealkit.price * mealkit.count}원</td>
+			                            <td>${result}원</td>
 			                        </tr>
 			                        <tr>
 			                            <th>배송비</th>
@@ -160,7 +174,7 @@ h5 {
 			                        </tr>
 			                        <tr>
 			                            <th>결제 금액</th>
-			                            <td>${mealkit.price * mealkit.count}원</td>
+			                            <td>${result}원</td>
 			                        </tr>
 			                    </table>
 			                </div>
