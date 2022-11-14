@@ -16,19 +16,16 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 function init() {
-	
 	$('#orderBtn').click(() => {
+		let request = $('#request').val();
+		let paymentCode = $('#paymentCode').val();
+		let orderMealkitCount = $('#orderMealkitCount').val();
+		let mealkitNum = $('#mealkitNum').val();
 		
-		let order = {
-				request: $('#request').val(),
-				paymentCode: $('#paymentCode').val()
-				orderMealkitCount: $('#orderMealkitCount').val()
-				mealkitNum: $('#mealkitNum').val()
-		}
 		
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath}/order/listOrder',
+			url:'${pageContext.request.contextPath}/order/addOrder',
 			data: JSON.stringfy(order),
 			contentType: 'application/json'
 		})
@@ -91,7 +88,7 @@ h5 {
     <div class='container' id='mainContainerAddSub'>
         <div class='row d-flex justify-content-center mt-5'>
             <div class='col'>
-                <h5><b>주문 상품</b></h5>
+                <h5><b>&nbsp;&nbsp;주문 상품</b></h5>
                 <table class='list'>
    	                <thead>
        	                <tr>
@@ -101,47 +98,47 @@ h5 {
                    	<tbody>
                        	<tr>
 						<td>${mealkit.mealkitName}</td>
-						<td>${cart.mealkitCount}개</td>
-						<td>${cart.mealkitCount * mealkit.price}원</td>
+						<td>${mealkit.mealkitCount}개</td>
+						<td>${mealkit.mealkitCount * mealkit.price}원</td>
 						<tr>
                    	</tbody>
                	</table>
        		</div>
        		<form action='<%=request.getContextPath() %>/order/completeOrder'>
-            <h5 class='mt-5'><b>배송지</b></h5>
+            <h5 class='mt-3'><b>배송지</b></h5>
             <div class="container">
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">수령인</label>
+                    <label for="input" class="col-4 col-form-label">수령인</label>
                     <div class="col pl-1">
                         <input type='text' class='form-control' id='userName' pattern='.{2,30}' value='${session.getAttribute("userId")}' required title='2글자 이상 30글자 이하를 입력해주세요.'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">연락처</label>
+                    <label for="input" class="col-4 col-form-label">연락처</label>
                     <div class="col pl-1">
                         <input type='text' class='form-control' id='phoneNum' pattern='.{11,13}' value='${user.phoneNum}' required title='-를 포함한 연락처를 입력해주세요.'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label class="col-3 col-form-label" style='font-size: 80%'>우편주소</label>
+                    <label class="col-4 col-form-label" style='font-size: 80%'>우편주소</label>
                     <div class="col pl-1">
                         <input type='number' class='form-control' id='zipCode' value='${user.zipCode}' min='0' max='99999' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label">주소</label>
+                    <label for="input" class="col-4 col-form-label">주소</label>
                     <div class="col pl-1">
                         <input type="text" class="form-control" id="basicAddr" value='${user.basicAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label" style='font-size: 80%'>상세주소</label>
+                    <label for="input" class="col-4 col-form-label" style='font-size: 80%'>상세주소</label>
                     <div class="col pl-1">
                         <input type="text" class="form-control" id="detailAddr" value='${user.detailAddress}' maxlength='17'>
                     </div>
                 </div>
                 <div class="row inputBox">
-                    <label for="input" class="col-3 col-form-label" style='font-size: 80%'>요청사항</label>
+                    <label for="input" class="col-4 col-form-label" style='font-size: 80%'>요청사항</label>
                     <div class="col pl-1">
                         <input type="text" class="form-control" id="request" maxlength='1300'>
                     </div>
@@ -169,7 +166,7 @@ h5 {
             <div class='row d-flex justify-content-center mt-5'>
                 <div class='col'>
                     <h5><b>결제 방법</b></h5>
-                    <table class='way' name='paymentCode'>
+                    <table class='way' name='paymentCode' id='paymentCode'>
                         <tr>
                             <th><input type='radio' id='payment' name='payment' value='카드 결제'></th>
                             <td>카드 결제</td>
