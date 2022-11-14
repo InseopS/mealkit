@@ -40,9 +40,7 @@ public class FavoriteController {
         	 mealkits.add(mealkitService.getMealkit(mealkitNum).get(0));
 		}
         model.addAttribute("mealkits", mealkits);
-        System.out.println(mealkits);
-        model.addAttribute("Favorites", favorites);
-        System.out.println(favorites);
+        model.addAttribute("favorites", favorites);
         return "favorite/listFavorite";
 	} 
 	
@@ -50,7 +48,6 @@ public class FavoriteController {
 	public void addFavorite(HttpSession session, @RequestBody Favorite favorite) {
 		favorite.setUserId(session.getAttribute("userId").toString());
 		favoriteService.addFavorite(favorite);
-		System.out.println("하이");
 	}
 	
 	@DeleteMapping("delFavorite/{mealkitNum}")

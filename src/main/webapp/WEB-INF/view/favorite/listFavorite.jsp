@@ -38,7 +38,7 @@
 				$.ajax({
 					url: 'delFavorite/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function() {location.reload();})
+				}).done(function() {location.reload()})
 			}		
 		})
 	}
@@ -74,13 +74,12 @@ tr, td {
                 <div class='col'>
                     <table id='favorite1'>
                         <tbody class='favoriteList'>
-                        <c:forEach var='favorite' items='${favorites}'>
-	                        <c:forEach var='mealkit' items='${mealkits}'>
+                       	<c:forEach var='favorite' items='${favorites}'> 
+	                    	<c:forEach var='mealkit' items='${mealkits}'>
 	                        	<c:if test="${mealkit.mealkitNum == favorite.mealkitNum}">
 				                        <tr>
-											<td>
-												<input type='checkbox' name='mealkitNum' id='mealkitNum'
-													value='${mealkit.mealkitNum}'/>
+				                        	<td>
+												<input type='checkbox' name='mealkitNum' id='mealkitNum' value='${mealkit.mealkitNum}'/>
 											</td>
 											<td class='mealkitImage'>
 												<a href='http://localhost/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
