@@ -18,11 +18,6 @@ public class QuestionDaoImpl implements QuestionDao{
 	}
 	
 	@Override
-	public List<Question> selectAdminQuestion(int questionNum) {
-		return questionMap.selectAdminQuestion(questionNum);
-	}
-	
-	@Override
 	public List<Question> selectQuestions(String userId) {
 		return questionMap.selectQuestions(userId);
 	}
@@ -38,11 +33,6 @@ public class QuestionDaoImpl implements QuestionDao{
 	}
 	
 	@Override
-	public void insertAdminQuestion(Question question) {
-		questionMap.insertAdminQuestion(question);
-	}
-	
-	@Override
 	public void updateQuestion(Question question) {
 		questionMap.updateQuestion(question);
 	}
@@ -55,10 +45,5 @@ public class QuestionDaoImpl implements QuestionDao{
 	@Override
 	public void deleteQuestion(int questionNum) {
 		questionMap.deleteQuestion(questionNum);
-	}
-	
-	@Override
-	public void deleteAdminQuestion(int questionNum) {
-		questionMap.deleteAdminQuestion(questionNum);
 	}
 }

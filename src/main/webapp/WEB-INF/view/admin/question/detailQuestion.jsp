@@ -48,47 +48,49 @@ $(init)
 <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
+                    <c:forEach var="question" items="${questionList}">
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="question" items="${questionList}">
+                            
                                 <input type='text' class='form-control bg-light' id='title' value='${question.questionTitle}' disabled>
-                             </c:forEach>
+                            
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>작성자:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="question" items="${questionList}">
                                 <input type='text' class='form-control bg-light' id='writerId' value='${question.userId}' disabled>
-                             </c:forEach>
+                             
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="question" items="${questionList}">
+                            
                                 <textarea class='form-control bg-light' id="qustionContent" style="height: 200px" disabled>${question.questionContent}</textarea>
-                            </c:forEach>
+                          
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>답변:</label>
                             <div class='col pl-1'>
-                            <c:forEach var="question" items="${questionList}">
+                        
                                 <textarea class='form-control bg-light' id="answerContent" style="height: 200px" disabled>${question.answerContent}</textarea>
-                            </c:forEach>
+                            
                             </div>
                         </div>
                         <hr>
                         <div class='row mx-auto justify-content-end'>
                             <div class='row mt-2 d-flex justify-content-end'>
                                 <div class='col'>
+                                	<button type='button' id='cancelBtn' class='btn btn-secondary' onClick='location.href="listQuestion"'>취소</button>
                                 	<button type='button' id='writeBtn' class='btn btn-secondary'>답변작성</button>
                                 	<button type='button' id='fixBtn' class='btn btn-secondary'>답변수정</button>
                                 </div>
                             </div>
                         </div>
+                    </c:forEach>
                     </div>
                 </div>
             </div>

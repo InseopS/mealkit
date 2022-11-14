@@ -18,11 +18,6 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public List<Question> getAdminQuestion(int questionNum) {
-		return questionDao.selectAdminQuestion(questionNum);
-	}
-	
-	@Override
 	public List<Question> getQuestions(String userId) {
 		return questionDao.selectQuestions(userId);
 	}
@@ -35,11 +30,6 @@ public class QuestionServiceImpl implements QuestionService{
 	@Override
 	public void addQuestion(Question question) {
 		questionDao.insertQuestion(question);
-	}
-	
-	@Override
-	public void addAdminQuestion(Question question) {
-		questionDao.insertAdminQuestion(question);
 	}
 	
 	@Override
@@ -56,9 +46,5 @@ public class QuestionServiceImpl implements QuestionService{
 	public void delQuestion(int questionNum) {
 		questionDao.deleteQuestion(questionNum);
 	}
-	
-	@Override
-	public void delAdminQuestion(int questionNum) {
-		questionDao.deleteAdminQuestion(questionNum);
-	}
+
 }
