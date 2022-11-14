@@ -24,4 +24,5 @@ public class Notice {
 	private String noticeImgFileName;
 	private MultipartFile noticeImgFile;
 	private String keyword;
+	private Object noticeMaxNum;
 }

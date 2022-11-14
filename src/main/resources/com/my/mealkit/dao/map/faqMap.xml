@@ -12,11 +12,6 @@
 		order by faq_num
 	</select>
 	
-	<select id='selectAdminFaqs' resultType='faq'>
-		select * from faqs
-		order by faq_num
-	</select>
-	
 	<select id='selectAdminDetailFaq' resultType='faq'>
 		select * from faqs
 		where faq_num = #{faqNum}

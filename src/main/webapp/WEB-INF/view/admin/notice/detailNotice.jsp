@@ -1,5 +1,4 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <head>
 <title>EAZEN MEALKIT</title>
 <meta charset='utf-8'>
@@ -13,13 +12,7 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <script>
-function change() {
-	replaceAll("<","&lt;");
-	replaceAll("<","&gt;");
-}
-
 function init() {	
     $('#delBtn').click(() => {
     		$('#modalMsg').empty();
@@ -75,7 +68,6 @@ $(init)
             <div class='col' style='border: 1px solid;'>
                 <div class='border w-auto my-3' id='content'>
                     <div class='container mw-100 mt-5' style='width: 98%;'>
-                    	<c:forEach var="notice" items="${noticeList}">
 	                        <div class='row mt-3'>
 	                            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
 	                            <div class='col pl-1'>
@@ -103,7 +95,6 @@ $(init)
 	                            <button type='button' id='fixNoticeBtn' class='btn btn-secondary mr-1'>수정</button>
 	                            <button type='button' class='btn btn-secondary mr-3' data-toggle='modal' data-target='#deleteModal'>삭제</button>
 	                        </div>
-                        </c:forEach>
                     </div>
                 </div>
             </div>

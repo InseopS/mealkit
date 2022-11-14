@@ -13,7 +13,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired private NoticeDao noticeDao;
 	
 	@Override
-	public List<Notice> getNotice(int noticeNum) {
+	public Notice getNotice(int noticeNum) {
 		return noticeDao.selectNotice(noticeNum);
 	}
 	
@@ -28,18 +28,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public List<Notice> getDetailNotices(int noticeNum) {
-		return noticeDao.selectDetailNotices(noticeNum);
-	}
-	
-	@Override
-	public List<Notice> getAdminNotices() {
-		return noticeDao.selectAdminNotices();
-	}
-	
-	@Override
-	public List<Notice> getAdminDetailNotices(int noticeNum) {
-		return noticeDao.selectAdminDetailNotices(noticeNum);
+	public Notice getDetailNotice(int noticeNum) {
+		return noticeDao.selectDetailNotice(noticeNum);
 	}
 	
 	@Override
@@ -55,5 +45,10 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void delAdminNotice(int noticeNum) {
 		noticeDao.deleteAdminNotice(noticeNum);
+	}
+	
+	@Override
+	public Object getMaxNum() {
+		return noticeDao.selectMaxNum();
 	}
 }

@@ -12,23 +12,17 @@
 		where notice_num = #{noticeNum}
 	</select>
 	
+	<select id='selectMaxNum' resultType='notice'>
+		select max(notice_num) from notices
+	</select>
+	
 	<select id='selectSearchNotices' resultType='notice'>
 		select *
 		from notices
 		where notice_title LIKE '%'||#{keyword}||'%'
 	</select>
 	
-	<select id='selectDetailNotices' resultType='notice'>
-		select * from notices
-		where notice_num = #{noticeNum}
-	</select>
-	
-	<select id='selectAdminNotices' resultType='notice'>
-		select * from notices
-		order by notice_num
-	</select>
-	
-	<select id='selectAdminDetailNotices' resultType='notice'>
+	<select id='selectDetailNotice' resultType='notice'>
 		select * from notices
 		where notice_num = #{noticeNum}
 	</select>

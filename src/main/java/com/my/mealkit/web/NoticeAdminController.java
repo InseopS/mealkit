@@ -3,6 +3,7 @@ package com.my.mealkit.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,13 +38,13 @@ public class NoticeAdminController {
 	@ResponseBody
 	@PostMapping("getNotices")
 	public List<Notice> getNotices() {
-		return noticeService.getAdminNotices();
+		return noticeService.getNotices();
 	}
 
 	@RequestMapping(value ="detailNotice", method=RequestMethod.GET)
-	public String detailNotice(Model model, @RequestParam("noticeNum") int noticeNum) {
-		List<Notice> noticeList = noticeService.getAdminDetailNotices(noticeNum);
-		model.addAttribute("noticeList", noticeList);
+	public String detailNotice(Notice notice ,Model model, @RequestParam("noticeNum") int noticeNum) {
+		notice = noticeService.getDetailNotice(noticeNum);
+		model.addAttribute("notice", notice);
 		return "admin/notice/detailNotice";
 	}
 	
@@ -58,8 +57,8 @@ public class NoticeAdminController {
 	@PostMapping("addNotice")
 	public ModelAndView addNotice(Notice notice, ModelAndView mv) throws IOException {
 		try {
-			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
-			
+			UUID uuid = UUID.randomUUID();
+			String noticeFileName = "NOTICE_" + uuid.toString() + notice.getNoticeImgFile().getOriginalFilename();
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);
 			noticeService.addAdminNotice(notice);
@@ -75,10 +74,10 @@ public class NoticeAdminController {
 	}
 
 	@RequestMapping(value ="fixNotice", method=RequestMethod.GET)
-	public String fixNotice(Model model, Notice notice, @RequestParam("noticeNum") int noticeNum) {
-		List<Notice> noticeList = noticeService.getNotice(noticeNum);
-		model.addAttribute("noticeList", noticeList);
-		System.out.println(noticeList);
+	public String fixNotice(Notice notice, Model model, @RequestParam("noticeNum") int noticeNum) {
+		notice = noticeService.getNotice(noticeNum);
+		model.addAttribute("notice", notice);
+		System.out.println(notice);
 		return "admin/notice/fixNotice";
 	}
 	
@@ -86,7 +85,8 @@ public class NoticeAdminController {
 	@PostMapping("fixNotice")
 	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {		
 		try {
-			String noticeFileName = notice.getNoticeImgFile().getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			String noticeFileName = "NOTICE_" + uuid.toString() + notice.getNoticeImgFile().getOriginalFilename();
 			
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);	

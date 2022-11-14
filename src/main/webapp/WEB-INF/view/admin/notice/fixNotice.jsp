@@ -12,7 +12,6 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
 <link rel='stylesheet' type='text/css' href='../../res/admin.css'>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 function init() {
 	$('#fixNoticeBtn').click(() => {
@@ -52,13 +51,12 @@ $(init)
     <%@ include file ='../../include/adminTop2.jsp'%>
             <div class='col' style='border: 1px solid'>
                 <div class='border w-auto my-3' id='content'>
-                <c:forEach var='notice' items='${noticeList}'>
                     <form id='form' method='post' encType='multipart/form-data'>
                         <div class='container mw-100 mt-5' style='width: 98%;'>
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
                                 <div class='col pl-1'>
-                                    	<input type='text' class='form-control' id='noticeTitle' name='noticeTitle' minlength='1' maxlength='100' 
+                                    	<input type='text' class='form-control' id='noticeTitle' name='noticeTitle' maxlength='100' 
                                         	required placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}'>
                                 </div>
                             </div>
@@ -66,7 +64,7 @@ $(init)
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
                                     	<textarea class="form-control" placeholder="내용을 입력해주세요." id='noticeContent' name='noticeContent' style="height: 410px; resize:none" 
-                                        	minlength='1' maxlength='1300' required>${notice.noticeContent}</textarea>
+                                        	maxlength='1300' required>${notice.noticeContent}</textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
@@ -86,7 +84,6 @@ $(init)
                             </div>
                         </div>
                     </form>
-                    </c:forEach>
                 </div>
             </div>
         </div>
