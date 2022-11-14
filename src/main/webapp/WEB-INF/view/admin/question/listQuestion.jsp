@@ -134,10 +134,10 @@ $(init)
                                     <tbody id='questions'>
                                         <tr>
                                             <th><input type='checkbox'></th>
-                                            <td>0001</td>
-                                            <td onclick='location.href="detailQuestion"'>마라키트 많이 맵나요?</td>
-                                            <td>tanaka</td>
-                                            <td>2022.10.14</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>

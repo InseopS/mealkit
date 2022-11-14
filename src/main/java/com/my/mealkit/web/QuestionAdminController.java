@@ -58,7 +58,7 @@ public class QuestionAdminController {
             return null;
         }
 		question.setUserId(userId);
-		questionService.addAdminQuestion(question);
+		questionService.fixAdminQuestion(question);
 		mv.setViewName("admin/question/listQuestion");
 		return mv;
 	}
@@ -81,6 +81,6 @@ public class QuestionAdminController {
 	@ResponseBody
 	@DeleteMapping("del/{questionNum}")
 	public void delQuestion(@PathVariable int questionNum) {
-		questionService.delAdminQuestion(questionNum);
+		questionService.delQuestion(questionNum);
 	}
 }
