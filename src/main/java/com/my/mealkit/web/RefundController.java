@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.Refund;
 import com.my.mealkit.service.OrderService;
 import com.my.mealkit.service.RefundService;
@@ -39,6 +40,7 @@ public class RefundController {
 	
 	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
 	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
+		Order order = orderService.getDetailOrders(orderNum);
 		mv.setViewName("refund/applyRefund");
 		return mv;
 	}
