@@ -30,7 +30,13 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Order> getMealkitNames(int orderNum) {
 		return orderDao.selectMealkitNames(orderNum);
+	}	
+	
+	@Override
+	public Order getOrder(int orderNum) {
+		return orderDao.selectOrder(orderNum);
 	}
+
 	@Override
 	public void addOrder(Order order) {
 		orderDao.insertOrder(order);

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.mealkit.domain.Declaration;
 import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.Refund;
 import com.my.mealkit.service.OrderService;
@@ -40,30 +42,17 @@ public class RefundController {
 	
 	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
 	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
-		Order order = orderService.getDetailOrders(orderNum);
+		Order order = orderService.getOrder(orderNum);
+		
+		mv.addObject("order", order);
 		mv.setViewName("refund/applyRefund");
+		
 		return mv;
 	}
 	
-	@ResponseBody
 	@PostMapping("applyRefund")
-	public ModelAndView applyRefund(Refund refund, ModelAndView mv) throws IOException {
-		try {
-			String refundFileName = refund.getRefundImgFile().getOriginalFilename();
-			saveRefundFile(attachPath + "/" + refundFileName, refund.getRefundImgFile());
-			refund.setRefundImgFileName(refundFileName);
-		     
-			refundService.addRefund(refund);
-		} catch(NullPointerException e) {}
-  
-		mv.setViewName("refund/listRefund");
-		return mv;
-	}
-	      
-	private void saveRefundFile(String refundFileName, MultipartFile refundFile) {
-		try {
-			refundFile.transferTo(new File(refundFileName));
-		} catch(IOException e) {}
+	public void applyRefund(@RequestBody Refund refund) {
+		refundService.addRefund(refund);
 	}
 	
 	@ResponseBody
