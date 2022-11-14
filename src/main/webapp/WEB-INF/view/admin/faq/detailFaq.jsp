@@ -56,14 +56,14 @@ $(init)
                     <div class='container mw-100 mt-5' style='width: 98%;'>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
-                            <div class='col pl-1'>
-                                <input type='text' class='form-control bg-light' id='faqTitle' placeholder='제목을 입력해주세요.' value='${faq.faqTitle}' disabled>
+                            <div class='col pl-1' style='background-color: white;'>
+                                <input type='text' class='form-control bg-white' id='faqTitle' placeholder='제목을 입력해주세요.' value='${faq.faqTitle}' disabled>
                             </div>
                         </div>
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>${faq.faqContent}</textarea>
+                                <textarea class='form-control bg-white' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>${faq.faqContent}</textarea>
                             </div>
                         </div>
                         <hr>

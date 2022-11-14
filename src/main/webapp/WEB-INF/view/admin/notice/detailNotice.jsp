@@ -50,7 +50,6 @@ $(init)
         width: 115px;
         margin:0 auto;
         justify-content: center;
-        
         align-items: center;
     }
     
@@ -71,20 +70,20 @@ $(init)
 	                        <div class='row mt-3'>
 	                            <label for='input' class='col-2 pr-2 col-form-label'>제목:</label>
 	                            <div class='col pl-1'>
-	                                <input type='text' class='form-control bg-light' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
+	                                <input type='text' class='form-control bg-white' id='noticeTitle' placeholder='제목을 입력해주세요.' value='${notice.noticeTitle}' disabled>
 	                            </div>
 	                        </div>
 	                        <div class='row mt-3'>
 	                            <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
 	                            <div class='col pl-1'>
-	                                <div class='form-control bg-light' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
+	                                <div class='form-control' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
 	                                    <div class='row my-5' id='contentLogo'>
 	                                        <div class='col'>
 	                                           	<img style="width:150px; height:100px;"src='/attach/${notice.noticeImgFileName}'/>
 	                                        </div>
 	                                    </div>
 	                                    <div class='col pl-1'>
-			                                <textarea class='form-control bg-light' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none;' disabled>${notice.noticeContent}</textarea>
+			                                <textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent;' disabled>${notice.noticeContent}</textarea>
 			                            </div>
 	                                </div>
 	                            </div>
