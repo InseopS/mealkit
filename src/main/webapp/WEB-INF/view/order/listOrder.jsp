@@ -14,10 +14,12 @@
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-    <script>
-    let ordersTmp
-    let mealkitNamesTmp = []
-    function listOrders() {
+	<script>
+    	let ordersTmp
+    	let mealkitNamesTmp = []
+    	let orderNumber = <%=request.getParameter("orderNum")%>
+    	let orderStatusCodeNumber = <%=request.getParameter("orderStatusCode")%>
+    	function listOrders() {
     		$('#orders').empty();
     		
     		$.ajax({
@@ -47,63 +49,89 @@
     	}
     
     
-   	function listTest() {
-   		
-   		const orderArr = []
-   		for(i=0; i <= ordersTmp.length-1; i++) {
-   					orderArr.unshift(
-   						`<div class='row'>
-						 	<div class='col'>
-								<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${ordersTmp[i].orderNum}</span>
+	   	function listTest() {
+	   		
+	   		const orderArr = []
+	   		for(i=0; i <= ordersTmp.length-1; i++) {
+	   					orderArr.unshift(
+	   						`<div class='row'>
+							 	<div class='col'>
+									<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${ordersTmp[i].orderNum}</span>
+								</div>
+							    <div class='col'>
+									<div class='mr-2' style='float: right;'>
+									<a href='detailOrder?orderNum=\${orders.orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
+										style='text-decoration: underline; font-size: small'>주문상세</a>
+									 <a href='listOrder?orderNum=\${orders.orderNum}?orderStatusCode=\${orders.orderStatusCode}' class='link flex-fill text-dark' id='orderCancelBtn'
+										style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
+										data-target='#orderCancelModal' value='\${ordersTmp[i].orderNum}'>주문취소</a>
+									</div>
+							  </div>
 							</div>
-						    <div class='col'>
-								<div class='mr-2' style='float: right;'>
-								<a href='detailOrder?orderNum=\${orders.orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
-									style='text-decoration: underline; font-size: small'>주문상세</a>
-								 <a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
-									style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
-									data-target='#orderCancelModal'>주문취소</a>
-								</div>
-						  </div>
-						</div>
-						<hr class='mt-2 mb-2'>
-						<div class='row'>
-							<div class='col'>
-								<table class='table table-sm table-borderless ml-0' id='table'>
-									<tbody> 
-										<tr>
-											<td class='col-3'>주문상품</td>
-											<td>\${mealkitNamesTmp[i]}</td>
-											<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
-											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
-										</tr>
-										<tr>
-											<td>결제금액</td>
-											<td>2000원</td>
-											<td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
-											            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
-										</tr>
-										<tr>
-											<td>주문상태</td>
-											<td>\${ordersTmp[i].orderStatusName}</td>
-											<td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
-											    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
-										</tr>                
-									</tbody>
-								</table>
-								<hr class='mt-3 mb-2'>
-								</div>
-							</div>`
-   					);
-   				}
-   				$('#orders').append(orderArr.join(''))
-   			} 
+							<hr class='mt-2 mb-2'>
+							<div class='row'>
+								<div class='col'>
+									<table class='table table-sm table-borderless ml-0' id='table'>
+										<tbody> 
+											<tr>
+												<td class='col-3'>주문상품</td>
+												<td>\${mealkitNamesTmp[i]}</td>
+												<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
+												    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
+											</tr>
+											<tr>
+												<td>결제금액</td>
+												<td>2000원</td>
+												<td><a href='<%=request.getContextPath()%>/refund/applyRefund?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark' id='applyRefundBtn'
+												        style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
+											</tr>
+											<tr>
+												<td>주문상태</td>
+												<td><p id='\${ordersTmp[i].orderNum}' name='\${ordersTmp[i].orderNum}' value='\${ordersTmp[i].orderStatusCode}'>\${ordersTmp[i].orderStatusName}</p></td>
+												<td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
+												    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
+											</tr>                
+										</tbody>
+									</table>
+									<hr class='mt-3 mb-2'>
+									</div>
+								</div>`
+	   					);
+	   				}
+	   			$('#orders').append(orderArr.join(''))
+	   	} 
+		
+	   	
+   
+   		function init() {
    			
- 
-   	
-   	$(listOrders)
-   	
-   	
+   			$(listOrders)
+   			
+   			$('#orderCancelBtn').click(() => {
+		        $('#orderCancelModal').modal();
+		        $('#modalMsg').empty();
+				$('#modalMsg').text('주문을 취소하시겠습니까?');
+				$('#modalBtn').show();
+				$('#modal').modal();
+			})
+			
+			$('#orderCancelOkBtn').click(() => {
+				let order = {
+						orderNum: orderNumber,
+						orderStatusCode: orderStatusCodeNumber
+				}
+				
+				$.ajax({
+					url:'fix',
+					method:"put",
+					data: JSON.stringify({
+						orderNum: orderNumber,
+						orderStatusCode: parseInt(orderStatusCodeNumber) + 1
+					})
+				})					
+			})
+		}
+		$(init)
     </script>
     <style>
         #paging_div {

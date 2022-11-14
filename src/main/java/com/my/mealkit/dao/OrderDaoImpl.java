@@ -39,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public void deleteOrder(int orderNum) {
-		orderMap.deleteOrder(orderNum);
+	public void updateOrder(Order order) {
+		orderMap.updateOrder(order);
 	}
 }
