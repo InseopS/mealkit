@@ -13,7 +13,7 @@
 				on refund_status.refund_status_code = refunds.refund_status_code
 			inner join refund_reasons
 				on refund_reasons.refund_reason_code = refunds.refund_reason_code
-		where refunds.order_num = #{orderNum}
+		where orders.user_id = #{userId}
 		order by refunds.order_num
 	</select>
 	
