@@ -22,7 +22,7 @@
 let mealkitNamesTmp = []
 function selectMealkitName() {
 	$.ajax({
-		url: 'selectMealkitNames/' + refund.refundNum,
+		url: '${pageContext.request.contextPath}/order/selectMealkitNames/${order.orderNum}',
 		dataType: 'json',
 		async: false,
 		success: mealkitNames => {
@@ -31,27 +31,30 @@ function selectMealkitName() {
 			} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
 		}
 	})
+	$("#mealkitName").text(mealkitNamesTmp)
 }
 
 function init() {
-	$('#applyRefundBtn').click(() =< {
-		let mealkitName = $('#mealkitName').val();
-		let refundReason = $('#refundReason').val();
-		let refundDetailReason = $('#refundDetailReason').val();
-		let refundImgFile = $('#refundImgFile').val();
-		
+	$('#applyRefundBtn').click(() => {
+		let refund = {
+				refundContent: $('#refundContent').val(),
+				orderNum: ${order.orderNum},
+				refundReasonCode: $('#refundReasonCode').val()
+			}
 		$.ajax({
 			type:'post',
-			url: '${pageContext.request.contextPath}/refund/applyRefund',
-			data: {
-				mealkitName = mealkitName,
-				refundReason = refundReason,
-				refundDetailReason = refundDetailReason,
-				refundImgFile = refundImgFile
-			}
+			url:'applyRefund',
+			data: JSON.stringify(refund),
+			contentType: 'application/json'
+		}).done(function tmp() {
+			location.href='listRefund'
 		})
 	})
 }
+
+$(init)
+
+$(selectMealkitName)
 </script>
 </head>
 
@@ -69,23 +72,9 @@ function init() {
         <form class='refund-request mt-5 ml-2 mb-2'>
             <div class='row'>
                 <div class='col-5 mt-3 ml-3'>
-                   	환불상품
+                환불상품
                 </div>
                 <div class='col mt-3' id='mealkitName'>
-                <script>
-                function() {
-                	$.ajax({
-                		url: 'selectMealkitNames/' + refund.refundNum,
-                		dataType: 'json',
-                		async: false,
-                		success: mealkitNames => {
-                			if(mealkitNames.length > 1) {
-                				mealkitNamesTmp.push(mealkitNames[0].mealkitName + " 외 " + (mealkitNames.length-1) + "개")
-                			} else mealkitNamesTmp.push(mealkitNames[0].mealkitName)
-                		}
-                	})
-                }
-                </script>
                 </div>
             </div>
             <div class='row'>
@@ -93,7 +82,7 @@ function init() {
                     <br>환불사유<span style='font-size:12px'>(필수)</span>
                 </div>
                 <div class='col mt-4' id='refundReason'> 
-                    <select name='reason' style='width:8rem; height:3rem' required>
+                    <select id='refundReasonCode' name='refundReasonCode' style='width:8rem; height:3rem' required>
                         <option value='1'>품질 이상</option>
                         <option value='2'>오배송</option>
                         <option value='3'>기타</option>
@@ -104,31 +93,10 @@ function init() {
                 <div class='col ml-3'>
                     <br>상세사유<span style='font-size:12px' id='refundDetailReason'>(선택)</span><br>
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
-                        id='content'></textarea>
+                        id='refundContent' name='refundContent'></textarea>
                 </div>
             </div> 
-            <div class='row'>
-                <div class='col mt-3 ml-3 mb-3' id='refundImgfile' name='refundImgfile'>
-                    이미지등록<span style='font-size:12px'>(필수)&emsp;&ensp;
-                    	<input type='file' accept='image/*'
-                            style='font-size:11px' required></span>
-                </div>
-                <div class='col pl-1'>
-		        <div class="select_img"><img src="" /></div>
-			        <script>
-				    	$("#refundImgfile").change(function(){
-				        	if(this.files && this.files[0]) {
-				        		var reader = new FileReader;
-					    		reader.onload = function(data) {
-				        			$(".select_img img").attr("src", data.target.result).width(100);        
-				        		}
-				        			reader.readAsDataURL(this.files[0]);
-				        		}
-					    });
-			        </script>
-	        </div>
-                
-            </div>
+
             <div class='row justify-content-end mr-1'>
                 <div class='col-5 mt-2 '>
                     <button type='button' class='btn btn-secondary btn-sm'

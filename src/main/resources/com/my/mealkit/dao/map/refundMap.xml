@@ -43,9 +43,9 @@
 	
 	<insert id='insertRefund'>
 		insert into refunds(refund_num, refund_img_file_name, refund_content,
-			refund_reason_name, refund_status_name, order_num)
-		values(refund_num_seq.nextval, #{refundImgFileName}, #{refundContent},
-			#{refundReasonName}, #{refundStatusName}, #{orderNum})
+			refund_reason_code, refund_status_code, order_num)
+		values(refund_num_seq.nextval, '00000', #{refundContent},
+			#{refundReasonCode}, 1, #{orderNum})
 	</insert>
 	
 	<delete id='deleteRefund'>
