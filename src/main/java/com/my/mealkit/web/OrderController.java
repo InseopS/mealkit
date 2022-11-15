@@ -89,13 +89,6 @@ public class OrderController {
 		List<Order> mealkitPriceList = orderService.getMealkitPrices(orderNum);
 		return mealkitPriceList;
 	}
-	/*
-	@RequestMapping("detailOrder")
-	 public ModelAndView detailOrder(ModelAndView mv) {
-		mv.setViewName("order/detailOrder");
-		return mv;
-	}
-	*/
 	
 	@RequestMapping(value="detailOrder", method=RequestMethod.GET)
 	public ModelAndView detailOrder(@RequestParam("orderNum") int orderNum, HttpSession session, ModelAndView mv, Order order, Mealkit mealkit) {
@@ -112,12 +105,6 @@ public class OrderController {
 		
 		mv.setViewName("order/detailOrder");
 		return mv;
-	}
-	
-	@GetMapping("getDetailOrders/{orderNum}")
-	public List<Order> detailOrders(@PathVariable("orderNum") int orderNum) {
-		List<Order> orderList = orderService.getDetailOrders(orderNum);
-		return orderList;
 	}
 		
 	@PutMapping("fixOrder")
