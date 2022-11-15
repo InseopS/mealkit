@@ -70,8 +70,8 @@
    <insert id='insertOrder'>
       insert into orders(order_num, order_date, request, user_id,
          payment_code, order_status_code)
-      values(order_num_seq.nextval, #{orderDate}, #{request}, #{userId},
-         #{paymentCode}, #{orderStatusCode})      
+      values(order_num_seq.nextval, sysdate, #{request}, #{userId},
+         #{paymentCode}, 1)      
    </insert>
    
    <update id='updateOrder'>

@@ -32,7 +32,7 @@ function listMealkits() {
 						</td>
                         <td class='align-middle'><img src='/attach/\${mealkit.mealkitImgfileName}'/></div></td>
                         <td class='align-middle'>\${mealkit.mealkitName}</td>
-                        <td class='align-middle'>\${mealkit.description}</td>
+                        <td class='align-middle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>\${mealkit.description}</td>
                         <td class='align-middle'>\${mealkit.price}원</td>
                         <td class='align-middle'>\${mealkit.mealkitRegDate}</td>
                         <td class='align-middle'>\${mealkit.foodTypeName}</td>
@@ -119,6 +119,7 @@ $(init)
 		width: 140px;
 		height: 90px;
 	}
+	
 </style>
 </head>
 <body>
@@ -174,7 +175,7 @@ $(init)
 	                    <a class='btn btn-secondary btn mr-3' id='delBtn'>삭제</a>                  
 	                </div>
                     <div class='mt-5'>
-                        <table class='table table-sm'>
+                        <table class='table table-sm' style='table-layout:fixed'>
                             <colgroup>
                                 <col width='5%'>
                                 <col width='15%'>
