@@ -55,4 +55,10 @@ public class CartController {
 		String userId = session.getAttribute("userId").toString();
 		cartService.delCart(userId, mealkitNum);
 	}
+	
+	@DeleteMapping("emptyCart")
+	public void delCart(HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+		cartService.emptyCart(userId);
+	}
 }

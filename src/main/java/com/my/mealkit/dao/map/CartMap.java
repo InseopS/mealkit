@@ -13,4 +13,5 @@ public interface CartMap {
 	void insertCart(Cart cart);
 	void deleteCart(@Param("userId") String userId, 
 				@Param("mealkitNum") int mealkitNum);
+	void emptyCart(String userId);
 }
