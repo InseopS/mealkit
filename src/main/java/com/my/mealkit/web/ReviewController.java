@@ -50,9 +50,9 @@ public class ReviewController {
    }
    
    @RequestMapping("addReview")
-   public ModelAndView addReview(ModelAndView mv) {	   
+   public ModelAndView addReview(ModelAndView mv, @RequestParam("orderNum") int orderNum) {	   
 	   Order order = new Order();
-	   order.setOrderNum(1);
+	   order.setOrderNum(orderNum);
 	   List<Review> mealkitList = reviewService.getMealkits(order.getOrderNum());
 	   mv.addObject("order", order);
 	   mv.addObject("mealkitList", mealkitList);
