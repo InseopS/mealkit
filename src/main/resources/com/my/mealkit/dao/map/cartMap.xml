@@ -25,4 +25,8 @@
 		DELETE CARTS
 		WHERE USER_ID = #{userId} AND MEALKIT_NUM = #{mealkitNum}
 	</delete>
+	
+	<delete id='emptyCart'>
+		delete from mealkit.carts where user_id = #{userId}
+	</delete>
 </mapper>

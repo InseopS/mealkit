@@ -9,4 +9,5 @@ public interface CartService {
 	List<Cart> getCart(String userId, int mealkitNum);
 	void addCart(Cart cart);
 	void delCart(String userId, int mealkitNum);
+	void emptyCart(String userId);
 }

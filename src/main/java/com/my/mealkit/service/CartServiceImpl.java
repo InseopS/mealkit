@@ -31,4 +31,9 @@ public class CartServiceImpl implements CartService {
 	public void delCart(String userId, int mealkitNum) {
 		cartDao.deleteCart(userId, mealkitNum);
 	}
+
+	@Override
+	public void emptyCart(String userId) {
+		cartDao.emptyCart(userId);	
+	}
 }

@@ -21,6 +21,7 @@ import com.my.mealkit.domain.Cart;
 import com.my.mealkit.domain.Mealkit;
 import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.User;
+import com.my.mealkit.service.CartService;
 import com.my.mealkit.service.OrderService;
 import com.my.mealkit.service.UserService;
 
@@ -29,9 +30,10 @@ import com.my.mealkit.service.UserService;
 public class OrderController {
 	@Autowired private OrderService orderService;
 	@Autowired private UserService userService;
+	@Autowired private CartService cartService;
 	
 	@RequestMapping("addOrder")
-	 public ModelAndView addOrder(HttpSession session, ModelAndView mv, @RequestParam String mealkitsStr) {
+	 public ModelAndView addOrder(HttpSession session, ModelAndView mv, @RequestParam(value="mealkitsStr", required=false)String mealkitsStr) {
 		String[] mealkitStr = mealkitsStr.split(",");
 		List<Cart> carts = new ArrayList<>();
 		List<Mealkit> mealkits = new ArrayList<>();
@@ -58,7 +60,9 @@ public class OrderController {
 	   }
 	
 	@GetMapping("completeOrder")
-	 public ModelAndView completeOrder(ModelAndView mv) {
+	 public ModelAndView completeOrder(ModelAndView mv, HttpSession session) {
+		String userId = session.getAttribute("userId").toString();
+		cartService.emptyCart(userId);
 	    mv.setViewName("order/completeOrder");
 	    return mv;
 	   }

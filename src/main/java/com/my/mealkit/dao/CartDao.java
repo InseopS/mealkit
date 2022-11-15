@@ -9,4 +9,5 @@ public interface CartDao {
 	List<Cart> selectCart(String userId, int mealkitNum);
 	void insertCart(Cart cart);
 	void deleteCart(String userId, int mealkitNum);
+	void emptyCart(String userId);
 }

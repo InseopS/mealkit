@@ -31,4 +31,9 @@ public class CartDaoImpl implements CartDao {
 	public void deleteCart(String userId, int mealkitNum) {
 		cartMap.deleteCart(userId, mealkitNum);
 	}
+
+	@Override
+	public void emptyCart(String userId) {
+		cartMap.emptyCart(userId);	
+	}
 }
