@@ -160,7 +160,7 @@ ${mealkit.ingredient}
 					</c:forEach>
 				</div>
 				<form action='<%=request.getContextPath() %>/order/addOrder' method="post">
-							<input type='hidden' name='mealkitsStr' id='mealkitsStr' value=''>
+							<input type='hidden' name='mealkitsStr' id='mealkitsStr' value='${mealkitList[0].mealkitNum}_1_${mealkitList[0].mealkitName}_${mealkitList[0].price}'>
 							
 				<div>
 					<div class='favorite' style='display: inline'>
