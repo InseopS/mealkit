@@ -32,8 +32,8 @@ public class RefundServiceImpl implements RefundService{
 		refundDao.insertRefund(refund);
 	}
 	
-//	@Override
-//	public void delRefund(int orderNum) {
-//		refundDao.deleteRefund(orderNum);
-//	}
+	@Override
+	public void fixRefund(int orderNum) {
+		refundDao.updateRefund(orderNum);
+	}
 }

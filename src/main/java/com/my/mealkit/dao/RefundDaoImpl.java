@@ -33,7 +33,7 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
-	public void updateRefundStatus(int orderNum) {
-		refundMap.updateRefundStatus(orderNum);
+	public void updateRefund(int orderNum) {
+		refundMap.updateRefund(orderNum);
 	}
 }
