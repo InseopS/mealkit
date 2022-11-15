@@ -8,6 +8,7 @@ import com.my.mealkit.domain.Order;
 
 public interface OrderMap {
 	List<Order> selectOrders(@Param("userId") String userId);
+	List<Order> selectOrders2(@Param("orderNum") int orderNum);
 	List<Order> selectAdminOrders();
 	List<Order> selectMealkitNames(@Param("orderNum") int orderNum);
 	List<Order> selectMealkitPrices(@Param("orderNum") int orderNum);
