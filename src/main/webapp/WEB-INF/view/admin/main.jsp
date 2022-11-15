@@ -42,7 +42,7 @@ function listDeclarations() {
 				}
 				$('#declarationList').append(declarationArr.join(''))
 			} else {
-				$('#declarationList').append(`<tr><td col='4'>등록된 신고가 없습니다.</td></tr>`)	
+				$('#declarationList').append(`<tr><td colspan='4'>등록된 신고가 없습니다.</td></tr>`)	
 			}
 		}
 	})
@@ -76,7 +76,7 @@ function listQuestions() {
 				}
 				$('#questionList').append(questionArr.join(''))
 			} else {
-				$('#questionList').append(`<tr><td col='4'>등록된 문의가 없습니다.</td></tr>`)	
+				$('#questionList').append(`<tr><td colspan='4'>등록된 문의가 없습니다.</td></tr>`)	
 			}
 		}
 	})

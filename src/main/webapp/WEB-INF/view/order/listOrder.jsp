@@ -60,7 +60,7 @@
 								</div>
 							    <div class='col'>
 									<div class='mr-2' style='float: right;'>
-									<a href='detailOrder?orderNum=\${orders.orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
+									<a href='<%=request.getContextPath()%>/order/detailOrder?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
 										style='text-decoration: underline; font-size: small'>주문상세</a>
 									 <a href='listOrder?orderNum=\${orders.orderNum}?orderStatusCode=\${orders.orderStatusCode}' class='link flex-fill text-dark' id='orderCancelBtn'
 										style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
@@ -74,21 +74,21 @@
 									<table class='table table-sm table-borderless ml-0' id='table'>
 										<tbody> 
 											<tr>
-												<td class='col-3'>주문상품</td>
-												<td>\${mealkitNamesTmp[i]}</td>
-												<td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
+												<td class='col-3'>주문일자</td>
+												<td>\${ordersTmp[i].orderDate}</td>
+												<td><a href='<%=request.getContextPath()%>/exchange/applyExchange?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark' id='applyExchangeBtn'
 												    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
 											</tr>
 											<tr>
-												<td>결제금액</td>
-												<td>2000원</td>
+												<td>주문상품</td>
+												<td>\${mealkitNamesTmp[i]}</td>
 												<td><a href='<%=request.getContextPath()%>/refund/applyRefund?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark' id='applyRefundBtn'
 												        style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
 											</tr>
 											<tr>
 												<td>주문상태</td>
 												<td><p id='\${ordersTmp[i].orderNum}' name='\${ordersTmp[i].orderNum}' value='\${ordersTmp[i].orderStatusCode}'>\${ordersTmp[i].orderStatusName}</p></td>
-												<td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
+												<td><a href='<%=request.getContextPath()%>/review/addReview?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark' id='addReviewBtn'
 												    	style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
 											</tr>                
 										</tbody>
@@ -123,7 +123,7 @@
 				
 				$.ajax({
 					url:'fix',
-					method:"put",
+					method:'put',
 					data: JSON.stringify({
 						orderNum: orderNumber,
 						orderStatusCode: parseInt(orderStatusCodeNumber) + 1
@@ -189,15 +189,15 @@
         <div id='orders'>
         <div class='row'>
 	       <div class='col'>
-	          <span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span></span>
+	          <span style='font-weight: bold;'></span>&emsp;&ensp;<span></span>
 	       </div>
            <div class='col'>
 	           <div class='mr-2' style='float: right;'>
 		            <a href='detailOrder' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
-		                style='text-decoration: underline; font-size: small'>주문상세</a>
+		                style='text-decoration: underline; font-size: small'></a>
 		            <a href='listOrder' class='link flex-fill text-dark' id='orderCancelBtn'
 						style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
-						data-target='#orderCancelModal'>주문취소</a>
+						data-target='#orderCancelModal'></a>
 			   </div>
           </div>
        </div>
@@ -207,22 +207,22 @@
 				<table class='table table-sm table-borderless ml-0' id='table'>
                      <tbody> 
                         <tr>
-                           <td class='col-3'>주문상품</td>
+                           <td class='col-3'></td>
                            <td></td>
                             <td><a href='../exchange/applyExchange' class='link flex-fill text-dark' id='applyExchangeBtn'
-            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>교환신청</a></td>
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'></a></td>
                          </tr>
                          <tr>
-                            <td>결제금액</td>
-                            <td>2000원</td>
+                            <td></td>
+                            <td></td>
                             <td><a href='../refund/applyRefund' class='link flex-fill text-dark' id='applyRefundBtn'
-            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>환불신청</a></td>
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'></a></td>
                          </tr>
                          <tr>
-                            <td>주문상태</td>
+                            <td></td>
                             <td></td>
                             <td><a href='../review/addReview' class='link flex-fill text-dark' id='addReviewBtn'
-            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'>리뷰작성</a></td>
+            					style='text-decoration: underline; float: right; font-weight: bold;' role='button'></a></td>
                          </tr>                
                      </tbody>
                  </table><hr class='mt-3 mb-2'>
@@ -254,7 +254,7 @@
                     <p id='modalMsg' style='text-align: center'></p>
                 </div>
                 <div class='modal-footer py-1' id='modalBtn'>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal' id='orderCancelNoBtn'>아니오</button>&emsp;
+                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
                     	id='orderCancelOkBtn' data-toggle='modal' data-target='#orderCancelModal'>예</button>
                 </div>

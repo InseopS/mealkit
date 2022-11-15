@@ -34,13 +34,14 @@
     	})
 
     	$(document).on("click", "button[id='delCartBtn']", function () {
-			for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
-				$.ajax({
-					url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
-					method: 'delete'
-				}).done(function() {location.reload()})
-			}		
-		})
+         for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
+            $.ajax({
+               url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
+               async: false,
+               method: 'delete'
+            }).done(function() {window.location.reload()})
+         }      
+      })
 	}
 	
 	$(init)
@@ -74,6 +75,7 @@ tr, td {
                 <div class='col'>
                     <table id='cart1'>
                         <tbody class='cartList'>
+                        <c:if test="${mealkits.size() == 0}"> <hr class='my-5'><h3 style='text-align: center'>장바구니에<br>상품이 없습니다.</h3><hr class='my-5'></c:if>
                         <c:forEach var='cart' items='${carts}'>
 	                        <c:forEach var='mealkit' items='${mealkits}'>
 	                        	<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
