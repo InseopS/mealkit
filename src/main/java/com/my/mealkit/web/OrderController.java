@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.my.mealkit.domain.Cart;
 import com.my.mealkit.domain.Mealkit;
 import com.my.mealkit.domain.Order;
+import com.my.mealkit.domain.OrderMealkitDto;
 import com.my.mealkit.domain.User;
 import com.my.mealkit.service.CartService;
 import com.my.mealkit.service.OrderService;
@@ -59,7 +61,19 @@ public class OrderController {
 	    return mv;
 	   }
 	
-	@GetMapping("completeOrder")
+	@PostMapping("plusOrder")
+	public void addOrder(@RequestBody Order order, HttpSession session) {
+		order.setUserId(session.getAttribute("userId").toString());
+		orderService.addOrder(order);
+	}
+	
+	@PostMapping("addOrderMealkit")
+	public void addOrderMealkit(@RequestBody OrderMealkitDto orderMealkit) {
+		System.out.println(orderMealkit);
+		orderService.addOrderMealkit(orderMealkit);
+	}
+	
+	@PostMapping("completeOrder")
     public ModelAndView completeOrder(ModelAndView mv, HttpSession session) {
       String userId = session.getAttribute("userId").toString();
       cartService.emptyCart(userId);
@@ -119,5 +133,10 @@ public class OrderController {
 		orderService.fixOrder(order);
 		mv.setViewName("order/listOrder");
 		return mv;
+	}
+	
+	@PostMapping("getOrderNumSeq")
+	public int getOrderNumSeq() {
+		return orderService.getOrderNumSeq();
 	}
 }
