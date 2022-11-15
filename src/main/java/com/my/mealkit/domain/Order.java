@@ -18,7 +18,7 @@ public class Order {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate orderDate;
-	private String requset;
+	private String request;
 	private String userId;
 	private int paymentCode;
 	private int orderStatusCode;
