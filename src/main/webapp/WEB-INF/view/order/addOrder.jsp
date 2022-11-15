@@ -17,22 +17,20 @@
 <script>
 let totalPrice
 function init() {
-	$('#orderBtn').click(() => {
+	$('#orderCompleteBtn').click(() => {
 		let request = $('#request').val();
 		let payment = $('#payment').val();
 		let orderMealkitCount = $('#orderMealkitCount').val();
 		let mealkitNum = $('#mealkitNum').val();
 		
-		
-		$.ajax({
-			type:'post',
-			url:'${pageContext.request.contextPath}/order/addOrder',
-			data: JSON.stringfy(order),
-			contentType: 'application/json'
-		})		
+		 if($('input:radio[name=payment]').is(':checked')) {
+			 
+		 } else {
+             $('#modalMsg').text('결제 방법을 선택해주세요.') 
+             $('#modal').modal()
+		 }
 	})
 }
-
 $(init)
 </script>
 <style>
@@ -110,7 +108,7 @@ input.inVal {
 		                   				<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
 			                   				<tr>
 												<td>${mealkit.mealkitName}</td>
-												<td>${cart.mealkitCount}</td>
+												<td>${cart.mealkitCount}개</td>
 												<td>${mealkit.price}원</td>
 												<c:set var='result' value="${result + mealkit.price}"/>
 											</tr>
@@ -199,7 +197,8 @@ input.inVal {
 			                </div>
 			            </div>
 			            <div class='row d-flex justify-content-center mt-1'>
-			                <button type='submit' id='orderBtn' name='orderBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'>구매</button>
+			                <button type='button' id='orderCompleteBtn' name='orderCompleteBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'
+			                			onclick="location.href='<%=request.getContextPath() %>completeOrder'">구매</button>
 			            </div>
 			    	</div>
     			</div>
@@ -220,9 +219,6 @@ input.inVal {
             	</div>
             	<div class='modal-footer py-1'>
                 	<button type='button' id='confirmBtn' class='btn btn-primary col-3' data-dismiss='modal'>확인</button>
-                	<button type='button' id='noBtn' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                	<button type='button' class='btn btn-primary col-3' id='delCartBtn' 
-                  	 		onclick="location.href='<%=request.getContextPath() %>/cart/listCart'">예</button>
             	</div>
         	</div>
     	</div>
