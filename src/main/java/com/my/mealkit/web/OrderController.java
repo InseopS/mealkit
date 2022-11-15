@@ -96,17 +96,19 @@ public class OrderController {
 		User user = userService.getUser(userId);
 		mv.addObject("user", user);
 		
-		order = orderService.getOrder(orderNum);
-		mv.addObject("order", order);
-		System.out.println(order);
+		List<Order> orders = orderService.getOrders(orderNum);
+		mv.addObject("orders", orders);
+		System.out.println(orders);
 		
 		List<Order> mealkitList = orderService.getMealkitNames(orderNum);
-		mv.addObject("mealkit", mealkitList);
+		mv.addObject("mealkitList", mealkitList);
+		System.out.println(mealkitList);
 		
 		mv.setViewName("order/detailOrder");
+		
 		return mv;
 	}
-		
+	
 	@PutMapping("fixOrder")
 	public ModelAndView fixOrder(@RequestBody Order order, ModelAndView mv) {
 		orderService.fixOrder(order);

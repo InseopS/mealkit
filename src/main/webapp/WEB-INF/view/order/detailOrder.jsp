@@ -58,27 +58,34 @@
                  <table class='table table-sm table-borderless ml-0'>
                      <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>${order.orderNum}</th></tr>
                      <tbody>
-                        <tr>
-                           <td class='orderInfoTitle2'>주문상품</td>
-                           <td class='orderInfoContent'>${mealkit[0].mealkitName}</td>
-                        </tr>
-                        <tr>
-                            <td class='orderInfoTitle2'>수량</td>
-                            <td class='orderInfoContent'>${order.orderMealkitCount}</td>
-                         </tr>
-                         <tr>
-                            <td class='orderInfoTitle2'>가격</td>
-                            <td class='orderInfoContent'>${mealkit[0].price * order.orderMealkitCount}원</td>
-                         </tr>                
-                     </tbody>
-                 </table><hr class='mt-3 mb-2'>
+                     	<c:forEach var='order' items='${orders}'>
+	                        <c:forEach var='mealkit' items='${mealkitList}'>
+	                        	<c:if test="${mealkit.mealkitNum == order.mealkitNum}">
+			                        <tr>
+			                           <td class='orderInfoTitle2'>주문상품</td>
+			                           <td class='orderInfoContent'>${mealkit.mealkitName}</td>
+			                        </tr>
+			                        <tr>
+			                            <td class='orderInfoTitle2'>수량</td>
+			                            <td class='orderInfoContent'>${order.orderMealkitCount}개</td>  
+			                         </tr>
+			                         <tr style='border-bottom: 0.03rem solid #f0f0f5; border-top: none;'>
+			                            <td class='orderInfoTitle2'>가격</td>
+			                            <td class='orderInfoContent'>${mealkit.price * order.orderMealkitCount}원</td>
+			                         </tr>
+			                         <tr><td></td></tr>
+			                	</c:if>
+			            	</c:forEach>
+			        	</c:forEach>                
+			     	</tbody>
+                 </table>
 
-              <table class='table table-sm table-borderless ml-0'>
+              <table class='table table-sm table-borderless ml-0 mt-0'>
                   <tr><th class='orderInfoTitle1'>주문상세</th><th></th></tr>
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>주문일자</td>
-                          <td class='orderInfoContent'>${order.orderDate}</td>
+                          <td class='orderInfoContent'>${orders[0].orderDate}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문자</td>
@@ -92,11 +99,14 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>결제수단</td>
-                          <td class='orderInfoContent'>${order.paymentName}</td>
+                          <td class='orderInfoContent'>${orders[0].paymentName}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문금액</td>
-                          <td class='orderInfoContent'>${mealkit[0].price * order.orderMealkitCount}</td>
+                          <c:forEach var='order' items='${orders}' varStatus="status">
+                          <c:set var='sum' value='${sum + mealkitList[status.index].price * orders[status.index].orderMealkitCount}'></c:set>                          
+                          </c:forEach>
+                          <td class='orderInfoContent'>${sum}원</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>배송비</td>
@@ -104,7 +114,7 @@
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'><b>총 결제금액</b></td>
-                          <td class='orderInfoContent'><b>${mealkit[0].price * order.orderMealkitCount}</b></td>
+                          <td class='orderInfoContent'><b>${sum}원</b></td>
                       </tr>
                   </tbody>
               </table><hr class='mt-3 mb-2'>
@@ -132,7 +142,7 @@
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>요청사항</td>
-                          <td class='orderInfoContent'>${order.request}</td>
+                          <td class='orderInfoContent'>${orders[0].request}</td>
                       </tr>
                   </tbody>
               </table><hr class='mt-5 mb-2'>
