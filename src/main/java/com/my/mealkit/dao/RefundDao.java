@@ -9,5 +9,5 @@ public interface RefundDao {
 	List<Refund> selectAdminRefunds();
 	List<Refund> selectMealkitNames(int refundNum);
 	void insertRefund(Refund refund);
-	void updateRefundStatus(int orderNum);
+	void updateRefund(int orderNum);
 }

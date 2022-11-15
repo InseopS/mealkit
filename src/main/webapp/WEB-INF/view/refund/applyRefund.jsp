@@ -91,9 +91,9 @@ $(selectMealkitName)
             </div>
             <div class='row'>
                 <div class='col ml-3'>
-                    <br>상세사유<span style='font-size:12px' id='refundDetailReason'>(선택)</span><br>
+                    <br>상세사유<span style='font-size:12px' id='refundDetailReason'>(필수)</span><br>
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
-                        id='refundContent' name='refundContent'></textarea>
+                        id='refundContent' name='refundContent' required></textarea>
                 </div>
             </div> 
 

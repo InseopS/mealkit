@@ -42,14 +42,15 @@
 	
 	
 	<insert id='insertRefund'>
-		insert into refunds(refund_num, refund_img_file_name, refund_content,
+		insert into refunds(refund_num, refund_content,
 			refund_reason_code, refund_status_code, order_num)
-		values(refund_num_seq.nextval, '00000', #{refundContent},
+		values(refund_num_seq.nextval,  #{refundContent},
 			#{refundReasonCode}, 1, #{orderNum})
 	</insert>
 	
-	<delete id='deleteRefund'>
-		delete refunds
+	<update id='updateRefund'>
+		update refunds
+		set refund_status_code = 2
 		where refund_num = #{refundNum}
-	</delete>
+	</update>
 </mapper>

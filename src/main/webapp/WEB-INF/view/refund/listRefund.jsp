@@ -39,7 +39,7 @@
             }
          	
          	#table {
-         		font-size: 15px;
+         		font-size: 13px;
          	}
     </style>
 <script>
@@ -70,7 +70,7 @@ function listRefunds() {
 			})
 		})
 		listTest()
-	}) 
+	})
 }
 
 function listTest() {
@@ -101,10 +101,6 @@ function listTest() {
 								<td>\${mealkitNamesTmp[i]}</td>
 							</tr>
 							<tr>
-								<td>결제금액</td>
-								<td>2000원</td>
-							</tr>
-							<tr>
 								<td>주문상태</td>
 								<td>\${refundsTmp[i].refundStatusName}</td>
 							</tr>                
@@ -118,7 +114,7 @@ function listTest() {
 	$('#refunds').append(refundArr.join(''))
 }
 $(listRefunds)
-</script>  
+</script>
 </head>
 
 <%@ include file ='../include/headerTop.jsp'%>
@@ -160,11 +156,7 @@ $(listRefunds)
 	                      	</tr>
 	                      	<tr>
 	                          	<td></td>
-	                          	<td class='2' id='Totalprice'></td>
-	                      	</tr>
-	                      	<tr>
-	                          	<td></td>
-	                          	<td></td>
+	                          	<td id='refundStatusCode' name='refundStatusCode'>${refund.refundStatusCode}</td>
 	                      	</tr>
 	                  	</tbody>
 	              	</table><hr class='mt-3 mb-2'>
@@ -186,18 +178,17 @@ $(listRefunds)
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class='modal-title float-left' id='myModalLabel'>환불취소</p>
+                    <p class='modal-title float-left' id='cancelBtn'>환불취소</p>
                     <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class='modal-body text-center'>
-                    <p>환불을 취소 하시겠습니까?</p>
+                    <p>환불을 취소하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>
-                    <button type='button' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                        data-target='#deleteOkModal'>예</button>
+                    <button type='button' id='okBtn' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'>예</button>
                 </div>
             </div>
         </div>

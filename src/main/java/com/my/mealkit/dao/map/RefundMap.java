@@ -11,5 +11,5 @@ public interface RefundMap {
 	List<Refund> selectAdminRefunds();
 	List<Refund> selectMealkitNames(@Param("refundNum") int refundNum); 
 	void insertRefund(Refund refund);
-	void updateRefundStatus(int orderNum);
+	void updateRefund(@Param("orderNum") int orderNum);
 }
