@@ -67,7 +67,7 @@
 			                        </tr>
 			                        <tr>
 			                            <td class='orderInfoTitle2'>수량</td>
-			                            <td class='orderInfoContent'>${order.orderMealkitCount}개</td>
+			                            <td class='orderInfoContent'>${order.orderMealkitCount}개</td> 
 			                         </tr>
 			                         <tr style='border-bottom: 0.03rem solid #f0f0f5; border-top: none;'>
 			                            <td class='orderInfoTitle2'>가격</td>
