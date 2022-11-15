@@ -33,14 +33,14 @@
         	}
     	})
 
-    	$(document).on("click", "button[id='delCartBtn']", function () {
-         for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
+    	 $(document).on("click", "button[id='delCartBtn']", function () {
+         	for (var i = 0; i < $('#mealkitNum:checked').length; i++) {
             $.ajax({
                url: 'delCart/' + $('#mealkitNum:checked').eq(i).val(),
-               async: false,
                method: 'delete'
-            }).done(function() {window.location.reload()})
-         }      
+            })
+         }
+         	location.reload()
       })
 	}
 	

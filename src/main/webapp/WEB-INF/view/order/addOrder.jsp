@@ -16,19 +16,71 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script>
 let totalPrice
+let orderNumSeq
+let orderNumSeqStr
+let mealkitNumStr
+let mealkitCount
+let orderMealkitNumStr
+let orderMealkit
+
 function init() {
-	$('#orderCompleteBtn').click(() => {
-		let request = $('#request').val();
-		let payment = $('#payment').val();
-		let orderMealkitCount = $('#orderMealkitCount').val();
-		let mealkitNum = $('#mealkitNum').val();
-		
-		 if($('input:radio[name=payment]').is(':checked')) {
-			 
-		 } else {
-             $('#modalMsg').text('결제 방법을 선택해주세요.') 
-             $('#modal').modal()
-		 }
+	$.ajax({
+		type:'post',
+		url:'getOrderNumSeq',
+		dataType: 'json',
+		success: getOrderNumSeq => {
+			orderNumSeq = getOrderNumSeq
+			orderNumSeqStr = getOrderNumSeq+''
+		}
+	})
+}
+function test() {
+
+}
+function chkAdd() {
+	order = {
+			request : $('#request').val(),
+			paymentCode : $('#payment').val()
+		}
+	$.ajax({
+		type:'post',
+		url:'plusOrder',
+		data: JSON.stringify(order),
+		contentType: 'application/json'
+	}).done(function tmp() {
+		<c:forEach var='cart' items='${carts}'>
+		<c:forEach var='mealkit' items='${mealkits}'>
+			<c:if test="${mealkit.mealkitNum == cart.mealkitNum}">
+			orderMealkitNumStr = ''
+				mealkitCount = ${cart.mealkitCount}
+				mealkitNumStr = ${mealkit.mealkitNum} + ''
+				if(orderNumSeqStr.length < 6) {	
+					let str = ''
+					for(i = 0; (6 - orderNumSeqStr.length) > i; i++) str += '0'
+					orderNumSeqStr = str + orderNumSeqStr
+				}
+				if(mealkitNumStr.length < 6) {	
+					let str = ''
+					for(i = 0; (6 - mealkitNumStr.length) > i; i++) str += '0'
+					mealkitNumStr = str + mealkitNumStr
+				}
+				orderMealkitNumStr = orderNumSeqStr + mealkitNumStr
+				
+				orderMealkit = {
+						orderMealkitNum: orderMealkitNumStr,
+						orderMealkitCount : mealkitCount,
+						orderNum : orderNumSeq,
+						mealkitNum : ${mealkit.mealkitNum}
+					}
+				$.ajax({
+					type:'post',
+					url:'addOrderMealkit',
+					data: JSON.stringify(orderMealkit),
+					contentType: 'application/json'
+				})
+			</c:if>
+		</c:forEach>
+	</c:forEach>
 	})
 }
 $(init)
@@ -90,7 +142,7 @@ input.inVal {
 <%@ include file ='../include/headerBottom.jsp'%>
 
 <body>
-	<form action='<%=request.getContextPath() %>/order/completeOrder'>
+	<form action='<%=request.getContextPath() %>/order/completeOrder' method='post' onsubmit='return chkAdd();'>
 		<div class='container' id='mainContainerAddSub'>
       		<div class='row d-flex justify-content-center mt-5'>
             	<div class='col'>
@@ -182,15 +234,15 @@ input.inVal {
 			                    <h5><b>결제 방법</b></h5>
 			                    <table class='way' name='paymentCode' id='paymentCode'>
 			                        <tr>
-			                            <th><input type='radio' id='payment' name='payment' value='카드 결제'></th>
+			                            <th><input type='radio' id='payment' name='payment' value='1' required></th>
 			                            <td>카드 결제</td>
 			                        </tr>
 			                        <tr>
-			                            <th><input type='radio' id='payment' name='payment' value='무통장 입금'></th>
+			                            <th><input type='radio' id='payment' name='payment' value='2'></th>
 			                            <td>무통장 입금</td>
 			                        </tr>
 			                        <tr>
-			                            <th><input type='radio' id='payment' name='payment' value='휴대폰 결제'></th>
+			                            <th><input type='radio' id='payment' name='payment' value='3'></th>
 			                            <td>휴대폰 결제</td>
 			                        </tr>
 			                    </table>

@@ -70,12 +70,22 @@
    	  on orders_mealkits.mealkit_num = mealkits.mealkit_num
       where orders.order_num = #{orderNum})
    </select>
-      
+   <select id='selectOrderNumSeq' resultType='integer'>   
+		SELECT 
+		LAST_NUMBER
+		FROM 
+		USER_SEQUENCES
+		WHERE 
+		SEQUENCE_NAME = 'ORDER_NUM_SEQ'
+   </select>
    <insert id='insertOrder'>
-      insert into orders(order_num, order_date, request, user_id,
-         payment_code, order_status_code)
-      values(order_num_seq.nextval, sysdate, #{request}, #{userId},
-         #{paymentCode}, 1)      
+   		insert into orders(order_num, order_date, request, user_id, payment_code, order_status_code)
+        	values(ORDER_NUM_SEQ.NEXTVAL, sysdate, #{request}, #{userId}, #{paymentCode}, 1)     
+   </insert>
+   
+   <insert id='insertOrderMealkit'>
+   		insert into orders_mealkits(order_mealkit_num, order_mealkit_count, order_num, mealkit_num)
+       		values(#{orderMealkitNum}, #{orderMealkitCount}, #{orderNum}, #{mealkitNum})
    </insert>
    
    <update id='updateOrder'>
@@ -83,5 +93,4 @@
 	  set order_status_code = #{orderStatusCode}
 	  where order_num = #{orderNum}
    </update>
-
 </mapper>
