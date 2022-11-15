@@ -62,6 +62,7 @@ public class OrderController {
 	 public ModelAndView completeOrder(ModelAndView mv, HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
 		cartService.emptyCart(userId);
+		orderService.addOrder(null);
 	    mv.setViewName("order/completeOrder");
 	    return mv;
 	   }
