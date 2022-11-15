@@ -15,111 +15,12 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 	<script>
-	
 	function listOrders() {
-		$('#orders').empty()
-		
 		$.ajax({
-			metod:'post',
+			method:'get',
 			url: "<%=request.getContextPath()%>/order/detailOrder"
-		}).done(orders => {
-			if(orders.length) {
-				const orderArr = []
-				
-				$.each(orders, (i, order) => {
-					orderArr.unshift(
-	                	`<div class='row' id='orders'>
-             <div class='col'>
-                 <table class='table table-sm table-borderless ml-0'>
-                     <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>\${order.orderNum}</th></tr>
-                     <tbody>
-                        <tr>
-                           <td class='orderInfoTitle2'>주문상품</td>
-                           <td class='orderInfoContent'>\${mealkit.mealkitName}</td>
-                        </tr>
-                        <tr>
-                            <td class='orderInfoTitle2'>수량</td>
-                            <td class='orderInfoContent'>\${order.orderMealkitCount}개</td>
-                         </tr>
-                         <tr>
-                            <td class='orderInfoTitle2'>가격</td>
-                            <td class='orderInfoContent'>29000원</td>
-                         </tr>                
-                     </tbody>
-                 </table><hr class='mt-3 mb-2'>
-
-              <table class='table table-sm table-borderless ml-0'>
-                  <tr><th class='orderInfoTitle1'>주문상세</th><th></th></tr>
-                  <tbody>
-                      <tr>
-                          <td class='orderInfoTitle2'>주문일자</td>
-                          <td class='orderInfoContent'>\${order.orderDate}</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>주문자</td>
-                          <td class='orderInfoContent'>\${user.userName}</td>
-                      </tr>
-                  </tbody>
-              </table><hr class='mt-3 mb-2'>
-      
-              <table class='table table-sm table-borderless ml-0'>
-                  <tr><th class='orderInfoTitle1'>결제상세</th><th></th></tr>
-                  <tbody>
-                      <tr>
-                          <td class='orderInfoTitle2'>결제수단</td>
-                          <td class='orderInfoContent'>\${order.orderStatusName}</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>주문금액</td>
-                          <td class='orderInfoContent'>29000원</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>배송비</td>
-                          <td class='orderInfoContent'>무료</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'><b>총 결제금액</b></td>
-                          <td class='orderInfoContent'><b>29000원</b></td>
-                      </tr>
-                  </tbody>
-              </table><hr class='mt-3 mb-2'>
-      
-              <table class='table table-sm table-borderless ml-0'>
-                  <tr><th class='orderInfoTitle1'>배송지</th><th></th></tr>
-                  <tbody>
-                      <tr>
-                          <td class='orderInfoTitle2'>수령인</td>
-                          <td class='orderInfoContent'>\${user.userName}</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>연락처</td>
-                          <td class='orderInfoContent'>\${user.phoneNum}</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>우편번호</td>
-                          <td class='orderInfoContent'>\${user.zipCode}</td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>주소</td>
-                          <td class='orderInfoContent'>
-                          \${user.basicAddress}<br>
-                          <p class='orderInfoContent'>\${user.detailAddress}</p></td>
-                      </tr>
-                      <tr>
-                          <td class='orderInfoTitle2'>요청사항</td>
-                          <td class='orderInfoContent'>\${order.request}</td>
-                      </tr>
-                  </tbody>
-              </table><hr class='mt-5 mb-2'>
-          </div>`		
-					);
-				})
-				
-				$('#orders').append(orderArr.join(''))
-			}
-		})
+		}).done()				
 	}
-
 	$(listOrders)
 	</script>
     <style>
@@ -159,15 +60,15 @@
                      <tbody>
                         <tr>
                            <td class='orderInfoTitle2'>주문상품</td>
-                           <td class='orderInfoContent'></td>
+                           <td class='orderInfoContent'>${mealkit[0].mealkitName}</td>
                         </tr>
                         <tr>
                             <td class='orderInfoTitle2'>수량</td>
-                            <td class='orderInfoContent'></td>
+                            <td class='orderInfoContent'>${order.orderMealkitCount}</td>
                          </tr>
                          <tr>
                             <td class='orderInfoTitle2'>가격</td>
-                            <td class='orderInfoContent'>29000원</td>
+                            <td class='orderInfoContent'>${mealkit[0].price * order.orderMealkitCount}원</td>
                          </tr>                
                      </tbody>
                  </table><hr class='mt-3 mb-2'>
@@ -177,11 +78,11 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>주문일자</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${order.orderDate}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문자</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${user.userName}</td>
                       </tr>
                   </tbody>
               </table><hr class='mt-3 mb-2'>
@@ -191,11 +92,11 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>결제수단</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${order.paymentName}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주문금액</td>
-                          <td class='orderInfoContent'>29000원</td>
+                          <td class='orderInfoContent'>${mealkit[0].price * order.orderMealkitCount}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>배송비</td>
@@ -203,7 +104,7 @@
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'><b>총 결제금액</b></td>
-                          <td class='orderInfoContent'><b>29000원</b></td>
+                          <td class='orderInfoContent'><b>${mealkit[0].price * order.orderMealkitCount}</b></td>
                       </tr>
                   </tbody>
               </table><hr class='mt-3 mb-2'>
@@ -213,25 +114,25 @@
                   <tbody>
                       <tr>
                           <td class='orderInfoTitle2'>수령인</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${user.userName}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>연락처</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${user.phoneNum}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>우편번호</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${user.zipCode}</td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>주소</td>
-                          <td class='orderInfoContent'>
+                          <td class='orderInfoContent'>${user.basicAddress}
                           <br>
-                          <p class='orderInfoContent'></p></td>
+                          <p class='orderInfoContent'>${user.detailAddress}</p></td>
                       </tr>
                       <tr>
                           <td class='orderInfoTitle2'>요청사항</td>
-                          <td class='orderInfoContent'></td>
+                          <td class='orderInfoContent'>${order.request}</td>
                       </tr>
                   </tbody>
               </table><hr class='mt-5 mb-2'>

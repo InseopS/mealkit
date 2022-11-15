@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -88,13 +89,31 @@ public class OrderController {
 		List<Order> mealkitPriceList = orderService.getMealkitPrices(orderNum);
 		return mealkitPriceList;
 	}
-	
+	/*
 	@RequestMapping("detailOrder")
 	 public ModelAndView detailOrder(ModelAndView mv) {
 		mv.setViewName("order/detailOrder");
 		return mv;
 	}
+	*/
+	
+	@RequestMapping(value="detailOrder", method=RequestMethod.GET)
+	public ModelAndView detailOrder(@RequestParam("orderNum") int orderNum, HttpSession session, ModelAndView mv, Order order, Mealkit mealkit) {
+		String userId = session.getAttribute("userId").toString();
+		User user = userService.getUser(userId);
+		mv.addObject("user", user);
 		
+		order = orderService.getOrder(orderNum);
+		mv.addObject("order", order);
+		System.out.println(order);
+		
+		List<Order> mealkitList = orderService.getMealkitNames(orderNum);
+		mv.addObject("mealkit", mealkitList);
+		
+		mv.setViewName("order/detailOrder");
+		return mv;
+	}
+	
 	@GetMapping("getDetailOrders/{orderNum}")
 	public List<Order> detailOrders(@PathVariable("orderNum") int orderNum) {
 		List<Order> orderList = orderService.getDetailOrders(orderNum);
