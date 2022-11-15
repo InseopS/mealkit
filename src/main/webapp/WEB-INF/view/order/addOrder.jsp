@@ -197,8 +197,8 @@ input.inVal {
 			                </div>
 			            </div>
 			            <div class='row d-flex justify-content-center mt-1'>
-			                <button type='button' id='orderCompleteBtn' name='orderCompleteBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'
-			                			onclick="location.href='<%=request.getContextPath() %>completeOrder'">구매</button>
+			                <button type='submit' id='orderCompleteBtn' name='orderCompleteBtn' class='btn btn-outline-secondary m-5 d-flex justify-content-center'
+			                			>구매</button>
 			            </div>
 			    	</div>
     			</div>
