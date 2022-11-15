@@ -28,7 +28,7 @@ public class AppConfig implements WebMvcConfigurer {
 	    registry.addInterceptor(new UserChecker())
 	        .order(1)
 	        .addPathPatterns("/**")
-	        .excludePathPatterns("/", "/res/**", "/attach/**", "/notice/**", "/faq/**", "/admin/**", "/user/login", "/user/completeFindId/", "/user/completeResetPassword", "/user/completeWithdrawal", "/user/findId", "/user/findPassword", "/user/jusoPopup/**", "/user/resetPassword", "/user/signUp", "/user/welcome");
+	        .excludePathPatterns("/", "/res/**", "/attach/**", "/notice/**", "/faq/**", "/admin/**", "/user/login", "/user/completeFindId/", "/user/completeResetPassword", "/user/completeWithdrawal", "/user/findId", "/user/findPassword", "/user/jusoPopup/**", "/user/resetPassword", "/user/signUp", "/user/welcome", "/user/emailCheck/**");
 	}
 	
 	@Override

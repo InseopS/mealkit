@@ -1,7 +1,5 @@
 package com.my.mealkit.domain;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Refund {
 	private int refundNum;
-	private MultipartFile refundImgFile;
-	private String refundImgFileName;
 	private String refundContent;
 	private int orderNum;
 	private int refundReasonCode;

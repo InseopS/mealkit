@@ -66,7 +66,7 @@ function listTest() {
 			<hr class='mt-2 mb-2'>
 			<div class='row'>
 				<div class='col'>
-		    		<table class='table table-sm table-borderless ml-0'>
+		    		<table class='table table-sm table-borderless ml-0' id='table'>
 		        		<colgroup>
 							<col width='30%'>
 							<col width='70%'>
@@ -132,7 +132,7 @@ $(init)
         }
         
 	#table {
-		font-size: 15px;
+		font-size: 13px;
 		}
 </style>
 </head>
@@ -161,7 +161,7 @@ $(init)
 		<div id='exchanges'>
 			<div class='row'>
 				<div class='col'>
-				    <table class='table table-sm table-borderless ml-0'>
+				    <table class='table table-sm table-borderless ml-0' id='table'>
 				        <colgroup>
 							<col width='30%'>
 							<col width='70%'>
