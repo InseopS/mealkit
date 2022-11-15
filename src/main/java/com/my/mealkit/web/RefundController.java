@@ -1,13 +1,10 @@
 package com.my.mealkit.web;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Declaration;
 import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.Refund;
 import com.my.mealkit.service.OrderService;
@@ -32,8 +27,6 @@ public class RefundController {
 	@Autowired private RefundService refundService;
 	@Autowired private OrderService orderService;
 	
-	@Value("${attachPath}") private String attachPath;
-	
 	@RequestMapping("listRefund")
 	public ModelAndView listRefund(ModelAndView mv) {
 		mv.setViewName("refund/listRefund");
@@ -43,10 +36,8 @@ public class RefundController {
 	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
 	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
 		Order order = orderService.getOrder(orderNum);
-		
 		mv.addObject("order", order);
 		mv.setViewName("refund/applyRefund");
-		
 		return mv;
 	}
 	
@@ -54,7 +45,7 @@ public class RefundController {
 	public void applyRefund(@RequestBody Refund refund) {
 		refundService.addRefund(refund);
 	}
-	
+
 	@ResponseBody
 	@GetMapping("getRefunds")
 	public List<Refund> getRefunds(HttpSession session) {
@@ -68,4 +59,11 @@ public class RefundController {
 		List<Refund> mealkitNameList = refundService.getMealkitNames(refundNum);
 		return mealkitNameList;
 	}
+	
+	@RequestMapping("fixRefund")
+	public void fixRefund(@RequestParam("orderNum") int orderNum) {
+		orderService.getOrder(orderNum);
+		refundService.fixRefund(orderNum);
+	}
+	
 }

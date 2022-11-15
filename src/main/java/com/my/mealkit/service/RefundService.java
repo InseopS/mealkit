@@ -9,5 +9,5 @@ public interface RefundService {
 	List<Refund> getAdminRefunds();
 	List<Refund> getMealkitNames(int refundNum);
 	void addRefund(Refund refund);
-//	void delRefund(int orderNum);
+	void fixRefund(int orderNum);
 }
