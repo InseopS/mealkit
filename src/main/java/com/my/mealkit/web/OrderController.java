@@ -60,12 +60,13 @@ public class OrderController {
 	   }
 	
 	@GetMapping("completeOrder")
-	 public ModelAndView completeOrder(ModelAndView mv, HttpSession session) {
-		String userId = session.getAttribute("userId").toString();
-		cartService.emptyCart(userId);
-	    mv.setViewName("order/completeOrder");
-	    return mv;
-	   }
+    public ModelAndView completeOrder(ModelAndView mv, HttpSession session) {
+      String userId = session.getAttribute("userId").toString();
+      cartService.emptyCart(userId);
+       mv.setViewName("order/completeOrder");
+       return mv;
+      }
+
 	
 	@RequestMapping("listOrder")	
 	 public ModelAndView listOrder(ModelAndView mv) {
