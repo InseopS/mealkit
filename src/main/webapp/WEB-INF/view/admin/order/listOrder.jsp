@@ -54,7 +54,7 @@ function listTest() {
 				<td class='align-middle'>\${ordersTmp[i].orderNum}</td>
 				<td class='align-middle'>\${ordersTmp[i].userId}</td>
 				<td class='align-middle'>\${mealkitNamesTmp[i]}</td>
-				<td class='align-middle'>\${ordersTmp[i].userId}</td>
+				<td class='align-middle'>\${ordersTmp[i].orderDate}</td>
 				<td class='align-middle'>\${ordersTmp[i].paymentName}</td>
 				<td class='align-middle'>\${ordersTmp[i].orderStatusName}</td>
 			<tr>`
@@ -109,7 +109,7 @@ $(listOrders)
                                             <th>주문번호</th>
                                             <th>아이디</th>
                                             <th>주문상품</th>
-                                            <th>금액</th>
+                                            <th>주문일자</th>
                                             <th>결제방법</th>
                                             <th>주문상태</th>
                                         </tr>

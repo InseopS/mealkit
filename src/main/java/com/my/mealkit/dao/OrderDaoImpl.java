@@ -19,11 +19,6 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<Order> detailOrders(int orderNum) {
-		return orderMap.detailOrders(orderNum);
-	}
-	
-	@Override
 	public List<Order> selectAdminOrders() {
 		return orderMap.selectAdminOrders();
 	}

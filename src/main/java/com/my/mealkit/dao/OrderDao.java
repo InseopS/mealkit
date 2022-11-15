@@ -6,7 +6,6 @@ import com.my.mealkit.domain.Order;
 
 public interface OrderDao {
 	List<Order> selectOrders(String userId);
-	List<Order> detailOrders(int orderNum);
 	List<Order> selectAdminOrders();
 	List<Order> selectMealkitNames(int orderNum);
 	List<Order> selectMealkitPrices(int orderNum);
