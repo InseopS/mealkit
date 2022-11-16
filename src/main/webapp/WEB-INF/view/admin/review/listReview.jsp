@@ -90,7 +90,7 @@
 	$('#searchBtn').click(() => {
          if($('#searchTitle').val() == '') {
            		$('#delModalLabel').empty();
-           		$('#delModalLabel').text('공지검색');
+           		$('#delModalLabel').text('리뷰삭제');
                 $('#modalMsg').empty();
                 $('#modalMsg').text('상품명을 입력해주세요.');
                 $('#confirmModal').modal();
