@@ -9,7 +9,6 @@ public interface ExchangeService {
 	List<Exchange> getExchanges(int exchangeNum);
 	List<Exchange> getAdminExchanges();
 	List<Exchange> getMealkitNames(int exchangeNum);
-	Exchange getExchange(int exchangeNum);
 	void addExchange(Exchange exchange);
 	void fixExchange(int orderNum);
 }

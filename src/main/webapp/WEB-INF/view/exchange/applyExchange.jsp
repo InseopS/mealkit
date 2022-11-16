@@ -93,7 +93,7 @@ $(selectMealkitName)
                 <div class='col ml-3'>
                     <br>상세사유<span style='font-size:12px' id='exchangeDetailReason'>(필수)</span><br>
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
-                        id='exchangeContent' name='exchangeContent'></textarea>
+                        id='exchangeContent' name='exchangeContent' required></textarea>
                 </div>
             </div> 
 
@@ -101,30 +101,12 @@ $(selectMealkitName)
                 <div class='col-5 mt-2 '>
                     <button type='button' class='btn btn-secondary btn-sm'
                         onclick='location.href="../order/listOrder"'>취소</button>
-                    <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
-                        data-target='#exchangeModal'>신청</button>
+                    <button id='applyExchangeBtn' type='button' class='btn btn-secondary btn-sm'>신청</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class='modal fade' id='exchangeModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <p class='modal-title float-left' id='myModalLabel'>교환신청</p>
-                    <button type='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>교환을 신청 하시겠습니까?</p>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-               <button type='submit' class='btn btn-primary col-3' data-dismiss='modal' data-toggle='modal'
-                       data-target='#requestOkModal' id='applyExchangeBtn'>예</button>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

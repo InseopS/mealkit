@@ -34,12 +34,6 @@ public class ExchangeDaoImpl implements ExchangeDao {
 	}
 	
 	@Override
-	public Exchange selectExchange(int exchangeNum) {
-		return exchangeMap.selectExchange(exchangeNum);
-	}
-
-	
-	@Override
 	public void insertExchange(Exchange exchange) {
 		exchangeMap.insertExchange(exchange);
 	}
