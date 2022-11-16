@@ -41,7 +41,7 @@ public class NoticeAdminController {
 		return noticeService.getNotices();
 	}
 
-	@RequestMapping(value ="detailNotice", method=RequestMethod.GET)
+	@GetMapping("detailNotice")
 	public String detailNotice(Notice notice ,Model model, @RequestParam("noticeNum") int noticeNum) {
 		notice = noticeService.getDetailNotice(noticeNum);
 		model.addAttribute("notice", notice);
@@ -57,8 +57,7 @@ public class NoticeAdminController {
 	@PostMapping("addNotice")
 	public ModelAndView addNotice(Notice notice, ModelAndView mv) throws IOException {
 		try {
-			UUID uuid = UUID.randomUUID();
-			String noticeFileName = "NOTICE_" + uuid.toString() + notice.getNoticeImgFile().getOriginalFilename();
+			String noticeFileName = "NOTICE_0000" + notice.getNoticeImgFile().getOriginalFilename();
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);
 			noticeService.addAdminNotice(notice);
@@ -73,7 +72,7 @@ public class NoticeAdminController {
 		} catch(IOException e) {}
 	}
 
-	@RequestMapping(value ="fixNotice", method=RequestMethod.GET)
+	@GetMapping("fixNotice")
 	public String fixNotice(Notice notice, Model model, @RequestParam("noticeNum") int noticeNum) {
 		notice = noticeService.getNotice(noticeNum);
 		model.addAttribute("notice", notice);
@@ -84,8 +83,7 @@ public class NoticeAdminController {
 	@PostMapping("fixNotice")
 	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {		
 		try {
-			UUID uuid = UUID.randomUUID();
-			String noticeFileName = "NOTICE_" + uuid.toString() + notice.getNoticeImgFile().getOriginalFilename();
+			String noticeFileName = "NOTICE_0000" + notice.getNoticeImgFile().getOriginalFilename();
 			
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);	
