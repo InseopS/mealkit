@@ -11,7 +11,6 @@ public interface ExchangeMap {
 	List<Exchange> selectExchanges(@Param("exchangeNum") int exchangeNum);
 	List<Exchange> selectAdminExchanges();
 	List<Exchange> selectMealkitNames(@Param("exchangeNum") int exchangeNum);
-	Exchange selectExchange(@Param("exchangeNum") int exchangeNum);
 	void insertExchange(Exchange exchange);
 	void updateExchange(int orderNum);
 }

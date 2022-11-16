@@ -9,7 +9,6 @@ public interface ExchangeDao {
 	List<Exchange> selectExchanges(int exchangeNum);
 	List<Exchange> selectAdminExchanges();
 	List<Exchange> selectMealkitNames(int exchangeNum);
-	Exchange selectExchange(int exchangeNum);
 	void insertExchange(Exchange exchange);
 	void updateExchange(int orderNum);
 }
