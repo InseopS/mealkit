@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Order;
 import com.my.mealkit.domain.Exchange;
-import com.my.mealkit.service.OrderService;
+import com.my.mealkit.domain.Order;
 import com.my.mealkit.service.ExchangeService;
+import com.my.mealkit.service.OrderService;
 
 @RestController
 @RequestMapping("exchange")
@@ -33,7 +33,7 @@ public class ExchangeController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="applyExchange", method=RequestMethod.GET)
+	@GetMapping("applyExchange")
 	public ModelAndView applyExchange(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
 		List<Order> orders = orderService.getOrders(orderNum);
 		mv.addObject("orders", orders);
@@ -60,7 +60,7 @@ public class ExchangeController {
 		return mealkitNameList;
 	}
 	
-	@RequestMapping("fixExchange")
+	@PutMapping("fixExchange")
 	public void fixExchange(@RequestBody Exchange exchange) {
 		exchangeService.fixExchange(exchange.getOrderNum());
 	}	
