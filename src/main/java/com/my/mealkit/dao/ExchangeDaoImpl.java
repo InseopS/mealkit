@@ -18,12 +18,24 @@ public class ExchangeDaoImpl implements ExchangeDao {
 	}
 	
 	@Override
+	public List<Exchange> selectExchanges(int exchangeNum) {
+		return exchangeMap.selectExchanges(exchangeNum);
+	}
+
+
+	@Override
 	public List<Exchange> selectAdminExchanges() {
 		return exchangeMap.selectAdminExchanges();
 	}
+	
 	@Override
 	public List<Exchange> selectMealkitNames(int exchangeNum) {
 		return exchangeMap.selectMealkitNames(exchangeNum);
+	}
+	
+	@Override
+	public Exchange selectExchange(int exchangeNum) {
+		return exchangeMap.selectExchange(exchangeNum);
 	}
 
 	
@@ -33,7 +45,7 @@ public class ExchangeDaoImpl implements ExchangeDao {
 	}
 	
 	@Override
-	public void deleteExchange(int orderNum) {
-		exchangeMap.deleteExchange(orderNum);
+	public void updateExchange(int orderNum) {
+		exchangeMap.updateExchange(orderNum);
 	}
 }

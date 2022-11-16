@@ -6,8 +6,10 @@ import com.my.mealkit.domain.Exchange;
 
 public interface ExchangeService {
 	List<Exchange> getExchanges(String userId);
+	List<Exchange> getExchanges(int exchangeNum);
 	List<Exchange> getAdminExchanges();
 	List<Exchange> getMealkitNames(int exchangeNum);
+	Exchange getExchange(int exchangeNum);
 	void addExchange(Exchange exchange);
-	void delExchange(int orderNum);
+	void fixExchange(int orderNum);
 }

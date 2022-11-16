@@ -22,7 +22,7 @@
 let mealkitNamesTmp = []
 function selectMealkitName() {
 	$.ajax({
-		url: '${pageContext.request.contextPath}/order/selectMealkitNames/${order.orderNum}',
+		url: '${pageContext.request.contextPath}/order/selectMealkitNames/${orders[0].orderNum}',
 		dataType: 'json',
 		async: false,
 		success: mealkitNames => {
@@ -38,7 +38,7 @@ function init() {
 	$('#applyExchangeBtn').click(() => {
 		let exchange = {
 				exchangeContent: $('#exchangeContent').val(),
-				orderNum: ${order.orderNum},
+				orderNum: ${orders[0].orderNum},
 				exchangeReasonCode: $('#exchangeReasonCode').val()
 			}
 		$.ajax({
@@ -91,7 +91,7 @@ $(selectMealkitName)
             </div>
             <div class='row'>
                 <div class='col ml-3'>
-                    <br>상세사유<span style='font-size:12px' id='exchangeDetailReason'>(선택)</span><br>
+                    <br>상세사유<span style='font-size:12px' id='exchangeDetailReason'>(필수)</span><br>
                     <textarea maxlength='1300' style='resize: none;' cols='34' rows='5' placeholder='내용을 입력해주세요.'
                         id='exchangeContent' name='exchangeContent'></textarea>
                 </div>

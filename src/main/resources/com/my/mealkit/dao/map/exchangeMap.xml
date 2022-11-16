@@ -44,13 +44,13 @@
 	<insert id='insertExchange'>
 		insert into exchanges(exchange_num, exchange_content,
 			exchange_reason_code, exchange_status_code, order_num)
-		values(exchange_num_seq.nextval, #{exchangeContent},
+		values(exchange_num_seq.nextval,  #{exchangeContent},
 			#{exchangeReasonCode}, 1, #{orderNum})
 	</insert>
 	
-	<delete id='deleteExchange'>
-		delete mealkit.exchanges e
-		from mealkit.orders o
-		where o.order_num = e.order_num
-	</delete>
+	<update id='updateExchange'>
+		update exchanges
+		set exchange_status_code = 2
+		where order_num = #{orderNum}
+	</update>
 </mapper>
