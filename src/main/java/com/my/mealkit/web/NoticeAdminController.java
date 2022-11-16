@@ -84,7 +84,6 @@ public class NoticeAdminController {
 	public ModelAndView fixNotice(Notice notice, ModelAndView mv) throws IOException {		
 		try {
 			String noticeFileName = "NOTICE_0000" + notice.getNoticeImgFile().getOriginalFilename();
-			
 			saveNoticeFile(attachPath + "/" + noticeFileName, notice.getNoticeImgFile());
 			notice.setNoticeImgFileName(noticeFileName);	
 			noticeService.fixAdminNotice(notice);
