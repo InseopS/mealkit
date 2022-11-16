@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ import com.my.mealkit.service.QuestionService;
 public class QuestionController {
 	@Autowired private QuestionService questionService;
 	
-	@RequestMapping("listQuestion")
+	@GetMapping("listQuestion")
 	public String listQuestion() {
 		return "question/listQuestion";
 	}
@@ -37,12 +38,11 @@ public class QuestionController {
 		return questionService.getQuestions((String)session.getAttribute("userId"));
 	}
 	
-	@RequestMapping("addQuestion")
+	@GetMapping("addQuestion")
 	public String addQuestion() {
 		return "question/addQuestion";
 	}
 	
-	@ResponseBody
 	@PostMapping("addQuestion")
 	public ModelAndView addQuestion(Question question, ModelAndView mv, HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
@@ -53,21 +53,20 @@ public class QuestionController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="detailQuestion", method=RequestMethod.GET)
+	@GetMapping("detailQuestion")
 	public String detailQuestion(Model model, @RequestParam("questionNum") int questionNum) {
 		List<Question> questionList = questionService.getDetailQuestion(questionNum);
 		model.addAttribute("questionList", questionList);
 		return "question/detailQuestion";
 	}
 	
-	 @RequestMapping(value ="fixQuestion", method= RequestMethod.GET)
+	 @GetMapping("fixQuestion")
 	   public String fixQuestion(Model model, @RequestParam("questionNum") int questionNum) {
 	      List<Question> questionList = questionService.getDetailQuestion(questionNum);
 	      model.addAttribute("questionList", questionList);
 	      return "question/fixQuestion";
 	 }
 	 
-	 @ResponseBody
 	 @PostMapping("fixQuestion")
 	 public ModelAndView fixQuestion(Question question, ModelAndView mv, HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
