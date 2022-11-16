@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,17 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.mealkit.domain.Exchange;
 import com.my.mealkit.domain.Order;
-import com.my.mealkit.service.ExchangeService;
+import com.my.mealkit.domain.Exchange;
 import com.my.mealkit.service.OrderService;
+import com.my.mealkit.service.ExchangeService;
 
 @RestController
-@RequestMapping("exchange")  
+@RequestMapping("exchange")
 public class ExchangeController {
 	@Autowired private ExchangeService exchangeService;
 	@Autowired private OrderService orderService;
-
+	
 	@RequestMapping("listExchange")
 	public ModelAndView listExchange(ModelAndView mv) {
 		mv.setViewName("exchange/listExchange");
@@ -36,9 +35,9 @@ public class ExchangeController {
 	
 	@RequestMapping(value ="applyExchange", method=RequestMethod.GET)
 	public ModelAndView applyExchange(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
-		Order order = orderService.getOrder(orderNum);		
-		mv.addObject("order", order);
-		mv.setViewName("exchange/applyExchange");		
+		List<Order> orders = orderService.getOrders(orderNum);
+		mv.addObject("orders", orders);
+		mv.setViewName("exchange/applyExchange");
 		return mv;
 	}
 	
@@ -46,23 +45,23 @@ public class ExchangeController {
 	public void applyExchange(@RequestBody Exchange exchange) {
 		exchangeService.addExchange(exchange);
 	}
-	
+
 	@ResponseBody
 	@GetMapping("listExchanges")
-	public List<Exchange> getExchanges(HttpSession session, Exchange exchange) {
+	public List<Exchange> getExchanges(HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
 		List<Exchange> exchanges = exchangeService.getExchanges(userId);
 		return exchanges;
 	}
-
+	
 	@GetMapping("selectMealkitNames/{exchangeNum}")
 	public List<Exchange> getMealkitNames(@PathVariable int exchangeNum) {		
 		List<Exchange> mealkitNameList = exchangeService.getMealkitNames(exchangeNum);
 		return mealkitNameList;
 	}
-
-	@DeleteMapping("delexchange/{orderNum}")
-	public void delLaborer(@PathVariable int orderNum) {
-		exchangeService.delExchange(orderNum);
+	
+	@RequestMapping("fixExchange")
+	public void fixExchange(@RequestBody Exchange exchange) {
+		exchangeService.fixExchange(exchange.getOrderNum());
 	}	
 }

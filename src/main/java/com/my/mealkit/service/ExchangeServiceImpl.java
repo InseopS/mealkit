@@ -18,6 +18,12 @@ public class ExchangeServiceImpl implements ExchangeService {
 	}
 	
 	@Override
+	public	List<Exchange> getExchanges(int exchangeNum) {
+		return exchangeDao.selectExchanges(exchangeNum);
+	}
+
+	
+	@Override
 	public List<Exchange> getAdminExchanges() {
 		return exchangeDao.selectAdminExchanges();
 	}
@@ -26,6 +32,12 @@ public class ExchangeServiceImpl implements ExchangeService {
 	public List<Exchange> getMealkitNames(int exchangeNum) {
 		return exchangeDao.selectMealkitNames(exchangeNum);
 	}
+	
+	@Override
+	public Exchange getExchange(int exchangeNum) {
+		return exchangeDao.selectExchange(exchangeNum);
+	}
+	
 
 	@Override
 	public void addExchange(Exchange exchange) {
@@ -33,7 +45,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 	}
 	
 	@Override
-	public void delExchange(int orderNum) {
-		exchangeDao.deleteExchange(orderNum);
+	public void fixExchange(int orderNum) {
+		exchangeDao.updateExchange(orderNum);
 	}
 }
