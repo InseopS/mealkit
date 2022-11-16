@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +31,7 @@ public class OrderController {
 	@Autowired private UserService userService;
 	@Autowired private CartService cartService;
 	
-	@RequestMapping("addOrder")
+	@PostMapping("addOrder")
 	 public ModelAndView addOrder(HttpSession session, ModelAndView mv, @RequestParam(value="mealkitsStr", required=false)String mealkitsStr) {
 		String[] mealkitStr = mealkitsStr.split(",");
 		List<Cart> carts = new ArrayList<>();
@@ -80,14 +78,12 @@ public class OrderController {
        return mv;
       }
 
-	
-	@RequestMapping("listOrder")	
+	@GetMapping("listOrder")	
 	 public ModelAndView listOrder(ModelAndView mv) {
 	    mv.setViewName("order/listOrder");
 	    return mv;
 	   }
 	
-	@ResponseBody
 	@GetMapping("getOrders")
 	public List<Order> getOrders(HttpSession session, Order order) {
 		String userId = session.getAttribute("userId").toString();
@@ -97,7 +93,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("selectMealkitNames/{orderNum}")
-	public List<Order> getMealkitNames(@PathVariable int orderNum, ModelAndView mv) {		
+	public List<Order> getMealkitNames(@PathVariable int orderNum) {		
 		List<Order> mealkitNameList = orderService.getMealkitNames(orderNum);
 		return mealkitNameList;
 	}	
@@ -108,7 +104,7 @@ public class OrderController {
 		return mealkitPriceList;
 	}
 	
-	@RequestMapping(value="detailOrder", method=RequestMethod.GET)
+	@GetMapping("detailOrder")
 	public ModelAndView detailOrder(@RequestParam("orderNum") int orderNum, ModelAndView mv, HttpSession session, Order order, Mealkit mealkit) {
 		String userId = session.getAttribute("userId").toString();
 		User user = userService.getUser(userId);
@@ -124,7 +120,7 @@ public class OrderController {
 		return mv;
 	}
 	
-	@RequestMapping(value="fixOrder", method=RequestMethod.GET)
+	@GetMapping("fixOrder")
 	public ModelAndView fixOrder(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
 		List<Order> orders = orderService.getOrders(orderNum);
 		mv.addObject("orders", orders);

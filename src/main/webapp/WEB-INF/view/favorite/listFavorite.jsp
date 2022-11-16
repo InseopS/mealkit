@@ -38,8 +38,9 @@
 				$.ajax({
 					url: 'delFavorite/' + $('#mealkitNum:checked').eq(i).val(),
 					method: 'delete'
-				}).done(function() {location.reload()})
-			}		
+				})
+			}
+				location.reload()
 		})
 	}
 	
