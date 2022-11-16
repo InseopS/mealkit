@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class CartController {
 	
 	@Value("${attachPath") private String attachPath;
 	
-	@RequestMapping("/listCart")
+	@GetMapping("/listCart")
 	public String listCart(Model model, HttpSession session) {
         if(session == null || session.getAttribute("userId") == null) {
             return null;
@@ -46,6 +47,9 @@ public class CartController {
 	
 	@PostMapping("addCart")
 	public void addCart(HttpSession session, @RequestBody Cart cart) {
+//		System.out.println(cart.getMealkitNum());
+//		System.out.println(cartService.getCart((String)session.getAttribute("userId")));
+//		if (cart.getMealkitNum() = cartService.getCart(mealkitNum))
 		cart.setUserId(session.getAttribute("userId").toString());
 		cartService.addCart(cart);
 	}

@@ -102,7 +102,7 @@ tr, td {
             </div>
             <div class='row justify-content-end mt-3 mr-2'>
                 <button type='button' id='delBtn' class='btn btn-secondary mr-2'>삭제</button>
-                <button type='submit' id='orderBtn' class='btn btn-secondary'>구매</button>
+                <button type='submit' id='orderBtn' class='btn btn-secondary'>전체 구매</button>
             </div>
         </form>
 	</div>
