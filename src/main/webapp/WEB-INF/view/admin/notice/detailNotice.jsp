@@ -79,10 +79,10 @@ $(init)
 	                                <div class='form-control' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
 	                                    <div class='row my-5' id='contentLogo'>
 	                                        <div class='col'>
-	                                           	<img style="width:150px; height:130px;"src='/attach/${notice.noticeImgFileName}'/>
+	                                           	<img style="width:150px; height:150px;"src='/attach/${notice.noticeImgFileName}'/>
 	                                        </div>
 	                                    </div>
-	                                    <div class='col pl-1'>
+	                                    <div class='col pl-1 pt-5'>
 			                                <textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent;' disabled>${notice.noticeContent}</textarea>
 			                            </div>
 	                                </div>

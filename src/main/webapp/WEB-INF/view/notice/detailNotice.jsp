@@ -40,6 +40,12 @@
                 justify-content: center;
                 align-items: center;
             }
+            
+            #noticeLogo {
+             	margin-right: 40px;
+            	justify-content: center;
+            }
+            
             #noticeContent {
                 margin-top: 30px;
                 font-size:small;
@@ -76,11 +82,11 @@
             </div>
             <div class='row' id='contentLogo'>
                 <div class='col' id='noticeLogo'>
-                    	<img style="width:100%; height:100%; object-fit:cover;"src='/attach/${notice.noticeImgFileName}'/>
+                    	<img style="width:200%; height:200%; object-fit:cover;"src='/attach/${notice.noticeImgFileName}'/>
                 </div>
             </div>
-            <div class='row' id='noticeContent'>
-            <textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent;' disabled>${notice.noticeContent}</textarea>
+            <div class='row pt-4' id='noticeContent'>
+            	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent;' disabled>${notice.noticeContent}</textarea>
             </div>
             <div class='row'>
                 <div class='col'>

@@ -66,6 +66,8 @@
     			color: inherit;
     			text-decoration:none;
 	    	}
+	    	
+	    	a:hover { color: black; text-decoration: underline;}
         </style>
     </head>
     <%@ include file ='../include/headerTop.jsp'%>
