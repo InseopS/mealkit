@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,7 +71,7 @@ public class ReviewController {
       return mv;
    }
    
-   @RequestMapping(value ="fixReview", method= RequestMethod.GET)
+   @GetMapping("fixReview")
    public ModelAndView fixReview(ModelAndView mv, Model model,  @RequestParam("reviewNum") int reviewNum) {
       List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
       model.addAttribute("reviewList", reviewList);
@@ -104,7 +103,7 @@ public class ReviewController {
       reviewService.delReview(reviewNum);
    }
    
-   @RequestMapping(value ="detailReview", method=RequestMethod.GET)
+   @GetMapping("detailReview")
       public ModelAndView detailReview(ModelAndView mv, Model model, @RequestParam("reviewNum") int reviewNum) {
          List<Review> reviewList = reviewService.getdetailReviews(reviewNum);
          model.addAttribute("reviewList", reviewList);
