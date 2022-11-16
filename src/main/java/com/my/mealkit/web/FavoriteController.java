@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class FavoriteController {
 	
 	@Value("${attachPath") private String attachPath;
 	
-	@RequestMapping("/listFavorite")
+	@GetMapping("/listFavorite")
 	public String listFavorite(Model model, HttpSession session) {
         if(session == null || session.getAttribute("userId") == null) {
             return null;
