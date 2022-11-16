@@ -1,6 +1,6 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8'%>
-<html>
 
+<html>
 <head>
 <title>EAZEN MEALKIT</title>
 <meta charset='utf-8'>
@@ -42,22 +42,17 @@ table.latestList {
 			<div class='col'>
 				<table class='latestList'>
 					<tbody>
-						<tr>
-							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${history.flowerImgfileName}'/>'/>
-								</a>
-							</td>
-							<td>이젠밀키트<br>미나리 감자탕<br><br>32,000원</td>
-						</tr>
-						<tr>
-							<td class='mealkitImage'>
-								<a href='<%=request.getContextPath()%>/mealkit/detailMealkit'>
-									<img style='width:150px; height:150px;' src='<c:url value='/attach/${history.flowerImgfileName}'/>'/>
-								</a>
-							</td>
-							<td>이젠밀키트<br>새우 감바스<br><br>10,000원</td>
-						</tr>
+					<c:if test="${mealkits.size() == 0}"> <hr class='my-5'><h3 style='text-align: center'>최근 본 상품이 없습니다.</h3><hr class='my-5'></c:if>
+						<c:forEach var='mealkit' items='${mealkits}'>
+							<tr>
+								<td class='mealkitImage'>
+									<a href='${pageContext.request.contextPath}/mealkit/detailMealkit?mealkitNum=${mealkit.mealkitNum}'>
+										<img style='width:150px; height:150px;' src='<c:url value="/attach/${mealkit.mealkitImgfileName}"/>'/>
+									</a>
+								</td>
+								<td>이젠밀키트<br>${mealkit.mealkitName}<br><br>${mealkit.price}원</td>
+							</tr>
+						</c:forEach>						
 					</tbody>
 				</table>
 			</div>

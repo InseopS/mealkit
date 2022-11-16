@@ -49,7 +49,6 @@ public class CartController {
 	public void addCart(HttpSession session, @RequestBody Cart cart) {
 		System.out.println(cart.getMealkitNum());
 		System.out.println(cartService.getCart("user"));
-//		if(cart.getMealkitNum() )
 		cart.setUserId(session.getAttribute("userId").toString());
 		cartService.addCart(cart);
 	}
