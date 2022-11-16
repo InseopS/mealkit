@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,17 +29,17 @@ public class MealkitAdminController {
 	
 	@Value("${attachPath}") private String attachPath;
 	
-	@RequestMapping("/listMealkit")
+	@GetMapping("/listMealkit")
 	public String listMealkit() {
 		return "admin/mealkit/listMealkit";
 	}
 	
-	@RequestMapping("/addMealkit")
+	@GetMapping("/addMealkit")
 	public String addMealkit() {
 		return "admin/mealkit/addMealkit";
 	}
 	
-	@RequestMapping(value = "/fixMealkit", method=RequestMethod.GET)
+	@GetMapping("/fixMealkit")
 	public String fixMealkit(Model model, @RequestParam("mealkitNum") int mealkitNum) {
 		List<Mealkit> mealkitList = mealkitService.getMealkit(mealkitNum);
 		model.addAttribute("mealkitList", mealkitList);
@@ -51,14 +52,14 @@ public class MealkitAdminController {
 		return mealkitService.getMealkits();
 	}
 	
-	@RequestMapping(value ="/searchMealkit", method=RequestMethod.GET )
+	@GetMapping("/searchMealkit")
 	public String searchMealkit(Model model, @RequestParam("search") String search) {		
 		List<Mealkit> mealkitList = mealkitService.getSearchMealkits(search);
 		model.addAttribute("mealkitList", mealkitList);
 		return "admin/mealkit/searchMealkit";
 	}
 	
-	@RequestMapping(value ="/searchCategory", method=RequestMethod.GET )
+	@GetMapping("/searchCategory")
 	public String searchMealkit(Model model, @RequestParam("searchCategory") int searchCategory) {		
 		List<Mealkit> mealkitList = mealkitService.getSearchCategory(searchCategory);
 		model.addAttribute("mealkitList", mealkitList);
