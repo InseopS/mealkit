@@ -45,6 +45,12 @@
 <script>
 let refundsTmp
 let mealkitNamesTmp = []
+let aTag
+
+document.addEventListener("mouseup", function(event) {
+	aTag = document.getElementsByClassName("aId")
+})
+
 function listRefunds() {
 	$('#refunds').empty();
 	
@@ -69,51 +75,69 @@ function listRefunds() {
 				}
 			})
 		})
-		listTest()
+		detailList()
 	})
 }
 
-function listTest() {
+function detailList() {
 	const refundArr = []
-	for(i=0; i <= refundsTmp.length-1; i++) {
-		
-		refundArr.unshift(
-				`<div class='row'>
-			 	<div class='col'>
-					<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${refundsTmp[i].orderNum}</span>
-				</div>
-			    <div class='col'>
-					<div class='mr-2' style='float: right;'>
-			 			<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
-		       				style='text-decoration: underline; font-size: small'>주문상세</a>
-		          		<a href='listRefund' class='link flex-fill text-dark mt-5' role='button' data-toggle='modal'
-		                	data-target='#refundCancelModal' style='text-decoration: underline; font-size: small;'>환불취소</a>
+	if(refundsTmp) {
+		for(i=0; i <= refundsTmp.length-1; i++) {			
+			refundArr.unshift(
+					`<div class='row'>
+				 	<div class='col'>
+						<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${refundsTmp[i].orderNum}</span>
 					</div>
-			  </div>
-			</div>
-			<hr class='mt-2 mb-2'>
-			<div class='row'>
-				<div class='col'>
-					<table class='table table-sm table-borderless ml-0' id='table'>
-						<tbody> 
-							<tr>
-								<td class='col-3'>주문상품</td>
-								<td>\${mealkitNamesTmp[i]}</td>
-							</tr>
-							<tr>
-								<td>주문상태</td>
-								<td>\${refundsTmp[i].refundStatusName}</td>
-							</tr>                
-						</tbody>
-					</table>
-					<hr class='mt-3 mb-2'>
+				    <div class='col'>
+						<div class='mr-2' style='float: right;'>
+				 			<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+			       				style='text-decoration: underline; font-size: small'>주문상세</a>
+			          		<a href='listRefund' class='link flex-fill text-dark mt-5 aId' role='button' data-toggle='modal'
+			                	data-target='#refundCancelModal' style='text-decoration: underline; font-size: small;' id='\${refundsTmp[i].orderNum}'>환불취소</a>
+						</div>
+				  </div>
 				</div>
-			</div>`
-		);
-	}
+				<hr class='mt-2 mb-2'>
+				<div class='row'>
+					<div class='col'>
+						<table class='table table-sm table-borderless ml-0' id='table'>
+							<tbody> 
+								<tr>
+									<td class='col-3'>주문상품</td>
+									<td>\${mealkitNamesTmp[i]}</td>
+								</tr>
+								<tr>
+									<td>주문상태</td>
+									<td>\${refundsTmp[i].refundStatusName}</td>
+								</tr>                
+							</tbody>
+						</table>
+						<hr class='mt-3 mb-2'>
+					</div>
+				</div>`
+			)
+		}
 	$('#refunds').append(refundArr.join(''))
+	}
 }
-$(listRefunds)
+
+function init() {
+	$(listRefunds)
+	
+	$('#okBtn').click(() => {
+		let aTagId = aTag.item(0).id
+		let refund = {
+			orderNum: aTagId
+		}
+		$.ajax({
+			type:'put',
+			url:'fixRefund',
+			contentType: 'application/json',
+			data: JSON.stringify(refund)		
+		}).done(listRefunds)
+	})
+}
+$(init)
 </script>
 </head>
 

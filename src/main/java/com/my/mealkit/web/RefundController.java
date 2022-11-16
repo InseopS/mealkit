@@ -35,8 +35,8 @@ public class RefundController {
 	
 	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
 	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
-		Order order = orderService.getOrder(orderNum);
-		mv.addObject("order", order);
+		List<Order> orders = orderService.getOrders(orderNum);
+		mv.addObject("orders", orders);
 		mv.setViewName("refund/applyRefund");
 		return mv;
 	}
@@ -61,9 +61,8 @@ public class RefundController {
 	}
 	
 	@RequestMapping("fixRefund")
-	public void fixRefund(@RequestParam("orderNum") int orderNum) {
-		orderService.getOrder(orderNum);
-		refundService.fixRefund(orderNum);
+	public void fixRefund(@RequestBody Refund refund) {
+		refundService.fixRefund(refund.getOrderNum());
 	}
 	
 }

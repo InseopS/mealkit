@@ -51,6 +51,6 @@
 	<update id='updateRefund'>
 		update refunds
 		set refund_status_code = 2
-		where refund_num = #{refundNum}
+		where order_num = #{orderNum}
 	</update>
 </mapper>
