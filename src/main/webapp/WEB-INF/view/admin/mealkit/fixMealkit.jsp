@@ -93,9 +93,7 @@ function init() {
                             <div class='row mt-3'>
                                 <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                                 <div class='col pl-1'>
-                                    <textarea class="form-control" placeholder='내용을 입력해주세요.' id='ingredient' name='ingredient' style='height: 248px' required>
-<c:forEach var='mealkit' items='${mealkitList}'>${mealkit.ingredient}</c:forEach>
-									</textarea>
+                                    <textarea class="form-control" placeholder='내용을 입력해주세요.' id='ingredient' name='ingredient' style='height: 248px' required><c:forEach var='mealkit' items='${mealkitList}'>${mealkit.ingredient}</c:forEach></textarea>
                                 </div>
                             </div>
                             <div class='row mt-3'>
