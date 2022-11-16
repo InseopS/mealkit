@@ -40,7 +40,6 @@
 		where exchanges.exchange_num = #{exchangeNum}
 	</select>
 	
-	
 	<insert id='insertExchange'>
 		insert into exchanges(exchange_num, exchange_content,
 			exchange_reason_code, exchange_status_code, order_num)
