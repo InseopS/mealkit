@@ -98,7 +98,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("selectMealkitNames/{orderNum}")
-	public List<Order> getMealkitNames(@PathVariable int orderNum) {		
+	public List<Order> getMealkitNames(@PathVariable int orderNum, ModelAndView mv) {		
 		List<Order> mealkitNameList = orderService.getMealkitNames(orderNum);
 		return mealkitNameList;
 	}	
