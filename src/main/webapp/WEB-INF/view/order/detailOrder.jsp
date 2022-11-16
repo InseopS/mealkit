@@ -15,10 +15,15 @@
     <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
     <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 	<script>
+	let orderNum = <%=request.getParameter("orderNum")%>
+	
 	function listOrders() {
 		$.ajax({
 			method:'get',
-			url: "<%=request.getContextPath()%>/order/detailOrder"
+			url: "<%=request.getContextPath()%>/order/detailOrder",
+			data: {
+				orderNum : orderNum
+			}
 		}).done()				
 	}
 	$(listOrders)
@@ -55,7 +60,7 @@
    <div id='mainContainerAddSub' class='container'>
       <div class='row' id='orders'>
              <div class='col'>
-                 <table class='table table-sm table-borderless ml-0'>
+                 <table class='table table-sm table-borderless ml-0 mb-0'>
                      <tr><th class='orderInfoTitle1'>주문번호</th><th style='font-size: 12pt; text-align: right;'>${order.orderNum}</th></tr>
                      <tbody>
                      	<c:forEach var='order' items='${orders}'>
@@ -80,7 +85,7 @@
 			     	</tbody>
                  </table>
 
-              <table class='table table-sm table-borderless ml-0 mt-0'>
+              <table class='table table-sm table-borderless ml-0'>
                   <tr><th class='orderInfoTitle1'>주문상세</th><th></th></tr>
                   <tbody>
                       <tr>
