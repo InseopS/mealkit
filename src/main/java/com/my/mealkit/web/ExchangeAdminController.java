@@ -17,11 +17,6 @@ import com.my.mealkit.service.ExchangeService;
 public class ExchangeAdminController {
 	@Autowired private ExchangeService exchangeService;
 	
-	@RequestMapping("listExchange")
-	public String listExchange() {
-		return "admin/exchange/listExchange";
-	}
-
 	@GetMapping("listExchange")
 	public ModelAndView listExchange(ModelAndView mv) {	
 		return mv;
