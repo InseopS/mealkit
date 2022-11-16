@@ -8,8 +8,10 @@ import com.my.mealkit.domain.Refund;
 
 public interface RefundMap {
 	List<Refund> selectRefunds(@Param("userId") String userId);
+	List<Refund> selectRefunds(@Param("refundNum") int refundNum);
 	List<Refund> selectAdminRefunds();
-	List<Refund> selectMealkitNames(@Param("refundNum") int refundNum); 
+	List<Refund> selectMealkitNames(@Param("refundNum") int refundNum);
+	Refund selectRefund(@Param("refundNum") int refundNum);
 	void insertRefund(Refund refund);
-	void updateRefund(@Param("orderNum") int orderNum);
+	void updateRefund(int orderNum);
 }

@@ -18,6 +18,11 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
+	public List<Refund> selectRefunds(int refundNum) {
+		return refundMap.selectRefunds(refundNum);
+	}
+	
+	@Override
 	public List<Refund> selectAdminRefunds(){
 		return refundMap.selectAdminRefunds();
 	}
@@ -28,10 +33,15 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
+	public Refund selectRefund(int refundNum) {
+		return refundMap.selectRefund(refundNum);
+	}
+	
+	@Override
 	public void insertRefund(Refund refund) {
 		refundMap.insertRefund(refund);
 	}
-	
+
 	@Override
 	public void updateRefund(int orderNum) {
 		refundMap.updateRefund(orderNum);

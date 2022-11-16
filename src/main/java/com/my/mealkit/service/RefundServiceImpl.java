@@ -3,18 +3,23 @@ package com.my.mealkit.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.my.mealkit.dao.RefundDao;
 import com.my.mealkit.domain.Refund;
 
-@Repository
+@Service
 public class RefundServiceImpl implements RefundService{
 	@Autowired private RefundDao refundDao;
 	
 	@Override
 	public List<Refund> getRefunds(String userId) {
 		return refundDao.selectRefunds(userId);
+	}
+	
+	@Override
+	public List<Refund> getRefunds(int refundNum) {
+		return refundDao.selectRefunds(refundNum);
 	}
 	
 	@Override
@@ -25,6 +30,11 @@ public class RefundServiceImpl implements RefundService{
 	@Override
 	public List<Refund> getMealkitNames(int refundNum) {
 		return refundDao.selectMealkitNames(refundNum);
+	}
+	
+	@Override
+	public Refund getRefund(int refundNum) {
+		return refundDao.selectRefund(refundNum);
 	}
 	
 	@Override

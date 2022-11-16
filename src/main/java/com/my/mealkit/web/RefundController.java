@@ -61,9 +61,8 @@ public class RefundController {
 	}
 	
 	@RequestMapping("fixRefund")
-	public void fixRefund(@RequestParam("orderNum") int orderNum) {
-		orderService.getOrder(orderNum);
-		refundService.fixRefund(orderNum);
+	public void fixRefund(@RequestBody Refund refund) {
+		refundService.fixRefund(refund.getOrderNum());
 	}
 	
 }
