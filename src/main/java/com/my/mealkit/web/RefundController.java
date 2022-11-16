@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,13 +26,13 @@ public class RefundController {
 	@Autowired private RefundService refundService;
 	@Autowired private OrderService orderService;
 	
-	@RequestMapping("listRefund")
+	@GetMapping("listRefund")
 	public ModelAndView listRefund(ModelAndView mv) {
 		mv.setViewName("refund/listRefund");
 		return mv;
 	}
 	
-	@RequestMapping(value ="applyRefund", method=RequestMethod.GET)
+	@GetMapping("applyRefund")
 	public ModelAndView applyRefund(@RequestParam("orderNum") int orderNum, ModelAndView mv) {
 		List<Order> orders = orderService.getOrders(orderNum);
 		mv.addObject("orders", orders);
@@ -46,7 +45,8 @@ public class RefundController {
 		refundService.addRefund(refund);
 	}
 
-	@ResponseBody
+
+
 	@GetMapping("getRefunds")
 	public List<Refund> getRefunds(HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
@@ -60,9 +60,8 @@ public class RefundController {
 		return mealkitNameList;
 	}
 	
-	@RequestMapping("fixRefund")
+	@PutMapping("fixRefund")
 	public void fixRefund(@RequestBody Refund refund) {
 		refundService.fixRefund(refund.getOrderNum());
 	}
-	
 }

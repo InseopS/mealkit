@@ -2,8 +2,6 @@ package com.my.mealkit.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +17,7 @@ import com.my.mealkit.service.RefundService;
 public class RefundAdminController {
 	@Autowired private RefundService refundService;
 	
-	@RequestMapping("listRefund")
-	public String listRefund() {
-		return "admin/refund/listRefund";
-	}
-
+	
 	@GetMapping("listRefund")
 	public ModelAndView listRefund(ModelAndView mv) {	
 		return mv;
