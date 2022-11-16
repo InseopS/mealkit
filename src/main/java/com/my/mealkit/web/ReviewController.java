@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +36,6 @@ public class ReviewController {
       return mv;
    }
    
-   @ResponseBody
    @PostMapping("getReview")
    public List<Review> getReviews(){
       return reviewService.getReviews();
@@ -60,7 +58,6 @@ public class ReviewController {
       return mv;
    }
    
-   @ResponseBody
    @PostMapping("addReview")
    public ModelAndView addReview(Review review, ModelAndView mv) throws IOException {
       try {
@@ -83,7 +80,6 @@ public class ReviewController {
       return mv;
    }
    
-   @ResponseBody
    @PostMapping("fixReview")
    public ModelAndView fixReview(Review review, ModelAndView mv) throws IOException {
 	   try {
@@ -103,7 +99,6 @@ public class ReviewController {
       } catch(IOException e) {}
    }
    
-   @ResponseBody
    @DeleteMapping("del/{reviewNum}")
    public void delReview(@PathVariable int reviewNum) {
       reviewService.delReview(reviewNum);
