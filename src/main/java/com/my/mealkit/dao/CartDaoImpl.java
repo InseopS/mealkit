@@ -18,8 +18,8 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public List<Cart> selectCart(String userId, int mealkitNum) {
-		return cartMap.selectCart(userId, mealkitNum);
+	public Cart selectCart(String userId) {
+		return cartMap.selectCart(userId);
 	}
 	
 	@Override
