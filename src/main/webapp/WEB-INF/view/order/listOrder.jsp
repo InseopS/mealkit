@@ -53,21 +53,21 @@
 	   		
 	   		const orderArr = []
 	   		for(i=0; i <= ordersTmp.length-1; i++) {
-	   					orderArr.unshift(
-	   						`<div class='row'>
-							 	<div class='col'>
-									<span style='font-weight: bold;'>주문번호</span>&emsp;&ensp;<span>\${ordersTmp[i].orderNum}</span>
-								</div>
-							    <div class='col'>
-									<div class='mr-2' style='float: right;'>
-									<a href='<%=request.getContextPath()%>/order/detailOrder?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark mr-2' id='detailOrderBtn' role='button'
-										style='text-decoration: underline; font-size: small'>주문상세</a>
-									 <a href='listOrder?orderNum=\${orders.orderNum}?orderStatusCode=\${orders.orderStatusCode}' class='link flex-fill text-dark' id='orderCancelBtn'
-										style='text-decoration: underline; font-weight: bold; font-size: small' role='button' data-toggle='modal'
-										data-target='#orderCancelModal' value='\${ordersTmp[i].orderNum}'>주문취소</a>
-									</div>
-							  </div>
-							</div>
+	   			orderArr.unshift(
+                        `<div class='row'>
+                         <div class='col'>
+                           <span style='font-weight: bold;'><input type='checkbox' name='orderNum' id='orderNum'
+                                          value='\${ordersTmp[i].orderNum}'/>&emsp;주문번호</span>&emsp;&ensp;<span>\${ordersTmp[i].orderNum}</span>
+                        </div>
+                         <div class='col d-flex'>
+                           <div class='mr-2 d-flex justify-content-between' style='float: right;'>
+                           <a href='<%=request.getContextPath()%>/order/detailOrder?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark mr-2 mt-1' id='detailOrderBtn' role='button'
+                              style='text-decoration: underline; font-size: small'>주문상세</a>
+                           <button style='background-color:white; border:none;' type='button' class='btn btn-info flex-fill mr-1 btn-sm' id='orderCancleBtn' data-toggle='modal' data-target='#orderCancelModal'>
+                           <span style='text-decoration: underline; color:black;'>주문취소</span></button>
+                           </div>
+                        </div>
+                       </div>
 							<hr class='mt-2 mb-2'>
 							<div class='row'>
 								<div class='col'>
@@ -103,35 +103,24 @@
 		
 	   	
    
-   		function init() {
-   			
-   			$(listOrders)
-   			
-   			$('#orderCancelBtn').click(() => {
-		        $('#orderCancelModal').modal();
-		        $('#modalMsg').empty();
-				$('#modalMsg').text('주문을 취소하시겠습니까?');
-				$('#modalBtn').show();
-				$('#modal').modal();
-			})
-			
-			$('#orderCancelOkBtn').click(() => {
-				let order = {
-						orderNum: orderNumber,
-						orderStatusCode: orderStatusCodeNumber
-				}
-				
-				$.ajax({
-					url:'fix',
-					method:'put',
-					data: JSON.stringify({
-						orderNum: orderNumber,
-						orderStatusCode: parseInt(orderStatusCodeNumber) + 1
-					})
-				})					
-			})
-		}
-		$(init)
+		function init() {
+            
+            $(listOrders)
+            
+            $('#orderCancelOkBtn').click(() => {
+               let orderNum = $('#orderNum:checked').val()
+               $.ajax({
+                     url: 'fixOrder',
+                     method: 'get',
+                     contentType: 'application/json',
+                     data: {
+                           orderNum: orderNum
+                  }
+                  }).done(listOrders)
+            })
+         }
+         
+      $(init)
     </script>
     <style>
         #paging_div {
@@ -251,12 +240,12 @@
                     </button>
                 </div>
                 <div class='modal-body text-center'>
-                    <p id='modalMsg' style='text-align: center'></p>
+                    <p id='modalMsg' style='text-align: center'>주문을 취소하시겠습니까?</p>
                 </div>
                 <div class='modal-footer py-1' id='modalBtn'>
                     <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
                     <button type='button' class='btn btn-primary col-3' data-dismiss='modal'
-                    	id='orderCancelOkBtn' data-toggle='modal' data-target='#orderCancelModal'>예</button>
+                    	id='orderCancelOkBtn'>예</button>
                 </div>
             </div>
         </div>
