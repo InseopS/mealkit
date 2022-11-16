@@ -46,7 +46,6 @@ public class ExchangeController {
 		exchangeService.addExchange(exchange);
 	}
 
-	@ResponseBody
 	@GetMapping("listExchanges")
 	public List<Exchange> getExchanges(HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
