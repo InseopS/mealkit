@@ -35,21 +35,25 @@ function selectMealkitName() {
 }
 
 function init() {
-	$('#applyRefundBtn').click(() => {
-		let refund = {
-				refundContent: $('#refundContent').val(),
-				orderNum: ${orders[0].orderNum},
-				refundReasonCode: $('#refundReasonCode').val()
-			}
-		$.ajax({
-			type:'post',
-			url:'applyRefund',
-			data: JSON.stringify(refund),
-			contentType: 'application/json'
-		}).done(function tmp() {
-			location.href='listRefund'
+
+	$('#applyBtn').click(() => {
+			let refund = {
+					refundContent: $('#refundContent').val(),
+					orderNum: ${orders[0].orderNum},
+					refundReasonCode: $('#refundReasonCode').val()
+				}
+			$.ajax({
+				type:'post',
+				url:'applyRefund',
+				data: JSON.stringify(refund),
+				contentType: 'application/json'
+			}).done(function tmp() {
+				location.href='listRefund'
+			})
 		})
-	})
+	
+	
+	
 }
 
 $(init)
@@ -100,29 +104,12 @@ $(selectMealkitName)
                 <div class='col-5 mt-2 '>
                     <button type='button' class='btn btn-secondary btn-sm'
                         onclick='location.href="../order/listOrder"'>취소</button>
-                    <button type='button' class='btn btn-secondary btn-sm' data-toggle='modal'
-                        data-target='#refundModal'>신청</button>
+                    <button id='applyBtn' type='button' class='btn btn-secondary btn-sm'>신청</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class='modal fade' id='refundModal' tabindex='-1'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <p class='modal-title float-left' id='myModalLabel'>환불신청</p>
-                    <button type='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class='modal-body text-center'>
-                    <p>환불을 신청 하시겠습니까?</p>
-                    <button type='button' class='btn btn-danger col-3' data-dismiss='modal'>아니오</button>&emsp;
-               <button type='submit' class='btn btn-primary col-3' data-dismiss='modal' id='applyRefundBtn'>예</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </body>
 
 <%@ include file ='../include/footer.jsp'%>

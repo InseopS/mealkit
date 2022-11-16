@@ -45,8 +45,6 @@ public class RefundController {
 		refundService.addRefund(refund);
 	}
 
-
-
 	@GetMapping("getRefunds")
 	public List<Refund> getRefunds(HttpSession session) {
 		String userId = session.getAttribute("userId").toString();
