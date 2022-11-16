@@ -66,7 +66,6 @@ public class OrderController {
 	
 	@PostMapping("addOrderMealkit")
 	public void addOrderMealkit(@RequestBody OrderMealkitDto orderMealkit) {
-		System.out.println(orderMealkit);
 		orderService.addOrderMealkit(orderMealkit);
 	}
 	
