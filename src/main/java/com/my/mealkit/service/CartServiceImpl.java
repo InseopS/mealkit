@@ -18,8 +18,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Cart> getCart(String userId, int mealkitNum) {
-		return cartDao.selectCart(userId, mealkitNum);
+	public Cart getCart(String userId) {
+		return cartDao.selectCart(userId);
 	}
 	
 	@Override
