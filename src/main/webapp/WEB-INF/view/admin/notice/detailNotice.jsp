@@ -79,7 +79,7 @@ $(init)
 	                                <div class='form-control' id='noticeContent' style='overflow-y:scroll; height: 29rem;'>
 	                                    <div class='row my-5' id='contentLogo'>
 	                                        <div class='col'>
-	                                           	<img style="width:150px; height:100px;"src='/attach/${notice.noticeImgFileName}'/>
+	                                           	<img style="width:150px; height:130px;"src='/attach/${notice.noticeImgFileName}'/>
 	                                        </div>
 	                                    </div>
 	                                    <div class='col pl-1'>

@@ -20,7 +20,7 @@ import com.my.mealkit.service.NoticeService;
 public class NoticeController {
 	@Autowired private NoticeService noticeService;
 
-	@RequestMapping("listNotice")
+	@GetMapping("listNotice")
 	public ModelAndView listNotice(ModelAndView mv) {
 		mv.setViewName("notice/listNotice");
 		return mv;

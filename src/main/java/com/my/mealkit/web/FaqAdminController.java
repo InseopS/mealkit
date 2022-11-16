@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +28,7 @@ public class FaqAdminController {
 	
 	@Value("${attachPath}") private String attachPath;
 	
-	@RequestMapping("listFaq")
+	@GetMapping("listFaq")
 	public String listFaq() {
 		return "admin/faq/listFaq";
 	}
@@ -38,14 +39,14 @@ public class FaqAdminController {
 		return faqService.getFaqs();
 	}
 	
-	@RequestMapping(value ="detailFaq", method=RequestMethod.GET)
+	@GetMapping("detailFaq")
 	public String detailFaq(Model model, @RequestParam("faqNum") int faqNum) {
 		Faq faq = faqService.getAdminDetailFaq(faqNum);
 		model.addAttribute("faq", faq);
 		return "admin/faq/detailFaq";
 	}
 	
-	@RequestMapping("addFaq")
+	@GetMapping("addFaq")
 	public String addNotice() {
 		return "admin/faq/addFaq";
 	}
@@ -58,7 +59,7 @@ public class FaqAdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="fixFaq", method=RequestMethod.GET)
+	@GetMapping("fixFaq")
 	public String fixFaq(Faq faq, Model model, @RequestParam("faqNum") int faqNum) {
 		faq = faqService.getFaq(faqNum);
 		model.addAttribute("faq", faq);

@@ -40,7 +40,7 @@ function init() {
     }
     
     .select_img img {
-    	margin:10px 0;
+    	margin:5px 0;
     }
 </style>
 </head>
