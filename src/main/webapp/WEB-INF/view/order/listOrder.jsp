@@ -63,7 +63,7 @@
                            <div class='mr-2 d-flex justify-content-between' style='float: right;'>
                            <a href='<%=request.getContextPath()%>/order/detailOrder?orderNum=\${ordersTmp[i].orderNum}' class='link flex-fill text-dark mr-2 mt-1' id='detailOrderBtn' role='button'
                               style='text-decoration: underline; font-size: small'>주문상세</a>
-                           <button style='background-color:white; border:none;' type='button' class='btn btn-info flex-fill mr-1 btn-sm' id='orderCancleBtn' data-toggle='modal' data-target='#orderCancelModal'>
+                           <button style='background-color:white; border:none;' type='button' class='btn btn-info flex-fill mr-1 btn-sm btn-hover' id='orderCancleBtn' data-toggle='modal' data-target='#orderCancelModal'>
                            <span style='text-decoration: underline; color:black;'>주문취소</span></button>
                            </div>
                         </div>

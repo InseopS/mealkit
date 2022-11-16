@@ -46,7 +46,7 @@ public class ReviewController {
 		return mealkitList;
    }
    
-   @RequestMapping("addReview")
+   @GetMapping("addReview")
    public ModelAndView addReview(ModelAndView mv, @RequestParam("orderNum") int orderNum) {	   
 	   Order order = new Order();
 	   order.setOrderNum(orderNum);
