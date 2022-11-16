@@ -43,7 +43,7 @@
 				$('#questions').append(questionArr.join(''))
 			} else {
 				$('#questions').append(
-					'<tr><td colspan=4 class=text-center>문의가 없습니다.</td></tr>')
+					'<tr><td colspan=5 class=text-center>문의가 없습니다.</td></tr>')
 			}
 		})
 	}

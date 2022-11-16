@@ -33,11 +33,6 @@ public class RefundDaoImpl implements RefundDao{
 	}
 	
 	@Override
-	public Refund selectRefund(int refundNum) {
-		return refundMap.selectRefund(refundNum);
-	}
-	
-	@Override
 	public void insertRefund(Refund refund) {
 		refundMap.insertRefund(refund);
 	}

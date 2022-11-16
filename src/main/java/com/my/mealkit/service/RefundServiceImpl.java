@@ -33,11 +33,6 @@ public class RefundServiceImpl implements RefundService{
 	}
 	
 	@Override
-	public Refund getRefund(int refundNum) {
-		return refundDao.selectRefund(refundNum);
-	}
-	
-	@Override
 	public void addRefund(Refund refund) {
 		refundDao.insertRefund(refund);
 	}
