@@ -47,9 +47,9 @@ public class CartController {
 	
 	@PostMapping("addCart")
 	public void addCart(HttpSession session, @RequestBody Cart cart) {
-//		System.out.println(cart.getMealkitNum());
-//		System.out.println(cartService.getCart((String)session.getAttribute("userId")));
-//		if (cart.getMealkitNum() = cartService.getCart(mealkitNum))
+		System.out.println(cart.getMealkitNum());
+		System.out.println(cartService.getCart("user"));
+//		if(cart.getMealkitNum() )
 		cart.setUserId(session.getAttribute("userId").toString());
 		cartService.addCart(cart);
 	}
