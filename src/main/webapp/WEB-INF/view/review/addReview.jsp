@@ -14,15 +14,8 @@
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
         <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-        <style>
-
-        </style>
-        
-		<script> 
-
-        </script>
     </head>
-   <%@ include file ='../include/headerTop.jsp'%>
+<%@ include file ='../include/headerTop.jsp'%>
             <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
                 <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
                 <div id="menuName">

@@ -14,9 +14,6 @@
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap' rel='stylesheet'>
         <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-        <style>
- 
-        </style>
 <script>
 	function init() {
 		$('#fixBtn').click(() => {
@@ -79,9 +76,21 @@
             </div>
        	</div>
         <div class='row mt-3'>
-	        <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
-	        <div class='col pl-1'>        
+        <label for='input' class='col-3 pr-2 col-form-label'>이미지:</label>
+	        <div class='col pl-1'>
 		        <input type='file' class='form-control' id='reviewImgfile' name='reviewImgfile'>
+		        <div class="select_img"><img src="" /></div>
+			        <script>
+				    	$("#reviewImgfile").change(function(){
+				        	if(this.files && this.files[0]) {
+				        		var reader = new FileReader;
+					    		reader.onload = function(data) {
+				        			$(".select_img img").attr("src", data.target.result).width(100);        
+				        		}
+				        			reader.readAsDataURL(this.files[0]);
+				        		}
+					    });
+			        </script>
 	        </div>
         </div>
         <hr>
