@@ -60,7 +60,7 @@ function init() {
 	$('#delBtn').click(() => {
 		if($('#mealkitNum:checked').val()) {
 			$('#modalMsg').empty();
-			$('#modalMsg').text('밀키트를 삭 제하시겠습니까?');
+			$('#modalMsg').text('밀키트를 삭제하시겠습니까?');
 			$('#confirmModal').modal();
 			$('#okBtn').hide();
 			$('#noBtn').show();
