@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +41,7 @@ public class DeclarationController {
 		return declarationService.getDeclarations(userId);
 	}
 	
-	@RequestMapping(value ="declareReview", method=RequestMethod.GET)
+	@GetMapping("declareReview")
 	public ModelAndView declareReview(@RequestParam("reviewNum") int reviewNum, HttpSession session, ModelAndView mv) {
 		String userId = session.getAttribute("userId").toString();
 		String reviewTitle = reviewService.getReview(reviewNum).getReviewTitle();
@@ -56,7 +55,7 @@ public class DeclarationController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="detailDeclaration", method=RequestMethod.GET)
+	@GetMapping("detailDeclaration")
 	public ModelAndView detailDeclaration(@RequestParam("declarationNum") int declarationNum, HttpSession session, ModelAndView mv) {
 		String userId = session.getAttribute("userId").toString();
 		DeclarationDto declaration = declarationService.getDeclaration(declarationNum);

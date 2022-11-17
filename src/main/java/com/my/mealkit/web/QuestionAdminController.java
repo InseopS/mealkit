@@ -24,7 +24,7 @@ import com.my.mealkit.service.QuestionService;
 public class QuestionAdminController {
 	@Autowired QuestionService questionService;
 	
-	@RequestMapping("listQuestion")
+	@GetMapping("listQuestion")
 	public String listQuestion() {
 		return "admin/question/listQuestion";
 	}
@@ -42,7 +42,7 @@ public class QuestionAdminController {
 		return "admin/question/detailQuestion";
 	}
 	
-	@RequestMapping("addQuestion")
+	@GetMapping("addQuestion")
 	public String addQuestion(Model model, @RequestParam("questionNum") int questionNum) {
 		List<Question> questionList = questionService.getDetailQuestion(questionNum);
 		model.addAttribute("questionList", questionList);

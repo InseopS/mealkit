@@ -37,7 +37,7 @@ $(init)
 <div id='subOuter' class='row d-block d-sm-none d-flex mx-0'>
     <a class='material-icons hBack m-2' onClick='history.back()'>arrow_back_ios</a>
     <div id="menuName">
-        <h3>상품평 신고 내역</h3>
+        <h3>신고 내역</h3>
     </div>
 </div>
 <%@ include file ='../include/headerBottom.jsp'%>

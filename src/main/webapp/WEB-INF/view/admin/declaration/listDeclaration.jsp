@@ -60,7 +60,7 @@ function init() {
 						    declarationArr.unshift(
 						        `<tr>
 						        	<td>\${declaration.declarationNum}</td>
-						            <td><a href='detailDeclaration/\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
+						            <td><a href='/admin/declaration/detailDeclaration?declarationNum=\${declaration.declarationNum}'>\${declaration.declarationTitle}</a></td>
 		                            <td>\${declaration.declarationRegdate}</td>
 		                            <td>\${declaration.declarationStatusName}</td>
 						        </tr>`
