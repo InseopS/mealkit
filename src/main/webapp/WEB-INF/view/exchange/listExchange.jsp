@@ -90,7 +90,7 @@ function detailList() {
 					</div>
 				    <div class='col'>
 						<div class='mr-2' style='float: right;'>
-				 			<a href='../order/detailOrder' class='link flex-fill text-dark mt-5 mr-2' role='button'
+				 			<a href='<%=request.getContextPath()%>/order/detailOrder?orderNum=\${exchangesTmp[i].orderNum}' class='link flex-fill text-dark mt-5 mr-2' role='button'
 			       				style='text-decoration: underline; font-size: small'>주문상세</a>
 			          		<a href='listExchange' class='link flex-fill text-dark mt-5 aId' role='button' data-toggle='modal'
 			                	data-target='#exchangeCancelModal' style='text-decoration: underline; font-size: small;' id='\${exchangesTmp[i].orderNum}'>교환취소</a>
