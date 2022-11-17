@@ -65,7 +65,7 @@
             <label for='input' class='col-3 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
             	<textarea class='form-control' placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent'
-            		style='height: 220px' maxlength='1300' required></textarea>
+            		style='height: 220px; resize: none;' maxlength='1300' required></textarea>
          	</div>
        	</div>
         <div class='row mt-3'>
