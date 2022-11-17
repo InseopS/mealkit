@@ -200,6 +200,12 @@ $(init)
             </div>
         </div>
         <div class='row inputBox'>
+            <label class='col-3 col-form-label' style='margin-right: 4px;'></label>
+            <div class='col d-flex mx-auto pl-0'>
+                <button type='button' id='emailCertConf' class='btn btn-primary flex-fill'>인증확인</button>
+        </div>
+        </div>
+        <div class='row inputBox'>
             <label for='input' class='col-3 col-form-label'>연락처</label>
             <div class='col pl-1'>
                 <input type='text' class='form-control' id='phoneNum' name='phoneNum' maxlength='13' pattern='.{13,13}' required phoneNum value='${user.phoneNum}'>

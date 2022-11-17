@@ -26,7 +26,7 @@ public class ExchangeController {
 	@Autowired private ExchangeService exchangeService;
 	@Autowired private OrderService orderService;
 	
-	@RequestMapping("listExchange")
+	@GetMapping("listExchange")
 	public ModelAndView listExchange(ModelAndView mv) {
 		mv.setViewName("exchange/listExchange");
 		return mv;

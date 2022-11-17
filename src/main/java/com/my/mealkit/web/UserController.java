@@ -25,11 +25,11 @@ public class UserController {
 	@Autowired private UserService userService;
 	@Autowired private MailSendService mailSendService;
 	
-	@RequestMapping("jusoPopup")
+	@GetMapping("jusoPopup")
 	public void jusoPopup() {		
 	}
 	
-	@RequestMapping("signUp")
+	@GetMapping("signUp")
 	public void signUp() {
 	}
 	
@@ -39,26 +39,26 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("idDoubleCheck")
+	@GetMapping("idDoubleCheck")
 	public boolean idDoubleCheck(@RequestParam("userId") String userId, HttpServletRequest request, HttpServletResponse response) {
 		boolean isGood = userService.idDoubleCheck(userId);
 		return isGood;
 	}
 	
 	@ResponseBody
-	@RequestMapping("emailDoubleCheck")
+	@GetMapping("emailDoubleCheck")
 	public boolean emailDoubleCheck(@RequestParam("email") String email, HttpServletRequest request, HttpServletResponse response) {
 		boolean isGood = userService.emailDoubleCheck(email);
 		return isGood;
 	}
 	
-	@GetMapping("emailCheck")
 	@ResponseBody
+	@GetMapping("emailCheck")	
 	public String emailCheck(String email) {
 		return mailSendService.emailWrite(email);
 	}
 	
-	@RequestMapping("welcome")
+	@GetMapping("welcome")
 	public void welcome() {		
 	}
 
@@ -100,11 +100,11 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping("findId")
+	@GetMapping("findId")
 	public void findId() {		
 	}
 	
-	@RequestMapping("completeFindId")
+	@GetMapping("completeFindId")
 	public ModelAndView completeFindId(@RequestParam(value="email", required=false) String email, ModelAndView mv) {
 		if(email != null) {
 			String userId = userService.findUserId(email);				
@@ -115,11 +115,11 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping("findPassword")
+	@GetMapping("findPassword")
 	public void findPassword() {		
 	}
 	
-	@RequestMapping("resetPassword")
+	@GetMapping("resetPassword")
 	public ModelAndView resetPassword(User user, ModelAndView mv) {
 		if(user != null) {
 			if(user.getUserId().equals(userService.findUserId(user.getEmail()))) {
@@ -133,7 +133,7 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping("completeResetPassword")
+	@GetMapping("completeResetPassword")
 	public ModelAndView completeResetPassword(User user, ModelAndView mv) {
 		if(user != null) {
 			String userId = user.getUserId();
@@ -168,11 +168,11 @@ public class UserController {
 		userService.fixUser(user);
 	}
 	
-	@RequestMapping("completeFixUser")
+	@PostMapping("completeFixUser")
 	public void completeFixUser() {		
 	}
 	
-	@RequestMapping("withdrawal")
+	@GetMapping("withdrawal")
 	public ModelAndView withdrawal(HttpSession session, ModelAndView mv) {
 		if(session.getAttribute("userId") != null) {
 			String userId = session.getAttribute("userId").toString();
@@ -186,11 +186,11 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping("completeWithdrawal")
+	@GetMapping("completeWithdrawal")
 	public void completeWithdrawal() {
 	}
 	
-	@RequestMapping("mypage")
+	@GetMapping("mypage")
 	public ModelAndView mypage(HttpSession session, ModelAndView mv) {		
 		if(session.getAttribute("userId") != null) {
 			String userId = session.getAttribute("userId").toString();

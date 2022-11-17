@@ -28,7 +28,7 @@ public class NoticeAdminController {
 	
 	@Value("${attachPath}") private String attachPath;
 	
-	@RequestMapping("listNotice")
+	@GetMapping("listNotice")
 	public String list() {
 		return "admin/notice/listNotice";
 	}

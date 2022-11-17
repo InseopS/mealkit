@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,13 +31,13 @@ public class DeclarationAdminController {
 		return declarationService.getDeclarations();
 	}
 
-	@RequestMapping(value = "/searchDeclarations", method=RequestMethod.GET)
+	@GetMapping("searchDeclarations")
 	public List<DeclarationDto> searchDeclarations(@RequestParam String keyword, @RequestParam String category) {		
 		List<DeclarationDto> declarationList = declarationService.getSearchDeclarations(keyword, category);
 		return declarationList;
 	}
 	
-	@RequestMapping(value ="detailDeclaration", method=RequestMethod.GET)
+	@GetMapping("/detailDeclaration")
 	public ModelAndView detailDeclaration(@RequestParam("declarationNum") int declarationNum, HttpSession session, ModelAndView mv) {		
 		DeclarationDto declaration = declarationService.getDeclaration(declarationNum);
 		mv.addObject("declaration", declaration);

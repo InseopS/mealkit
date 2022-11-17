@@ -31,7 +31,7 @@ public class AppConfig implements WebMvcConfigurer {
 	        .excludePathPatterns("/", "/res/**", "/attach/**", "/notice/**", "/faq/**", "/admin/**", "/user/login", 
 	        		"/user/completeFindId", "/user/completeResetPassword", "/user/completeWithdrawal", "/user/findId", 
 	        		"/user/findPassword", "/user/jusoPopup/**", "/user/resetPassword", "/user/signUp", "/user/welcome", 
-	        		"/user/emailCheck/**", "/user/idDoubleCheck/**", "/user/emailDoubleCheck/**");
+	        		"/user/emailCheck/**", "/user/emailCheck?email/**", "/user/idDoubleCheck/**", "/user/emailDoubleCheck/**");
 	}
 	
 	@Override

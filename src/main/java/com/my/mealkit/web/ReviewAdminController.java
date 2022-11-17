@@ -20,7 +20,7 @@ public class ReviewAdminController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@RequestMapping("listReview")
+	@GetMapping("listReview")
 	public String list() {
 		return "admin/review/listReview";
 	}
