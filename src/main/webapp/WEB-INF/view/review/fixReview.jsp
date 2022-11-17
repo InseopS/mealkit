@@ -75,7 +75,7 @@
         <div class='row mt-2'>
             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
             <div class='col pl-1'>
-   				<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px' required>${review.reviewContent}</textarea>
+   				<textarea class="form-control" placeholder='내용을 입력해주세요.' id='reviewContent' name='reviewContent' style='height: 220px; resize: none;' required>${review.reviewContent}</textarea>
             </div>
        	</div>
         <div class='row mt-3'>
