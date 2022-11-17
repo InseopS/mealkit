@@ -40,7 +40,7 @@
 					method: 'delete'
 				})
 			}
-				location.reload()
+			location.reload()
 		})
 	}
 	
@@ -75,6 +75,7 @@ tr, td {
                 <div class='col'>
                     <table id='favorite1'>
                         <tbody class='favoriteList'>
+                        <c:if test="${mealkits.size() == 0}"> <hr class='my-5'><h3 style='text-align: center'>찜한 상품이 없습니다.</h3><hr class='my-5'></c:if>
                        	<c:forEach var='favorite' items='${favorites}'> 
 	                    	<c:forEach var='mealkit' items='${mealkits}'>
 	                        	<c:if test="${mealkit.mealkitNum == favorite.mealkitNum}">
