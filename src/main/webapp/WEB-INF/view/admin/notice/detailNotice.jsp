@@ -83,7 +83,7 @@ $(init)
 	                                        </div>
 	                                    </div>
 	                                    <div class='col pl-1 pt-5'>
-			                                <textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent;' disabled>${notice.noticeContent}</textarea>
+			                                <textarea class='form-control' placeholder='내용을 입력해주세요.' id='noticeContent' style='height: 25.65rem; border: none; background-color:transparent; resize: none;' disabled>${notice.noticeContent}</textarea>
 			                            </div>
 	                                </div>
 	                            </div>

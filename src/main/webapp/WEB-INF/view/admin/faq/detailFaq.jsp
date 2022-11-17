@@ -63,7 +63,7 @@ $(init)
                         <div class='row mt-3'>
                             <label for='input' class='col-2 pr-2 col-form-label'>내용:</label>
                             <div class='col pl-1'>
-                                <textarea class='form-control bg-white' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em' disabled>${faq.faqContent}</textarea>
+                                <textarea class='form-control bg-white' placeholder='내용을 입력해주세요.' id='faqContent' style='height: 29em; resize: none;' disabled>${faq.faqContent}</textarea>
                             </div>
                         </div>
                         <hr>
