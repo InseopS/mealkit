@@ -154,7 +154,7 @@ $(init)
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header py-2'>
-                    <p class="modal-title float-left" id='delModalLabel'>공지삭제</p>
+                    <p class="modal-title float-left" id='delModalLabel'>Q&A삭제</p>
                     <button type='button' class='close' data-dismiss='modal'><span>&times;</span></button>
                 </div>
                 <div class='modal-body'>
